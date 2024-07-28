@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface Publisher {
-  //Campos del modelo
+  //Campos de publisher
   id: string;
   publishername: string;
   foundation_date: Date;

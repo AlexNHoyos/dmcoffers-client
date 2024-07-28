@@ -822,13 +822,6 @@
   </svg>
 </div>
 
-<div *ngIf="publishers">
-  <h1>Publishers</h1>
-  <ul>
-    <li *ngFor="let publisher of publishers">
-      {{ publisher.publishername }}
-    </li>
-  </ul>
-</div>
+<app-publisher-list></app-publisher-list>
 
 <router-outlet></router-outlet>

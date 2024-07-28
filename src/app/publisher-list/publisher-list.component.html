@@ -1,0 +1,32 @@
+<div>
+  <button (click)="loadPublishers()">Load Publishers</button>
+
+  <table *ngIf="publishers.length > 0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Fundacion</th>
+        <th>Disolucion</th>
+        <th>Estado</th>
+        <th>CreationTimeStamp</th>
+        <th>CreationUser</th>
+        <th>ModificationTimeStamp</th>
+        <th>ModificationUser</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let publisher of publishers">
+        <td>{{ publisher.id }}</td>
+        <td>{{ publisher.publishername }}</td>
+        <td>{{ publisher.foundation_date }}</td>
+        <td>{{ publisher.dissolution_date }}</td>
+        <td>{{ publisher.status }}</td>
+        <td>{{ publisher.creationtimestamp }}</td>
+        <td>{{ publisher.creationuser }}</td>
+        <td>{{ publisher.modificationtimestamp }}</td>
+        <td>{{ publisher.modificationuser }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
