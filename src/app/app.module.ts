@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -13,11 +14,17 @@ import { PublisherListComponent } from './publisher-list/publisher-list.componen
 import { MatButtonModule } from '@angular/material/button';
 import { MatTable, MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
+import { PublisherDetailComponent } from './publisher-detail/publisher-detail.component';
 
 @NgModule({
-  declarations: [AppComponent, PublisherListComponent],
+  declarations: [
+    AppComponent,
+    PublisherListComponent,
+    PublisherDetailComponent,
+  ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
