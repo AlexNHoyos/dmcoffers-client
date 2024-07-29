@@ -1,0 +1,14 @@
+$border-color: #ccc;
+$padding-cell: 8px 16px;
+
+.mat-elevation-z8 {
+  border: 1px solid $border-color;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 5px;
+}
+
+th.mat-header-cell,
+td.mat-cell {
+  padding: $padding-cell;
+}

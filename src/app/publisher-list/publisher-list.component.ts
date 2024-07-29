@@ -4,19 +4,47 @@ import { PublisherService, Publisher } from '../publisher.service';
 @Component({
   selector: 'app-publisher-list',
   templateUrl: './publisher-list.component.html',
-  styleUrls: ['./publisher-list.component.css'],
+  styleUrls: ['./publisher-list.component.scss'],
 })
 export class PublisherListComponent implements OnInit {
   publishers: Publisher[] = [];
+  displayedColumns: string[] = [];
+  showTable: boolean = false;
+  buttonText: string = 'Load Publishers';
 
   constructor(private publisherService: PublisherService) {}
 
+  togglePublishers() {
+    if (this.showTable) {
+      // Oculta la tabla
+      this.showTable = false;
+      this.buttonText = 'Mostrar Publishers'; // Cambia el texto del botón
+    } else {
+      // Carga y muestra la tabla
+      this.loadPublishers();
+      // Muestra la tabla
+      this.showTable = true;
+      this.buttonText = 'Ocultar publishers'; // Cambia el texto del botón
+    }
+  }
   ngOnInit(): void {
-    // Cargar los publishers al inicio si lo deseas
+    // Con esta funcion se puede cargar los publishers al inicio
     // this.loadPublishers();
   }
 
   loadPublishers(): void {
+    this.displayedColumns = [
+      'id',
+      'publishername',
+      'foundation_date',
+      'dissolution_date',
+      'status',
+      'creationtimestamp',
+      'creationuser',
+      'modificationtimestamp',
+      'modificationuser',
+    ];
+    this.showTable = true;
     this.publisherService.getPublishers().subscribe((data) => {
       this.publishers = data;
     });
