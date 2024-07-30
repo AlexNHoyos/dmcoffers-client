@@ -4,77 +4,83 @@
   </button>
 
   <div *ngIf="showTable">
-    <table mat-table [dataSource]="publishers" class="mat-elevation-z8">
+    <table
+      mat-table
+      [dataSource]="publishers"
+      class="mat-elevation-z8 mat-table-responsive"
+    >
       <!-- ID Column -->
       <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>ID</th>
-        <td mat-cell *matCellDef="let publisher">{{ publisher.id }}</td>
+        <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+        <mat-cell *matCellDef="let publisher">{{ publisher.id }}</mat-cell>
       </ng-container>
 
       <!-- Name Column -->
       <ng-container matColumnDef="publishername">
-        <th mat-header-cell *matHeaderCellDef>Nombre</th>
-        <td mat-cell *matCellDef="let publisher">
+        <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
+        <mat-cell *matCellDef="let publisher">
           {{ publisher.publishername }}
-        </td>
+        </mat-cell>
       </ng-container>
 
       <!-- Foundation Date Column -->
       <ng-container matColumnDef="foundation_date">
-        <th mat-header-cell *matHeaderCellDef>Fundacion</th>
-        <td mat-cell *matCellDef="let publisher">
+        <mat-header-cell *matHeaderCellDef>Fundacion</mat-header-cell>
+        <mat-cell *matCellDef="let publisher">
           {{ publisher.foundation_date }}
-        </td>
+        </mat-cell>
       </ng-container>
 
       <!-- Dissolution Date Column -->
       <ng-container matColumnDef="dissolution_date">
-        <th mat-header-cell *matHeaderCellDef>Disolucion</th>
-        <td mat-cell *matCellDef="let publisher">
+        <mat-header-cell *matHeaderCellDef>Disolucion</mat-header-cell>
+        <mat-cell *matCellDef="let publisher">
           {{ publisher.dissolution_date }}
-        </td>
+        </mat-cell>
       </ng-container>
 
       <!-- Status Column -->
       <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef>Estado</th>
-        <td mat-cell *matCellDef="let publisher">{{ publisher.status }}</td>
+        <mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
+        <mat-cell *matCellDef="let publisher">{{ publisher.status }}</mat-cell>
       </ng-container>
 
       <!-- CreationTimeStamp Column -->
       <ng-container matColumnDef="creationtimestamp">
-        <th mat-header-cell *matHeaderCellDef>CreationTimeStamp</th>
-        <td mat-cell *matCellDef="let publisher">
+        <mat-header-cell *matHeaderCellDef>CreationTimeStamp</mat-header-cell>
+        <mat-cell *matCellDef="let publisher">
           {{ publisher.creationtimestamp }}
-        </td>
+        </mat-cell>
       </ng-container>
 
       <!-- CreationUser Column -->
       <ng-container matColumnDef="creationuser">
-        <th mat-header-cell *matHeaderCellDef>CreationUser</th>
-        <td mat-cell *matCellDef="let publisher">
+        <mat-header-cell *matHeaderCellDef>CreationUser</mat-header-cell>
+        <mat-cell *matCellDef="let publisher">
           {{ publisher.creationuser }}
-        </td>
+        </mat-cell>
       </ng-container>
 
       <!-- ModificationTimeStamp Column -->
       <ng-container matColumnDef="modificationtimestamp">
-        <th mat-header-cell *matHeaderCellDef>ModificationTimeStamp</th>
-        <td mat-cell *matCellDef="let publisher">
+        <mat-header-cell *matHeaderCellDef
+          >ModificationTimeStamp</mat-header-cell
+        >
+        <mat-cell *matCellDef="let publisher">
           {{ publisher.modificationtimestamp }}
-        </td>
+        </mat-cell>
       </ng-container>
 
       <!-- ModificationUser Column -->
       <ng-container matColumnDef="modificationuser">
-        <th mat-header-cell *matHeaderCellDef>ModificationUser</th>
-        <td mat-cell *matCellDef="let publisher">
+        <mat-header-cell *matHeaderCellDef>ModificationUser</mat-header-cell>
+        <mat-cell *matCellDef="let publisher">
           {{ publisher.modificationuser }}
-        </td>
+        </mat-cell>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
     </table>
   </div>
 </div>

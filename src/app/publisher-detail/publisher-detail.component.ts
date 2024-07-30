@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Publisher } from '../publisher.service.js';
-import { ActivatedRoute } from '@angular/router';
+import { Publisher } from '../models/publisher.model';
+//import { ActivatedRoute } from '@angular/router';
 import { PublisherService } from '../publisher.service';
 
 @Component({
@@ -11,9 +11,10 @@ import { PublisherService } from '../publisher.service';
 export class PublisherDetailComponent implements OnInit {
   publisher: Publisher | null = null;
   searchId: string = '';
+  errorMessage: string = '';
 
   constructor(
-    private route: ActivatedRoute,
+    //private route: ActivatedRoute,
     private publisherService: PublisherService
   ) {}
 
@@ -24,10 +25,11 @@ export class PublisherDetailComponent implements OnInit {
       this.publisherService.getPublisher(this.searchId).subscribe(
         (data) => {
           this.publisher = data;
+          this.errorMessage = ''; //Limpia el error por pantalla
         },
         (error) => {
-          console.error('Error fetching publisher', error);
-          this.publisher = null;
+          this.errorMessage = error; // Asigna el mensaje de error
+          this.publisher = null; // Resetea los datos del publisher si hay un error
         }
       );
     }

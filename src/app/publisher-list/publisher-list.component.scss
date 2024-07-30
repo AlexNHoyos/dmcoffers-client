@@ -8,6 +8,27 @@ $padding-cell: 8px 16px;
   margin-top: 5px;
 }
 
+.mat-table-responsive {
+  min-width: 100%;
+  table-layout: auto;
+  /* Permite que la tabla ajuste su ancho */
+}
+
+th,
+td {
+  white-space: nowrap;
+  /* Evita que el texto se quiebre en varias líneas */
+}
+
+.table-container {
+  overflow-x: auto;
+  display: block;
+}
+
+table{
+  width: 100%;
+}
+
 th.mat-header-cell,
 td.mat-cell {
   padding: $padding-cell;

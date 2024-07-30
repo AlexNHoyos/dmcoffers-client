@@ -15,12 +15,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTable, MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PublisherDetailComponent } from './publisher-detail/publisher-detail.component';
+import { PublisherCreateComponent } from './publisher-create/publisher-create.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PublisherListComponent,
     PublisherDetailComponent,
+    PublisherCreateComponent,
   ],
   imports: [
     BrowserModule,

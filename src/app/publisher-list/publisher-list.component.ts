@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PublisherService, Publisher } from '../publisher.service';
+import { PublisherService } from '../publisher.service';
+import { Publisher } from '../models/publisher.model.js';
 
 @Component({
   selector: 'app-publisher-list',
