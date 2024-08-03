@@ -1,0 +1,80 @@
+<form>
+    <!--Separamos formulario de datos de botones-->
+    <div>
+        <hr>
+        <mat-label>Datos de sesión</mat-label>
+        <hr>
+        <!--Nombre de usuario (nombre de fantasia)-->
+        <div class="row clearfix">
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Username</mat-label>
+                    <input matInput formControlName="username" name="username" required>
+                    <mat-icon matSuffix>account_box</mat-icon>
+                </mat-form-field>
+            </div>
+            <!--Contraseña-->
+            <div>
+                <mat-form-field>
+                    <mat-label>Password</mat-label>
+                    <input matInput formControlName="password" name="contraseña" required>
+                    <mat-icon>vpn_key</mat-icon>
+                </mat-form-field>
+            </div>
+        </div>
+        <hr>
+        <mat-label>Datos personales</mat-label>
+        <hr>
+        <div class="row clearfix">
+            <!--Fecha de nacimiento-->
+            <div>
+                <mat-form-field>
+                    <mat-label>Fecha de nacimiento</mat-label>
+                    <input matInput formControlName="fechaDesdeTxt" [matDatepicker]="picker" required>
+                    <mat-hint>mm/dd/yyyy</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <!--Nombre real (opcional)-->
+            <div>
+                <mat-form-field>
+                    <mat-label>Nombre</mat-label>
+                    <input matInput formControlName="nombre" name="nombrereal" required>
+                </mat-form-field>
+            </div>
+            <!--Apellido (opcional)-->
+            <div>
+                <mat-form-field>
+                    <mat-label>Apellido</mat-label>
+                    <input matInput formControlName="apellido" name="apellido" required>
+                </mat-form-field>
+            </div>
+        </div>
+        <hr>
+        <mat-label>Datos de contacto</mat-label>
+        <hr>
+        <div class="row clearfix">
+            <!--Correo electronico-->
+            <div>
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" name="email" required>
+                </mat-form-field>
+            </div>
+            <!--Telefono (opcional)-->
+            <div>
+                <mat-form-field>
+                    <mat-label>Teléfono</mat-label>
+                    <input matInput formControlName="nroTelefono" name="telefono">
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="row clearfix">
+
+    </div>
+
+</form>
