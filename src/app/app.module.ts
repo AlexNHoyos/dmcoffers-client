@@ -16,6 +16,7 @@ import { MatTable, MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PublisherDetailComponent } from './publisher-detail/publisher-detail.component';
 import { PublisherCreateComponent } from './publisher-create/publisher-create.component';
+import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { PublisherCreateComponent } from './publisher-create/publisher-create.co
     PublisherListComponent,
     PublisherDetailComponent,
     PublisherCreateComponent,
+    ErrorDialogComponent,
   ],
   imports: [
     BrowserModule,

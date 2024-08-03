@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Publisher } from '../models/publisher.model';
 //import { ActivatedRoute } from '@angular/router';
 import { PublisherService } from '../publisher.service';
+import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-publisher-detail',
@@ -15,7 +17,8 @@ export class PublisherDetailComponent implements OnInit {
 
   constructor(
     //private route: ActivatedRoute,
-    private publisherService: PublisherService
+    private publisherService: PublisherService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {}
@@ -28,10 +31,16 @@ export class PublisherDetailComponent implements OnInit {
           this.errorMessage = ''; //Limpia el error por pantalla
         },
         (error) => {
-          this.errorMessage = error; // Asigna el mensaje de error
-          this.publisher = null; // Resetea los datos del publisher si hay un error
+          this.openErrorDialog(error.message);
+          this.publisher = null; // Limpia publisher si hay error
         }
       );
     }
+  }
+
+  openErrorDialog(errorMessage: string): void {
+    this.dialog.open(ErrorDialogComponent, {
+      data: { message: errorMessage },
+    });
   }
 }

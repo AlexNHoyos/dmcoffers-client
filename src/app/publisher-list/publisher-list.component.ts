@@ -11,7 +11,7 @@ export class PublisherListComponent implements OnInit {
   publishers: Publisher[] = [];
   displayedColumns: string[] = [];
   showTable: boolean = false;
-  buttonText: string = 'Load Publishers';
+  buttonText: string = 'Mostrar Publishers';
 
   constructor(private publisherService: PublisherService) {}
 

@@ -17,8 +17,8 @@ export class AppComponent implements OnInit {
   constructor(private publisherService: PublisherService) {}
 
   ngOnInit(): void {
-    this.publisherService.getPublishers().subscribe((data) => {
-      this.publishers = data;
-    });
+    //this.publisherService.getPublishers().subscribe((data) => {
+    //this.publishers = data;
+    //});
   }
 }
