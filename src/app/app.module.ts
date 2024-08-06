@@ -5,11 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
-
 import { UserRegisterComponent } from './user-register/user-register.component';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -22,9 +19,7 @@ import { UserRegisterComponent } from './user-register/user-register.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatFormFieldModule
+    SharedModule
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
