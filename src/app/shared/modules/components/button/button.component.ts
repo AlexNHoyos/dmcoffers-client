@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html',
-  styleUrls: ['./button.component.scss'],
+
   standalone: true,
   imports: [MatButtonModule, MatDividerModule, MatIconModule]
 })

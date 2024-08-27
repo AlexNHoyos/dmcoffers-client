@@ -7,12 +7,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { UserRegisterComponent } from './user-register/user-register.component';
 import { SharedModule } from './shared/shared.module';
+import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     UserRegisterComponent,
+    DashboardComponent,
 
   ],
   imports: [
