@@ -1,0 +1,487 @@
+@import 'variables';
+@import 'mixins';
+
+@include create-grid;
+@include create-responsive-grid;
+
+/* Variables de colores */
+$background-colors: (
+    red: #F44336,
+    pink: #E91E63,
+    purple: #9C27B0,
+    deep-purple: #673AB7,
+    indigo: #3F51B5,
+    blue: #2196F3,
+    light-blue: #03A9F4,
+    cyan: #00BCD4,
+    teal: #009688,
+    green: #4CAF50,
+    light-green: #8BC34A,
+    lime: #CDDC39,
+    yellow: #ffe821,
+    amber: #FFC107,
+    orange: #FF9800,
+    deep-orange: #FF5722,
+    brown: #795548,
+    grey: #9E9E9E,
+    blue-grey: #607D8B,
+    black: #000000,
+    white: #f5f5f5
+);
+
+$button-colors: (
+    warning: #ff9600,
+    danger: #fb483a,
+    info: #00b0e4,
+    success: #2b982b,
+    primary: #1f91f3,
+    default: #fff
+);
+
+$footer-bg: rgba(0, 0, 0, 0.12);
+$body-color: #777;
+$title-color: #fff;
+
+/* Estilos generales de componentes */
+.component {
+    overflow: auto;
+
+    .header {
+        border: none;
+        padding: 25px 25px 5px 25px;
+
+        .title {
+            font-weight: bold;
+            font-size: 16px;
+        }
+    }
+
+    .content {
+        border-radius: 0;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.31) !important;
+        border: none;
+
+        .body {
+            color: $body-color;
+            padding: 15px 25px;
+        }
+    }
+
+    .footer {
+        border: none;
+    }
+}
+
+@each $name, $color in $background-colors {
+    .bg-#{$name} {
+        background-color: $color;
+
+        .body,
+        .title {
+            color: $title-color !important;
+        }
+
+        .footer {
+            background-color: $footer-bg;
+
+            .btn-link {
+                color: $title-color !important;
+
+                &:hover,
+                &:active,
+                &:focus {
+                    background-color: $footer-bg;
+                }
+            }
+        }
+    }
+}
+
+/* Labels ====================================== */
+.label {
+    border-radius: 0;
+}
+
+.label-primary {
+    background-color: map-get($background-colors, blue);
+}
+
+.label-success {
+    background-color: map-get($background-colors, green);
+}
+
+.label-info {
+    background-color: map-get($background-colors, light-blue);
+}
+
+.label-warning {
+    background-color: map-get($background-colors, amber);
+}
+
+.label-danger {
+    background-color: map-get($background-colors, red);
+}
+
+/* Card ======================================== */
+.card {
+    background: whitesmoke;
+    min-height: 50px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    margin-bottom: 30px;
+    border-radius: 2px;
+
+    .inside-title {
+        margin-top: 25px;
+        margin-bottom: 15px;
+        display: block;
+        font-size: 15px;
+        color: black;
+
+        small {
+            color: grey;
+            display: block;
+            font-size: 11px;
+            margin-top: 5px;
+
+            a {
+                color: grey;
+                font-weight: bold;
+            }
+        }
+    }
+
+    @each $name, $color in $background-colors {
+        &.bg-#{$name} {
+            background-color: $color;
+            color: $title-color !important;
+            border-bottom: none !important;
+        }
+    }
+}
+
+/* Modal ======================================== */
+
+.modal {
+    overflow: auto;
+
+    .modal-header {
+        border: none;
+        padding: 25px 25px 5px 25px;
+    }
+
+    .modal-header .modal-title {
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .modal-content {
+        border-radius: 0;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.31) !important;
+        border: none;
+    }
+
+    .modal-content .modal-body {
+        color: $modal-body-color;
+        padding: 15px 25px;
+    }
+
+    .modal-footer {
+        border: none;
+        background-color: $modal-footer-bg;
+    }
+}
+
+@each $name, $color in $background-colors {
+    .modal-col-#{$name} {
+        background-color: $color;
+
+        .modal-body,
+        .modal-title {
+            color: $modal-title-color !important;
+        }
+
+        .modal-footer .btn-link {
+            color: $modal-title-color !important;
+
+            &:hover,
+            &:active,
+            &:focus {
+                background-color: $modal-footer-bg;
+            }
+        }
+    }
+}
+
+/* Labels ====================================== */
+.label {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    border-radius: 0;
+}
+
+.label-primary {
+    background-color: #1f91f3;
+}
+
+.label-success {
+    background-color: #2b982b;
+}
+
+.label-info {
+    background-color: #00b0e4;
+}
+
+.label-warning {
+    background-color: #ff9600;
+}
+
+.label-danger {
+    background-color: #fb483a;
+}
+
+/* Card ======================================== */
+.card {
+    background: #fff;
+    min-height: 50px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    margin-bottom: 30px;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+}
+
+.card .card-inside-title {
+    margin-top: 25px;
+    margin-bottom: 15px;
+    display: block;
+    font-size: 15px;
+    color: #000;
+}
+
+.card .card-inside-title small {
+    color: #999;
+    display: block;
+    font-size: 11px;
+    margin-top: 5px;
+}
+
+.card .card-inside-title small a {
+    color: #777;
+    font-weight: bold;
+}
+
+.card .card-inside-title:first-child {
+    margin-top: 0;
+}
+
+@each $name, $color in $background-colors {
+    .card.bg-#{$name} {
+        background-color: $color;
+        border-bottom: none !important;
+        color: $title-color !important;
+
+        h2,
+        small,
+        .material-icons {
+            color: $title-color !important;
+        }
+
+        .badge {
+            background-color: $badge-bg-color;
+            color: $badge-text-color;
+        }
+    }
+}
+
+.card .header {
+    color: #555;
+    padding: 20px;
+    position: relative;
+    border-bottom: 1px solid rgba(204, 204, 204, 0.35);
+}
+
+.card .header .header-dropdown {
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    list-style: none;
+}
+
+.card .header .header-dropdown .dropdown-menu li {
+    display: block !important;
+}
+
+.card .header .header-dropdown li {
+    display: inline-block;
+}
+
+.card .header .header-dropdown i {
+    font-size: 20px;
+    color: #999;
+    transition: all 0.5s;
+}
+
+.card .header .header-dropdown i:hover {
+    color: #000;
+}
+
+.card .header h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: normal;
+    color: #111;
+}
+
+.card .header h2 small {
+    display: block;
+    font-size: 12px;
+    margin-top: 5px;
+    color: #999;
+    line-height: 15px;
+}
+
+.card .header h2 small a {
+    font-weight: bold;
+    color: #777;
+}
+
+.card .header .col-xs-12 h2 {
+    margin-top: 5px;
+}
+
+.card .body {
+    font-size: 14px;
+    color: #555;
+    padding: 20px;
+}
+
+// Configuración por tamaño de columnas
+@for $i from 1 through 12 {
+
+    .card .body .col-xs-#{$i},
+    .card .body .col-sm-#{$i},
+    .card .body .col-md-#{$i},
+    .card .body .col-lg-#{$i} {
+        margin-bottom: 20px;
+    }
+}
+
+/* Buttons ===================================== */
+.btn {
+    outline: none !important;
+
+    &:focus {
+        outline: none !important;
+    }
+
+    &-circle {
+        border: none;
+        outline: none !important;
+        overflow: hidden;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+
+        i {
+            font-size: 18px;
+            position: relative;
+            left: -1px;
+        }
+    }
+
+    &-circle-lg {
+        border: none;
+        outline: none !important;
+        overflow: hidden;
+        width: 50px;
+        height: 50px;
+        border-radius: 50% !important;
+
+        i {
+            font-size: 26px !important;
+            position: relative !important;
+            left: 0px !important;
+            top: 6px !important;
+        }
+    }
+
+    &-link {
+        font-weight: bold;
+        color: #333;
+        transition: 0.5s;
+
+        &:active,
+        &:focus {
+            text-decoration: none;
+            color: #333;
+        }
+
+        &:hover {
+            text-decoration: none;
+            color: #333;
+            background-color: #ddd;
+        }
+    }
+
+    &:not(.btn-link):not(.btn-circle) {
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
+        border-radius: 2px;
+        border: none;
+        font-size: 13px;
+        outline: none;
+
+        &:hover {
+            outline: none;
+        }
+
+        i {
+            font-size: 20px;
+            position: relative;
+            top: 3px;
+        }
+
+        span {
+            position: relative;
+            top: -2px;
+            margin-left: 3px;
+        }
+    }
+
+    &-group,
+    &-group-vertical {
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
+
+        .btn {
+            box-shadow: none !important;
+            border-radius: 0;
+
+            .caret {
+                position: relative;
+                bottom: 1px;
+            }
+        }
+
+        .btn+.dropdown-toggle {
+            border-left: 1px solid rgba(0, 0, 0, 0.08) !important;
+        }
+
+        .btn-group {
+            box-shadow: none !important;
+        }
+    }
+}
+
+/* Aplicación de colores con loop */
+@each $name, $color in $button-colors {
+
+    .btn-#{$name},
+    .btn-#{$name}:hover,
+    .btn-#{$name}:active,
+    .btn-#{$name}:focus {
+        background-color: $color !important;
+    }
+}
