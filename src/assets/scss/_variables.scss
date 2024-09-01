@@ -1,0 +1,70 @@
+$grid-columns: 12;
+$gutter-width: 20px;
+$breakpoints: (
+    'sm': 576px,
+    'md': 768px,
+    'lg': 992px,
+    'xl': 1200px
+);
+
+/* Variables de colores */
+$background-colors: (
+    red: #F44336,
+    pink: #E91E63,
+    purple: #9C27B0,
+    deep-purple: #673AB7,
+    indigo: #3F51B5,
+    blue: #2196F3,
+    light-blue: #03A9F4,
+    cyan: #00BCD4,
+    teal: #009688,
+    green: #4CAF50,
+    light-green: #8BC34A,
+    lime: #CDDC39,
+    yellow: #ffe821,
+    amber: #FFC107,
+    orange: #FF9800,
+    deep-orange: #FF5722,
+    brown: #795548,
+    grey: #9E9E9E,
+    blue-grey: #607D8B,
+    black: #000000,
+    white: #f5f5f5
+);
+
+$text-colors: (
+    red: #F44336,
+    pink: #E91E63,
+    purple: #9C27B0,
+    deep-purple: #673AB7,
+    indigo: #3F51B5,
+    blue: #2196F3,
+    light-blue: #03A9F4,
+    cyan: #00BCD4,
+    teal: #009688,
+    green: #4CAF50,
+    light-green: #8BC34A,
+    lime: #CDDC39,
+    yellow: #ffe821,
+    amber: #FFC107,
+    orange: #FF9800,
+    deep-orange: #FF5722,
+    brown: #795548,
+    grey: #9E9E9E,
+    blue-grey: #607D8B,
+    black: #000000,
+    white: #f5f5f5
+);
+
+$button-colors: (
+    warning: #ff9600,
+    danger: #fb483a,
+    info: #00b0e4,
+    success: #2b982b,
+    primary: #1f91f3,
+    default: #fff
+);
+
+$modal-footer-bg: rgba(0, 0, 0, 0.12);
+$modal-body-color: #777;
+$modal-title-color: #fff;

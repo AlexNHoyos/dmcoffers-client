@@ -1,18 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+//import { LoginComponent } from './login/login.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
 
 const routes: Routes = [
-  { path: 'user-register', component: UserRegisterComponent },
-  /*   {
-      path: '', redirectTo: 'dashboard',  canActivate: [AuthGuard], 
-      children: [
-        { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-        { path: 'dashboard' , component: DashboardComponent, canLoad: [AuthGuard] },
-    { path: '**', redirectTo: '/dmcoffers/dashboard' }
-      ]
-    },
-    {path: '**', redirectTo: 'login'} */
+  //{ path: 'login', component: LoginComponent },        // Ruta para 'login'
+  { path: 'register', component: UserRegisterComponent },  // Ruta para 'register'
+  { path: '', redirectTo: '/login', pathMatch: 'full' },  // Redirigir a 'login' por defecto
+  { path: '**', redirectTo: '/login' }  // Redirigir cualquier ruta no encontrada a 'login'
 ];
 
 @NgModule({

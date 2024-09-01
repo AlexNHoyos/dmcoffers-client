@@ -1,46 +1,22 @@
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+// Otros estilos globales de la aplicación
+
 @import 'variables';
 @import 'mixins';
 
 @include create-grid;
 @include create-responsive-grid;
 
-/* Variables de colores */
-$background-colors: (
-    red: #F44336,
-    pink: #E91E63,
-    purple: #9C27B0,
-    deep-purple: #673AB7,
-    indigo: #3F51B5,
-    blue: #2196F3,
-    light-blue: #03A9F4,
-    cyan: #00BCD4,
-    teal: #009688,
-    green: #4CAF50,
-    light-green: #8BC34A,
-    lime: #CDDC39,
-    yellow: #ffe821,
-    amber: #FFC107,
-    orange: #FF9800,
-    deep-orange: #FF5722,
-    brown: #795548,
-    grey: #9E9E9E,
-    blue-grey: #607D8B,
-    black: #000000,
-    white: #f5f5f5
-);
-
-$button-colors: (
-    warning: #ff9600,
-    danger: #fb483a,
-    info: #00b0e4,
-    success: #2b982b,
-    primary: #1f91f3,
-    default: #fff
-);
-
-$footer-bg: rgba(0, 0, 0, 0.12);
-$body-color: #777;
-$title-color: #fff;
+.no-select {
+    user-select: none;
+    -webkit-user-select: none;
+    /* Para navegadores basados en WebKit */
+    -moz-user-select: none;
+    /* Para Firefox */
+    -ms-user-select: none;
+    /* Para Internet Explorer/Edge */
+}
 
 /* Estilos generales de componentes */
 .component {
@@ -62,7 +38,7 @@ $title-color: #fff;
         border: none;
 
         .body {
-            color: $body-color;
+            color: $modal-body-color;
             padding: 15px 25px;
         }
     }
@@ -78,19 +54,19 @@ $title-color: #fff;
 
         .body,
         .title {
-            color: $title-color !important;
+            color: $modal-title-color !important;
         }
 
         .footer {
-            background-color: $footer-bg;
+            background-color: $modal-footer-bg;
 
             .btn-link {
-                color: $title-color !important;
+                color: $modal-title-color !important;
 
                 &:hover,
                 &:active,
                 &:focus {
-                    background-color: $footer-bg;
+                    background-color: $modal-footer-bg;
                 }
             }
         }
@@ -120,6 +96,12 @@ $title-color: #fff;
 
 .label-danger {
     background-color: map-get($background-colors, red);
+}
+
+.label-section-title {
+    font-size: 18px;
+    font-weight: 400;
+    color: grey;
 }
 
 /* Card ======================================== */
@@ -154,7 +136,7 @@ $title-color: #fff;
     @each $name, $color in $background-colors {
         &.bg-#{$name} {
             background-color: $color;
-            color: $title-color !important;
+            color: $modal-title-color !important;
             border-bottom: none !important;
         }
     }
@@ -282,18 +264,18 @@ $title-color: #fff;
     .card.bg-#{$name} {
         background-color: $color;
         border-bottom: none !important;
-        color: $title-color !important;
+        color: $modal-title-color !important;
 
         h2,
         small,
         .material-icons {
-            color: $title-color !important;
+            color: $modal-title-color !important;
         }
 
-        .badge {
+        /*         .badge {
             background-color: $badge-bg-color;
             color: $badge-text-color;
-        }
+        } */
     }
 }
 
