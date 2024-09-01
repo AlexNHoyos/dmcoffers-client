@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PublisherService } from '../publisher.service';
-import { Publisher } from '../models/publisher.model.js';
+import { PublisherService } from '../../publisher.service';
+import { Publisher } from '../../models/publisher.model.js';
 
 @Component({
   selector: 'app-publisher-list',
@@ -31,6 +31,9 @@ export class PublisherListComponent implements OnInit {
   ngOnInit(): void {
     // Con esta funcion se puede cargar los publishers al inicio
     // this.loadPublishers();
+    this.publisherService.getPublishers().subscribe((data) => {
+      console.log(data);
+    });
   }
 
   loadPublishers(): void {

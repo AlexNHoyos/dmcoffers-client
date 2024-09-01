@@ -1,0 +1,7 @@
+<form (ngSubmit)="onDeletePublisher()">
+  <mat-form-field>
+    <mat-label>Publisher ID</mat-label>
+    <input matInput [(ngModel)]="publisherId" name="publisherId" required />
+  </mat-form-field>
+  <button mat-raised-button color="warn" type="submit">Delete Publisher</button>
+</form>

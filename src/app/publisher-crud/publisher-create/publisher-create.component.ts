@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { PublisherService } from '../publisher.service';
-import { Publisher } from '../models/publisher.model';
+import { PublisherService } from '../../publisher.service';
+import { Publisher } from '../../models/publisher.model';
 import { MatDialog } from '@angular/material/dialog';
-import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
+import { ErrorDialogComponent } from '../../error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-publisher-create',

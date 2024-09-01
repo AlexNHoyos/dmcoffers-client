@@ -1,0 +1,19 @@
+<form (ngSubmit)="onUpdatePublisher()">
+  <mat-form-field>
+    <mat-label>Publisher ID</mat-label>
+    <input matInput [(ngModel)]="publisher.id" name="publisherId" required />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Publisher Name</mat-label>
+    <input
+      matInput
+      [(ngModel)]="publisher.publishername"
+      name="publisherName"
+      required
+    />
+  </mat-form-field>
+  <!-- Add more fields as necessary -->
+  <button mat-raised-button color="primary" type="submit">
+    Update Publisher
+  </button>
+</form>
