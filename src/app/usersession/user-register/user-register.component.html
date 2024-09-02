@@ -35,12 +35,15 @@
                     <div class="col-md-6">
                         <mat-form-field>
                             <mat-label>Fecha de nacimiento</mat-label>
-                            <input matInput formControlName="fechaDesdeTxt" required>
-                            <mat-hint>mm/dd/yyyy</mat-hint>
-                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
+                            <input matInput formControlName="fechaNacimientoTxt" required
+                                (dateChange)="selectFechaNacimiento('input', $event)">
+                            <mat-hint>dd/MM/yyyy</mat-hint>
+                            <mat-datepicker-toggle matIconSuffix [for]="fechaNacimientoPicker"></mat-datepicker-toggle>
+                            <mat-datepicker #fechaNacimientoPicker
+                                (dateChange)="selectFechaNacimiento('picker', $event)"></mat-datepicker>
                         </mat-form-field>
                     </div>
+
                 </div>
                 <div>
                     <!-- Nombre real (opcional) -->
