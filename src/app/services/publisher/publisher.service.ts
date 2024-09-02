@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Publisher } from './models/publisher.model';
-import { ErrorHandlerService } from './error-handler.service';
+import { ErrorHandlerService } from '../error-handler.service';
+import { Publisher } from 'src/app/models/publisher.model.js';
 
 @Injectable({
   providedIn: 'root',

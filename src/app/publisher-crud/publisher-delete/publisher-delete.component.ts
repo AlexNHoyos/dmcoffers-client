@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { PublisherService } from '../../publisher.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../../error-dialog/error-dialog.component';
+import { PublisherService } from 'src/app/services/publisher/publisher.service';
 
 @Component({
   selector: 'app-publisher-delete',

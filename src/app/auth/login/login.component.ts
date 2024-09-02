@@ -12,21 +12,22 @@ import { LoginRequest } from '../../services/auth/loginRequest';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loginError: string = '';
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private loginService: LoginService
   ) {
     this.loginForm = this.formBuilder.group({
-      user: ['user1234', [Validators.required]], //Validadores requeridos
+      username: ['', [Validators.required]], //Validadores requeridos
       password: ['', [Validators.required]],
     });
   }
 
   ngOnInit(): void {}
 
-  get user() {
-    return this.loginForm.controls['user'];
+  get username() {
+    return this.loginForm.controls['username'];
   }
 
   get password() {

@@ -5,7 +5,7 @@ import {
 } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,24 +13,26 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { PublisherService } from './publisher.service';
-import { PublisherListComponent } from './publisher-crud/publisher-list/publisher-list.component';
-
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTable, MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
-import { PublisherDetailComponent } from './publisher-crud/publisher-detail/publisher-detail.component';
-import { PublisherCreateComponent } from './publisher-crud/publisher-create/publisher-create.component';
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
-import { PublisherDeleteComponent } from './publisher-crud/publisher-delete/publisher-delete.component';
-import { PublisherUpdateComponent } from './publisher-crud/publisher-update/publisher-update.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
-import { NavComponent } from './shared/nav/nav.component';
 import { LoginComponent } from './auth/login/login.component';
+import { NavComponent } from './shared/nav/nav.component';
+import { PersonalDetailsComponent } from './components/personal-details/personal-details.component';
+import { PublisherService } from './services/publisher/publisher.service';
+import { PublisherUpdateComponent } from './publisher-crud/publisher-update/publisher-update.component';
+import { PublisherDeleteComponent } from './publisher-crud/publisher-delete/publisher-delete.component';
+import { PublisherCreateComponent } from './publisher-crud/publisher-create/publisher-create.component';
+import { PublisherDetailComponent } from './publisher-crud/publisher-detail/publisher-detail.component';
+import { PublisherListComponent } from './publisher-crud/publisher-list/publisher-list.component';
+import { JwtInterceptorService } from './services/auth/jwt-interceptor.service';
+import { ErrorInterceptorService } from './services/auth/error-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { LoginComponent } from './auth/login/login.component';
     FooterComponent,
     HeaderComponent,
     LoginComponent,
+    NavComponent,
+    PersonalDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +63,20 @@ import { LoginComponent } from './auth/login/login.component';
     MatDialogModule,
     MatTableModule,
   ],
-  providers: [PublisherService, provideClientHydration()],
+  providers: [
+    PublisherService,
+    provideClientHydration(),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptorService,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

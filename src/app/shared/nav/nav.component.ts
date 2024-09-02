@@ -6,12 +6,9 @@ import { LoginService } from '../../services/auth/login.service';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss'],
 })
-export class NavComponent implements OnInit, OnDestroy {
+export class NavComponent implements OnInit {
   userLoginOn: boolean = false;
   constructor(private loginService: LoginService) {}
-  ngOnDestroy(): void {
-    this.loginService.currentUserLoginOn.unsubscribe();
-  }
 
   ngOnInit(): void {
     this.loginService.currentUserLoginOn.subscribe({
