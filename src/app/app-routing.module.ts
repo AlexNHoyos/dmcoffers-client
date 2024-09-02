@@ -9,9 +9,9 @@ import { LoginComponent } from './auth/login/login.component';
 const routes: Routes = [
   //{ path: '', redirectTo: '/publishers', pathMatch: 'full' },
   //{ path: 'publishers', component: PublisherListComponent },
-  { path: '', redirectTo: '/Inicio', pathMatch: 'full' },
-  { path: 'Inicio', component: DashboardComponent },
-  { path: 'Iniciar-sesion', component: LoginComponent },
+  { path: '', redirectTo: '/inicio', pathMatch: 'full' },
+  { path: 'inicio', component: DashboardComponent },
+  { path: 'iniciar-sesion', component: LoginComponent },
   { path: 'publishers/:id', component: PublisherDetailComponent },
   { path: 'create-publisher', component: PublisherCreateComponent },
 ];

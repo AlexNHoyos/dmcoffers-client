@@ -19,6 +19,14 @@ export class NavComponent implements OnInit {
     });
   }
 
+  home() {
+    this.router.navigate(['/inicio']);
+  }
+
+  login() {
+    this.router.navigate(['/iniciar-sesion']);
+  }
+
   logout() {
     this.loginService.logout();
     this.router.navigate(['/inicio']);

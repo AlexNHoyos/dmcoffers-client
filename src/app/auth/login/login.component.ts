@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
         },
         complete: () => {
           console.log('El login está completo');
-          this.router.navigateByUrl('/Inicio');
+          this.router.navigateByUrl('/inicio');
           this.loginForm.reset();
         },
       });

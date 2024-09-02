@@ -1,3 +1,25 @@
+@import 'src/styles.scss';
+
 header {
-  background-image: url(https://cdn.pixabay.com/photo/2023/09/06/02/21/ice-8236115_1280.jpg);
+  background-color: $main-color;
+  text-align: center;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid white; 
+  }
+
+  h1 {
+    margin: 0.5em;
+    font-size: 2.5rem;
+  }
+
 }

@@ -33,6 +33,7 @@ import { PublisherDetailComponent } from './publisher-crud/publisher-detail/publ
 import { PublisherListComponent } from './publisher-crud/publisher-list/publisher-list.component';
 import { JwtInterceptorService } from './services/auth/jwt-interceptor.service';
 import { ErrorInterceptorService } from './services/auth/error-interceptor.service';
+import { PublisherCrudComponent } from './publisher-crud/publisher-crud/publisher-crud.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { ErrorInterceptorService } from './services/auth/error-interceptor.servi
     LoginComponent,
     NavComponent,
     PersonalDetailsComponent,
+    PublisherCrudComponent,
   ],
   imports: [
     BrowserModule,
