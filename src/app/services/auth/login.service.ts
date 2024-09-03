@@ -11,6 +11,7 @@ import {
 } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { jwtDecode } from 'jwt-decode';
+import { UserService } from '../user/user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +22,7 @@ export class LoginService {
   );
   currentUserData: BehaviorSubject<String> = new BehaviorSubject<String>('');
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private userService: UserService) {
     this.currentUserLoginOn = new BehaviorSubject<boolean>(
       sessionStorage.getItem('accessToken') != null
     );
@@ -29,7 +30,7 @@ export class LoginService {
       sessionStorage.getItem('accessToken') || ''
     );
 
-    // Si hay un token, actualizar el userId en environment
+    // Si hay un token, actualizar el userId actual
     if (sessionStorage.getItem('accessToken')) {
       const token = sessionStorage.getItem('accessToken');
       this.updateUserId(token);
@@ -44,7 +45,6 @@ export class LoginService {
           sessionStorage.setItem('accessToken', userData.accessToken);
           this.currentUserData.next(userData.accessToken);
           this.currentUserLoginOn.next(true);
-
           this.updateUserId(userData.accessToken);
         }),
         map((userData) => userData.accessToken),
@@ -55,14 +55,13 @@ export class LoginService {
   logout(): void {
     sessionStorage.removeItem('accessToken');
     this.currentUserLoginOn.next(false);
-
-    environment.userId = '';
+    this.userService.setUserId('');
   }
 
   private updateUserId(token: string | null) {
     if (token) {
       const decodedToken: any = jwtDecode(token);
-      environment.userId = decodedToken.id || ''; // Asegúrate que el JWT tenga el userId
+      this.userService.setUserId(decodedToken.id || '');
       console.log('id ' + decodedToken.id);
     }
   }

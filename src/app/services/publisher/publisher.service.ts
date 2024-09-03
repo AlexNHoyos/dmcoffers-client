@@ -17,7 +17,9 @@ export class PublisherService {
   ) {}
 
   getPublishers(): Observable<Publisher[]> {
-    return this.http.get<Publisher[]>(this.apiUrl);
+    return this.http
+      .get<Publisher[]>(this.apiUrl)
+      .pipe(catchError(this.errorHandler.handleError));
   }
 
   getPublisher(id: string): Observable<Publisher> {
