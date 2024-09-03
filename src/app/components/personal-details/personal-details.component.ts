@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { User } from '../../services/auth/user';
+import { User } from '../../models/user.model';
 import { UserService } from '../../services/user/user.service';
 import { environment } from 'src/environments/environment';
 import { LoginService } from 'src/app/services/auth/login.service';
@@ -29,6 +29,7 @@ export class PersonalDetailsComponent {
   ) {
     this.userService.getUser(environment.userId).subscribe({
       next: (userData) => {
+        console.log(userData);
         this.user = userData;
         this.registerForm.controls.id.setValue(userData.id);
         this.registerForm.controls.realname.setValue(userData.realname);

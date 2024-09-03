@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LoginRequest } from './loginRequest.js';
+import { LoginRequest } from '../../models/loginRequest.js';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import {
   tap,
@@ -9,8 +9,8 @@ import {
   BehaviorSubject,
   map,
 } from 'rxjs';
-import { User } from './user';
 import { environment } from 'src/environments/environment';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
@@ -28,6 +28,12 @@ export class LoginService {
     this.currentUserData = new BehaviorSubject<String>(
       sessionStorage.getItem('accessToken') || ''
     );
+
+    // Si hay un token, actualizar el userId en environment
+    if (sessionStorage.getItem('accessToken')) {
+      const token = sessionStorage.getItem('accessToken');
+      this.updateUserId(token);
+    }
   }
 
   login(credentials: LoginRequest): Observable<any> {
@@ -38,6 +44,8 @@ export class LoginService {
           sessionStorage.setItem('accessToken', userData.accessToken);
           this.currentUserData.next(userData.accessToken);
           this.currentUserLoginOn.next(true);
+
+          this.updateUserId(userData.accessToken);
         }),
         map((userData) => userData.accessToken),
         catchError(this.handleError)
@@ -47,6 +55,16 @@ export class LoginService {
   logout(): void {
     sessionStorage.removeItem('accessToken');
     this.currentUserLoginOn.next(false);
+
+    environment.userId = '';
+  }
+
+  private updateUserId(token: string | null) {
+    if (token) {
+      const decodedToken: any = jwtDecode(token);
+      environment.userId = decodedToken.id || ''; // Asegúrate que el JWT tenga el userId
+      console.log('id ' + decodedToken.id);
+    }
   }
 
   private handleError(error: HttpErrorResponse) {

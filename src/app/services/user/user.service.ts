@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from '../auth/user';
+import { User } from '../../models/user.model';
 import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -10,13 +10,13 @@ import { environment } from 'src/environments/environment';
 export class UserService {
   constructor(private http: HttpClient) {}
 
-  getUser(id: number): Observable<User> {
+  getUser(id: string): Observable<User> {
     return this.http
       .get<User>(environment.urlApi + 'users/' + id)
       .pipe(catchError(this.handleError));
   }
 
-  updateUser(id: number, userRequest: User): Observable<any> {
+  updateUser(id: string, userRequest: User): Observable<any> {
     return this.http
       .put<User>(environment.urlApi + 'users/' + id, userRequest)
       .pipe(catchError(this.handleError));
