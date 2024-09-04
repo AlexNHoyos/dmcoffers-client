@@ -17,6 +17,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTable, MatTableModule } from '@angular/material/table';
+
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+
 import { MatDialogModule } from '@angular/material/dialog';
 import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -34,6 +38,7 @@ import { PublisherListComponent } from './publisher-crud/publisher-list/publishe
 import { JwtInterceptorService } from './services/auth/jwt-interceptor.service';
 import { ErrorInterceptorService } from './services/auth/error-interceptor.service';
 import { PublisherCrudComponent } from './publisher-crud/publisher-crud/publisher-crud.component';
+import { ConfirmComponent } from './components/confirm/confirm.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +56,7 @@ import { PublisherCrudComponent } from './publisher-crud/publisher-crud/publishe
     NavComponent,
     PersonalDetailsComponent,
     PublisherCrudComponent,
+    ConfirmComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +70,8 @@ import { PublisherCrudComponent } from './publisher-crud/publisher-crud/publishe
     MatButtonModule,
     MatDialogModule,
     MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
   providers: [
     PublisherService,
