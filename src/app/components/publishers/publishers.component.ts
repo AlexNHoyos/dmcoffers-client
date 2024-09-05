@@ -2,29 +2,40 @@ import { Component, Type } from '@angular/core';
 import { Publisher } from './publisher.model';
 import { PublisherService } from './publisher.service';
 import { CrudComponent } from '../crud/crud.component';
-import { DialogComponent, DialogService } from 'ng2-bootstrap-modal';
-import { Data } from '@angular/router';
 import { PublisherCreateComponent } from './publisher-create/publisher-create.component';
 import { PublisherUpdateComponent } from './publisher-update/publisher-update.component';
-
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-publisher',
   templateUrl: './publishers.component.html',
   styleUrls: ['./publishers.component.scss'],
 })
 export class PublisherComponent extends CrudComponent<Publisher> {
-  getCreateComponent(): Type<DialogComponent<Publisher, boolean>> {
+  constructor(
+    private publisherService: PublisherService,
+    override dialog: MatDialog
+  ) {
+    super(publisherService, dialog);
+  }
+
+  getCreateComponent() {
     return PublisherCreateComponent;
   }
-  getEditComponent(): Type<DialogComponent<Publisher, boolean>> {
+  getEditComponent() {
     return PublisherUpdateComponent;
   }
 
-  constructor(
-    private publisherService: PublisherService,
-    dialogService: DialogService
-  ) {
-    super(publisherService, dialogService);
+  openCreateDialog(): void {
+    const dialogRef = this.dialog.open(PublisherCreateComponent, {
+      width: '400px',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log('Publisher creado');
+        this.loadPublishers(); // Carga o actualiza la lista de publishers
+      }
+    });
   }
 
   override displayedColumns: string[] = [
@@ -71,8 +82,15 @@ export class PublisherComponent extends CrudComponent<Publisher> {
   }
 
   editPublisher(publisher: Publisher): void {
-    // Lógica para editar el publisher
-    console.log('Editar publisher', publisher);
+    const dialogRef = this.dialog.open(PublisherUpdateComponent, {
+      data: { publisher },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        // Refresh the list or handle the update confirmation here
+      }
+    });
   }
 
   deletePublisher(publisher: Publisher): void {

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user.model';
 import { UserService } from '../../services/user/user.service';
-import { environment } from 'src/environments/environment';
 import { LoginService } from 'src/app/services/auth/login.service';
 import { FormBuilder, Validators } from '@angular/forms';
 

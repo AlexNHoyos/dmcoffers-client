@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { Data, Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 
-import { DialogComponent, DialogService } from 'ng2-bootstrap-modal';
 import { PublisherService } from '../publisher.service';
 import { Publisher } from '../publisher.model';
 
@@ -11,10 +9,7 @@ import { Publisher } from '../publisher.model';
   templateUrl: './publisher-create.component.html',
   styleUrls: ['./publisher-create.component.scss'],
 })
-export class PublisherCreateComponent
-  extends DialogComponent<Data, boolean>
-  implements Data
-{
+export class PublisherCreateComponent {
   publisher: Publisher = {
     id: '',
     publishername: '',
@@ -29,23 +24,21 @@ export class PublisherCreateComponent
 
   constructor(
     private publisherService: PublisherService,
-    private router: Router,
-    dialog: DialogService
-  ) {
-    super(dialog);
-  }
+    private dialogRef: MatDialogRef<PublisherCreateComponent>
+  ) {}
 
-  /*createPublisher(): void {
+  createPublisher(): void {
     this.publisherService.createPublisher(this.publisher).subscribe(
       (response) => {
         console.log('Publisher creado exitosamente', response);
+        this.dialogRef.close(true); // Cierra el diálogo y indica que se guardaron los cambios
       },
       (error) => {
         console.error('Error creando publisher', error);
-        this.openErrorDialog(error);
       }
     );
   }
-
-*/
+  cancel(): void {
+    this.dialogRef.close(false); // Cierra el diálogo sin guardar cambios
+  }
 }

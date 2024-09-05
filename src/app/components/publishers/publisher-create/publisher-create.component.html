@@ -1,4 +1,4 @@
-<!--<mat-card class="card">
+<mat-card class="card">
   <mat-card-header>
     <mat-card-title>Crear publisher</mat-card-title>
     <mat-card-subtitle>Ingrese los siguientes datos:</mat-card-subtitle>
@@ -14,16 +14,16 @@
           name="publishername"
           required
         />
-        @if (publisher.publishername) {
+
         <button
+          *ngIf="publisher.publishername"
           matSuffix
           mat-icon-button
           aria-label="Clear"
-          (click)="value = ''"
+          (click)="publisher.publishername = ''"
         >
           <mat-icon>close</mat-icon>
         </button>
-        }
       </mat-form-field>
 
       <mat-form-field>
@@ -57,4 +57,3 @@
     </form>
   </mat-card-content>
 </mat-card>
--->

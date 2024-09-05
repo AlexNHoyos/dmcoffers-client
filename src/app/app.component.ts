@@ -7,18 +7,11 @@ import { PublisherService } from './components/publishers/publisher.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-//export class AppComponent {
-//
-//}
 export class AppComponent implements OnInit {
   publishers: Publisher[] = [];
   title = 'dmcoffers-client';
 
   constructor(private publisherService: PublisherService) {}
 
-  ngOnInit(): void {
-    //this.publisherService.getPublishers().subscribe((data) => {
-    //this.publishers = data;
-    //});
-  }
+  ngOnInit(): void {}
 }

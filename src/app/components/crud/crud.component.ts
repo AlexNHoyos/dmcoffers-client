@@ -1,18 +1,9 @@
-import {
-  Component,
-  OnInit,
-  Type,
-  ViewChild,
-  Inject,
-  OnDestroy,
-  Directive,
-} from '@angular/core';
-import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
+import { OnInit, Type, ViewChild, OnDestroy, Directive } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Page } from 'src/app/models/pagination';
-import { DataSource } from '@angular/cdk/collections';
-
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmComponent } from '../confirm/confirm.component';
 import { CrudService } from './crud.service';
 import { AlertService } from '../alert/alert.service';
 import { LocatorService } from 'src/app/services/locator.service';
@@ -23,9 +14,7 @@ import {
   FilterDTO,
   ICRUDComponent,
 } from './crud.model';
-import { Data } from '@angular/router';
 import { ITEMS_PER_PAGE } from '../constants/constants';
-import { ConfirmComponent } from '../confirm/confirm.component';
 @Directive()
 export abstract class CrudComponent<T>
   implements ICRUDComponent, OnInit, OnDestroy
@@ -36,8 +25,8 @@ export abstract class CrudComponent<T>
   dataSource: DataSourceExtended<DTO> | null = null;
   itemsPerPage: number = ITEMS_PER_PAGE;
 
-  abstract getEditComponent(): Type<DialogComponent<Data, boolean>>;
-  abstract getCreateComponent(): Type<DialogComponent<Data, boolean>>;
+  abstract getEditComponent(): Type<any>;
+  abstract getCreateComponent(): Type<any>;
 
   // Necesario para el componente md table
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -45,7 +34,7 @@ export abstract class CrudComponent<T>
 
   constructor(
     protected service: CrudService<Page<DTO>>,
-    protected dialogService: DialogService
+    protected dialog: MatDialog
   ) {
     this.alertService = LocatorService.getInstance(AlertService);
   }
@@ -60,69 +49,65 @@ export abstract class CrudComponent<T>
     );
   }
 
-  ngOnDestroy(): void {
-    try {
-      if (this.dialogService) this.dialogService.removeAll();
-    } catch (e) {}
-  }
+  ngOnDestroy(): void {}
 
   onView(row: any) {
-    let disposable = this.dialogService
-      .addDialog(
-        this.getEditComponent(),
-        {
-          isReadOnly: true,
-          id: row.id,
-        },
-        { closeByClickingOutside: false }
-      )
-      .subscribe((isSaved) => {
-        if (isSaved) {
-          this.reloadTable();
-        }
-      });
+    let dialogRef = this.dialog.open(this.getEditComponent(), {
+      width: '400px',
+      data: { isReadOnly: true, id: row.id }, // Pasar los datos al componente de edición
+      disableClose: true,
+    });
+    dialogRef.afterClosed().subscribe((isSaved) => {
+      if (isSaved) {
+        this.reloadTable();
+      }
+    });
   }
 
   onEdit(row: any) {
-    let disposable = this.dialogService
-      .addDialog(this.getEditComponent(), {
-        isReadOnly: false,
-        id: row.id,
-      })
-      .subscribe((isSaved) => {
-        if (isSaved) {
-          this.reloadTable();
-          this.alertService.success('Actualizado exitosamente.');
-        }
-      });
+    const dialogRef = this.dialog.open(this.getEditComponent(), {
+      width: '400px',
+      data: { isReadOnly: false, id: row.id }, // Pasar los datos al componente de edición
+    });
+
+    dialogRef.afterClosed().subscribe((isSaved) => {
+      if (isSaved) {
+        this.reloadTable();
+        this.alertService.success('Actualizado exitosamente.');
+      }
+    });
   }
 
   onCreate() {
-    let disposable = this.dialogService
-      .addDialog(this.getCreateComponent(), {})
-      .subscribe((isSaved) => {
-        if (isSaved) {
-          this.reloadTable();
-          this.alertService.success('Creado exitosamente.');
-        }
-      });
+    const dialogRef = this.dialog.open(this.getCreateComponent(), {
+      width: '400px',
+    });
+
+    dialogRef.afterClosed().subscribe((isSaved) => {
+      if (isSaved) {
+        this.reloadTable();
+        this.alertService.success('Creado exitosamente.');
+      }
+    });
   }
 
   onDelete(row: any) {
-    const mensaje = '¿Está seguro que desea eliminar el registro?';
-    const disposable = this.dialogService
-      .addDialog(ConfirmComponent, {
+    const dialogRef = this.dialog.open(ConfirmComponent, {
+      width: '300px',
+      data: {
         title: 'Confirmación',
-        message: mensaje,
-      })
-      .subscribe((isConfirmed) => {
-        if (isConfirmed) {
-          this.service.delete(row.id).subscribe((x) => {
-            this.reloadTable();
-            this.alertService.success('Eliminado exitosamente.');
-          });
-        }
-      });
+        message: '¿Está seguro que desea eliminar el registro?',
+      }, // Pasar datos de confirmación
+    });
+
+    dialogRef.afterClosed().subscribe((isConfirmed) => {
+      if (isConfirmed) {
+        this.service.delete(row.id).subscribe(() => {
+          this.reloadTable();
+          this.alertService.success('Eliminado exitosamente.');
+        });
+      }
+    });
   }
 
   search() {

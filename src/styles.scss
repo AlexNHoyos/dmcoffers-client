@@ -33,3 +33,5 @@ $main-color: #5A189A; //Se puede cambiar!!
 header {
   background-color: $main-color;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

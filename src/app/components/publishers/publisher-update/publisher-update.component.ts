@@ -1,62 +1,48 @@
-import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, Inject } from '@angular/core';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
+
 import { PublisherService } from '../publisher.service';
-import { ErrorDialogComponent } from 'src/app/error-dialog/error-dialog.component.js';
 import { Publisher } from '../publisher.model';
-import { DialogComponent, DialogService } from 'ng2-bootstrap-modal';
-import { Data } from '@angular/router';
+import { ErrorDialogComponent } from 'src/app/error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-publisher-update',
   templateUrl: './publisher-update.component.html',
 })
-export class PublisherUpdateComponent
-  extends DialogComponent<Data, boolean>
-  implements Data
-{
-  publisher: Publisher = {
-    id: '',
-    publishername: '',
-    foundation_date: null,
-    dissolution_date: null,
-    status: '',
-    creationtimestamp: '',
-    creationuser: '',
-    modificationtimestamp: new Date(),
-    modificationuser: '',
-  };
+export class PublisherUpdateComponent {
+  publisher: Publisher;
 
   constructor(
     private publisherService: PublisherService,
-    dialog: DialogService
+    private dialog: MatDialog,
+    public dialogRef: MatDialogRef<PublisherUpdateComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { publisher: Publisher }
   ) {
-    super(dialog);
+    // Inicializo el publisher con data del dialog
+    this.publisher = { ...data.publisher };
   }
 
-  /*onUpdatePublisher() {
+  onUpdatePublisher() {
     this.publisherService
       .updatePublisher(this.publisher.id, this.publisher)
       .subscribe({
         next: () => {
-          this.showSuccessDialog('Publisher updated successfully');
+          this.dialogRef.close(true);
         },
         error: (error) => {
-          const errorMessage = error?.error?.msg || 'An error occurred';
+          const errorMessage = error?.error?.msg || 'Ocurrió un error';
           this.showErrorDialog(errorMessage);
         },
       });
   }
 
-  private showSuccessDialog(message: string): void {
+  private showErrorDialog(message: string): void {
     this.dialog.open(ErrorDialogComponent, {
-      data: { message, type: 'success' },
+      data: { message, type: 'error' },
     });
   }
-
-  private showErrorDialog(errorMessage: string): void {
-    this.dialog.open(ErrorDialogComponent, {
-      data: { message: errorMessage, type: 'error' },
-    });
-  }
-*/
 }

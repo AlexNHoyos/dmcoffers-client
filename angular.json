@@ -17,8 +17,8 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "allowedCommonJsDependencies": [
-              "ng2-bootstrap-modal"
             ],
             "outputPath": "dist/dmcoffers-client",
             "index": "src/index.html",
@@ -41,6 +41,7 @@
           },
           "configurations": {
             "production": {
+              "aot": true,
               "budgets": [
                 {
                   "type": "initial",
