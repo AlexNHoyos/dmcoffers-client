@@ -4,6 +4,12 @@
   </button>
 
   <div *ngIf="showTable">
+    <div class="title">
+      <h4>Listado de publishers</h4>
+      <!--<mat-flat-button color="primary" (click)="">
+        Agregar publisher
+      </mat-flat-button>-->
+    </div>
     <table
       mat-table
       [dataSource]="publishers"
@@ -76,6 +82,30 @@
         <mat-header-cell *matHeaderCellDef>ModificationUser</mat-header-cell>
         <mat-cell *matCellDef="let publisher">
           {{ publisher.modificationuser }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Edit-->
+      <ng-container matColumnDef="edit">
+        <mat-header-cell *matHeaderCellDef>-</mat-header-cell>
+        <mat-cell *matCellDef="let publisher">
+          <!--<button mat-icon-button color="primary" (click)="onEdit(row.id)">
+            <mat-icon>edit</mat-icon>
+          </button>-->
+        </mat-cell>
+      </ng-container>
+
+      <!-- Delete-->
+      <ng-container matColumnDef="delete">
+        <mat-header-cell *matHeaderCellDef>X</mat-header-cell>
+        <mat-cell *matCellDef="let publisher">
+          <button
+            mat-icon-button
+            color="warn"
+            (click)="deletePublisher(publisher)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
         </mat-cell>
       </ng-container>
 

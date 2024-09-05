@@ -1,0 +1,60 @@
+<!--<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title>Crear publisher</mat-card-title>
+    <mat-card-subtitle>Ingrese los siguientes datos:</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <form (ngSubmit)="createPublisher()">
+      <mat-form-field class="form-field">
+        <mat-label>Publisher name</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="publisher.publishername"
+          name="publishername"
+          required
+        />
+        @if (publisher.publishername) {
+        <button
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="value = ''"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+        }
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Foundation date</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          [(ngModel)]="publisher.foundation_date"
+          name="foundation_date"
+        />
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Status</mat-label>
+        <mat-select [(ngModel)]="publisher.status" name="status">
+          <mat-option [value]="true">Active</mat-option>
+          <mat-option [value]="false">Inactive</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-flat-button type="submit" color="primary">Crear</button>
+      <button mat-flat-button color="secondary" routerLink="/publishers">
+        Cancelar
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>
+-->

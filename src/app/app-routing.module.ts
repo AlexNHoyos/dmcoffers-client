@@ -1,19 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PublisherListComponent } from './publisher-crud/publisher-list/publisher-list.component';
-import { PublisherDetailComponent } from './publisher-crud/publisher-detail/publisher-detail.component';
-import { PublisherCreateComponent } from './publisher-crud/publisher-create/publisher-create.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './auth/login/login.component';
+import { PublisherCreateComponent } from './components/publishers/publisher-create/publisher-create.component';
+import { PublisherUpdateComponent } from './components/publishers/publisher-update/publisher-update.component';
+import { PublisherComponent } from './components/publishers/publishers.component';
 
 const routes: Routes = [
   //{ path: '', redirectTo: '/publishers', pathMatch: 'full' },
-  { path: 'publishers', component: PublisherListComponent },
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
   { path: 'inicio', component: DashboardComponent },
   { path: 'iniciar-sesion', component: LoginComponent },
-  { path: 'publishers/:id', component: PublisherDetailComponent },
+  { path: 'publishers', component: PublisherComponent },
   { path: 'create-publisher', component: PublisherCreateComponent },
+  { path: 'editP/:id', component: PublisherUpdateComponent },
+  { path: '**', redirectTo: '/inicio', pathMatch: 'full' }, //redireccionar a inicio si no hay match
 ];
 
 @NgModule({

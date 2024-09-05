@@ -1,14 +1,19 @@
 import { Component } from '@angular/core';
-import { Publisher } from '../../models/publisher.model';
 import { MatDialog } from '@angular/material/dialog';
-import { ErrorDialogComponent } from '../../error-dialog/error-dialog.component';
-import { PublisherService } from 'src/app/services/publisher/publisher.service';
+import { PublisherService } from '../publisher.service';
+import { ErrorDialogComponent } from 'src/app/error-dialog/error-dialog.component.js';
+import { Publisher } from '../publisher.model';
+import { DialogComponent, DialogService } from 'ng2-bootstrap-modal';
+import { Data } from '@angular/router';
 
 @Component({
   selector: 'app-publisher-update',
   templateUrl: './publisher-update.component.html',
 })
-export class PublisherUpdateComponent {
+export class PublisherUpdateComponent
+  extends DialogComponent<Data, boolean>
+  implements Data
+{
   publisher: Publisher = {
     id: '',
     publishername: '',
@@ -23,10 +28,12 @@ export class PublisherUpdateComponent {
 
   constructor(
     private publisherService: PublisherService,
-    private dialog: MatDialog
-  ) {}
+    dialog: DialogService
+  ) {
+    super(dialog);
+  }
 
-  onUpdatePublisher() {
+  /*onUpdatePublisher() {
     this.publisherService
       .updatePublisher(this.publisher.id, this.publisher)
       .subscribe({
@@ -51,4 +58,5 @@ export class PublisherUpdateComponent {
       data: { message: errorMessage, type: 'error' },
     });
   }
+*/
 }

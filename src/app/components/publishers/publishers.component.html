@@ -1,0 +1,112 @@
+<div>
+  <button mat-flat-button color="primary" (click)="togglePublishers()">
+    {{ buttonText }}
+  </button>
+
+  <div *ngIf="showTable">
+    <div class="title">
+      <h4>Listado de Publishers</h4>
+      <!--<mat-flat-button color="primary" (click)="">
+        Agregar row
+      </mat-flat-button>-->
+    </div>
+    <table
+      mat-table
+      [dataSource]="dataSource || []"
+      class="mat-elevation-z8 mat-table-responsive"
+    >
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="rowname">
+        <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.rowname }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Foundation Date Column -->
+      <ng-container matColumnDef="foundation_date">
+        <mat-header-cell *matHeaderCellDef>Fundacion</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.foundation_date }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Dissolution Date Column -->
+      <ng-container matColumnDef="dissolution_date">
+        <mat-header-cell *matHeaderCellDef>Disolucion</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.dissolution_date }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.status }}</mat-cell>
+      </ng-container>
+
+      <!-- CreationTimeStamp Column -->
+      <ng-container matColumnDef="creationtimestamp">
+        <mat-header-cell *matHeaderCellDef>CreationTimeStamp</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.creationtimestamp }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- CreationUser Column -->
+      <ng-container matColumnDef="creationuser">
+        <mat-header-cell *matHeaderCellDef>CreationUser</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.creationuser }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- ModificationTimeStamp Column -->
+      <ng-container matColumnDef="modificationtimestamp">
+        <mat-header-cell *matHeaderCellDef
+          >ModificationTimeStamp</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row">
+          {{ row.modificationtimestamp }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- ModificationUser Column -->
+      <ng-container matColumnDef="modificationuser">
+        <mat-header-cell *matHeaderCellDef>ModificationUser</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          {{ row.modificationuser }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Edit-->
+      <ng-container matColumnDef="edit">
+        <mat-header-cell *matHeaderCellDef>-</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <!--<button mat-icon-button color="primary" (click)="onEdit(row.id)">
+            <mat-icon>edit</mat-icon>
+          </button>-->
+        </mat-cell>
+      </ng-container>
+
+      <!-- Delete-->
+      <ng-container matColumnDef="delete">
+        <mat-header-cell *matHeaderCellDef>X</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <!--<button mat-icon-button color="warn" (click)="deleterow(row)">
+            <mat-icon>delete</mat-icon>
+          </button>-->
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </table>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Publisher } from './models/publisher.model';
-import { PublisherService } from './services/publisher/publisher.service';
+import { Publisher } from './components/publishers/publisher.model';
+import { PublisherService } from './components/publishers/publisher.service';
 
 @Component({
   selector: 'app-root',

@@ -5,11 +5,12 @@ import {
   ViewChild,
   Inject,
   OnDestroy,
+  Directive,
 } from '@angular/core';
 import { DialogService, DialogComponent } from 'ng2-bootstrap-modal';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { Page } from 'src/app/models/pagination.js';
+import { Page } from 'src/app/models/pagination';
 import { DataSource } from '@angular/cdk/collections';
 
 import { CrudService } from './crud.service';
@@ -21,12 +22,12 @@ import {
   DTO,
   FilterDTO,
   ICRUDComponent,
-} from './crud.model.js';
+} from './crud.model';
 import { Data } from '@angular/router';
 import { ITEMS_PER_PAGE } from '../constants/constants';
-import { ConfirmComponent } from '../confirm/confirm.component.js';
-
-export abstract class CrudComponent
+import { ConfirmComponent } from '../confirm/confirm.component';
+@Directive()
+export abstract class CrudComponent<T>
   implements ICRUDComponent, OnInit, OnDestroy
 {
   displayedColumns: any;

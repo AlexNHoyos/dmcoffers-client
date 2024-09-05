@@ -5,7 +5,7 @@ import { catchError, map, startWith, switchMap } from 'rxjs/operators';
 
 import { CrudService, SearchService } from './crud.service';
 import { Page } from 'src/app/models/pagination';
-import { DataSource } from '@angular/cdk/collections/index';
+import { DataSource } from '@angular/cdk/collections';
 
 export interface ICRUDComponent {
   onView(row: any): void;

@@ -33,3 +33,9 @@ th.mat-header-cell,
 td.mat-cell {
   padding: $padding-cell;
 }
+
+.title{
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}

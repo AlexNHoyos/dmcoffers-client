@@ -87,6 +87,7 @@ export class PersonalDetailsComponent implements OnInit {
     }
   }
 }
+
 /*this.userService.getUser(environment.userId).subscribe({
       next: (userData) => {
         console.log(userData);

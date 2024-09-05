@@ -17,6 +17,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "ng2-bootstrap-modal"
+            ],
             "outputPath": "dist/dmcoffers-client",
             "index": "src/index.html",
             "main": "src/main.ts",

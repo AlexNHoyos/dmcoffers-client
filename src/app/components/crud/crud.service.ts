@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import {
-  ITEMS_PER_PAGE,
-  SEARCH_PARAM_ATTR_NAME,
-  SEARCH_PARAM_PATH,
-} from '../../constants/constants';
+
 import { FilterDTO } from '../../components/crud/crud.model';
+import { ITEMS_PER_PAGE, SEARCH_PARAM_PATH } from '../constants/constants';
 
 export interface Service {
   search(
@@ -20,11 +17,11 @@ export interface Service {
 
 @Injectable()
 export abstract class SearchService<T> implements Service {
-  endpoint: string;
+  endpoint: string = '';
 
   constructor(protected http: HttpClient) {}
 
-  requestAll(reqParams): Observable<T> {
+  requestAll(reqParams: string): Observable<T> {
     return this.http.get<T>(this.endpoint + reqParams);
   }
 

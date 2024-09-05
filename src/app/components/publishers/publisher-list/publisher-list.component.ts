@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Publisher } from '../../models/publisher.model';
-import { PublisherService } from 'src/app/services/publisher/publisher.service';
+import { Publisher } from '../publisher.model';
+import { PublisherService } from '../publisher.service';
 
 @Component({
   selector: 'app-publisher-list',
@@ -9,7 +9,19 @@ import { PublisherService } from 'src/app/services/publisher/publisher.service';
 })
 export class PublisherListComponent implements OnInit {
   publishers: Publisher[] = [];
-  displayedColumns: string[] = [];
+  displayedColumns: string[] = [
+    'id',
+    'publishername',
+    'foundation_date',
+    'dissolution_date',
+    'status',
+    'creationtimestamp',
+    'creationuser',
+    'modificationtimestamp',
+    'modificationuser',
+    'edit',
+    'delete',
+  ];
   showTable: boolean = false;
   buttonText: string = 'Mostrar Publishers';
 
@@ -31,26 +43,25 @@ export class PublisherListComponent implements OnInit {
   ngOnInit(): void {
     // Con esta funcion se puede cargar los publishers al inicio
     // this.loadPublishers();
-    this.publisherService.getPublishers().subscribe((data) => {
+    this.publisherService.getAll('', '', 1).subscribe((data) => {
       console.log(data);
     });
   }
 
   loadPublishers(): void {
-    this.displayedColumns = [
-      'id',
-      'publishername',
-      'foundation_date',
-      'dissolution_date',
-      'status',
-      'creationtimestamp',
-      'creationuser',
-      'modificationtimestamp',
-      'modificationuser',
-    ];
     this.showTable = true;
-    this.publisherService.getPublishers().subscribe((data) => {
-      this.publishers = data;
+    this.publisherService.getAll('', '', 1).subscribe((data) => {
+      //this.publishers = data;
     });
+  }
+
+  editPublisher(publisher: Publisher): void {
+    // Lógica para editar el publisher
+    console.log('Editar publisher', publisher);
+  }
+
+  deletePublisher(publisher: Publisher): void {
+    // Lógica para eliminar el publisher
+    console.log('Eliminar publisher', publisher);
   }
 }
