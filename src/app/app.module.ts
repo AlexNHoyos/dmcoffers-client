@@ -35,6 +35,7 @@ import { JwtInterceptorService } from './services/auth/jwt-interceptor.service';
 import { ErrorInterceptorService } from './services/auth/error-interceptor.service';
 import { PublisherComponent } from './components/publishers/publishers.component';
 import { PublisherCreateComponent } from './components/publishers/publisher-create/publisher-create.component';
+import { AlertService } from './components/alert/alert.service';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { PublisherCreateComponent } from './components/publishers/publisher-crea
 
   providers: [
     PublisherService,
+    AlertService,
 
     {
       provide: HTTP_INTERCEPTORS,

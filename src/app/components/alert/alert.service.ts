@@ -3,15 +3,14 @@ import { Router, NavigationStart } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { Alert, AlertType } from './alert';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root', // Ensure it's provided at root level
+})
 export class AlertService {
   private subject = new Subject<Alert>();
   private keepAfterRouteChange = false;
-  private router: Router;
 
-  constructor(private injector: Injector) {
-    this.router = this.injector.get(Router);
-
+  constructor(private router: Router) {
     // clear alert messages on route change unless 'keepAfterRouteChange' flag is true
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
@@ -55,10 +54,6 @@ export class AlertService {
 
   clear() {
     // clear alerts
-    this.subject.next({
-      type: null,
-      message: '',
-      notifyElement: null,
-    } as unknown as Alert);
+    this.subject.next({} as Alert);
   }
 }
