@@ -21,7 +21,7 @@ export abstract class CrudComponent<T>
 {
   displayedColumns: any;
   filter: FilterDTO = new FilterDTO();
-  alertService: AlertService;
+  // alertService: AlertService;
   dataSource: DataSourceExtended<DTO> | null = null;
   itemsPerPage: number = ITEMS_PER_PAGE;
 
@@ -36,7 +36,7 @@ export abstract class CrudComponent<T>
     protected service: CrudService<Page<DTO>>,
     protected dialog: MatDialog
   ) {
-    this.alertService = LocatorService.getInstance(AlertService);
+    // this.alertService = LocatorService.getInstance(AlertService);
   }
 
   ngOnInit() {

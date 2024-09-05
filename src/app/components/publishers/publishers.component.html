@@ -12,7 +12,7 @@
     </div>
     <table
       mat-table
-      [dataSource]="dataSource || []"
+      [dataSource]="publishers"
       class="mat-elevation-z8 mat-table-responsive"
     >
       <!-- ID Column -->
@@ -22,10 +22,10 @@
       </ng-container>
 
       <!-- Name Column -->
-      <ng-container matColumnDef="rowname">
+      <ng-container matColumnDef="publishername">
         <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
         <mat-cell *matCellDef="let row">
-          {{ row.rowname }}
+          {{ row.publishername }}
         </mat-cell>
       </ng-container>
 

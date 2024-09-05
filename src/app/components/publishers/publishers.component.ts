@@ -11,6 +11,8 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./publishers.component.scss'],
 })
 export class PublisherComponent extends CrudComponent<Publisher> {
+  publishers: Publisher[] = [];
+
   constructor(
     private publisherService: PublisherService,
     override dialog: MatDialog
@@ -76,8 +78,8 @@ export class PublisherComponent extends CrudComponent<Publisher> {
 
   loadPublishers(): void {
     this.showTable = true;
-    this.publisherService.getAll('', '', 1).subscribe((data) => {
-      //this.publishers = data;
+    this.publisherService.getAllPublishers().subscribe((data) => {
+      this.publishers = data;
     });
   }
 
