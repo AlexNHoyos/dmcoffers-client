@@ -21,7 +21,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 
-import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
@@ -36,6 +35,9 @@ import { ErrorInterceptorService } from './services/auth/error-interceptor.servi
 import { PublisherComponent } from './components/publishers/publishers.component';
 import { PublisherCreateComponent } from './components/publishers/publisher-create/publisher-create.component';
 import { AlertService } from './components/alert/alert.service';
+import { PublisherUpdateComponent } from './components/publishers/publisher-update/publisher-update.component';
+import { PublisherDeleteComponent } from './components/publishers/publisher-delete/publisher-delete.component';
+import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { AlertService } from './components/alert/alert.service';
     ConfirmComponent,
     PublisherComponent,
     PublisherCreateComponent,
+    PublisherUpdateComponent,
+    PublisherDeleteComponent,
   ],
   imports: [
     CommonModule,
@@ -63,6 +67,7 @@ import { AlertService } from './components/alert/alert.service';
     MatInputModule,
     MatButtonModule,
     MatDialogModule,
+
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,

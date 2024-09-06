@@ -6,9 +6,9 @@
   <div *ngIf="showTable">
     <div class="title">
       <h4>Listado de Publishers</h4>
-      <!--<mat-flat-button color="primary" (click)="">
-        Agregar row
-      </mat-flat-button>-->
+      <button mat-flat-button color="primary" (click)="openCreateDialog()">
+        Agregar Publisher
+      </button>
     </div>
     <table
       mat-table
@@ -87,21 +87,29 @@
 
       <!-- Edit-->
       <ng-container matColumnDef="edit">
-        <mat-header-cell *matHeaderCellDef>-</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <!--<button mat-icon-button color="primary" (click)="onEdit(row.id)">
+          <button
+            mat-icon-button
+            color="primary"
+            (click)="openEditDialog(row.id)"
+          >
             <mat-icon>edit</mat-icon>
-          </button>-->
+          </button>
         </mat-cell>
       </ng-container>
 
       <!-- Delete-->
       <ng-container matColumnDef="delete">
-        <mat-header-cell *matHeaderCellDef>X</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <!--<button mat-icon-button color="warn" (click)="deleterow(row)">
+          <button
+            mat-icon-button
+            color="warn"
+            (click)="openDeleteDialog(row.id)"
+          >
             <mat-icon>delete</mat-icon>
-          </button>-->
+          </button>
         </mat-cell>
       </ng-container>
 

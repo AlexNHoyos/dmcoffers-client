@@ -5,6 +5,7 @@ import { CrudComponent } from '../crud/crud.component';
 import { PublisherCreateComponent } from './publisher-create/publisher-create.component';
 import { PublisherUpdateComponent } from './publisher-update/publisher-update.component';
 import { MatDialog } from '@angular/material/dialog';
+import { PublisherDeleteComponent } from './publisher-delete/publisher-delete.component';
 @Component({
   selector: 'app-publisher',
   templateUrl: './publishers.component.html',
@@ -35,6 +36,34 @@ export class PublisherComponent extends CrudComponent<Publisher> {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         console.log('Publisher creado');
+        this.loadPublishers(); // Carga o actualiza la lista de publishers
+      }
+    });
+  }
+
+  openEditDialog(id: string): void {
+    const dialogRef = this.dialog.open(PublisherUpdateComponent, {
+      width: '400px',
+      data: { id },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log('Publisher actualizado');
+        this.loadPublishers(); // Carga o actualiza la lista de publishers
+      }
+    });
+  }
+
+  openDeleteDialog(id: string): void {
+    const dialogRef = this.dialog.open(PublisherDeleteComponent, {
+      width: '400px',
+      data: { id },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log('Publisher eliminado');
         this.loadPublishers(); // Carga o actualiza la lista de publishers
       }
     });
@@ -81,22 +110,5 @@ export class PublisherComponent extends CrudComponent<Publisher> {
     this.publisherService.getAllPublishers().subscribe((data) => {
       this.publishers = data;
     });
-  }
-
-  editPublisher(publisher: Publisher): void {
-    const dialogRef = this.dialog.open(PublisherUpdateComponent, {
-      data: { publisher },
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        // Refresh the list or handle the update confirmation here
-      }
-    });
-  }
-
-  deletePublisher(publisher: Publisher): void {
-    // Lógica para eliminar el publisher
-    console.log('Eliminar publisher', publisher);
   }
 }

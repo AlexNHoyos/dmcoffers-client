@@ -1,0 +1,9 @@
+<form (ngSubmit)="deletePublisher()">
+  <h2>¿Seguro que quieres eliminar al publisher {{ publisherName }}?</h2>
+  <button mat-raised-button color="warn" type="submit">
+    Eliminar Publisher
+  </button>
+  <button mat-raised-button color="primary" type="button" (click)="onCancel()">
+    Cancelar
+  </button>
+</form>

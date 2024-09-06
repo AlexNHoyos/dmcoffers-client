@@ -7,7 +7,7 @@ import {
 
 import { PublisherService } from '../publisher.service';
 import { Publisher } from '../publisher.model';
-import { ErrorDialogComponent } from 'src/app/error-dialog/error-dialog.component';
+import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-publisher-update',

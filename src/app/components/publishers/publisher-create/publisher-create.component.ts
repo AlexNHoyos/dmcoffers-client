@@ -4,6 +4,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { PublisherService } from '../publisher.service';
 import { Publisher } from '../publisher.model';
 
+import { UserService } from 'src/app/services/user/user.service';
+
 @Component({
   selector: 'app-publisher-create',
   templateUrl: './publisher-create.component.html',
@@ -13,8 +15,8 @@ export class PublisherCreateComponent {
   publisher: Publisher = {
     id: '',
     publishername: '',
-    foundation_date: new Date(), // Establecer una fecha por defecto
-    dissolution_date: new Date(),
+    foundation_date: null,
+    dissolution_date: null,
     status: '',
     creationtimestamp: new Date().toISOString(),
     creationuser: '',
@@ -24,8 +26,23 @@ export class PublisherCreateComponent {
 
   constructor(
     private publisherService: PublisherService,
-    private dialogRef: MatDialogRef<PublisherCreateComponent>
-  ) {}
+    private dialogRef: MatDialogRef<PublisherCreateComponent>,
+    private userService: UserService
+  ) {
+    this.setLoggedInUser();
+  }
+
+  setLoggedInUser(): void {
+    // Obtén el userId desde el UserService
+    this.userService.getUserId().subscribe((userId) => {
+      if (userId) {
+        // Llama a getUser con el userId y suscríbete al observable
+        this.userService.getUser(userId).subscribe((user) => {
+          this.publisher.creationuser = user.username; // Asigna el campo
+        });
+      }
+    });
+  }
 
   createPublisher(): void {
     this.publisherService.createPublisher(this.publisher).subscribe(

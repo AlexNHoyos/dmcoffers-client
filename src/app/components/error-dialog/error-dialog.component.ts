@@ -1,9 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import {
-  MAT_DIALOG_DATA,
-  MatDialogRef,
-  MatDialog,
-} from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-error-dialog',
@@ -14,7 +10,7 @@ export class ErrorDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<ErrorDialogComponent>,
     @Inject(MAT_DIALOG_DATA)
-    public data: { message: string; type: 'success' | 'error' }
+    public data: { title: string; message: string; type: 'success' | 'error' }
   ) {}
 
   onClose(): void {
