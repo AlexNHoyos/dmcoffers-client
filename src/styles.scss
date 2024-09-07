@@ -1,4 +1,9 @@
+@import '../src/assets/styles/variables';
 /* You can add global styles to this file, and also import other style files */
+// Then import Bootstrap
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 
 html,
 body {
@@ -7,7 +12,21 @@ body {
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100..700&display=swap');
+
+  html {
+    font-family: "Roboto Mono", monospace !important;
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  body {
+    font-family: "Roboto Mono", monospace;
+  }
+header {
+  background-color: $main-color;
 }
 
 /* You can add global styles to this file, and also import other style files */
@@ -16,22 +35,6 @@ body {
 $enable-shadows: true;
 $prefix: "mo-";
 
-// Then import Bootstrap
-@import "../node_modules/bootstrap/scss/bootstrap";
 
-.ng-valid:not(form).ng-touched {
-  border-left: 5px solid #42A948;
-}
 
-.ng-invalid:not(form).ng-touched {
-  border-left: 5px solid #a94442;
-}
 
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
-$main-color: #5A189A; //Se puede cambiar!!
-
-header {
-  background-color: $main-color;
-}
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
