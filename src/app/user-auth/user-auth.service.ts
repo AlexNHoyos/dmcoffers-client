@@ -2,23 +2,31 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../shared/models/user.js';
 import { catchError, Observable, throwError } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.js';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class UserAuthService {
   constructor(private http: HttpClient) { }
+
+  private apiUrl = environment.urlApi;
 
   getUser(id: number): Observable<User> {
     return this.http
-      .get<User>(environment.urlApi + 'users/' + id)
+      .get<User>(this.apiUrl + 'users/' + id)
       .pipe(catchError(this.handleError));
   }
 
   updateUser(id: number, userRequest: User): Observable<any> {
     return this.http
-      .put<User>(environment.urlApi + 'users/' + id, userRequest)
+      .put<User>(this.apiUrl + 'users/' + id, userRequest)
+      .pipe(catchError(this.handleError));
+  }
+
+  createUser(userRequest: User): Observable<any> {
+    return this.http
+      .post<User>(this.apiUrl, userRequest)
       .pipe(catchError(this.handleError));
   }
 

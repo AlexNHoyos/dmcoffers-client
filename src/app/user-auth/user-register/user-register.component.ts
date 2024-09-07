@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserSessionService } from '../usersession.service';
+import { UserAuthService } from '../user-auth.service';
 import { DatePipe } from '@angular/common';
 import { User } from 'src/app/shared/models/user';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker/index.js';
@@ -25,7 +25,7 @@ export class UserRegisterComponent implements OnInit {
   formulario: FormGroup;
 
   constructor(
-    private usersessionService: UserSessionService,
+    private userauthService: UserAuthService,
     private router: Router,
     private fb: FormBuilder,
     private datePipe: DatePipe

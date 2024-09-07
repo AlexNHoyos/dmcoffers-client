@@ -5,23 +5,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { UserRegisterComponent } from './user-register/user-register.component';
 import { SharedModule } from './shared/shared.module';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
+import { UserAuthModule } from './user-auth/user-auth.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserRegisterComponent,
     DashboardComponent,
-
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
-    SharedModule
+    SharedModule,
+    UserAuthModule
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
