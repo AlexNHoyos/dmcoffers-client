@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
-import { PublisherService } from '../publisher.service';
 import { Publisher } from '../publisher.model';
 
 import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
+import { PublisherService } from '../publisher.service';
 
 @Component({
   selector: 'app-publisher-create',

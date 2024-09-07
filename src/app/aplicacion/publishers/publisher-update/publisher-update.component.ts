@@ -5,11 +5,10 @@ import {
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 
-import { PublisherService } from '../publisher.service';
 import { Publisher } from '../publisher.model';
 import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
 import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
-import { CURRENT_DATE } from '../../constants/constants';
+import { PublisherService } from '../publisher.service';
 
 @Component({
   selector: 'app-publisher-update',

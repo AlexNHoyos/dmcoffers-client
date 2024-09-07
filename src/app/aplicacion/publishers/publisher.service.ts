@@ -4,7 +4,10 @@ import { HttpClient } from '@angular/common/http';
 
 import { CrudService } from 'src/app/components/crud/crud.service';
 import { environment } from 'src/environments/environment';
-import { Publisher, PublisherPage } from './publisher.model';
+import {
+  Publisher,
+  PublisherPage,
+} from '../../aplicacion/publishers/publisher.model';
 
 @Injectable({
   providedIn: 'root',

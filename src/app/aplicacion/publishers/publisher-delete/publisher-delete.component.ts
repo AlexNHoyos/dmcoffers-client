@@ -4,8 +4,9 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
+
+import { ErrorDialogComponent } from '../../../components/error-dialog/error-dialog.component';
 import { PublisherService } from '../publisher.service';
-import { ErrorDialogComponent } from '../../error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-publisher-delete',
@@ -25,10 +26,10 @@ export class PublisherDeleteComponent implements OnInit {
   ngOnInit(): void {
     this.publisherService.getPublisher(this.data.id).subscribe({
       next: (publisher) => {
-        this.publisherName = publisher.publishername; // Show publisher name in the dialog
+        this.publisherName = publisher.publishername;
       },
       error: () => {
-        this.publisherName = 'Desconocido'; // In case there's an error fetching the publisher
+        this.publisherName = 'Desconocido';
       },
     });
   }
@@ -37,7 +38,7 @@ export class PublisherDeleteComponent implements OnInit {
     this.publisherService.delete(this.data.id).subscribe({
       next: () => {
         this.successMessage = 'Publisher eliminado satisfactoriamente';
-        this.dialogRef.close(true); // Close the dialog with a success response
+        this.dialogRef.close(true);
       },
       error: (error) => {
         const errorMessage = error?.error?.msg || 'Ocurrió un error';
@@ -53,6 +54,6 @@ export class PublisherDeleteComponent implements OnInit {
   }
 
   onCancel(): void {
-    this.dialogRef.close(false); // Close dialog on cancel without doing anything
+    this.dialogRef.close(false);
   }
 }

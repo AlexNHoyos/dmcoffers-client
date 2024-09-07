@@ -28,17 +28,18 @@ import { LoginComponent } from './auth/login/login.component';
 import { NavComponent } from './shared/nav/nav.component';
 import { PersonalDetailsComponent } from './components/personal-details/personal-details.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
+import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
+import { AlertService } from './components/alert/alert.service';
 
-import { PublisherService } from './components/publishers/publisher.service';
 import { JwtInterceptorService } from './services/auth/jwt-interceptor.service';
 import { ErrorInterceptorService } from './services/auth/error-interceptor.service';
-import { PublisherComponent } from './components/publishers/publishers.component';
-import { PublisherCreateComponent } from './components/publishers/publisher-create/publisher-create.component';
-import { AlertService } from './components/alert/alert.service';
-import { PublisherUpdateComponent } from './components/publishers/publisher-update/publisher-update.component';
-import { PublisherDeleteComponent } from './components/publishers/publisher-delete/publisher-delete.component';
-import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
-import { PublisherDetailComponent } from './components/publishers/publisher-detail/publisher-detail.component';
+
+import { PublisherService } from './aplicacion/publishers/publisher.service';
+import { PublisherComponent } from './aplicacion/publishers/publishers.component';
+import { PublisherCreateComponent } from './aplicacion/publishers/publisher-create/publisher-create.component';
+import { PublisherUpdateComponent } from './aplicacion/publishers/publisher-update/publisher-update.component';
+import { PublisherDeleteComponent } from './aplicacion/publishers/publisher-delete/publisher-delete.component';
+import { PublisherDetailComponent } from './aplicacion/publishers/publisher-detail/publisher-detail.component';
 
 @NgModule({
   declarations: [

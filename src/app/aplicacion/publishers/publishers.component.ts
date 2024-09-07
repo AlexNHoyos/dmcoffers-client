@@ -1,7 +1,7 @@
 import { Component, Type } from '@angular/core';
 import { Publisher } from './publisher.model';
 import { PublisherService } from './publisher.service';
-import { CrudComponent } from '../crud/crud.component';
+import { CrudComponent } from '../../components/crud/crud.component';
 import { PublisherCreateComponent } from './publisher-create/publisher-create.component';
 import { PublisherUpdateComponent } from './publisher-update/publisher-update.component';
 import { MatDialog } from '@angular/material/dialog';
