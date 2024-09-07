@@ -4,11 +4,11 @@ export class Publisher {
   id: string = '';
   publishername: string = '';
   foundation_date: Date | null = null;
-  dissolution_date?: Date | null;
+  dissolution_date?: Date | string;
   status: string = '';
   creationtimestamp: string = '';
   creationuser: string = '';
-  modificationtimestamp?: Date | null;
+  modificationtimestamp?: Date | string;
   modificationuser?: string;
 }
 

@@ -4,7 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { PublisherService } from '../publisher.service';
 import { Publisher } from '../publisher.model';
 
-import { UserService } from 'src/app/services/user/user.service';
+import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
 
 @Component({
   selector: 'app-publisher-create',
@@ -20,26 +20,21 @@ export class PublisherCreateComponent {
     status: '',
     creationtimestamp: new Date().toISOString(),
     creationuser: '',
-    modificationtimestamp: null,
+    modificationtimestamp: '',
     modificationuser: '',
   };
 
   constructor(
     private publisherService: PublisherService,
     private dialogRef: MatDialogRef<PublisherCreateComponent>,
-    private userService: UserService
-  ) {
-    this.setLoggedInUser();
-  }
-
-  setLoggedInUser(): void {
-    // Obtén el userId desde el UserService
-    this.userService.getUserId().subscribe((userId) => {
-      if (userId) {
-        // Llama a getUser con el userId y suscríbete al observable
-        this.userService.getUser(userId).subscribe((user) => {
-          this.publisher.creationuser = user.username; // Asigna el campo
-        });
+    private userUtilsService: UserUtilsService
+  ) {}
+  ngOnInit(): void {
+    this.userUtilsService.setLoggedInUser().subscribe((username) => {
+      if (username) {
+        this.publisher.creationuser = username;
+      } else {
+        console.log('No userId found');
       }
     });
   }

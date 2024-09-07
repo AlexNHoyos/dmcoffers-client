@@ -42,16 +42,18 @@ export class PublisherComponent extends CrudComponent<Publisher> {
   }
 
   openEditDialog(id: string): void {
-    const dialogRef = this.dialog.open(PublisherUpdateComponent, {
-      width: '400px',
-      data: { id },
-    });
+    this.publisherService.getPublisher(id).subscribe((publisher) => {
+      const dialogRef = this.dialog.open(PublisherUpdateComponent, {
+        width: '400px',
+        data: { publisher },
+      });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        console.log('Publisher actualizado');
-        this.loadPublishers(); // Carga o actualiza la lista de publishers
-      }
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result) {
+          console.log('Publisher actualizado');
+          this.loadPublishers(); // Carga o actualiza la lista de publishers
+        }
+      });
     });
   }
 
