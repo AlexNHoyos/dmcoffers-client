@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>Detalles del publisher</h1>
+<div mat-dialog-content>
+  <p><strong>ID:</strong> {{ data.publisher.id }}</p>
+  <p><strong>Nombre:</strong> {{ data.publisher.publishername }}</p>
+  <p>
+    <strong>Fundacion:</strong>
+    {{ data.publisher.foundation_date | date }}
+  </p>
+  <p>
+    <strong>Disolucion:</strong>
+    {{ data.publisher.dissolution_date | date }}
+  </p>
+  <p>
+    <strong>Estado:</strong> {{ data.publisher.status ? "Activo" : "Inactivo" }}
+  </p>
+  <p>
+    <strong>Fecha de carga:</strong>
+    {{ data.publisher.creationtimestamp | date }}
+  </p>
+  <p>
+    <strong>Fecha de modificacion:</strong>
+    {{ data.publisher.modificationtimestamp | date }}
+  </p>
+  <p><strong>Cargado por:</strong> {{ data.publisher.creationuser }}</p>
+  <p><strong>Modificado por:</strong> {{ data.publisher.modificationuser }}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onClose()">Close</button>
+</div>

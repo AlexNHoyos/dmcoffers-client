@@ -38,6 +38,7 @@ import { AlertService } from './components/alert/alert.service';
 import { PublisherUpdateComponent } from './components/publishers/publisher-update/publisher-update.component';
 import { PublisherDeleteComponent } from './components/publishers/publisher-delete/publisher-delete.component';
 import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
+import { PublisherDetailComponent } from './components/publishers/publisher-detail/publisher-detail.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { ErrorDialogComponent } from './components/error-dialog/error-dialog.com
     PublisherCreateComponent,
     PublisherUpdateComponent,
     PublisherDeleteComponent,
+    PublisherDetailComponent,
   ],
   imports: [
     CommonModule,

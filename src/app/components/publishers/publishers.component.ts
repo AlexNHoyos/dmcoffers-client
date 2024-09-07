@@ -6,6 +6,7 @@ import { PublisherCreateComponent } from './publisher-create/publisher-create.co
 import { PublisherUpdateComponent } from './publisher-update/publisher-update.component';
 import { MatDialog } from '@angular/material/dialog';
 import { PublisherDeleteComponent } from './publisher-delete/publisher-delete.component';
+import { PublisherDetailComponent } from './publisher-detail/publisher-detail.component';
 @Component({
   selector: 'app-publisher',
   templateUrl: './publishers.component.html',
@@ -38,6 +39,21 @@ export class PublisherComponent extends CrudComponent<Publisher> {
         console.log('Publisher creado');
         this.loadPublishers(); // Carga o actualiza la lista de publishers
       }
+    });
+  }
+
+  showDetails(id: string): void {
+    this.publisherService.getPublisher(id).subscribe((publisher) => {
+      const dialogRef = this.dialog.open(PublisherDetailComponent, {
+        width: '400px',
+        data: { publisher },
+      });
+      /*  No es necesario porque no edito los datos adentro del dialog, pero podria implementarse a futuro
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result) {
+          this.loadPublishers(); // Carga o actualiza la lista de publishers
+        }
+      });*/
     });
   }
 
@@ -74,13 +90,7 @@ export class PublisherComponent extends CrudComponent<Publisher> {
   override displayedColumns: string[] = [
     'id',
     'publishername',
-    'foundation_date',
-    'dissolution_date',
-    'status',
-    'creationtimestamp',
-    'creationuser',
-    'modificationtimestamp',
-    'modificationuser',
+    'view',
     'edit',
     'delete',
   ];
