@@ -15,8 +15,8 @@ export class PublisherCreateComponent {
   publisher: Publisher = {
     id: '',
     publishername: '',
-    foundation_date: null,
-    dissolution_date: null,
+    foundation_date: new Date(),
+    dissolution_date: new Date(),
     status: '',
     creationtimestamp: new Date().toISOString(),
     creationuser: '',
@@ -45,15 +45,15 @@ export class PublisherCreateComponent {
   }
 
   createPublisher(): void {
-    this.publisherService.createPublisher(this.publisher).subscribe(
-      (response) => {
+    this.publisherService.createPublisher(this.publisher).subscribe({
+      next: (response) => {
         console.log('Publisher creado exitosamente', response);
         this.dialogRef.close(true); // Cierra el diálogo y indica que se guardaron los cambios
       },
-      (error) => {
+      error: (error) => {
         console.error('Error creando publisher', error);
-      }
-    );
+      },
+    });
   }
   cancel(): void {
     this.dialogRef.close(false); // Cierra el diálogo sin guardar cambios
