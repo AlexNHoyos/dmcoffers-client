@@ -20,6 +20,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FooterComponent } from './shared/footer/footer.component';
@@ -70,7 +71,7 @@ import { PublisherDetailComponent } from './aplicacion/publishers/publisher-deta
     MatInputModule,
     MatButtonModule,
     MatDialogModule,
-
+    MatToolbarModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,

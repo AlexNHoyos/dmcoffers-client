@@ -16,6 +16,8 @@ body {
     font-optical-sizing: auto;
     font-weight:700;
     font-style: normal;
+  overflow-y: auto;
+
 }
 
 // Sobrescribe la tipografía para todos los componentes de Angular Material
@@ -36,6 +38,10 @@ body {
   padding: 0;
 }
 
+.mat-mdc-card-actions.mdc-card__actions {
+  gap: 20px;
+}
+
 
 
 
@@ -47,3 +53,7 @@ header {
 $primary: #900; // Bootstrap primary color override (optional)
 $enable-shadows: true; // Enable shadows if needed
 $prefix: "mo-"; // Example prefix (if used in components)
+
+.mat-mdc-icon-button .mat-mdc-button-touch-target {
+  height: 0 !important; //Para que la zona de tocar boton no sea mas grande que el boton
+}

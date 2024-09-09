@@ -32,6 +32,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "./node_modules/bootstrap/scss/bootstrap.scss",
               "@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss"
