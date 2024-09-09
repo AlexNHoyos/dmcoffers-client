@@ -1,11 +1,5 @@
-<p *ngIf="!userLoginOn">Usuario NO autenticado</p>
-<p *ngIf="userLoginOn">Usuario autenticado</p>
 <div *ngIf="userLoginOn">
   <div class="card">
-    <div class="card-header">Datos Personales</div>
-    <div class="card-body m-0">
-      <app-personal-details></app-personal-details>
-    </div>
     <app-publisher></app-publisher>
   </div>
 </div>

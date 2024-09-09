@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { LoginService } from '../../services/auth/login.service';
-import { User } from '../../models/user.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,19 +9,25 @@ import { User } from '../../models/user.model';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   userLoginOn: boolean = false;
+  private subscription: Subscription = new Subscription();
 
   constructor(private loginService: LoginService) {}
 
-  ngOnDestroy(): void {
-    this.loginService.currentUserData.unsubscribe();
-    this.loginService.currentUserLoginOn.unsubscribe();
+  ngOnInit(): void {
+    this.subscription.add(
+      this.loginService.userLoginOn.subscribe({
+        next: (userLoginOn) => {
+          this.userLoginOn = userLoginOn;
+        },
+        error: (err) => {
+          console.error('Error al suscribirse al estado de login', err);
+        },
+      })
+    );
   }
 
-  ngOnInit(): void {
-    this.loginService.currentUserLoginOn.subscribe({
-      next: (userLoginOn) => {
-        this.userLoginOn = userLoginOn;
-      },
-    });
+  ngOnDestroy(): void {
+    // Limpiar la suscripción para evitar fugas de memoria
+    this.subscription.unsubscribe();
   }
 }

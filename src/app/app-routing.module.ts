@@ -6,12 +6,13 @@ import { PublisherCreateComponent } from './aplicacion/publishers/publisher-crea
 import { PublisherUpdateComponent } from './aplicacion/publishers/publisher-update/publisher-update.component';
 import { PublisherComponent } from './aplicacion/publishers/publishers.component';
 import { AppComponent } from './app.component';
+import { PersonalDetailsComponent } from './components/personal-details/personal-details.component';
 
 const routes: Routes = [
-  //{ path: '', redirectTo: '/publishers', pathMatch: 'full' },
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
   { path: 'inicio', component: DashboardComponent },
   { path: 'iniciar-sesion', component: LoginComponent },
+  { path: 'info', component: PersonalDetailsComponent },
   { path: 'publishers', component: PublisherComponent },
   { path: 'create-publisher', component: PublisherCreateComponent },
   { path: 'editP/:id', component: PublisherUpdateComponent },

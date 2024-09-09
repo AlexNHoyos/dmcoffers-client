@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LoginRequest } from '../../models/loginRequest.js';
+import { LoginRequest } from '../../models/loginRequest';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import {
   tap,
@@ -17,12 +17,17 @@ import { UserService } from '../user/user.service';
   providedIn: 'root',
 })
 export class LoginService {
-  currentUserLoginOn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+  private currentUserLoginOnSubject: BehaviorSubject<boolean> =
+    new BehaviorSubject<boolean>(false);
+  private currentUserDataSubject: BehaviorSubject<String> =
+    new BehaviorSubject<String>('');
+  /* currentUserLoginOn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     false
   );
   currentUserData: BehaviorSubject<String> = new BehaviorSubject<String>('');
-
+*/
   constructor(private http: HttpClient, private userService: UserService) {
+    /*
     this.currentUserLoginOn = new BehaviorSubject<boolean>(
       sessionStorage.getItem('accessToken') != null
     );
@@ -36,7 +41,68 @@ export class LoginService {
       this.updateUserId(token);
     }
   }
+*/
+    const token = sessionStorage.getItem('accessToken');
+    this.currentUserLoginOnSubject.next(!!token);
+    this.currentUserDataSubject.next(token || '');
 
+    if (token) {
+      this.updateUserId(token);
+    }
+  }
+
+  login(credentials: LoginRequest): Observable<any> {
+    return this.http
+      .post<any>(`${environment.urlHost}auth/login`, credentials)
+      .pipe(
+        tap((userData) => {
+          sessionStorage.setItem('accessToken', userData.accessToken);
+          this.currentUserDataSubject.next(userData.accessToken);
+          this.currentUserLoginOnSubject.next(true);
+          this.updateUserId(userData.accessToken);
+        }),
+        map((userData) => userData.accessToken),
+        catchError(this.handleError)
+      );
+  }
+
+  logout(): void {
+    sessionStorage.removeItem('accessToken');
+    this.currentUserLoginOnSubject.next(false);
+    this.currentUserDataSubject.next('');
+    this.userService.setUserId('');
+  }
+
+  private updateUserId(token: string | null) {
+    if (token) {
+      const decodedToken: any = jwtDecode(token);
+      this.userService.setUserId(decodedToken.id || '');
+    }
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.status === 0) {
+      console.error('Se ha producido un error ', error.error);
+    } else {
+      console.error('Backend retorno el codigo de estado ', error);
+    }
+    return throwError(
+      () => new Error('Algo fallo. Por favor intente nuevamente.')
+    );
+  }
+
+  get userData(): Observable<String> {
+    return this.currentUserDataSubject.asObservable();
+  }
+
+  get userLoginOn(): Observable<boolean> {
+    return this.currentUserLoginOnSubject.asObservable();
+  }
+
+  get userToken(): String {
+    return this.currentUserDataSubject.value;
+  }
+  /*
   login(credentials: LoginRequest): Observable<any> {
     return this.http
       .post<any>(environment.urlHost + 'auth/login', credentials)
@@ -88,4 +154,6 @@ export class LoginService {
   get userToken(): String {
     return this.currentUserData.value;
   }
+
+  */
 }

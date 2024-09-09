@@ -2,7 +2,10 @@
 <div class="toolbar" role="banner">
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#"></a>
+      <a class="navbar-brand" href="#"
+        ><p *ngIf="userLoginOn">Hola, {{ username }}</p>
+        <p *ngIf="!userLoginOn">Usuario NO autenticado</p></a
+      >
       <button
         class="navbar-toggler"
         type="button"
@@ -16,7 +19,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
+          <li *ngIf="userLoginOn" class="nav-item">
             <a class="nav-link active" (click)="home()" routerLink="/inicio"
               >Dashboard</a
             >
@@ -26,27 +29,19 @@
               >Iniciar Sesion</a
             >
           </li>
+
+          <li *ngIf="userLoginOn" class="nav-item">
+            <a class="nav-link" (click)="info()" routerLink="/info"
+              >Datos Personales</a
+            >
+          </li>
+
           <li *ngIf="userLoginOn" class="nav-item">
             <a class="nav-link" (click)="logout()" routerLink="/inicio"
               >Cerrar Sesion</a
             >
           </li>
-
-          <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true"
-              >Proximamente...</a
-            >
-          </li>
         </ul>
-        <form class="d-flex" role="search">
-          <input
-            class="form-control me-2"
-            type="search"
-            placeholder="Buscar algo..."
-            aria-label="Search"
-          />
-          <button class="btn btn-outline-success" type="submit">Buscar</button>
-        </form>
       </div>
     </div>
   </nav>
