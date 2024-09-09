@@ -87,13 +87,7 @@ export class PublisherComponent extends CrudComponent<Publisher> {
     });
   }
 
-  override displayedColumns: string[] = [
-    'id',
-    'publishername',
-    'view',
-    'edit',
-    'delete',
-  ];
+  override displayedColumns: string[] = ['id', 'publishername', 'actions'];
 
   showTable: boolean = false;
   buttonText: string = 'Mostrar Publishers';

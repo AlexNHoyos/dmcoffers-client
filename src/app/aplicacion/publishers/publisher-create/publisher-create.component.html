@@ -6,7 +6,7 @@
   <mat-card-content>
     <form (ngSubmit)="createPublisher()">
       <mat-form-field class="form-field">
-        <mat-label>Publisher name</mat-label>
+        <mat-label>Nombre del publisher</mat-label>
         <input
           matInput
           type="text"
@@ -27,7 +27,7 @@
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label>Foundation date</mat-label>
+        <mat-label>Fundacion</mat-label>
         <input
           matInput
           [matDatepicker]="picker"
@@ -40,6 +40,22 @@
           [for]="picker"
         ></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Disolucion</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker2"
+          [(ngModel)]="publisher.dissolution_date"
+          name="foundation_date"
+        />
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field>

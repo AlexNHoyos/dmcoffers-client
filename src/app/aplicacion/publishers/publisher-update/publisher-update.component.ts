@@ -32,7 +32,7 @@ export class PublisherUpdateComponent {
     this.userUtilsService.setLoggedInUser().subscribe((username) => {
       if (username) {
         this.publisher.modificationuser = username;
-        this.publisher.modificationtimestamp = new Date();
+        this.publisher.modificationtimestamp = new Date().toISOString();
       } else {
         console.log('No userId found');
       }
@@ -40,19 +40,26 @@ export class PublisherUpdateComponent {
   }
 
   onUpdatePublisher() {
-    if (this.publisher.dissolution_date instanceof Date) {
-      this.publisher.dissolution_date =
-        this.publisher.dissolution_date.toISOString();
-    }
-    if (this.publisher.modificationtimestamp instanceof Date) {
-      this.publisher.modificationtimestamp =
-        this.publisher.modificationtimestamp.toISOString();
-    }
+    const publisherToSend = {
+      ...this.publisher,
+      foundation_date: this.publisher.foundation_date
+        ? new Date(this.publisher.foundation_date).toISOString()
+        : null,
+      dissolution_date: this.publisher.dissolution_date
+        ? new Date(this.publisher.dissolution_date).toISOString()
+        : null,
+      creationtimestamp: this.publisher.creationtimestamp
+        ? new Date(this.publisher.creationtimestamp).toISOString()
+        : null,
+      modificationtimestamp: this.publisher.modificationtimestamp
+        ? new Date(this.publisher.modificationtimestamp).toISOString()
+        : null,
+    };
 
-    console.log(this.publisher);
+    console.log(publisherToSend);
 
     this.publisherService
-      .updatePublisher(this.publisher.id, this.publisher)
+      .updatePublisher(this.publisher.id, publisherToSend)
       .subscribe({
         next: () => {
           this.dialogRef.close(true);
