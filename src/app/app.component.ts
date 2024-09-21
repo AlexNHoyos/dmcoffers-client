@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Publisher } from './aplicacion/publishers/publisher.model';
-import { PublisherService } from './aplicacion/publishers/publisher.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +10,7 @@ export class AppComponent implements OnInit {
   publishers: Publisher[] = [];
   title = 'dmcoffers-client';
 
-  constructor(private publisherService: PublisherService) {}
+  constructor() {}
 
   ngOnInit(): void {}
 }

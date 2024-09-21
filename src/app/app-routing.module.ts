@@ -11,7 +11,7 @@ import { PersonalDetailsComponent } from './components/personal-details/personal
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
   { path: 'inicio', component: DashboardComponent },
-  { path: 'iniciar-sesion', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'info', component: PersonalDetailsComponent },
   { path: 'publishers', component: PublisherComponent },
   { path: 'create-publisher', component: PublisherCreateComponent },
