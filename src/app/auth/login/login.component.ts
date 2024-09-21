@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/auth/login.service';
 import { LoginRequest } from '../../models/loginRequest';
+import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
+    private dialog: MatDialog,
     private loginService: LoginService
   ) {
     this.loginForm = this.formBuilder.group({
@@ -42,6 +45,7 @@ export class LoginComponent implements OnInit {
         },
         error: (errorData) => {
           console.log(errorData);
+          this.showErrorDialog(errorData);
           this.loginError = errorData;
         },
         complete: () => {
@@ -52,14 +56,13 @@ export class LoginComponent implements OnInit {
       });
     } else {
       this.loginForm.markAllAsTouched();
-      alert('Error al ingresar los datos.');
+      this.showErrorDialog('Error al ingresar los datos.');
     }
   }
-}
 
-/*            <div *ngIf="user.hasError('minlength')">
-              Name must be at least 4 characters long.
-            </div>
-            <div *ngIf="user.hasError('forbiddenName')">
-              Name cannot be Bob.
-            </div>*/
+  private showErrorDialog(errorMessage: string): void {
+    this.dialog.open(ErrorDialogComponent, {
+      data: { message: errorMessage, type: 'error' },
+    });
+  }
+}
