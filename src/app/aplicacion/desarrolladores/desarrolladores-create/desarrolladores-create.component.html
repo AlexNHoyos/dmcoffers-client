@@ -1,0 +1,50 @@
+<mat-card class="card">
+    <mat-card-header>
+        <mat-card-title>Crear desarrollador</mat-card-title>
+        <mat-card-subtitle>Ingrese los siguientes datos:</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <form (ngSubmit)="createDesarrollador()">
+            <mat-form-field class="form-field">
+                <mat-label>Nombre del desarrollador</mat-label>
+                <input matInput type="text" [(ngModel)]="desarrollador.developername" name="developername" required />
+
+                <button *ngIf="desarrollador.developername" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="desarrollador.developername = ''">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Fundacion</mat-label>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="desarrollador.foundation_date"
+                    name="foundation_date" />
+                <mat-hint>DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Disolucion</mat-label>
+                <input matInput [matDatepicker]="picker2" [(ngModel)]="desarrollador.dissolution_date"
+                    name="dissolution_date" />
+                <mat-hint>DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Status</mat-label>
+                <mat-select [(ngModel)]="desarrollador.status" name="status">
+                    <mat-option [value]="true">Active</mat-option>
+                    <mat-option [value]="false">Inactive</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <button mat-flat-button type="submit" color="primary">Crear</button>
+            <button mat-flat-button color="secondary" (click)="cancel()">
+                Cancelar
+            </button>
+        </form>
+    </mat-card-content>
+</mat-card>

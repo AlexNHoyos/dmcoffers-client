@@ -1,0 +1,18 @@
+<mat-card class="card">
+    <mat-card-header>
+        <mat-card-title>¿Seguro que quieres eliminar al desarrollador
+            {{ desarrolladorName }}?</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form (ngSubmit)="deleteDesarrollador()">
+            <mat-card-actions>
+                <button mat-raised-button color="warn" type="submit">
+                    Eliminar desarrollador
+                </button>
+                <button mat-raised-button color="primary" type="button" (click)="onCancel()">
+                    Cancelar
+                </button>
+            </mat-card-actions>
+        </form>
+    </mat-card-content>
+</mat-card>
