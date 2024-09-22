@@ -1,0 +1,38 @@
+<div class="update-container">
+  <form>
+    <mat-form-field class="form-field">
+      <mat-label>Descripcion de la categoria</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="categoria.descripcion"
+        name="descripcion"
+        required
+      />
+
+      <button
+        *ngIf="categoria.descripcion"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="categoria.descripcion = ''"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <br />
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      (click)="onUpdateCategoria()"
+    >
+      Actualizar
+    </button>
+
+    <button mat-flat-button color="secondary" (click)="cancel()">
+      Cancelar
+    </button>
+  </form>
+</div>

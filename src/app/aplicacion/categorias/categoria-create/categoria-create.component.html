@@ -1,0 +1,35 @@
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title>Crear Categoria</mat-card-title>
+    <mat-card-subtitle>Ingrese los siguientes datos:</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <form (ngSubmit)="createCategoria()">
+      <mat-form-field class="form-field">
+        <mat-label>Descripcion</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="categoria.descripcion"
+          name="descripcion"
+          required
+        />
+
+        <button
+          *ngIf="categoria.descripcion"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="categoria.descripcion = ''"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <button mat-flat-button type="submit" color="primary">Crear</button>
+      <button mat-flat-button color="secondary" (click)="cancel()">
+        Cancelar
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

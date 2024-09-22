@@ -41,6 +41,12 @@ import { PublisherCreateComponent } from './aplicacion/publishers/publisher-crea
 import { PublisherUpdateComponent } from './aplicacion/publishers/publisher-update/publisher-update.component';
 import { PublisherDeleteComponent } from './aplicacion/publishers/publisher-delete/publisher-delete.component';
 import { PublisherDetailComponent } from './aplicacion/publishers/publisher-detail/publisher-detail.component';
+import { CategoriasComponent } from './aplicacion/categorias/categorias.component';
+import { CategoriaCreateComponent } from './aplicacion/categorias/categoria-create/categoria-create.component';
+import { CategoriaDeleteComponent } from './aplicacion/categorias/categoria-delete/categoria-delete.component';
+import { CategoriaDetailComponent } from './aplicacion/categorias/categoria-detail/categoria-detail.component';
+import { CategoriaUpdateComponent } from './aplicacion/categorias/categoria-update/categoria-update.component';
+import { CategoriaService } from './aplicacion/categorias/categoria.service';
 
 @NgModule({
   declarations: [
@@ -58,6 +64,11 @@ import { PublisherDetailComponent } from './aplicacion/publishers/publisher-deta
     PublisherUpdateComponent,
     PublisherDeleteComponent,
     PublisherDetailComponent,
+    CategoriasComponent,
+    CategoriaCreateComponent,
+    CategoriaDeleteComponent,
+    CategoriaDetailComponent,
+    CategoriaUpdateComponent,
   ],
   imports: [
     CommonModule,
@@ -84,6 +95,7 @@ import { PublisherDetailComponent } from './aplicacion/publishers/publisher-deta
 
   providers: [
     PublisherService,
+    CategoriaService,
     AlertService,
 
     {
