@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Detalles de la categoria</h1>
+<div mat-dialog-content>
+  <p><strong>ID:</strong> {{ data.categoria.id }}</p>
+  <p><strong>Descripcion:</strong> {{ data.categoria.descripcion }}</p>
+  <p>
+    <strong>Fecha de carga:</strong>
+    {{ data.categoria.creationtimestamp | date }}
+  </p>
+  <p>
+    <strong>Fecha de modificacion:</strong>
+    {{ data.categoria.modificationtimestamp | date }}
+  </p>
+  <p><strong>Cargado por:</strong> {{ data.categoria.creationuser }}</p>
+  <p><strong>Modificado por:</strong> {{ data.categoria.modificationuser }}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onClose()">Close</button>
+</div>

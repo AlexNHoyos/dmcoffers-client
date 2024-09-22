@@ -1,0 +1,48 @@
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>INICIAR SESION</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-form-field appearance="fill">
+        <mat-label>Usuario</mat-label>
+        <input
+          matInput
+          formControlName="username"
+          placeholder="Ingrese su usuario"
+        />
+        <mat-error
+          *ngIf="username.invalid && (username.dirty || username.touched)"
+        >
+          <div *ngIf="username.hasError('required')">
+            El usuario es requerido.
+          </div>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Contraseña</mat-label>
+        <input
+          matInput
+          formControlName="password"
+          type="password"
+          placeholder="Ingrese su contraseña"
+        />
+        <mat-error
+          *ngIf="password.invalid && (password.dirty || password.touched)"
+        >
+          <div *ngIf="password.hasError('required')">
+            La contraseña es requerida.
+          </div>
+        </mat-error>
+      </mat-form-field>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">
+        Iniciar Sesión
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

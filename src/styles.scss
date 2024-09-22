@@ -1,0 +1,59 @@
+@import '../src/assets/styles/variables'; // Variables should be imported first
+@import "../node_modules/bootstrap/scss/bootstrap"; // Import Bootstrap SCSS
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css"; // Import Angular Material theme
+
+/* Import custom font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Protest+Guerrilla&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=SUSE:wght@100..800&display=swap');
+html,
+body {
+  height: 100%;
+  margin: 0;
+  //font-family: 'Roboto Mono', monospace !important; // Font applied globally
+  //font-weight: 700; // Default weight
+  font-family: "SUSE", sans-serif;
+    font-optical-sizing: auto;
+    font-weight:700;
+    font-style: normal;
+  overflow-y: auto;
+
+}
+
+// Sobrescribe la tipografía para todos los componentes de Angular Material
+.mat-mdc-typography,
+.mat-mdc-button,
+.mat-mdc-card,
+.mat-mdc-input,
+.mat-mdc-table 
+{
+  font-family: 'Roboto Mono', monospace !important;
+}
+
+.add-btn.mdc-icon-button {
+  border: 2px solid #3700b3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.mat-mdc-card-actions.mdc-card__actions {
+  gap: 20px;
+}
+
+
+
+
+header {
+  background-color: $main-color; // Custom variable from variables.scss
+}
+
+// Example variables or settings for Bootstrap overrides
+$primary: #900; // Bootstrap primary color override (optional)
+$enable-shadows: true; // Enable shadows if needed
+$prefix: "mo-"; // Example prefix (if used in components)
+
+.mat-mdc-icon-button .mat-mdc-button-touch-target {
+  height: 0 !important; //Para que la zona de tocar boton no sea mas grande que el boton
+}
