@@ -14,7 +14,7 @@ import { CategoriaService } from '../categoria.service';
 export class CategoriaCreateComponent {
   categoria: Categoria = {
     id: '',
-    descripcion: '',
+    description: '',
     creationtimestamp: new Date().toISOString(),
     creationuser: '',
     modificationtimestamp: '',
@@ -54,6 +54,7 @@ export class CategoriaCreateComponent {
         this.dialogRef.close(true); // Cierra el diálogo y indica que se guardaron los cambios
       },
       error: (error) => {
+        console.log(categoriaToSend);
         console.error('Error creando categoria', error);
       },
     });

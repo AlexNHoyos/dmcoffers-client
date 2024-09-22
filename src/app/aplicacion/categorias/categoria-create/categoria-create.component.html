@@ -10,17 +10,17 @@
         <input
           matInput
           type="text"
-          [(ngModel)]="categoria.descripcion"
+          [(ngModel)]="categoria.description"
           name="descripcion"
           required
         />
 
         <button
-          *ngIf="categoria.descripcion"
+          *ngIf="categoria.description"
           matSuffix
           mat-icon-button
           aria-label="Clear"
-          (click)="categoria.descripcion = ''"
+          (click)="categoria.description = ''"
         >
           <mat-icon>close</mat-icon>
         </button>
