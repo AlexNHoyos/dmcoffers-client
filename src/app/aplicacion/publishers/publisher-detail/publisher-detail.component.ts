@@ -11,7 +11,7 @@ export class PublisherDetailComponent {
   constructor(
     public dialogRef: MatDialogRef<PublisherDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { publisher: Publisher }
-  ) {}
+  ) { }
 
   onClose(): void {
     this.dialogRef.close();

@@ -1,0 +1,38 @@
+<div class="update-container">
+    <form>
+        <mat-form-field class="form-field">
+            <mat-label>Nombre del desarrollador</mat-label>
+            <input matInput type="text" [(ngModel)]="desarrollador.developername" name="developername" required />
+
+            <button *ngIf="desarrollador.developername" matSuffix mat-icon-button aria-label="Clear"
+                (click)="desarrollador.developername = ''">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Disolucion</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="desarrollador.dissolution_date"
+                name="disolution_date" />
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Estado</mat-label>
+            <mat-select [(ngModel)]="desarrollador.status" name="status">
+                <mat-option [value]="true">Activo</mat-option>
+                <mat-option [value]="false">Inactivo</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br />
+        <button mat-raised-button color="primary" type="submit" (click)="onUpdateDesarrollador()">
+            Actualizar
+        </button>
+
+        <button mat-flat-button color="secondary" (click)="cancel()">
+            Cancelar
+        </button>
+    </form>
+</div>

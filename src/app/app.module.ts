@@ -47,6 +47,11 @@ import { CategoriaDeleteComponent } from './aplicacion/categorias/categoria-dele
 import { CategoriaDetailComponent } from './aplicacion/categorias/categoria-detail/categoria-detail.component';
 import { CategoriaUpdateComponent } from './aplicacion/categorias/categoria-update/categoria-update.component';
 import { CategoriaService } from './aplicacion/categorias/categoria.service';
+import { DesarrolladoresComponent } from './aplicacion/desarrolladores/desarrolladores.component';
+import { DesarrolladoresService } from './aplicacion/desarrolladores/desarrolladores.service';
+import { DesarrolladoresCreateComponent } from './aplicacion/desarrolladores/desarrolladores-create/desarrolladores-create.component';
+import { DesarrolladoresUpdateComponent } from './aplicacion/desarrolladores/desarrolladores-update/desarrolladores-update.component';
+import { DesarrolladoresDeleteComponent } from './aplicacion/desarrolladores/desarrolladores-delete/desarrolladores-delete.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +74,10 @@ import { CategoriaService } from './aplicacion/categorias/categoria.service';
     CategoriaDeleteComponent,
     CategoriaDetailComponent,
     CategoriaUpdateComponent,
+    DesarrolladoresComponent,
+    DesarrolladoresCreateComponent,
+    DesarrolladoresUpdateComponent,
+    DesarrolladoresDeleteComponent
   ],
   imports: [
     CommonModule,
@@ -97,7 +106,7 @@ import { CategoriaService } from './aplicacion/categorias/categoria.service';
     PublisherService,
     CategoriaService,
     AlertService,
-
+    DesarrolladoresService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptorService,
@@ -112,4 +121,4 @@ import { CategoriaService } from './aplicacion/categorias/categoria.service';
 
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

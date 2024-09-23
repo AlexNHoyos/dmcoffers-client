@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>Detalles del desarrollador</h1>
+<div mat-dialog-content>
+    <p><strong>ID:</strong> {{ data.desarrollador.id }}</p>
+    <p><strong>Nombre:</strong> {{ data.desarrollador.developername }}</p>
+    <p>
+        <strong>Fundacion:</strong>
+        {{ data.desarrollador.foundation_date <!-- | date --> }}
+    </p>
+    <p>
+        <strong>Disolucion:</strong>
+        {{ data.desarrollador.dissolution_date <!-- | date --> }}
+    </p>
+    <p>
+        <strong>Estado:</strong> {{ data.desarrollador.status ? "Activo" : "Inactivo" }}
+    </p>
+    <p>
+        <strong>Fecha de carga:</strong>
+        {{ data.desarrollador.creationtimestamp <!-- | date --> }}
+    </p>
+    <p>
+        <strong>Fecha de modificacion:</strong>
+        {{ data.desarrollador.modificationtimestamp <!-- | date --> }}
+    </p>
+    <p><strong>Cargado por:</strong> {{ data.desarrollador.creationuser }}</p>
+    <p><strong>Modificado por:</strong> {{ data.desarrollador.modificationuser }}</p>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onClose()">Close</button>
+</div>

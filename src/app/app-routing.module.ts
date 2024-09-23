@@ -13,6 +13,9 @@ import { PublisherUpdateComponent } from './aplicacion/publishers/publisher-upda
 import { CategoriasComponent } from './aplicacion/categorias/categorias.component';
 import { CategoriaCreateComponent } from './aplicacion/categorias/categoria-create/categoria-create.component';
 import { CategoriaUpdateComponent } from './aplicacion/categorias/categoria-update/categoria-update.component';
+import { DesarrolladoresComponent } from './aplicacion/desarrolladores/desarrolladores.component';
+import { DesarrolladoresCreateComponent } from './aplicacion/desarrolladores/desarrolladores-create/desarrolladores-create.component';
+import { DesarrolladoresUpdateComponent } from './aplicacion/desarrolladores/desarrolladores-update/desarrolladores-update.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -25,6 +28,9 @@ const routes: Routes = [
   { path: 'categorias', component: CategoriasComponent },
   { path: 'create-categoria', component: CategoriaCreateComponent },
   { path: 'editC/:id', component: CategoriaUpdateComponent },
+  { path: 'desarrolladores', component: DesarrolladoresComponent },
+  { path: 'create-desarrollador', component: DesarrolladoresCreateComponent },
+  { path: 'editD/:id', component: DesarrolladoresUpdateComponent },
   { path: '**', redirectTo: '/inicio', pathMatch: 'full' }, //redireccionar a inicio si no hay match
 ];
 
@@ -34,4 +40,4 @@ const routes: Routes = [
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
