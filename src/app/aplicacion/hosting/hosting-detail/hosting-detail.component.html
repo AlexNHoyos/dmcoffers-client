@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Detalles del hosting</h1>
+<div mat-dialog-content>
+  <p><strong>ID:</strong> {{ data.hosting.id }}</p>
+  <p><strong>Nombre:</strong> {{ data.hosting.name }}</p>
+  <p>
+    <strong>Estado:</strong> {{ data.hosting.status ? "Activo" : "Inactivo" }}
+  </p>
+  <p>
+    <strong>Fecha de carga:</strong>
+    {{ data.hosting.creationtimestamp | date }}
+  </p>
+  <p>
+    <strong>Fecha de modificacion:</strong>
+    {{ data.hosting.modificationtimestamp | date }}
+  </p>
+  <p><strong>Cargado por:</strong> {{ data.hosting.creationuser }}</p>
+  <p><strong>Modificado por:</strong> {{ data.hosting.modificationuser }}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onClose()">Close</button>
+</div>

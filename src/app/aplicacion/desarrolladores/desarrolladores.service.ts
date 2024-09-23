@@ -17,11 +17,17 @@ export class DesarrolladoresService extends CrudService<DesarrolladorPage> {
   }
 
   createDesarrollador(desarrollador: Desarrollador): Observable<Desarrollador> {
-    return this.http.post<Desarrollador>(`${this.endpoint}/create`, desarrollador);
+    return this.http.post<Desarrollador>(`${this.endpoint}/`, desarrollador);
   }
 
-  updateDesarrollador(id: string, desarrollador: Desarrollador): Observable<Desarrollador> {
-    return this.http.put<Desarrollador>(`${this.endpoint}/${id}`, desarrollador);
+  updateDesarrollador(
+    id: string,
+    desarrollador: Desarrollador
+  ): Observable<Desarrollador> {
+    return this.http.put<Desarrollador>(
+      `${this.endpoint}/${id}`,
+      desarrollador
+    );
   }
 
   getAllDesarrolladores(): Observable<Desarrollador[]> {
@@ -32,4 +38,3 @@ export class DesarrolladoresService extends CrudService<DesarrolladorPage> {
     return this.http.get<Desarrollador>(`${this.endpoint}/${id}`);
   }
 }
-

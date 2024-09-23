@@ -1,0 +1,43 @@
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title>Crear Hosting</mat-card-title>
+    <mat-card-subtitle>Ingrese los siguientes datos:</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <form (ngSubmit)="createHosting()">
+      <mat-form-field class="form-field">
+        <mat-label>Nombre del hosting</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="hosting.name"
+          name="name"
+          required
+        />
+
+        <button
+          *ngIf="hosting.name"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="hosting.name = ''"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Status</mat-label>
+        <mat-select [(ngModel)]="hosting.status" name="status">
+          <mat-option [value]="true">Activo</mat-option>
+          <mat-option [value]="false">Inactivo</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-flat-button type="submit" color="primary">Crear</button>
+      <button mat-flat-button color="secondary" (click)="cancel()">
+        Cancelar
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

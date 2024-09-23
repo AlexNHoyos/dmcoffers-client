@@ -52,6 +52,11 @@ import { DesarrolladoresService } from './aplicacion/desarrolladores/desarrollad
 import { DesarrolladoresCreateComponent } from './aplicacion/desarrolladores/desarrolladores-create/desarrolladores-create.component';
 import { DesarrolladoresUpdateComponent } from './aplicacion/desarrolladores/desarrolladores-update/desarrolladores-update.component';
 import { DesarrolladoresDeleteComponent } from './aplicacion/desarrolladores/desarrolladores-delete/desarrolladores-delete.component';
+import { HostingComponent } from './aplicacion/hosting/hosting.component';
+import { HostingCreateComponent } from './aplicacion/hosting/hosting-create/hosting-create.component';
+import { HostingDeleteComponent } from './aplicacion/hosting/hosting-delete/hosting-delete.component';
+import { HostingDetailComponent } from './aplicacion/hosting/hosting-detail/hosting-detail.component';
+import { HostingUpdateComponent } from './aplicacion/hosting/hosting-update/hosting-update.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +82,12 @@ import { DesarrolladoresDeleteComponent } from './aplicacion/desarrolladores/des
     DesarrolladoresComponent,
     DesarrolladoresCreateComponent,
     DesarrolladoresUpdateComponent,
-    DesarrolladoresDeleteComponent
+    DesarrolladoresDeleteComponent,
+    HostingComponent,
+    HostingCreateComponent,
+    HostingDeleteComponent,
+    HostingDetailComponent,
+    HostingUpdateComponent
   ],
   imports: [
     CommonModule,

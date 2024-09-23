@@ -1,0 +1,45 @@
+<div class="update-container">
+  <form>
+    <mat-form-field class="form-field">
+      <mat-label>Nombre del hosting</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="hosting.name"
+        name="name"
+        required
+      />
+
+      <button
+        *ngIf="hosting.name"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="hosting.name = ''"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Estado</mat-label>
+      <mat-select [(ngModel)]="hosting.status" name="status">
+        <mat-option [value]="true">Activo</mat-option>
+        <mat-option [value]="false">Inactivo</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br />
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      (click)="onUpdatehosting()"
+    >
+      Actualizar
+    </button>
+
+    <button mat-flat-button color="secondary" (click)="cancel()">
+      Cancelar
+    </button>
+  </form>
+</div>
