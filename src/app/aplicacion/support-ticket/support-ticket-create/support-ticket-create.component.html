@@ -1,0 +1,22 @@
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title>Crear Ticket de Soporte</mat-card-title>
+    <mat-card-subtitle>Ingrese los siguientes datos:</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <form (ngSubmit)="createSupportTicket()">
+      <mat-form-field>
+        <mat-label>Status</mat-label>
+        <mat-select [(ngModel)]="supportTicket.status" name="status">
+          <mat-option [value]="true">Activo</mat-option>
+          <mat-option [value]="false">Inactivo</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-flat-button type="submit" color="primary">Crear</button>
+      <button mat-flat-button color="secondary" (click)="cancel()">
+        Cancelar
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

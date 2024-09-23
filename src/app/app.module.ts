@@ -57,6 +57,11 @@ import { HostingCreateComponent } from './aplicacion/hosting/hosting-create/host
 import { HostingDeleteComponent } from './aplicacion/hosting/hosting-delete/hosting-delete.component';
 import { HostingDetailComponent } from './aplicacion/hosting/hosting-detail/hosting-detail.component';
 import { HostingUpdateComponent } from './aplicacion/hosting/hosting-update/hosting-update.component';
+import { SupportTicketComponent } from './aplicacion/support-ticket/support-ticket.component';
+import { SupportTicketCreateComponent } from './aplicacion/support-ticket/support-ticket-create/support-ticket-create.component';
+import { SupportTicketDeleteComponent } from './aplicacion/support-ticket/support-ticket-delete/support-ticket-delete.component';
+import { SupportTicketDetailComponent } from './aplicacion/support-ticket/support-ticket-detail/support-ticket-detail.component';
+import { SupportTicketUpdateComponent } from './aplicacion/support-ticket/support-ticket-update/support-ticket-update.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +92,12 @@ import { HostingUpdateComponent } from './aplicacion/hosting/hosting-update/host
     HostingCreateComponent,
     HostingDeleteComponent,
     HostingDetailComponent,
-    HostingUpdateComponent
+    HostingUpdateComponent,
+    SupportTicketComponent,
+    SupportTicketCreateComponent,
+    SupportTicketDeleteComponent,
+    SupportTicketDetailComponent,
+    SupportTicketUpdateComponent
   ],
   imports: [
     CommonModule,

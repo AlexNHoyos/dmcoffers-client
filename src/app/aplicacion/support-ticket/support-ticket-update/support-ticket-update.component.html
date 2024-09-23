@@ -1,0 +1,24 @@
+<div class="update-container">
+  <form>
+    <mat-form-field>
+      <mat-label>Estado del Ticket</mat-label>
+      <mat-select [(ngModel)]="supportTicket.status" name="status">
+        <mat-option [value]="true">Activo</mat-option>
+        <mat-option [value]="false">Inactivo</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br />
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      (click)="onUpdateSupportTicket()"
+    >
+      Actualizar
+    </button>
+
+    <button mat-flat-button color="secondary" (click)="cancel()">
+      Cancelar
+    </button>
+  </form>
+</div>
