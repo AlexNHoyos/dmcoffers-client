@@ -44,7 +44,7 @@ export class CategoriasComponent extends CrudComponent<Categoria> {
     });
   }
 
-  showDetails(id: string): void {
+  showDetails(id: number): void {
     this.categoriaService.getCategoria(id).subscribe((categoria) => {
       const dialogRef = this.dialog.open(CategoriaDetailComponent, {
         width: '400px',
@@ -59,7 +59,7 @@ export class CategoriasComponent extends CrudComponent<Categoria> {
     });
   }
 
-  openEditDialog(id: string): void {
+  openEditDialog(id: number): void {
     this.categoriaService.getCategoria(id).subscribe((categoria) => {
       const dialogRef = this.dialog.open(CategoriaUpdateComponent, {
         width: '400px',
@@ -75,7 +75,7 @@ export class CategoriasComponent extends CrudComponent<Categoria> {
     });
   }
 
-  openDeleteDialog(id: string): void {
+  openDeleteDialog(id: number): void {
     const dialogRef = this.dialog.open(CategoriaDeleteComponent, {
       width: '400px',
       data: { id },

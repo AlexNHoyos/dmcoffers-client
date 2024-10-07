@@ -13,7 +13,7 @@ import { DesarrolladoresService } from '../desarrolladores.service';
 })
 export class DesarrolladoresCreateComponent {
   desarrollador: Desarrollador = {
-    id: '',
+    id: 0,
     developername: '',
     foundation_date: new Date().toISOString(),
     dissolution_date: new Date().toISOString(),
@@ -27,7 +27,7 @@ export class DesarrolladoresCreateComponent {
     private desarrolladoresService: DesarrolladoresService,
     private dialogRef: MatDialogRef<DesarrolladoresCreateComponent>,
     private userUtilsService: UserUtilsService
-  ) { }
+  ) {}
   ngOnInit(): void {
     this.userUtilsService.setLoggedInUser().subscribe((username) => {
       if (username) {
@@ -57,18 +57,19 @@ export class DesarrolladoresCreateComponent {
     };
 
     console.log(desarrolladorToSend);
-    this.desarrolladoresService.createDesarrollador(desarrolladorToSend).subscribe({
-      next: (response) => {
-        console.log('Desarrollador creado exitosamente', response);
-        this.dialogRef.close(true); // Cierra el diálogo y indica que se guardaron los cambios
-      },
-      error: (error) => {
-        console.error('Error creando desarrollador', error);
-      },
-    });
+    this.desarrolladoresService
+      .createDesarrollador(desarrolladorToSend)
+      .subscribe({
+        next: (response) => {
+          console.log('Desarrollador creado exitosamente', response);
+          this.dialogRef.close(true); // Cierra el diálogo y indica que se guardaron los cambios
+        },
+        error: (error) => {
+          console.error('Error creando desarrollador', error);
+        },
+      });
   }
   cancel(): void {
     this.dialogRef.close(false); // Cierra el diálogo sin guardar cambios
   }
 }
-

@@ -1,7 +1,7 @@
 import { Page } from 'src/app/models/pagination.js';
 
 export class Hosting {
-  id: string = '';
+  id: number = 0;
   name: string = '';
   creationuser: string = '';
   creationtimestamp: string | null = null;

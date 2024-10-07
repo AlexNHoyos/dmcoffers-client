@@ -13,7 +13,7 @@ import { PublisherService } from '../publisher.service';
 })
 export class PublisherCreateComponent {
   publisher: Publisher = {
-    id: '',
+    id: 0,
     publishername: '',
     foundation_date: new Date().toISOString(),
     dissolution_date: new Date().toISOString(),
@@ -21,7 +21,7 @@ export class PublisherCreateComponent {
     creationtimestamp: new Date().toISOString(),
     creationuser: '',
     modificationtimestamp: '',
-    modificationuser: '',
+    modificationuser: null,
   };
   constructor(
     private publisherService: PublisherService,

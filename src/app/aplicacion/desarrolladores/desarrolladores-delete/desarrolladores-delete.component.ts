@@ -19,8 +19,8 @@ export class DesarrolladoresDeleteComponent implements OnInit {
     private desarrolladoresService: DesarrolladoresService,
     private dialog: MatDialog,
     private dialogRef: MatDialogRef<DesarrolladoresDeleteComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { id: string }
-  ) { }
+    @Inject(MAT_DIALOG_DATA) public data: { id: number }
+  ) {}
 
   ngOnInit(): void {
     this.desarrolladoresService.getDesarrollador(this.data.id).subscribe({
@@ -56,4 +56,3 @@ export class DesarrolladoresDeleteComponent implements OnInit {
     this.dialogRef.close(false);
   }
 }
-

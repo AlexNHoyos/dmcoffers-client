@@ -21,7 +21,7 @@ export class DesarrolladoresService extends CrudService<DesarrolladorPage> {
   }
 
   updateDesarrollador(
-    id: string,
+    id: number,
     desarrollador: Desarrollador
   ): Observable<Desarrollador> {
     return this.http.put<Desarrollador>(
@@ -34,7 +34,7 @@ export class DesarrolladoresService extends CrudService<DesarrolladorPage> {
     return this.http.get<Desarrollador[]>(this.endpoint);
   }
 
-  getDesarrollador(id: string): Observable<Desarrollador> {
+  getDesarrollador(id: number): Observable<Desarrollador> {
     return this.http.get<Desarrollador>(`${this.endpoint}/${id}`);
   }
 }

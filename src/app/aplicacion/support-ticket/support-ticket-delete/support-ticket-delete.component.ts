@@ -14,14 +14,14 @@ import { SupportTicketService } from '../support-ticket.service';
   styleUrls: ['./support-ticket-delete.component.scss'],
 })
 export class SupportTicketDeleteComponent implements OnInit {
-  supportTicketName: string = '';
+  supportTicketName: number = 0;
   successMessage: string | null = null;
 
   constructor(
     private supportTicketService: SupportTicketService,
     private dialog: MatDialog,
     private dialogRef: MatDialogRef<SupportTicketDeleteComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { id: string }
+    @Inject(MAT_DIALOG_DATA) public data: { id: number }
   ) {}
 
   ngOnInit(): void {
@@ -30,7 +30,7 @@ export class SupportTicketDeleteComponent implements OnInit {
         this.supportTicketName = supportTicket.id;
       },
       error: () => {
-        this.supportTicketName = 'Desconocido';
+        this.supportTicketName = 0;
       },
     });
   }

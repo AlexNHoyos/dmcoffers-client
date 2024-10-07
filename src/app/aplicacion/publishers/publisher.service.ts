@@ -23,7 +23,7 @@ export class PublisherService extends CrudService<PublisherPage> {
     return this.http.post<Publisher>(`${this.endpoint}/create`, publisher);
   }
 
-  updatePublisher(id: string, publisher: Publisher): Observable<Publisher> {
+  updatePublisher(id: number, publisher: Publisher): Observable<Publisher> {
     return this.http.put<Publisher>(`${this.endpoint}/${id}`, publisher);
   }
 
@@ -31,7 +31,7 @@ export class PublisherService extends CrudService<PublisherPage> {
     return this.http.get<Publisher[]>(this.endpoint);
   }
 
-  getPublisher(id: string): Observable<Publisher> {
+  getPublisher(id: number): Observable<Publisher> {
     return this.http.get<Publisher>(`${this.endpoint}/${id}`);
   }
 }

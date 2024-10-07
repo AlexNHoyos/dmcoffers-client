@@ -20,7 +20,7 @@ export class PublisherDeleteComponent implements OnInit {
     private publisherService: PublisherService,
     private dialog: MatDialog,
     private dialogRef: MatDialogRef<PublisherDeleteComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { id: string }
+    @Inject(MAT_DIALOG_DATA) public data: { id: number }
   ) {}
 
   ngOnInit(): void {

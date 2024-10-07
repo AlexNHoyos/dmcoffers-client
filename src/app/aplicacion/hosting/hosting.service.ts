@@ -20,7 +20,7 @@ export class HostingService extends CrudService<HostingPage> {
     return this.http.post<Hosting>(`${this.endpoint}/create`, hosting);
   }
 
-  updateHosting(id: string, hosting: Hosting): Observable<Hosting> {
+  updateHosting(id: number, hosting: Hosting): Observable<Hosting> {
     return this.http.put<Hosting>(`${this.endpoint}/${id}`, hosting);
   }
 
@@ -28,7 +28,7 @@ export class HostingService extends CrudService<HostingPage> {
     return this.http.get<Hosting[]>(`${this.endpoint}/findall`);
   }
 
-  getHosting(id: string): Observable<Hosting> {
+  getHosting(id: number): Observable<Hosting> {
     return this.http.get<Hosting>(`${this.endpoint}/${id}`);
   }
 }

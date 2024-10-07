@@ -23,7 +23,7 @@ export class CategoriaService extends CrudService<CategoriaPage> {
     return this.http.post<Categoria>(`${this.endpoint}/create`, categoria);
   }
 
-  updateCategoria(id: string, categoria: Categoria): Observable<Categoria> {
+  updateCategoria(id: number, categoria: Categoria): Observable<Categoria> {
     return this.http.put<Categoria>(`${this.endpoint}/${id}`, categoria);
   }
 
@@ -31,7 +31,7 @@ export class CategoriaService extends CrudService<CategoriaPage> {
     return this.http.get<Categoria[]>(this.endpoint);
   }
 
-  getCategoria(id: string): Observable<Categoria> {
+  getCategoria(id: number): Observable<Categoria> {
     return this.http.get<Categoria>(`${this.endpoint}/${id}`);
   }
 }

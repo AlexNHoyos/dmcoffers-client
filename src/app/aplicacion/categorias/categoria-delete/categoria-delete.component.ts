@@ -14,14 +14,14 @@ import { CategoriaService } from '../categoria.service';
   styleUrls: ['./categoria-delete.component.scss'],
 })
 export class CategoriaDeleteComponent implements OnInit {
-  categoriaId: string = '';
+  categoriaId: number = 0;
   successMessage: string | null = null;
 
   constructor(
     private categoriaService: CategoriaService,
     private dialog: MatDialog,
     private dialogRef: MatDialogRef<CategoriaDeleteComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { id: string }
+    @Inject(MAT_DIALOG_DATA) public data: { id: number }
   ) {}
 
   ngOnInit(): void {
@@ -30,7 +30,7 @@ export class CategoriaDeleteComponent implements OnInit {
         this.categoriaId = categoria.id;
       },
       error: () => {
-        this.categoriaId = 'Desconocido';
+        console.log('Error!!!');
       },
     });
   }
