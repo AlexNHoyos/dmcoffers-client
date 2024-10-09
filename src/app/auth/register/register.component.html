@@ -17,16 +17,6 @@
 
             <mat-form-field appearance="fill">
                 <mat-label>Contraseña</mat-label>
-                <input matInput formControlName="email" type="text" placeholder="Ingrese su correo electronico" />
-                <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
-                    <div *ngIf="email.hasError('required')">
-                        La correo electronico es requerido.
-                    </div>
-                </mat-error>
-            </mat-form-field>
-
-            <mat-form-field appearance="fill">
-                <mat-label>Contraseña</mat-label>
                 <input matInput formControlName="password" type="password" placeholder="Ingrese su contraseña" />
                 <mat-error *ngIf="password.invalid && (password.dirty || password.touched)">
                     <div *ngIf="password.hasError('required')">

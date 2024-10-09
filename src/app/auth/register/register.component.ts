@@ -7,6 +7,7 @@ import { UserService } from 'src/app/services/user/user.service';
 import { Validators } from '@angular/forms';
 import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
 import { User } from '../auth.models';
+import { EncryptionService } from 'src/app/services/auth/encryption.service';
 
 @Component({
   selector: 'app-register',
@@ -23,11 +24,11 @@ export class RegisterComponent implements OnInit {
     private registerService: RegisterService,
     private userService: UserService,
     private errorHandler: ErrorHandlerService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private encryptionService: EncryptionService
   ) {
     this.registerForm = this.formBuilder.group({
       username: ['', [Validators.required]],
-      email: ['', [Validators.required]],
       realname: ['', [Validators.required]],
       surname: ['', [Validators.required]],
       paswword: ['', [Validators.required]],
@@ -36,7 +37,7 @@ export class RegisterComponent implements OnInit {
     this.user = new User();
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { console.log('entra') };
 
   get username() {
     return this.registerForm.controls['username'];
@@ -50,12 +51,20 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.controls['password2'];
   }
 
-  get email() {
-    return this.registerForm.controls['email'];
-  }
-
   register() {
+    this.user.realname = this.registerForm.controls['realname'].value;
+    this.user.surname = this.registerForm.controls['surname'].value;
+    this.user.username = this.registerForm.controls['username'].value;
+    this.user.creationuser = 'admin';
+    this.user.creationtimestamp = new Date();
+    this.user.status = true;
+    this.user.password = this.encryptionService.encrypt(this.registerForm.controls['password'].value);
 
+    console.log(this.user.password);
+
+    this.registerService.register(this.user).subscribe(data => {
+      console.log(data);
+    })
   }
 
   private showErrorDialog(errorMessage: string): void {
