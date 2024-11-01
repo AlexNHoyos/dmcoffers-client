@@ -5,6 +5,7 @@ import { LoginService } from '../../services/auth/login.service';
 import { LoginRequest } from '../../models/loginRequest';
 import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { EncryptionService } from 'src/app/services/auth/encryption.service';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   get username() {
     return this.loginForm.controls['username'];

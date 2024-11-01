@@ -16,11 +16,15 @@ import { CategoriaUpdateComponent } from './aplicacion/categorias/categoria-upda
 import { DesarrolladoresComponent } from './aplicacion/desarrolladores/desarrolladores.component';
 import { DesarrolladoresCreateComponent } from './aplicacion/desarrolladores/desarrolladores-create/desarrolladores-create.component';
 import { DesarrolladoresUpdateComponent } from './aplicacion/desarrolladores/desarrolladores-update/desarrolladores-update.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
-  { path: 'inicio', component: DashboardComponent },
+  { path: 'inicio', component: HomeComponent },
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'info', component: PersonalDetailsComponent },
   { path: 'publishers', component: PublisherComponent },
   { path: 'create-publisher', component: PublisherCreateComponent },
@@ -40,4 +44,4 @@ const routes: Routes = [
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

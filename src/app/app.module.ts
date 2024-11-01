@@ -21,6 +21,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FooterComponent } from './shared/footer/footer.component';
@@ -62,6 +63,10 @@ import { SupportTicketCreateComponent } from './aplicacion/support-ticket/suppor
 import { SupportTicketDeleteComponent } from './aplicacion/support-ticket/support-ticket-delete/support-ticket-delete.component';
 import { SupportTicketDetailComponent } from './aplicacion/support-ticket/support-ticket-detail/support-ticket-detail.component';
 import { SupportTicketUpdateComponent } from './aplicacion/support-ticket/support-ticket-update/support-ticket-update.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { RegisterService } from './services/auth/register.service';
+import { HomeComponent } from './pages/home/home.component';
+import { JuegosComponent } from './aplicacion/juegos/juegos.component';
 
 @NgModule({
   declarations: [
@@ -97,7 +102,10 @@ import { SupportTicketUpdateComponent } from './aplicacion/support-ticket/suppor
     SupportTicketCreateComponent,
     SupportTicketDeleteComponent,
     SupportTicketDetailComponent,
-    SupportTicketUpdateComponent
+    SupportTicketUpdateComponent,
+    RegisterComponent,
+    HomeComponent,
+    JuegosComponent,
   ],
   imports: [
     CommonModule,
@@ -120,9 +128,11 @@ import { SupportTicketUpdateComponent } from './aplicacion/support-ticket/suppor
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
+    MatExpansionModule,
   ],
 
   providers: [
+    RegisterService,
     PublisherService,
     CategoriaService,
     AlertService,
@@ -141,4 +151,4 @@ import { SupportTicketUpdateComponent } from './aplicacion/support-ticket/suppor
 
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

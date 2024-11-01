@@ -1,0 +1,17 @@
+<p>Nuevos lanzamientos</p>
+
+<div class="juegos-container">
+  <h2>Juegos</h2>
+  <div *ngIf="juegos.length > 0; else noJuegos">
+    <div *ngFor="let juego of juegos" class="juego-card">
+      <h3>{{ juego.gamename }}</h3>
+      <p>Fecha de lanzamiento: {{ juego.release_date | date }}</p>
+      <!-- Muestra otros datos como precio, desarrollador, etc. -->
+    </div>
+  </div>
+  <ng-template #noJuegos>
+    <p>No hay juegos disponibles en este momento.</p>
+  </ng-template>
+</div>
+
+<p>Foros</p>
