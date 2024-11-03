@@ -44,6 +44,24 @@
               >Cerrar Sesion</a
             >
           </li>
+
+          <li class="nav-item search-container">
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Buscar juegos..."
+                [(ngModel)]="searchTerm"
+                (keydown.enter)="onSearch()"
+              />
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" (click)="onSearch()">
+                  <i class="fas fa-search"></i>
+                  <!-- Icono de búsqueda -->
+                </button>
+              </div>
+            </div>
+          </li>
         </ul>
       </div>
     </div>

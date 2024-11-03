@@ -68,6 +68,8 @@ import { RegisterService } from './services/auth/register.service';
 import { HomeComponent } from './pages/home/home.component';
 import { JuegosComponent } from './aplicacion/juegos/juegos.component';
 import { JuegoDetailComponent } from './aplicacion/juegos/juego-detail/juego-detail.component';
+import { ResultadosBusquedaComponent } from './aplicacion/juegos/resultados-busqueda/resultados-busqueda.component';
+import { JuegoListComponent } from './aplicacion/juegos/juego-list/juego-list.component';
 
 @NgModule({
   declarations: [
@@ -108,6 +110,8 @@ import { JuegoDetailComponent } from './aplicacion/juegos/juego-detail/juego-det
     HomeComponent,
     JuegosComponent,
     JuegoDetailComponent,
+    ResultadosBusquedaComponent,
+    JuegoListComponent,
   ],
   imports: [
     CommonModule,

@@ -10,6 +10,7 @@ import { UserUtilsService } from 'src/app/services/user/user-util-service.servic
   styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent implements OnInit, OnDestroy {
+  searchTerm: string = '';
   userLoginOn: boolean = false;
   username: string | null = null;
   private subscriptions: Subscription = new Subscription();
@@ -71,5 +72,14 @@ export class NavComponent implements OnInit, OnDestroy {
 
   info() {
     this.router.navigate(['/info']);
+  }
+
+  onSearch() {
+    if (this.searchTerm.trim()) {
+      console.log(this.searchTerm);
+      this.router.navigate(['/resultados'], {
+        queryParams: { query: this.searchTerm },
+      });
+    }
   }
 }

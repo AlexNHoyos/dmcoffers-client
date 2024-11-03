@@ -31,4 +31,10 @@ export class JuegoService extends CrudService<JuegoPage> {
   getJuego(id: number): Observable<Juego> {
     return this.http.get<Juego>(`${this.endpoint}/${id}`);
   }
+
+  searchJuegosByName(gamename: string): Observable<Juego[]> {
+    return this.http.get<Juego[]>(`${this.endpoint}/search`, {
+      params: { gamename },
+    });
+  }
 }

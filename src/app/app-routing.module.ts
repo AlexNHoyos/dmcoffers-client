@@ -19,10 +19,12 @@ import { DesarrolladoresUpdateComponent } from './aplicacion/desarrolladores/des
 import { RegisterComponent } from './auth/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
 import { JuegoDetailComponent } from './aplicacion/juegos/juego-detail/juego-detail.component';
+import { ResultadosBusquedaComponent } from './aplicacion/juegos/resultados-busqueda/resultados-busqueda.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
   { path: 'inicio', component: HomeComponent },
+  { path: 'resultados', component: ResultadosBusquedaComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

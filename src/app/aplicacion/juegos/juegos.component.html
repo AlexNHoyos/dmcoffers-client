@@ -1,27 +1,4 @@
-<div class="game-list">
-  <div *ngFor="let juego of juegos" class="game-card">
-    <div class="game-image">
-      <img
-        [src]="'https://picsum.photos/350/120' || 'path/to/default-image.jpg'"
-        alt="Imagen de {{ juego.gamename }}"
-      />
-    </div>
-    <div class="game-details" (click)="verDetalle(juego.id)">
-      <h3>{{ juego.gamename }}</h3>
-      <p>
-        {{ juego.publisherName }} •
-        {{ juego.release_date | date : "MMMM yyyy" }}
-      </p>
-      <div class="info2">
-        <div class="game-categories">
-          <span
-            class="category-tag"
-            *ngFor="let categoria of juego.categoriasNames"
-            >{{ categoria }}</span
-          >
-        </div>
-        <p class="game-price">{{ juego.price | currency }}</p>
-      </div>
-    </div>
-  </div>
-</div>
+<app-juego-list
+  [juegos]="juegos"
+  (gameSelected)="verDetalle($event)"
+></app-juego-list>
