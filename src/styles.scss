@@ -17,7 +17,7 @@ body {
     font-weight:700;
     font-style: normal;
   overflow-y: auto;
-
+  padding-bottom: 50px;
 }
 
 // Sobrescribe la tipografía para todos los componentes de Angular Material
@@ -57,3 +57,4 @@ $prefix: "mo-"; // Example prefix (if used in components)
 .mat-mdc-icon-button .mat-mdc-button-touch-target {
   height: 0 !important; //Para que la zona de tocar boton no sea mas grande que el boton
 }
+

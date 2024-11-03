@@ -13,10 +13,10 @@ export class Juego {
   creationuser: string = '';
   modificationtimestamp?: Date | null;
   modificationuser?: string | null;
-  publisher: Publisher = new Publisher();
-  developer: Desarrollador = new Desarrollador();
-  categorias: Categoria[] = [];
-  precios: Precio[] = [];
+  publisherName: string = '';
+  developerName: string = '';
+  categoriasNames: string[] = [];
+  price?: number;
 }
 
 export interface JuegoPage extends Page<Juego> {

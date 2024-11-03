@@ -1,0 +1,37 @@
+<div class="back-button-container">
+  <mat-icon class="back-button" (click)="back()">arrow_back</mat-icon>
+</div>
+
+<div *ngIf="juego" class="game-details">
+  <div class="game-image">
+    <!--*ngIf="juego.imagen_url">-->
+    <img [src]="'https://picsum.photos/400/300'" alt="Imagen del juego" />
+  </div>
+  <div class="game-header">
+    <h2>{{ juego.gamename }}</h2>
+    <p class="release-date">
+      <strong>Fecha de Lanzamiento:</strong> {{ juego.release_date }}
+    </p>
+  </div>
+
+  <div class="game-content">
+    <div class="game-info">
+      <p><strong>Publicador:</strong> {{ juego.publisherName }}</p>
+      <p><strong>Desarrollador:</strong> {{ juego.developerName }}</p>
+
+      <div class="game-categories">
+        <strong>Categorías:</strong>
+        <ul>
+          <li
+            *ngFor="let categoria of juego.categoriasNames"
+            class="category-tag"
+          >
+            {{ categoria }}
+          </li>
+        </ul>
+      </div>
+
+      <p class="game-price"><strong>Precio:</strong> {{ juego.price }} USD</p>
+    </div>
+  </div>
+</div>

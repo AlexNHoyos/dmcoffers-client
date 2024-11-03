@@ -67,6 +67,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { RegisterService } from './services/auth/register.service';
 import { HomeComponent } from './pages/home/home.component';
 import { JuegosComponent } from './aplicacion/juegos/juegos.component';
+import { JuegoDetailComponent } from './aplicacion/juegos/juego-detail/juego-detail.component';
 
 @NgModule({
   declarations: [
@@ -106,6 +107,7 @@ import { JuegosComponent } from './aplicacion/juegos/juegos.component';
     RegisterComponent,
     HomeComponent,
     JuegosComponent,
+    JuegoDetailComponent,
   ],
   imports: [
     CommonModule,

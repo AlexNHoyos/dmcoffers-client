@@ -18,6 +18,7 @@ import { DesarrolladoresCreateComponent } from './aplicacion/desarrolladores/des
 import { DesarrolladoresUpdateComponent } from './aplicacion/desarrolladores/desarrolladores-update/desarrolladores-update.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
+import { JuegoDetailComponent } from './aplicacion/juegos/juego-detail/juego-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'info', component: PersonalDetailsComponent },
+  { path: 'juego/:id', component: JuegoDetailComponent },
   { path: 'publishers', component: PublisherComponent },
   { path: 'create-publisher', component: PublisherCreateComponent },
   { path: 'editP/:id', component: PublisherUpdateComponent },

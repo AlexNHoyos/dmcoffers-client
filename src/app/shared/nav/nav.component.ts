@@ -56,8 +56,8 @@ export class NavComponent implements OnInit, OnDestroy {
     );
   }
 
-  home() {
-    this.router.navigate(['/inicio']);
+  dashboard() {
+    this.router.navigate(['/dashboard']);
   }
 
   login() {
