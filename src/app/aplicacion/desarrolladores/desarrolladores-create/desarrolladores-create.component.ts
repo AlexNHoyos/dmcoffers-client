@@ -12,16 +12,17 @@ import { DesarrolladoresService } from '../desarrolladores.service';
   styleUrls: ['./desarrolladores-create.component.scss'],
 })
 export class DesarrolladoresCreateComponent {
+  today: Date = new Date();
   desarrollador: Desarrollador = {
     id: 0,
     developername: '',
-    foundation_date: new Date().toISOString(),
-    dissolution_date: new Date().toISOString(),
-    status: '',
+    foundation_date: null,
+    dissolution_date: null,
+    status: true,
     creationtimestamp: new Date().toISOString(),
     creationuser: '',
-    modificationtimestamp: '',
-    modificationuser: '',
+    modificationtimestamp: null,
+    modificationuser: null,
   };
   constructor(
     private desarrolladoresService: DesarrolladoresService,
@@ -56,7 +57,6 @@ export class DesarrolladoresCreateComponent {
         : null,
     };
 
-    console.log(desarrolladorToSend);
     this.desarrolladoresService
       .createDesarrollador(desarrolladorToSend)
       .subscribe({

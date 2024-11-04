@@ -5,7 +5,7 @@ export class Publisher {
   publishername: string = '';
   foundation_date: string | null = null;
   dissolution_date?: string | null;
-  status: string = '';
+  status: Boolean = true;
   creationtimestamp: string | null = null;
   creationuser: string = '';
   modificationtimestamp?: string | null = null;

@@ -4,7 +4,7 @@
     <mat-card-subtitle>Ingrese los siguientes datos:</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <form (ngSubmit)="createDesarrollador()">
+    <form (ngSubmit)="createDesarrollador()" #desarrolladoresForm="ngForm">
       <mat-form-field class="form-field">
         <mat-label>Nombre del desarrollador</mat-label>
         <input
@@ -12,6 +12,8 @@
           type="text"
           [(ngModel)]="desarrollador.developername"
           name="developername"
+          #name="ngModel"
+          minlength="1"
           required
         />
 
@@ -24,22 +26,28 @@
         >
           <mat-icon>close</mat-icon>
         </button>
+
+        <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
+          El nombre del desarrollador no puede estar vacío.
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Fundacion</mat-label>
         <input
           matInput
-          [matDatepicker]="picker"
+          [matDatepicker]="picker1"
           [(ngModel)]="desarrollador.foundation_date"
           name="foundation_date"
+          [max]="today"
+          required
         />
-        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-hint>DD/MM/AAAA</mat-hint>
         <mat-datepicker-toggle
           matIconSuffix
-          [for]="picker"
+          [for]="picker1"
         ></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <mat-datepicker #picker1></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field>
@@ -50,7 +58,7 @@
           [(ngModel)]="desarrollador.dissolution_date"
           name="dissolution_date"
         />
-        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-hint>DD/MM/AAAA</mat-hint>
         <mat-datepicker-toggle
           matIconSuffix
           [for]="picker2"
@@ -58,16 +66,20 @@
         <mat-datepicker #picker2></mat-datepicker>
       </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>Status</mat-label>
-        <mat-select [(ngModel)]="desarrollador.status" name="status">
-          <mat-option [value]="true">Active</mat-option>
-          <mat-option [value]="false">Inactive</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <button mat-flat-button type="submit" color="primary">Crear</button>
-      <button mat-flat-button color="secondary" (click)="cancel()">
+      <button
+        mat-flat-button
+        type="submit"
+        color="primary"
+        [disabled]="desarrolladoresForm.invalid"
+      >
+        Crear
+      </button>
+      <button
+        mat-flat-button
+        type="button"
+        color="secondary"
+        (click)="cancel()"
+      >
         Cancelar
       </button>
     </form>

@@ -76,9 +76,8 @@ export class NavComponent implements OnInit, OnDestroy {
 
   onSearch() {
     if (this.searchTerm.trim()) {
-      console.log(this.searchTerm);
       this.router.navigate(['/resultados'], {
-        queryParams: { query: this.searchTerm },
+        queryParams: { param: this.searchTerm },
       });
     }
   }

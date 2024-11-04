@@ -47,6 +47,11 @@ export class HostingCreateComponent {
     };
     console.log(HostingToSend);
 
+    if (!this.hosting.name || this.hosting.name.trim() === '') {
+      console.error('El nombre del hosting no puede estar vacío');
+      return;
+    }
+
     this.HostingService.createHosting(HostingToSend).subscribe({
       next: (response) => {
         console.log('Hosting creado exitosamente', response);

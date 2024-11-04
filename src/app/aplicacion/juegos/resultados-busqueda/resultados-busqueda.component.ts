@@ -8,7 +8,7 @@ import { JuegoService } from 'src/app/aplicacion/juegos/juegos.service';
   styleUrls: ['./resultados-busqueda.component.scss'],
 })
 export class ResultadosBusquedaComponent implements OnInit {
-  juegos: any[] = []; // Aquí guardarás los juegos que coincidan con la búsqueda
+  juegos: any[] = [];
   searchTerm: string = '';
 
   constructor(
@@ -19,7 +19,7 @@ export class ResultadosBusquedaComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-      this.searchTerm = params['query'];
+      this.searchTerm = params['param'];
       this.buscarJuegos(this.searchTerm);
     });
   }

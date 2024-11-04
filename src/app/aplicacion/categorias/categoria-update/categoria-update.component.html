@@ -1,5 +1,5 @@
 <div class="update-container">
-  <form>
+  <form #categoriasForm="ngForm">
     <mat-form-field class="form-field">
       <mat-label>Descripcion de la categoria</mat-label>
       <input
@@ -7,7 +7,9 @@
         type="text"
         [(ngModel)]="categoria.description"
         name="descripcion"
+        #name="ngModel"
         required
+        minlength="1"
       />
 
       <button
@@ -19,6 +21,10 @@
       >
         <mat-icon>close</mat-icon>
       </button>
+
+      <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
+        La descripcion no puede estar vacía.
+      </mat-error>
     </mat-form-field>
 
     <br />
@@ -27,11 +33,12 @@
       color="primary"
       type="submit"
       (click)="onUpdateCategoria()"
+      [disabled]="categoriasForm.invalid"
     >
       Actualizar
     </button>
 
-    <button mat-flat-button color="secondary" (click)="cancel()">
+    <button mat-flat-button type="button" color="secondary" (click)="cancel()">
       Cancelar
     </button>
   </form>

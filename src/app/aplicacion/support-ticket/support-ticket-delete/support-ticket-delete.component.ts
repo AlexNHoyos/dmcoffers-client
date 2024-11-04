@@ -30,7 +30,7 @@ export class SupportTicketDeleteComponent implements OnInit {
         this.supportTicketName = supportTicket.id;
       },
       error: () => {
-        this.supportTicketName = 0;
+        console.log('Error');
       },
     });
   }

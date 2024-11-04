@@ -51,6 +51,7 @@ import { CategoriaService } from './aplicacion/categorias/categoria.service';
 import { DesarrolladoresComponent } from './aplicacion/desarrolladores/desarrolladores.component';
 import { DesarrolladoresService } from './aplicacion/desarrolladores/desarrolladores.service';
 import { DesarrolladoresCreateComponent } from './aplicacion/desarrolladores/desarrolladores-create/desarrolladores-create.component';
+import { DesarrolladoresDetailComponent } from './aplicacion/desarrolladores/desarrolladores-detail/desarrolladores-detail.component';
 import { DesarrolladoresUpdateComponent } from './aplicacion/desarrolladores/desarrolladores-update/desarrolladores-update.component';
 import { DesarrolladoresDeleteComponent } from './aplicacion/desarrolladores/desarrolladores-delete/desarrolladores-delete.component';
 import { HostingComponent } from './aplicacion/hosting/hosting.component';
@@ -94,6 +95,7 @@ import { JuegoListComponent } from './aplicacion/juegos/juego-list/juego-list.co
     CategoriaUpdateComponent,
     DesarrolladoresComponent,
     DesarrolladoresCreateComponent,
+    DesarrolladoresDetailComponent,
     DesarrolladoresUpdateComponent,
     DesarrolladoresDeleteComponent,
     HostingComponent,

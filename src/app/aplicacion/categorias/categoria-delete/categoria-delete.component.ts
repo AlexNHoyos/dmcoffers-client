@@ -15,6 +15,7 @@ import { CategoriaService } from '../categoria.service';
 })
 export class CategoriaDeleteComponent implements OnInit {
   categoriaId: number = 0;
+  categoriaNombre: string = '';
   successMessage: string | null = null;
 
   constructor(
@@ -28,6 +29,7 @@ export class CategoriaDeleteComponent implements OnInit {
     this.categoriaService.getCategoria(this.data.id).subscribe({
       next: (categoria) => {
         this.categoriaId = categoria.id;
+        this.categoriaNombre = categoria.description;
       },
       error: () => {
         console.log('Error!!!');

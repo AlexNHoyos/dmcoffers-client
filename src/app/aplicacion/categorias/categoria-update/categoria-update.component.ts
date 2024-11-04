@@ -51,8 +51,6 @@ export class CategoriaUpdateComponent {
         : null,
     };
 
-    console.log(categoriaToSend);
-
     this.categoriaService
       .updateCategoria(this.categoria.id, categoriaToSend)
       .subscribe({
