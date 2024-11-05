@@ -71,6 +71,11 @@ import { JuegosComponent } from './aplicacion/juegos/juegos.component';
 import { JuegoDetailComponent } from './aplicacion/juegos/juego-detail/juego-detail.component';
 import { ResultadosBusquedaComponent } from './aplicacion/juegos/resultados-busqueda/resultados-busqueda.component';
 import { JuegoListComponent } from './aplicacion/juegos/juego-list/juego-list.component';
+import { JuegosCrudComponent } from './aplicacion/juegos/juegos-crud/juegos-crud.component';
+import { JuegoCreateComponent } from './aplicacion/juegos/juegos-crud/juego-create/juego-create.component';
+import { JuegoDeleteComponent } from './aplicacion/juegos/juegos-crud/juego-delete/juego-delete.component';
+import { JuegoUpdateComponent } from './aplicacion/juegos/juegos-crud/juego-update/juego-update.component';
+import { JuegoDetailDialogComponent } from './aplicacion/juegos/juegos-crud/juego-detail-dialog/juego-detail-dialog.component';
 
 @NgModule({
   declarations: [
@@ -114,6 +119,11 @@ import { JuegoListComponent } from './aplicacion/juegos/juego-list/juego-list.co
     JuegoDetailComponent,
     ResultadosBusquedaComponent,
     JuegoListComponent,
+    JuegosCrudComponent,
+    JuegoCreateComponent,
+    JuegoDeleteComponent,
+    JuegoUpdateComponent,
+    JuegoDetailDialogComponent,
   ],
   imports: [
     CommonModule,

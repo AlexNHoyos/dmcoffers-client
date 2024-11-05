@@ -1,0 +1,114 @@
+<div class="update-container">
+  <form #juegoForm="ngForm">
+    <!-- Nombre del Juego -->
+    <mat-form-field class="form-field">
+      <mat-label>Nombre del juego</mat-label>
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="juego.gamename"
+        name="gamename"
+        #name="ngModel"
+        required
+        minlength="1"
+      />
+      <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
+        El nombre no puede estar vacío.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Fecha de Salida</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker1"
+        [(ngModel)]="juego.release_date"
+        name="release_date"
+        required
+      />
+      <mat-hint>DD/MM/AAAA</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker1"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+
+    <!-- Desarrollador -->
+    <mat-form-field>
+      <mat-label>Desarrollador</mat-label>
+      <mat-select
+        [(ngModel)]="juego.developerName"
+        name="developername"
+        required
+      >
+        <mat-option
+          *ngFor="let dev of desarrolladores"
+          [value]="dev.developername"
+        >
+          {{ dev.developername }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Publisher -->
+    <mat-form-field>
+      <mat-label>Publisher</mat-label>
+      <mat-select
+        [(ngModel)]="juego.publisherName"
+        name="publishername"
+        required
+      >
+        <mat-option *ngFor="let pub of publishers" [value]="pub.publishername">
+          {{ pub.publishername }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Categorías -->
+    <mat-form-field>
+      <mat-label>Categorías</mat-label>
+      <mat-select
+        [(ngModel)]="juego.categoriasNames"
+        name="categoriasnames"
+        multiple
+      >
+        <mat-option *ngFor="let cat of categorias" [value]="cat.description">
+          {{ cat.description }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Precio -->
+    <mat-form-field>
+      <mat-label>Precio</mat-label>
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="juego.price"
+        name="price"
+        #name="ngModel"
+        required
+      />
+      <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
+        El precio no puede estar vacío.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Botones de acción -->
+    <br />
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      (click)="onUpdateJuego()"
+      [disabled]="juegoForm.invalid"
+    >
+      Actualizar
+    </button>
+
+    <button mat-flat-button type="button" color="secondary" (click)="cancel()">
+      Cancelar
+    </button>
+  </form>
+</div>

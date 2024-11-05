@@ -9,12 +9,17 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { LoginService } from './login.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
 @Injectable({
   providedIn: 'root',
 })
 export class JwtInterceptorService implements HttpInterceptor {
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(
+    private loginService: LoginService,
+    private router: Router,
+    private dialog: MatDialog
+  ) {}
 
   intercept(
     req: HttpRequest<any>,
@@ -35,11 +40,13 @@ export class JwtInterceptorService implements HttpInterceptor {
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401 || error.status === 403) {
+          this.dialog.closeAll(); // Cierra si quedaron abiertos
           // Si el token ha expirado o el usuario no está autorizado, redirige al inicio
           this.router.navigate(['/inicio']);
-          this.loginService.logout(); // Limpia el token y cualquier sesión del usuario si tienes un método de logout
+          this.loginService.logout(); // Limpia el token y cualquier sesión del usuario
+          location.reload(); // Recarga la pagina
         }
-        return throwError(error); // Lanza el error para que otros manejadores también puedan procesarlo
+        return throwError(error);
       })
     );
   }

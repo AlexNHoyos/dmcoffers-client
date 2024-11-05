@@ -21,7 +21,8 @@ export class JuegoService extends CrudService<JuegoPage> {
   }
 
   updateJuego(id: number, juego: Juego): Observable<Juego> {
-    return this.http.put<Juego>(`${this.endpoint}/${id}`, juego);
+    console.log(id, juego);
+    return this.http.patch<Juego>(`${this.endpoint}/${id}`, juego);
   }
 
   getJuegos(): Observable<Juego[]> {

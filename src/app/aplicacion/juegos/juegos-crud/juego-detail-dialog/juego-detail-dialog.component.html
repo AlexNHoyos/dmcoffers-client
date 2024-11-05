@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>Detalles del Juego</h1>
+<div mat-dialog-content>
+  <p><strong>ID:</strong> {{ data.juego.id }}</p>
+  <p><strong>Nombre:</strong> {{ data.juego.gamename }}</p>
+  <p>
+    <strong>Fecha de Lanzamiento:</strong>
+    {{ data.juego.release_date | date }}
+  </p>
+  <p>
+    <strong>Fecha de Publicación:</strong>
+    {{ data.juego.publishment_date | date }}
+  </p>
+  <p><strong>Precio Actual:</strong> {{ data.juego.price | currency }}</p>
+  <p><strong>Publisher:</strong> {{ data.juego.publisherName }}</p>
+  <p><strong>Desarrollador:</strong> {{ data.juego.developerName }}</p>
+  <p>
+    <strong>Categorías:</strong> {{ data.juego.categoriasNames.join(", ") }}
+  </p>
+  <p>
+    <strong>Fecha de Creación:</strong>
+    {{ data.juego.creationtimestamp | date }}
+  </p>
+  <p>
+    <strong>Fecha de Modificación:</strong>
+    {{ data.juego.modificationtimestamp | date }}
+  </p>
+  <p><strong>Cargado por:</strong> {{ data.juego.creationuser }}</p>
+  <p><strong>Modificado por:</strong> {{ data.juego.modificationuser }}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onClose()">Cerrar</button>
+</div>

@@ -7,11 +7,11 @@ import { Precio } from '../precios/precio.model';
 export class Juego {
   id: number = 0;
   gamename: string = '';
-  release_date: Date = new Date();
-  publishment_date: Date = new Date();
-  creationtimestamp: Date = new Date();
+  release_date: string | null = null;
+  publishment_date: string | null = null;
+  creationtimestamp: string | null = null;
   creationuser: string = '';
-  modificationtimestamp?: Date | null;
+  modificationtimestamp?: string | null = null;
   modificationuser?: string | null;
   publisherName: string = '';
   developerName: string = '';
