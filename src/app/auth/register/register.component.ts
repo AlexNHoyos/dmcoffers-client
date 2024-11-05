@@ -52,6 +52,8 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
+    console.log('entra');
+
     this.user.realname = this.registerForm.controls['realname'].value;
     this.user.surname = this.registerForm.controls['surname'].value;
     this.user.username = this.registerForm.controls['username'].value;

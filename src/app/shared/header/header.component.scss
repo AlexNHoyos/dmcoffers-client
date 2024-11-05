@@ -1,4 +1,4 @@
-@import 'src/styles.scss';
+@import '../../../assets/styles/variables';
 
 header {
   background-color: $main-color;
@@ -14,7 +14,7 @@ header {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    border: 2px solid white; 
+    border: 2px solid white;
   }
 
   h1 {

@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { MatButtonModule } from '@angular/material/button';
+import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
@@ -64,6 +64,7 @@ import { SupportTicketDeleteComponent } from './aplicacion/support-ticket/suppor
 import { SupportTicketDetailComponent } from './aplicacion/support-ticket/support-ticket-detail/support-ticket-detail.component';
 import { SupportTicketUpdateComponent } from './aplicacion/support-ticket/support-ticket-update/support-ticket-update.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { RegisterService } from './services/auth/register.service';
 
 @NgModule({
   declarations: [
@@ -123,7 +124,7 @@ import { RegisterComponent } from './auth/register/register.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
-    MatExpansionModule
+    MatExpansionModule,
   ],
 
   providers: [
@@ -131,6 +132,7 @@ import { RegisterComponent } from './auth/register/register.component';
     CategoriaService,
     AlertService,
     DesarrolladoresService,
+    RegisterService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptorService,
