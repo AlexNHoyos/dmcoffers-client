@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { adminGuard } from './guards/admin.guard';
+import { NotAuthorizedComponent } from './components/not-authorized/not-authorized.component';
+
 import { LoginComponent } from './auth/login/login.component';
 
 import { AppComponent } from './app.component';
@@ -25,20 +29,30 @@ const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
   { path: 'inicio', component: HomeComponent },
   { path: 'resultados', component: ResultadosBusquedaComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [adminGuard],
+  },
+  { path: 'not-authorized', component: NotAuthorizedComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'info', component: PersonalDetailsComponent },
   { path: 'juego/:id', component: JuegoDetailComponent },
-  { path: 'publishers', component: PublisherComponent },
-  { path: 'create-publisher', component: PublisherCreateComponent },
+  /*{
+    path: 'publishers',
+    component: PublisherComponent,
+    canActivate: [adminGuard],
+  },
+  { path: 'create-publisher', component: PublisherCreateComponent,
+    canActivate: [adminGuard], },
   { path: 'editP/:id', component: PublisherUpdateComponent },
   { path: 'categorias', component: CategoriasComponent },
   { path: 'create-categoria', component: CategoriaCreateComponent },
   { path: 'editC/:id', component: CategoriaUpdateComponent },
   { path: 'desarrolladores', component: DesarrolladoresComponent },
   { path: 'create-desarrollador', component: DesarrolladoresCreateComponent },
-  { path: 'editD/:id', component: DesarrolladoresUpdateComponent },
+  { path: 'editD/:id', component: DesarrolladoresUpdateComponent },*/
   { path: '**', redirectTo: '/inicio', pathMatch: 'full' }, //redireccionar a inicio si no hay match
 ];
 

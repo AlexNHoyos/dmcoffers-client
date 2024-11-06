@@ -76,6 +76,7 @@ import { JuegoCreateComponent } from './aplicacion/juegos/juegos-crud/juego-crea
 import { JuegoDeleteComponent } from './aplicacion/juegos/juegos-crud/juego-delete/juego-delete.component';
 import { JuegoUpdateComponent } from './aplicacion/juegos/juegos-crud/juego-update/juego-update.component';
 import { JuegoDetailDialogComponent } from './aplicacion/juegos/juegos-crud/juego-detail-dialog/juego-detail-dialog.component';
+import { NotAuthorizedComponent } from './components/not-authorized/not-authorized.component';
 
 @NgModule({
   declarations: [
@@ -124,6 +125,7 @@ import { JuegoDetailDialogComponent } from './aplicacion/juegos/juegos-crud/jueg
     JuegoDeleteComponent,
     JuegoUpdateComponent,
     JuegoDetailDialogComponent,
+    NotAuthorizedComponent,
   ],
   imports: [
     CommonModule,
