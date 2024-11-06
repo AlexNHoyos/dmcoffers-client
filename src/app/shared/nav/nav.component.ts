@@ -13,6 +13,7 @@ export class NavComponent implements OnInit, OnDestroy {
   searchTerm: string = '';
   userLoginOn: boolean = false;
   username: string | null = null;
+  userRol: string | null = null;
   private subscriptions: Subscription = new Subscription();
 
   constructor(
@@ -28,8 +29,10 @@ export class NavComponent implements OnInit, OnDestroy {
           this.userLoginOn = userLoginOn;
           if (userLoginOn) {
             this.loadUsername();
+            this.loadUserRol();
           } else {
             this.username = null;
+            this.userRol = null;
           }
         },
         error: (err) => {
@@ -44,6 +47,7 @@ export class NavComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
+  // Método para cargar el nombre del usuario
   private loadUsername(): void {
     this.subscriptions.add(
       this.userUtilsService.setLoggedInUser().subscribe({
@@ -52,6 +56,20 @@ export class NavComponent implements OnInit, OnDestroy {
         },
         error: (err) => {
           console.error('Error al obtener el nombre de usuario', err);
+        },
+      })
+    );
+  }
+
+  // Método para cargar el rol del usuario
+  loadUserRol(): void {
+    this.subscriptions.add(
+      this.loginService.userRol.subscribe({
+        next: (role) => {
+          this.userRol = role; // Asigna el rol
+        },
+        error: (err) => {
+          console.error('Error al obtener el rol del usuario', err);
         },
       })
     );

@@ -3,7 +3,10 @@
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand" href="#"
-        ><p *ngIf="userLoginOn">Hola, {{ username }}</p>
+        ><p *ngIf="userLoginOn">
+          <span>Bienvenido, {{ username }} </span>
+          <span>Rol: {{ userRol }}</span>
+        </p>
         <p *ngIf="!userLoginOn">Usuario NO autenticado</p></a
       >
       <button
@@ -19,7 +22,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li *ngIf="userLoginOn" class="nav-item">
+          <li *ngIf="userLoginOn && userRol === 'admin'" class="nav-item">
             <a
               class="nav-link active"
               (click)="dashboard()"

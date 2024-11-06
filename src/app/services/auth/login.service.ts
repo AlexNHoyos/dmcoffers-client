@@ -13,8 +13,10 @@ import { ErrorHandlerService } from '../error-handler.service';
 export class LoginService {
   private currentUserLoginOnSubject: BehaviorSubject<boolean> =
     new BehaviorSubject<boolean>(false);
-  private currentUserDataSubject: BehaviorSubject<String> =
-    new BehaviorSubject<String>('');
+  private currentUserDataSubject: BehaviorSubject<string> =
+    new BehaviorSubject<string>('');
+  private currentUserRolSubject: BehaviorSubject<string> =
+    new BehaviorSubject<string>('');
 
   constructor(
     private http: HttpClient,
@@ -58,7 +60,12 @@ export class LoginService {
     if (token) {
       const decodedToken: any = jwtDecode(token);
       this.userService.setUserId(decodedToken.id || '');
+      this.currentUserRolSubject.next(decodedToken.rol || '');
     }
+  }
+
+  isLoggedIn(): boolean {
+    return !!sessionStorage.getItem('accessToken');
   }
 
   get userData(): Observable<String> {
@@ -69,7 +76,11 @@ export class LoginService {
     return this.currentUserLoginOnSubject.asObservable();
   }
 
-  get userToken(): String {
+  get userRol(): Observable<string> {
+    return this.currentUserRolSubject.asObservable();
+  }
+
+  get userToken(): string {
     return this.currentUserDataSubject.value;
   }
 }
