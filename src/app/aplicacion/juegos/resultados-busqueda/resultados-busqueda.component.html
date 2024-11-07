@@ -1,7 +1,9 @@
 <div *ngIf="juegos.length > 0; else noResults">
   <app-juego-list
     [juegos]="juegos"
+    [isLoggedIn]="isLoggedIn"
     (gameSelected)="verDetalle($event)"
+    (wishlistToggled)="toggleWishlist($event)"
   ></app-juego-list>
 </div>
 

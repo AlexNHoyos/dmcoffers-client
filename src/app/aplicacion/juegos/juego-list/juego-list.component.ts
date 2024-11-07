@@ -8,13 +8,15 @@ import { Juego } from '../juegos.model';
 })
 export class JuegoListComponent {
   @Input() juegos: Juego[] = [];
+  @Input() isLoggedIn: boolean = false;
   @Output() gameSelected = new EventEmitter<number>();
   @Output() wishlistToggled = new EventEmitter<Juego>();
 
   onGameClick(juegoId: number): void {
     this.gameSelected.emit(juegoId);
   }
+  // Llamar a wishlistToggled para agregar o quitar de la wishlist
   toggleWishlist(juego: Juego): void {
-    this.wishlistToggled.emit(juego); // Emite el cambio a los componentes padres
+    this.wishlistToggled.emit(juego);
   }
 }

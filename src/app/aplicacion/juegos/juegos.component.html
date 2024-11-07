@@ -1,4 +1,6 @@
 <app-juego-list
   [juegos]="juegos"
+  [isLoggedIn]="isLoggedIn"
   (gameSelected)="verDetalle($event)"
+  (wishlistToggled)="toggleWishlist($event)"
 ></app-juego-list>

@@ -86,6 +86,7 @@ export class NavComponent implements OnInit, OnDestroy {
   logout() {
     this.loginService.logout();
     this.router.navigate(['/inicio']);
+    window.location.reload();
   }
 
   info() {
