@@ -1,5 +1,13 @@
 <div class="game-list">
   <div *ngFor="let juego of juegos" class="game-card">
+    <!-- Ícono para agregar o quitar de la wishlist 
+    <div (click)="toggleWishlist(juego)">
+      <i
+        class="material-icons"
+        [ngClass]="{ 'wishlist-added': juego.isInWishlist }"
+        >{{ juego.isInWishlist ? 'star' : 'star_border' }}</i
+      >
+    </div>-->
     <div class="game-image">
       <img
         [src]="'https://picsum.photos/350/120' || 'path/to/default-image.jpg'"
