@@ -22,6 +22,12 @@ export class NavComponent implements OnInit, OnDestroy {
     private router: Router
   ) {}
 
+  menuOpen: boolean = false; // Estado inicial cerrado
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen; // Cambia el estado
+  }
+
   ngOnInit(): void {
     this.subscriptions.add(
       this.loginService.userLoginOn.subscribe({

@@ -1,16 +1,63 @@
-.search-container {
-  display: flex;
-  align-items: center;
+@import 'src/styles.scss';
+
+.toolbar{
+  .navbar-brand.navbar-small{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @media (min-width: 600px) {
+      display: none;
+    }
+    .small-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 0.5rem;
+    }
+  
+    .navbar-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+    }
+  }
+  .navbar-brand {
+      font-size: 1rem;
+      font-weight: bold;
+      display: block;
+  
+      .welcome-text {
+        color: white; 
+      }
+  
+      .role-text {
+        font-size: 0.9rem;
+        color: #6c757d; 
+      }
+  
+      .unauthenticated-text {
+        color: #dc3545; 
+      }
+    }
+  .search-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .input-group {
+    width: 300px;
+  }
+
+  .form-control {
+    border-radius: 25px 0 0 25px;
+  }
+
+  .btn {
+    border-radius: 0 25px 25px 0;
+  }
 }
 
-.input-group {
-  width: 300px;
-}
-
-.form-control {
-  border-radius: 25px 0 0 25px;
-}
-
-.btn {
-  border-radius: 0 25px 25px 0;
-}

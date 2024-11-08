@@ -1,14 +1,22 @@
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <nav
+    class="navbar navbar-expand-lg navbar-dark"
+    style="background-color: #673ab7"
+  >
+    <a class="navbar-brand navbar-small" href="#"
+      ><img
+        src="assets/images/logo.png"
+        alt="DMC - Offers Logo"
+        width="40"
+        height="40"
+        class="d-inline-block align-text-top small-logo"
+        routerLink="/inicio"
+      />
+      <span class="navbar-title" routerLink="/inicio">DMC</span></a
+    >
+
     <div class="container-fluid">
-      <a class="navbar-brand" href="#"
-        ><p *ngIf="userLoginOn">
-          <span>Bienvenido, {{ username }} </span>
-          <span>Rol: {{ userRol }}</span>
-        </p>
-        <p *ngIf="!userLoginOn">Usuario NO autenticado</p></a
-      >
       <button
         class="navbar-toggler"
         type="button"
@@ -22,6 +30,27 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="navbar-brand" href="#">
+              <!-- Mensaje de usuario autenticado -->
+              <div *ngIf="userLoginOn; else notLoggedIn">
+                <p class="mb-0">
+                  <span class="welcome-text">Bienvenido, {{ username }}</span>
+                  <br />
+                  <span class="role-text">Rol: {{ userRol }}</span>
+                </p>
+              </div>
+              <!-- Mensaje de usuario no autenticado -->
+              <ng-template #notLoggedIn>
+                <p class="mb-0">
+                  <span class="unauthenticated-text"
+                    >Usuario NO autenticado</span
+                  >
+                </p>
+              </ng-template>
+            </a>
+          </li>
+
           <li *ngIf="userLoginOn && userRol === 'admin'" class="nav-item">
             <a
               class="nav-link active"
