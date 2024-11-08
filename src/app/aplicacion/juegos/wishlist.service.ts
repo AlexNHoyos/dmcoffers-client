@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoginService } from 'src/app/services/auth/login.service';
 import { environment } from 'src/environments/environment';
+import { Juego } from './juegos.model';
 
 @Injectable({
   providedIn: 'root',
@@ -29,6 +30,13 @@ export class WishlistService {
   // Método para verificar si un juego está en la wishlist
   isInWishlist(juegoId: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/wishlist/${juegoId}`, {
+      headers: { Authorization: `Bearer ${this.token}` },
+    });
+  }
+
+  // Obtener todos los juegos de la wishlist de un usuario
+  getWishlist(): Observable<any[]> {
+    return this.http.get<Juego[]>(`${this.apiUrl}/wishlist`, {
       headers: { Authorization: `Bearer ${this.token}` },
     });
   }

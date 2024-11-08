@@ -77,6 +77,8 @@ import { JuegoDeleteComponent } from './aplicacion/juegos/juegos-crud/juego-dele
 import { JuegoUpdateComponent } from './aplicacion/juegos/juegos-crud/juego-update/juego-update.component';
 import { JuegoDetailDialogComponent } from './aplicacion/juegos/juegos-crud/juego-detail-dialog/juego-detail-dialog.component';
 import { NotAuthorizedComponent } from './components/not-authorized/not-authorized.component';
+import { WishlistComponent } from './pages/wishlist/wishlist.component';
+import { WishlistService } from './aplicacion/juegos/wishlist.service';
 
 @NgModule({
   declarations: [
@@ -126,6 +128,7 @@ import { NotAuthorizedComponent } from './components/not-authorized/not-authoriz
     JuegoUpdateComponent,
     JuegoDetailDialogComponent,
     NotAuthorizedComponent,
+    WishlistComponent,
   ],
   imports: [
     CommonModule,
@@ -152,6 +155,7 @@ import { NotAuthorizedComponent } from './components/not-authorized/not-authoriz
   ],
 
   providers: [
+    WishlistService,
     RegisterService,
     PublisherService,
     CategoriaService,

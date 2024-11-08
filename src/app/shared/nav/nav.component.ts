@@ -93,6 +93,10 @@ export class NavComponent implements OnInit, OnDestroy {
     this.router.navigate(['/info']);
   }
 
+  wishlist() {
+    this.router.navigate(['/wishlist']);
+  }
+
   onSearch() {
     if (this.searchTerm.trim()) {
       this.router.navigate(['/resultados'], {

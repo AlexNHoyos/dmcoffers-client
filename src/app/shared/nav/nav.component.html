@@ -43,6 +43,12 @@
           </li>
 
           <li *ngIf="userLoginOn" class="nav-item">
+            <a class="nav-link" (click)="wishlist()" routerLink="/wishlist"
+              >Lista de deseos</a
+            >
+          </li>
+
+          <li *ngIf="userLoginOn" class="nav-item">
             <a class="nav-link" (click)="logout()" routerLink="/inicio"
               >Cerrar Sesion</a
             >

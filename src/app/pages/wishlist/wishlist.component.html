@@ -1,0 +1,15 @@
+<div *ngIf="isLoading">Cargando Lista de deseos...</div>
+
+<div *ngIf="!isLoading && wishlist.length === 0">
+  No tienes juegos en tu Lista de deseos.
+</div>
+
+<app-juego-list
+  *ngIf="!isLoading && wishlist.length > 0"
+  [juegos]="wishlist"
+  [isLoggedIn]="isLoggedIn"
+  [isWishlist]="isWishlist"
+  (gameSelected)="verDetalle($event)"
+  (removeFromWishlist)="removeFromWishlist($event)"
+>
+</app-juego-list>

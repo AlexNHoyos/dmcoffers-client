@@ -1,4 +1,5 @@
 .game-list {
+  margin: 1em 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -6,6 +7,7 @@
 }
 
 .game-card {
+  position: relative;
   width: 100%;
   max-width: 350px;
   max-height: 300px;
@@ -15,14 +17,50 @@
   border-radius: 6px;
   overflow: hidden;
   background-color: #fff;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s;
 
   &:hover {
     transform: scale(1.02);
   }
 
+  .wishlist-icon-container {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    z-index: 10;
+    width: 30px;
+    height: 30px;
+    top: 10px;
+    right: 10px;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+  }
+
+  .eliminar-juego {
+  display: block;
+  text-align: end;
+  color: #a3a3a3;
+  cursor: pointer;
+  margin: 0.2em 0.5em;
+  font-size: 1em;
+  text-decoration: underline;
+  }
+
+  .eliminar-juego>span:hover {
+  color: #c9302c;
+
+  }
+
   .game-image {
+    cursor: pointer;
+    position: relative;
     img {
       width: 100%;
       height: 120px;
@@ -34,6 +72,7 @@
     padding: 0.7em;
     text-align: center;
     flex-grow: 1;
+    cursor: pointer;
 
     h3 {
       font-size: 1.2rem;
@@ -75,7 +114,7 @@
 }
 
 // breakpoints
-@media (min-width: 600px) {
+@media (min-width: 600px) and (max-width: 1023px) {
   .game-card {
     max-width: 48%;
   }
