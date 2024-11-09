@@ -17,6 +17,7 @@ export class Juego {
   developerName: string = '';
   categoriasNames: string[] = [];
   price?: number;
+  isInWishlist?: boolean;
 }
 
 export interface JuegoPage extends Page<Juego> {

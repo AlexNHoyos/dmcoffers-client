@@ -1,16 +1,34 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Juego } from '../juegos.model.js';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Juego } from '../juegos.model';
 
 @Component({
   selector: 'app-juego-list',
   templateUrl: './juego-list.component.html',
   styleUrls: ['./juego-list.component.scss'],
 })
-export class JuegoListComponent {
+export class JuegoListComponent implements OnInit {
   @Input() juegos: Juego[] = [];
+  @Input() isLoggedIn: boolean = false;
+  @Input() isWishlist: boolean = false;
   @Output() gameSelected = new EventEmitter<number>();
+  @Output() wishlistToggled = new EventEmitter<Juego>();
+  @Output() removeFromWishlist = new EventEmitter<number>();
+
+  ngOnInit(): void {
+    // Log para verificar si se está en wishlist
+    console.log('isWishlist:', this.isWishlist);
+  }
 
   onGameClick(juegoId: number): void {
     this.gameSelected.emit(juegoId);
+  }
+
+  // Llamar a wishlistToggled para agregar o quitar de la wishlist
+  toggleWishlist(juego: Juego): void {
+    this.wishlistToggled.emit(juego);
+  }
+
+  emitRemoveFromWishlist(juegoId: number) {
+    this.removeFromWishlist.emit(juegoId);
   }
 }

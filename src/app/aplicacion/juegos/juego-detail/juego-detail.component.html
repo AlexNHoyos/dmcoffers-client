@@ -14,6 +14,24 @@
     </p>
   </div>
 
+  <div *ngIf="token">
+    <button
+      *ngIf="!isInWishlist"
+      (click)="addToWishlist()"
+      class="btn btn-primary"
+    >
+      Agregar a la Wishlist
+    </button>
+
+    <button
+      *ngIf="isInWishlist"
+      (click)="removeFromWishlist()"
+      class="btn btn-danger"
+    >
+      Eliminar de la Wishlist
+    </button>
+  </div>
+
   <div class="game-content">
     <div class="game-info">
       <p><strong>Publicador:</strong> {{ juego.publisherName }}</p>

@@ -1,0 +1,15 @@
+.titulo-container {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.titulo {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: rgb(108, 52, 131);
+  color: white;
+  margin: 0;
+  border-radius: 2px;
+  text-align: center;
+}
