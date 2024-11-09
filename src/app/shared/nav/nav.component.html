@@ -81,6 +81,16 @@
             >
           </li>
 
+          <li *ngIf="userLoginOn" class="nav-item carrito">
+            <button
+              mat-icon-button
+              (click)="showProximamente()"
+              aria-label="Carrito de compras"
+            >
+              <mat-icon>shopping_cart</mat-icon>
+            </button>
+          </li>
+
           <li class="nav-item search-container">
             <div class="input-group">
               <input

@@ -50,6 +50,9 @@ export class PersonalDetailsComponent implements OnInit {
     this.loginService.userLoginOn.subscribe({
       next: (userLoginOn) => {
         this.userLoginOn = userLoginOn;
+        if (!this.userLoginOn) {
+          this.router.navigate(['/inicio']); // Redirige a la página de inicio si no está logueado
+        }
       },
     });
   }

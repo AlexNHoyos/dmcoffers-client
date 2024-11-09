@@ -50,9 +50,18 @@
     @media (min-width: 992px) {
       position: absolute;
       right: 15px;
+      bottom: 10px;
     }
   }
 
+  .carrito{
+    color: white;
+    @media (min-width: 992px) {
+        position: absolute;
+        right: 330px;
+        bottom: 8px;
+      }
+  }
   .input-group {
     width: 300px;
   }

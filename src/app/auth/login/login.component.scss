@@ -1,41 +1,59 @@
+.login-card {
+  max-width: 400px;
+  margin: 2em auto;
+  padding: 2em;
+  border-radius: 8px;
+
+  .login-card-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5em;
+  }
+
+  .login-card-title {
+    color: #a65cfa;
+    font-size: 1.8em;
+    font-weight: bold;
+  }
+
+  .full-width {
+    width: 100%;
+    margin-bottom: 1.2em;
+  }
+
+  .login-card-actions {
+    display: flex;
+    justify-content: center;
+    padding-top: 1.5em;
+  }
+
+  .login-button {
+    width: 100%;
+    padding: 0.8em;
+  }
+}
+
 
 @media (max-width: 600px) {
-  mat-card {
+  .login-card {
     width: 100%;
-    margin-top: 2em;
-    border-radius: 15px;
+    border-radius: 12px;
+    padding: 1.5em;
   }
 
-
-mat-card-header {
-  display: flex;
-  justify-content: center;
-  margin: 2em;
+  .login-card-title {
+    font-size: 1.6em;
+  }
 }
 
-mat-card-title {
-  color: #A65CFA;
-  font-size: 2em;
+@media (min-width: 600px) and (max-width: 992px) {
+  .login-card {
+    max-width: 500px;
+  }
 }
 
-
-  mat-form-field {
-    width: 100%;
-    margin-bottom: 10px;
+@media (min-width: 992px) {
+  .login-card {
+    max-width: 600px;
   }
-
-  mat-error{
-    display: flex;
-  }
-  
-
- mat-card-actions {
-   padding: 16px; 
- }
-
- mat-card-actions > button {
-   width: 100%;
-   margin: 0 auto;
-   padding: 12px 24px; 
- }
 }
