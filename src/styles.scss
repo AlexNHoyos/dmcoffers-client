@@ -21,7 +21,7 @@ body {
   font-weight: 700;
   font-style: normal;
   overflow-y: auto;
-
+  padding-bottom: 50px;
 }
 
 // Sobrescribe la tipografía para todos los componentes de Angular Material
@@ -59,42 +59,59 @@ mat-mdc-button-touch-target {
   height: 0 !important; //Para que la zona de tocar boton no sea mas grande que el boton
 }
 
-mat-card {
-  width: 100%;
-  margin-top: 2em;
-  border-radius: 15px;
-}
 
 
-mat-card-header {
+$primary-color: #1976d2;
+$icon-size: 25px;
+
+.title-crud {
   display: flex;
-  justify-content: center;
-  margin: 2em;
-}
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 10px;
 
-mat-card-title {
-  color: $main-color;
-  font-size: 2em;
-}
-
-
-mat-form-field {
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-mat-error {
-  display: flex;
+  h3 {
+    margin: 0;
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 1.2em;
+  }
 }
 
 
-mat-card-actions {
-  padding: 16px;
-}
+.tabla-crud {
+  margin: 10px;
 
-mat-card-actions,
-mat-button {
-  width: 100%;
-  margin: 20px;
-  padding: 12px 24px;
+
+  .mat-column-id {
+    width: 15%;
+    border-right: 1px solid currentColor;
+    padding-left: 10px;
+    padding-right: 0;
+    text-align: center;
+  }
+
+  .normal-table {
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  /*.mat-column-publishername {
+  width: 60%;
+  padding-left: 5px;
+}*/
+
+  .mat-column-actions {
+    font-style: italic;
+    padding: 0;
+    padding-right: 10px;
+    gap: 10px;
+
+    .mat-mdc-icon-button {
+      width: $icon-size;
+      height: $icon-size;
+      padding: 0;
+      margin: 5px;
+    }
+  }
 }

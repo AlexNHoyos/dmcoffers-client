@@ -15,6 +15,7 @@ import { PublisherService } from '../publisher.service';
   templateUrl: './publisher-update.component.html',
 })
 export class PublisherUpdateComponent {
+  today = new Date();
   publisher: Publisher;
 
   constructor(
@@ -55,8 +56,6 @@ export class PublisherUpdateComponent {
         ? new Date(this.publisher.modificationtimestamp).toISOString()
         : null,
     };
-
-    console.log(publisherToSend);
 
     this.publisherService
       .updatePublisher(this.publisher.id, publisherToSend)

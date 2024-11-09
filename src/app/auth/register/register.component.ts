@@ -17,7 +17,7 @@ import { EncryptionService } from 'src/app/services/auth/encryption.service';
 export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
-  user: User;
+  user: User = new User();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,41 +31,30 @@ export class RegisterComponent implements OnInit {
       username: ['', [Validators.required]],
       realname: ['', [Validators.required]],
       surname: ['', [Validators.required]],
-      paswword: ['', [Validators.required]],
-      password2: ['', [Validators.required]]
+      password: ['', [Validators.required]],
+      password2: ['', [Validators.required]],
+      birth_date: ['', [Validators.required]]
     });
     this.user = new User();
   }
 
-  ngOnInit(): void { console.log('entra') };
-
-  get username() {
-    return this.registerForm.controls['username'];
-  }
-
-  get password() {
-    return this.registerForm.controls['password'];
-  }
-
-  get password2() {
-    return this.registerForm.controls['password2'];
-  }
+  ngOnInit(): void { };
 
   register() {
-    console.log('entra');
 
     this.user.realname = this.registerForm.controls['realname'].value;
     this.user.surname = this.registerForm.controls['surname'].value;
     this.user.username = this.registerForm.controls['username'].value;
     this.user.creationuser = 'admin';
     this.user.creationtimestamp = new Date();
+    this.user.modificationuser = 'admin';
+    this.user.modificationtimestamp = new Date();
     this.user.status = true;
     this.user.password = this.encryptionService.encrypt(this.registerForm.controls['password'].value);
+    this.user.birth_date = this.registerForm.controls['birth_date'].value;
 
-    console.log(this.user.password);
 
     this.registerService.register(this.user).subscribe(data => {
-      console.log(data);
     })
   }
 

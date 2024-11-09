@@ -43,7 +43,7 @@ export class SupportTicketComponent extends CrudComponent<SupportTicket> {
     });
   }
 
-  showDetails(id: string): void {
+  showDetails(id: number): void {
     this.supportTicketService
       .getSupportTicket(id)
       .subscribe((supportTicket) => {
@@ -60,7 +60,7 @@ export class SupportTicketComponent extends CrudComponent<SupportTicket> {
       });
   }
 
-  openEditDialog(id: string): void {
+  openEditDialog(id: number): void {
     this.supportTicketService
       .getSupportTicket(id)
       .subscribe((supportTicket) => {
@@ -78,7 +78,7 @@ export class SupportTicketComponent extends CrudComponent<SupportTicket> {
       });
   }
 
-  openDeleteDialog(id: string): void {
+  openDeleteDialog(id: number): void {
     const dialogRef = this.dialog.open(SupportTicketDeleteComponent, {
       width: '400px',
       data: { id },

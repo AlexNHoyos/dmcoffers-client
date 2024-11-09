@@ -12,22 +12,23 @@ import { DesarrolladoresService } from '../desarrolladores.service';
   styleUrls: ['./desarrolladores-create.component.scss'],
 })
 export class DesarrolladoresCreateComponent {
+  today: Date = new Date();
   desarrollador: Desarrollador = {
-    id: '',
+    id: 0,
     developername: '',
-    foundation_date: new Date().toISOString(),
-    dissolution_date: new Date().toISOString(),
-    status: '',
+    foundation_date: null,
+    dissolution_date: null,
+    status: true,
     creationtimestamp: new Date().toISOString(),
     creationuser: '',
-    modificationtimestamp: '',
-    modificationuser: '',
+    modificationtimestamp: null,
+    modificationuser: null,
   };
   constructor(
     private desarrolladoresService: DesarrolladoresService,
     private dialogRef: MatDialogRef<DesarrolladoresCreateComponent>,
     private userUtilsService: UserUtilsService
-  ) { }
+  ) {}
   ngOnInit(): void {
     this.userUtilsService.setLoggedInUser().subscribe((username) => {
       if (username) {
@@ -56,19 +57,19 @@ export class DesarrolladoresCreateComponent {
         : null,
     };
 
-    console.log(desarrolladorToSend);
-    this.desarrolladoresService.createDesarrollador(desarrolladorToSend).subscribe({
-      next: (response) => {
-        console.log('Desarrollador creado exitosamente', response);
-        this.dialogRef.close(true); // Cierra el diálogo y indica que se guardaron los cambios
-      },
-      error: (error) => {
-        console.error('Error creando desarrollador', error);
-      },
-    });
+    this.desarrolladoresService
+      .createDesarrollador(desarrolladorToSend)
+      .subscribe({
+        next: (response) => {
+          console.log('Desarrollador creado exitosamente', response);
+          this.dialogRef.close(true); // Cierra el diálogo y indica que se guardaron los cambios
+        },
+        error: (error) => {
+          console.error('Error creando desarrollador', error);
+        },
+      });
   }
   cancel(): void {
     this.dialogRef.close(false); // Cierra el diálogo sin guardar cambios
   }
 }
-

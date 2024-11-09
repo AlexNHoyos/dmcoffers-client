@@ -43,7 +43,7 @@ export class HostingComponent extends CrudComponent<Hosting> {
     });
   }
 
-  showDetails(id: string): void {
+  showDetails(id: number): void {
     this.hostingService.getHosting(id).subscribe((hosting) => {
       const dialogRef = this.dialog.open(HostingDetailComponent, {
         width: '400px',
@@ -58,7 +58,7 @@ export class HostingComponent extends CrudComponent<Hosting> {
     });
   }
 
-  openEditDialog(id: string): void {
+  openEditDialog(id: number): void {
     this.hostingService.getHosting(id).subscribe((hosting) => {
       const dialogRef = this.dialog.open(HostingUpdateComponent, {
         width: '400px',
@@ -74,7 +74,7 @@ export class HostingComponent extends CrudComponent<Hosting> {
     });
   }
 
-  openDeleteDialog(id: string): void {
+  openDeleteDialog(id: number): void {
     const dialogRef = this.dialog.open(HostingDeleteComponent, {
       width: '400px',
       data: { id },

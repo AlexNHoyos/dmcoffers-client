@@ -62,7 +62,7 @@ export abstract class SearchService<T> implements Service {
 
 @Injectable()
 export abstract class CrudService<T> extends SearchService<T> {
-  delete(id: string): Observable<any> {
+  delete(id: number): Observable<any> {
     return this.http.delete(this.endpoint + '/' + id, { responseType: 'text' });
   }
 }

@@ -15,6 +15,7 @@ import { DesarrolladoresService } from '../desarrolladores.service';
   templateUrl: './desarrolladores-update.component.html',
 })
 export class DesarrolladoresUpdateComponent {
+  today = new Date();
   desarrollador: Desarrollador;
 
   constructor(
@@ -83,4 +84,3 @@ export class DesarrolladoresUpdateComponent {
     this.dialogRef.close(false); // Cierra el diálogo sin guardar cambios
   }
 }
-

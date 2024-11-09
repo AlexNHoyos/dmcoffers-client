@@ -51,6 +51,7 @@ import { CategoriaService } from './aplicacion/categorias/categoria.service';
 import { DesarrolladoresComponent } from './aplicacion/desarrolladores/desarrolladores.component';
 import { DesarrolladoresService } from './aplicacion/desarrolladores/desarrolladores.service';
 import { DesarrolladoresCreateComponent } from './aplicacion/desarrolladores/desarrolladores-create/desarrolladores-create.component';
+import { DesarrolladoresDetailComponent } from './aplicacion/desarrolladores/desarrolladores-detail/desarrolladores-detail.component';
 import { DesarrolladoresUpdateComponent } from './aplicacion/desarrolladores/desarrolladores-update/desarrolladores-update.component';
 import { DesarrolladoresDeleteComponent } from './aplicacion/desarrolladores/desarrolladores-delete/desarrolladores-delete.component';
 import { HostingComponent } from './aplicacion/hosting/hosting.component';
@@ -65,6 +66,16 @@ import { SupportTicketDetailComponent } from './aplicacion/support-ticket/suppor
 import { SupportTicketUpdateComponent } from './aplicacion/support-ticket/support-ticket-update/support-ticket-update.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { RegisterService } from './services/auth/register.service';
+import { HomeComponent } from './pages/home/home.component';
+import { JuegosComponent } from './aplicacion/juegos/juegos.component';
+import { JuegoDetailComponent } from './aplicacion/juegos/juego-detail/juego-detail.component';
+import { ResultadosBusquedaComponent } from './aplicacion/juegos/resultados-busqueda/resultados-busqueda.component';
+import { JuegoListComponent } from './aplicacion/juegos/juego-list/juego-list.component';
+import { JuegosCrudComponent } from './aplicacion/juegos/juegos-crud/juegos-crud.component';
+import { JuegoCreateComponent } from './aplicacion/juegos/juegos-crud/juego-create/juego-create.component';
+import { JuegoDeleteComponent } from './aplicacion/juegos/juegos-crud/juego-delete/juego-delete.component';
+import { JuegoUpdateComponent } from './aplicacion/juegos/juegos-crud/juego-update/juego-update.component';
+import { JuegoDetailDialogComponent } from './aplicacion/juegos/juegos-crud/juego-detail-dialog/juego-detail-dialog.component';
 
 @NgModule({
   declarations: [
@@ -89,6 +100,7 @@ import { RegisterService } from './services/auth/register.service';
     CategoriaUpdateComponent,
     DesarrolladoresComponent,
     DesarrolladoresCreateComponent,
+    DesarrolladoresDetailComponent,
     DesarrolladoresUpdateComponent,
     DesarrolladoresDeleteComponent,
     HostingComponent,
@@ -101,7 +113,17 @@ import { RegisterService } from './services/auth/register.service';
     SupportTicketDeleteComponent,
     SupportTicketDetailComponent,
     SupportTicketUpdateComponent,
-    RegisterComponent
+    RegisterComponent,
+    HomeComponent,
+    JuegosComponent,
+    JuegoDetailComponent,
+    ResultadosBusquedaComponent,
+    JuegoListComponent,
+    JuegosCrudComponent,
+    JuegoCreateComponent,
+    JuegoDeleteComponent,
+    JuegoUpdateComponent,
+    JuegoDetailDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -128,6 +150,7 @@ import { RegisterService } from './services/auth/register.service';
   ],
 
   providers: [
+    RegisterService,
     PublisherService,
     CategoriaService,
     AlertService,

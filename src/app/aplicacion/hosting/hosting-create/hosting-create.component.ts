@@ -13,13 +13,11 @@ import { HostingService } from '../hosting.service';
 })
 export class HostingCreateComponent {
   hosting: Hosting = {
-    id: '',
+    id: 0,
     name: '',
     creationuser: '',
     creationtimestamp: new Date().toISOString(),
-    modificationuser: '',
-    modificationtimestamp: '',
-    status: false,
+    status: true,
   };
   constructor(
     private HostingService: HostingService,
@@ -47,6 +45,12 @@ export class HostingCreateComponent {
         ? new Date(this.hosting.modificationtimestamp).toISOString()
         : null,
     };
+    console.log(HostingToSend);
+
+    if (!this.hosting.name || this.hosting.name.trim() === '') {
+      console.error('El nombre del hosting no puede estar vacío');
+      return;
+    }
 
     this.HostingService.createHosting(HostingToSend).subscribe({
       next: (response) => {

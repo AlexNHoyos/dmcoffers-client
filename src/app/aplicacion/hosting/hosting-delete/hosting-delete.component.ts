@@ -21,7 +21,7 @@ export class HostingDeleteComponent implements OnInit {
     private hostingService: HostingService,
     private dialog: MatDialog,
     private dialogRef: MatDialogRef<HostingDeleteComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { id: string }
+    @Inject(MAT_DIALOG_DATA) public data: { id: number }
   ) {}
 
   ngOnInit(): void {

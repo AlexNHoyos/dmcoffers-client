@@ -12,16 +12,17 @@ import { PublisherService } from '../publisher.service';
   styleUrls: ['./publisher-create.component.scss'],
 })
 export class PublisherCreateComponent {
+  today: Date = new Date();
   publisher: Publisher = {
-    id: '',
+    id: 0,
     publishername: '',
-    foundation_date: new Date().toISOString(),
-    dissolution_date: new Date().toISOString(),
-    status: '',
+    foundation_date: null,
+    dissolution_date: null,
+    status: true,
     creationtimestamp: new Date().toISOString(),
     creationuser: '',
-    modificationtimestamp: '',
-    modificationuser: '',
+    modificationtimestamp: null,
+    modificationuser: null,
   };
   constructor(
     private publisherService: PublisherService,

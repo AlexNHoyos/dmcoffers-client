@@ -13,7 +13,7 @@ import { SupportTicketService } from '../support-ticket.service';
 })
 export class SupportTicketCreateComponent {
   supportTicket: SupportTicket = {
-    id: '',
+    id: 0,
     status: false,
     creationuser: '',
     creationtimestamp: new Date().toISOString(),

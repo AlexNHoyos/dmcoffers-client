@@ -17,13 +17,19 @@ import { DesarrolladoresComponent } from './aplicacion/desarrolladores/desarroll
 import { DesarrolladoresCreateComponent } from './aplicacion/desarrolladores/desarrolladores-create/desarrolladores-create.component';
 import { DesarrolladoresUpdateComponent } from './aplicacion/desarrolladores/desarrolladores-update/desarrolladores-update.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { HomeComponent } from './pages/home/home.component';
+import { JuegoDetailComponent } from './aplicacion/juegos/juego-detail/juego-detail.component';
+import { ResultadosBusquedaComponent } from './aplicacion/juegos/resultados-busqueda/resultados-busqueda.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
-  { path: 'inicio', component: DashboardComponent },
+  { path: 'inicio', component: HomeComponent },
+  { path: 'resultados', component: ResultadosBusquedaComponent },
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'info', component: PersonalDetailsComponent },
+  { path: 'juego/:id', component: JuegoDetailComponent },
   { path: 'publishers', component: PublisherComponent },
   { path: 'create-publisher', component: PublisherCreateComponent },
   { path: 'editP/:id', component: PublisherUpdateComponent },

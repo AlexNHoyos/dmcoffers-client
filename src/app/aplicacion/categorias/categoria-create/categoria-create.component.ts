@@ -13,12 +13,12 @@ import { CategoriaService } from '../categoria.service';
 })
 export class CategoriaCreateComponent {
   categoria: Categoria = {
-    id: '',
+    id: 0,
     description: '',
     creationtimestamp: new Date().toISOString(),
     creationuser: '',
-    modificationtimestamp: '',
-    modificationuser: '',
+    modificationtimestamp: null,
+    modificationuser: null,
   };
   constructor(
     private categoriaService: CategoriaService,

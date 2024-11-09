@@ -10,7 +10,11 @@ export class EncryptionService {
     private iv = CryptoJS.enc.Hex.parse('dcf2a4bf8b9876e5df8c2ba0a77d234b'); // Tu IV de 16 bytes en Hex
 
     encrypt(text: string): string {
-        const encrypted = CryptoJS.AES.encrypt(text, this.key, { iv: this.iv });
+        const encrypted = CryptoJS.AES.encrypt(text, this.key, {
+            iv: this.iv,
+            mode: CryptoJS.mode.CBC,
+            padding: CryptoJS.pad.Pkcs7
+        });
         return encrypted.toString();
     }
 }

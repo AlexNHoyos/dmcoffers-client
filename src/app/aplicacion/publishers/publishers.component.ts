@@ -42,7 +42,7 @@ export class PublisherComponent extends CrudComponent<Publisher> {
     });
   }
 
-  showDetails(id: string): void {
+  showDetails(id: number): void {
     this.publisherService.getPublisher(id).subscribe((publisher) => {
       const dialogRef = this.dialog.open(PublisherDetailComponent, {
         width: '400px',
@@ -57,7 +57,7 @@ export class PublisherComponent extends CrudComponent<Publisher> {
     });
   }
 
-  openEditDialog(id: string): void {
+  openEditDialog(id: number): void {
     this.publisherService.getPublisher(id).subscribe((publisher) => {
       const dialogRef = this.dialog.open(PublisherUpdateComponent, {
         width: '400px',
@@ -73,7 +73,7 @@ export class PublisherComponent extends CrudComponent<Publisher> {
     });
   }
 
-  openDeleteDialog(id: string): void {
+  openDeleteDialog(id: number): void {
     const dialogRef = this.dialog.open(PublisherDeleteComponent, {
       width: '400px',
       data: { id },

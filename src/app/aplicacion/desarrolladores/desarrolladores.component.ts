@@ -43,38 +43,42 @@ export class DesarrolladoresComponent extends CrudComponent<Desarrollador> {
     });
   }
 
-  showDetails(id: string): void {
-    this.desarrolladoresService.getDesarrollador(id).subscribe((desarrollador) => {
-      const dialogRef = this.dialog.open(DesarrolladoresDetailComponent, {
-        width: '400px',
-        data: { desarrollador },
-      });
-      /*  No es necesario porque no edito los datos adentro del dialog, pero podria implementarse a futuro
+  showDetails(id: number): void {
+    this.desarrolladoresService
+      .getDesarrollador(id)
+      .subscribe((desarrollador) => {
+        const dialogRef = this.dialog.open(DesarrolladoresDetailComponent, {
+          width: '400px',
+          data: { desarrollador },
+        });
+        /*  No es necesario porque no edito los datos adentro del dialog, pero podria implementarse a futuro
       dialogRef.afterClosed().subscribe((result) => {
         if (result) {
           this.loadPublishers(); // Carga o actualiza la lista de publishers
         }
       });*/
-    });
+      });
   }
 
-  openEditDialog(id: string): void {
-    this.desarrolladoresService.getDesarrollador(id).subscribe((desarrollador) => {
-      const dialogRef = this.dialog.open(DesarrolladoresUpdateComponent, {
-        width: '400px',
-        data: { desarrollador },
-      });
+  openEditDialog(id: number): void {
+    this.desarrolladoresService
+      .getDesarrollador(id)
+      .subscribe((desarrollador) => {
+        const dialogRef = this.dialog.open(DesarrolladoresUpdateComponent, {
+          width: '400px',
+          data: { desarrollador },
+        });
 
-      dialogRef.afterClosed().subscribe((result) => {
-        if (result) {
-          console.log('Desarrollador actualizado');
-          this.loadDesarrolladores(); // Carga o actualiza la lista de publishers
-        }
+        dialogRef.afterClosed().subscribe((result) => {
+          if (result) {
+            console.log('Desarrollador actualizado');
+            this.loadDesarrolladores(); // Carga o actualiza la lista de publishers
+          }
+        });
       });
-    });
   }
 
-  openDeleteDialog(id: string): void {
+  openDeleteDialog(id: number): void {
     const dialogRef = this.dialog.open(DesarrolladoresDeleteComponent, {
       width: '400px',
       data: { id },
@@ -119,4 +123,3 @@ export class DesarrolladoresComponent extends CrudComponent<Desarrollador> {
     });
   }
 }
-

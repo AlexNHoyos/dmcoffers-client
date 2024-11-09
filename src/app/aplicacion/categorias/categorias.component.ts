@@ -38,13 +38,13 @@ export class CategoriasComponent extends CrudComponent<Categoria> {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('categoria creado');
+        console.log('Categoria creado');
         this.loadCategorias(); // Carga o actualiza la lista de categorias
       }
     });
   }
 
-  showDetails(id: string): void {
+  showDetails(id: number): void {
     this.categoriaService.getCategoria(id).subscribe((categoria) => {
       const dialogRef = this.dialog.open(CategoriaDetailComponent, {
         width: '400px',
@@ -59,7 +59,7 @@ export class CategoriasComponent extends CrudComponent<Categoria> {
     });
   }
 
-  openEditDialog(id: string): void {
+  openEditDialog(id: number): void {
     this.categoriaService.getCategoria(id).subscribe((categoria) => {
       const dialogRef = this.dialog.open(CategoriaUpdateComponent, {
         width: '400px',
@@ -68,14 +68,14 @@ export class CategoriasComponent extends CrudComponent<Categoria> {
 
       dialogRef.afterClosed().subscribe((result) => {
         if (result) {
-          console.log('categoria actualizado');
+          console.log('Categoria actualizado');
           this.loadCategorias(); // Carga o actualiza la lista de categorias
         }
       });
     });
   }
 
-  openDeleteDialog(id: string): void {
+  openDeleteDialog(id: number): void {
     const dialogRef = this.dialog.open(CategoriaDeleteComponent, {
       width: '400px',
       data: { id },
@@ -92,19 +92,19 @@ export class CategoriasComponent extends CrudComponent<Categoria> {
   override displayedColumns: string[] = ['id', 'descripcion', 'actions'];
 
   showTable: boolean = false;
-  buttonText: string = 'Mostrar categorias';
+  buttonText: string = 'Mostrar Categorias';
 
   toggleCategorias() {
     if (this.showTable) {
       // Oculta la tabla
       this.showTable = false;
-      this.buttonText = 'Mostrar categorias'; // Cambia el texto del botón
+      this.buttonText = 'Mostrar Categorias'; // Cambia el texto del botón
     } else {
       // Carga y muestra la tabla
       this.loadCategorias();
       // Muestra la tabla
       this.showTable = true;
-      this.buttonText = 'Ocultar categorias'; // Cambia el texto del botón
+      this.buttonText = 'Ocultar Categorias'; // Cambia el texto del botón
     }
   }
   override ngOnInit(): void {
@@ -116,7 +116,6 @@ export class CategoriasComponent extends CrudComponent<Categoria> {
   loadCategorias(): void {
     this.showTable = true;
     this.categoriaService.getAllCategorias().subscribe((data) => {
-      console.log(data);
       this.categorias = data;
     });
   }

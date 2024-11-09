@@ -1,0 +1,130 @@
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title>Crear Juego</mat-card-title>
+    <mat-card-subtitle>Ingrese los siguientes datos:</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <form (ngSubmit)="createJuego()" #juegoForm="ngForm">
+      <mat-form-field class="form-field">
+        <mat-label>Nombre del Juego</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="juego.gamename"
+          name="juegoname"
+          #name="ngModel"
+          required
+          minlength="1"
+        />
+        <button
+          *ngIf="juego.gamename"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="juego.gamename = ''"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
+          El nombre no puede estar vacío.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Fecha de Salida</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker1"
+          [(ngModel)]="juego.release_date"
+          name="release_date"
+          required
+        />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker1"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Desarrollador</mat-label>
+        <mat-select
+          [(ngModel)]="juego.developerName"
+          name="developername"
+          required
+        >
+          <mat-option
+            *ngFor="let desarrollador of desarrolladores"
+            [value]="desarrollador.developername"
+          >
+            {{ desarrollador.developername }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Publisher</mat-label>
+        <mat-select
+          [(ngModel)]="juego.publisherName"
+          name="publishername"
+          required
+        >
+          <mat-option
+            *ngFor="let publisher of publishers"
+            [value]="publisher.publishername"
+          >
+            {{ publisher.publishername }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Categorías</mat-label>
+        <mat-select
+          [(ngModel)]="juego.categoriasNames"
+          name="categoriasnames"
+          multiple
+          required
+        >
+          <mat-option
+            *ngFor="let categoria of categorias"
+            [value]="categoria.description"
+          >
+            {{ categoria.description }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Precio Inicial</mat-label>
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="juego.price"
+          name="price"
+          required
+          min="0"
+        />
+      </mat-form-field>
+
+      <div class="btns">
+        <button
+          mat-flat-button
+          type="submit"
+          color="primary"
+          [disabled]="juegoForm.invalid"
+        >
+          Crear
+        </button>
+        <button
+          mat-flat-button
+          type="button"
+          color="secondary"
+          (click)="cancel()"
+        >
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

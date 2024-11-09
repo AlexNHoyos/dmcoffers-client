@@ -1,5 +1,5 @@
 <div class="update-container">
-  <form>
+  <form #hostingForm="ngForm">
     <mat-form-field class="form-field">
       <mat-label>Nombre del hosting</mat-label>
       <input
@@ -7,6 +7,8 @@
         type="text"
         [(ngModel)]="hosting.name"
         name="name"
+        #name="ngModel"
+        minlength="1"
         required
       />
 
@@ -19,6 +21,10 @@
       >
         <mat-icon>close</mat-icon>
       </button>
+
+      <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
+        El nombre del hosting no puede estar vacío.
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
@@ -34,11 +40,12 @@
       color="primary"
       type="submit"
       (click)="onUpdatehosting()"
+      [disabled]="hostingForm.invalid"
     >
       Actualizar
     </button>
 
-    <button mat-flat-button color="secondary" (click)="cancel()">
+    <button mat-flat-button type="button" color="secondary" (click)="cancel()">
       Cancelar
     </button>
   </form>

@@ -27,7 +27,7 @@ export class SupportTicketService extends CrudService<SupportTicketPage> {
   }
 
   updateSupportTicket(
-    id: string,
+    id: number,
     supportTicket: SupportTicket
   ): Observable<SupportTicket> {
     return this.http.put<SupportTicket>(
@@ -40,7 +40,7 @@ export class SupportTicketService extends CrudService<SupportTicketPage> {
     return this.http.get<SupportTicket[]>(`${this.endpoint}/findall`);
   }
 
-  getSupportTicket(id: string): Observable<SupportTicket> {
+  getSupportTicket(id: number): Observable<SupportTicket> {
     return this.http.get<SupportTicket>(`${this.endpoint}/${id}`);
   }
 }

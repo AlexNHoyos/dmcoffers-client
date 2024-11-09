@@ -1,15 +1,15 @@
 import { Page } from 'src/app/models/pagination.js';
 
 export class Publisher {
-  id: string = '';
+  id: number = 0;
   publishername: string = '';
   foundation_date: string | null = null;
   dissolution_date?: string | null;
-  status: string = '';
+  status: Boolean = true;
   creationtimestamp: string | null = null;
   creationuser: string = '';
   modificationtimestamp?: string | null = null;
-  modificationuser?: string;
+  modificationuser?: string | null = null;
 }
 
 export interface PublisherPage extends Page<Publisher> {

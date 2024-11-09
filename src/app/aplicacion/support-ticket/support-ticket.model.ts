@@ -1,7 +1,7 @@
 import { Page } from 'src/app/models/pagination.js';
 
 export class SupportTicket {
-  id: string = '';
+  id: number = 0;
   status: boolean = false;
   creationuser: string = '';
   creationtimestamp: string | null = null;

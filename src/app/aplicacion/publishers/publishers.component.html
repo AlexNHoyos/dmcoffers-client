@@ -4,7 +4,7 @@
   </button>
 
   <div *ngIf="showTable">
-    <div class="title">
+    <div class="title-crud">
       <h3>Listado de Publishers</h3>
       <button
         mat-icon-button
@@ -17,7 +17,7 @@
       </button>
     </div>
 
-    <section class="example-container mat-elevation-z8" tabindex="0">
+    <section class="example-container mat-elevation-z8 tabla-crud" tabindex="0">
       <table
         mat-table
         [dataSource]="publishers"
