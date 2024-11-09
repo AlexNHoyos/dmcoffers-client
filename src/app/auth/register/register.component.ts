@@ -54,6 +54,7 @@ export class RegisterComponent implements OnInit {
     this.user.birth_date = this.registerForm.controls['birth_date'].value;
 
 
+
     this.registerService.register(this.user).subscribe(data => {
     })
   }

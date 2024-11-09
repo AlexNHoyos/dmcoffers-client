@@ -1,7 +1,5 @@
-@import 'src/styles.scss';
-
-.toolbar{
-  .navbar-brand.navbar-small{
+.toolbar {
+  .navbar-brand.navbar-small {
     position: absolute;
     top: 0;
     left: 50%;
@@ -9,44 +7,49 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
     @media (min-width: 600px) {
       display: none;
     }
+
     .small-logo {
       width: 40px;
       height: 40px;
       border-radius: 50%;
       margin-right: 0.5rem;
     }
-  
+
     .navbar-title {
       font-size: 1.5rem;
       font-weight: bold;
       color: white;
     }
   }
+
   .navbar-brand {
-      font-size: 1rem;
-      font-weight: bold;
-      display: block;
-  
-      .welcome-text {
-        color: white; 
-      }
-  
-      .role-text {
-        font-size: 0.9rem;
-        color: #6c757d; 
-      }
-  
-      .unauthenticated-text {
-        color: #dc3545; 
-      }
+    font-size: 1rem;
+    font-weight: bold;
+    display: block;
+
+    .welcome-text {
+      color: white;
     }
+
+    .role-text {
+      font-size: 0.9rem;
+      color: #6c757d;
+    }
+
+    .unauthenticated-text {
+      color: #dc3545;
+    }
+  }
+
   .search-container {
     display: flex;
     align-items: center;
     margin-top: 10px;
+
     @media (min-width: 992px) {
       position: absolute;
       right: 15px;
@@ -54,14 +57,16 @@
     }
   }
 
-  .carrito{
+  .carrito {
     color: white;
+
     @media (min-width: 992px) {
-        position: absolute;
-        right: 330px;
-        bottom: 8px;
-      }
+      position: absolute;
+      right: 330px;
+      bottom: 8px;
+    }
   }
+
   .input-group {
     width: 300px;
   }
@@ -74,4 +79,3 @@
     border-radius: 0 25px 25px 0;
   }
 }
-
