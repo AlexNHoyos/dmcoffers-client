@@ -4,6 +4,10 @@
   No tienes juegos en tu Lista de deseos.
 </div>
 
+<div *ngIf="!isLoading && wishlist.length > 0" class="titulo-container">
+  <h1 class="titulo">Lista de deseos</h1>
+</div>
+
 <app-juego-list
   *ngIf="!isLoading && wishlist.length > 0"
   [juegos]="wishlist"

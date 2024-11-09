@@ -1,10 +1,22 @@
-<div *ngIf="userLoginOn">
-  <div class="card">
-    <app-publisher></app-publisher>
-    <app-categorias></app-categorias>
-    <app-desarrolladores></app-desarrolladores>
-    <app-hosting></app-hosting>
-    <app-support-ticket></app-support-ticket>
-    <app-juegos-crud></app-juegos-crud>
+<div *ngIf="userLoginOn" class="dashboard-container">
+  <div class="card-container">
+    <div class="card-item">
+      <app-publisher></app-publisher>
+    </div>
+    <div class="card-item">
+      <app-categorias></app-categorias>
+    </div>
+    <div class="card-item">
+      <app-desarrolladores></app-desarrolladores>
+    </div>
+    <div class="card-item">
+      <app-hosting></app-hosting>
+    </div>
+    <div class="card-item">
+      <app-support-ticket></app-support-ticket>
+    </div>
+    <div class="card-item">
+      <app-juegos-crud></app-juegos-crud>
+    </div>
   </div>
 </div>

@@ -3,6 +3,7 @@ import { LoginService } from '../../services/auth/login.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
+import { ProximamenteService } from 'src/app/services/proximamente.service';
 
 @Component({
   selector: 'app-nav',
@@ -19,7 +20,8 @@ export class NavComponent implements OnInit, OnDestroy {
   constructor(
     private loginService: LoginService,
     private userUtilsService: UserUtilsService,
-    private router: Router
+    private router: Router,
+    private proximamenteService: ProximamenteService
   ) {}
 
   menuOpen: boolean = false; // Estado inicial cerrado
@@ -51,6 +53,10 @@ export class NavComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     // Limpiar la suscripción para evitar fugas de memoria
     this.subscriptions.unsubscribe();
+  }
+
+  showProximamente(): void {
+    this.proximamenteService.mostrarMensaje();
   }
 
   // Método para cargar el nombre del usuario

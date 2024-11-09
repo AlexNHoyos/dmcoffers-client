@@ -66,9 +66,7 @@
           </li>
 
           <li *ngIf="userLoginOn" class="nav-item">
-            <a class="nav-link" (click)="info()" routerLink="/info"
-              >Datos Personales</a
-            >
+            <a class="nav-link" (click)="info()" routerLink="/info">Perfil</a>
           </li>
 
           <li *ngIf="userLoginOn" class="nav-item">
@@ -81,6 +79,16 @@
             <a class="nav-link" (click)="logout()" routerLink="/inicio"
               >Cerrar Sesion</a
             >
+          </li>
+
+          <li *ngIf="userLoginOn" class="nav-item carrito">
+            <button
+              mat-icon-button
+              (click)="showProximamente()"
+              aria-label="Carrito de compras"
+            >
+              <mat-icon>shopping_cart</mat-icon>
+            </button>
           </li>
 
           <li class="nav-item search-container">

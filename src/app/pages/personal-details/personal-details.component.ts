@@ -3,11 +3,16 @@ import { User } from '../../models/user.model';
 import { UserService } from '../../services/user/user.service';
 import { LoginService } from 'src/app/services/auth/login.service';
 import { FormBuilder, Validators } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { ProximamenteService } from 'src/app/services/proximamente.service';
 
 @Component({
   selector: 'app-personal-details',
   templateUrl: './personal-details.component.html',
   styleUrls: ['./personal-details.component.scss'],
+  providers: [DatePipe],
 })
 export class PersonalDetailsComponent implements OnInit {
   errorMessage: String = '';
@@ -15,6 +20,8 @@ export class PersonalDetailsComponent implements OnInit {
   user?: User;
   userLoginOn: boolean = false;
   editMode: boolean = false;
+  userRol: string | null = null;
+  private subscriptions: Subscription = new Subscription();
 
   registerForm = this.formBuilder.group({
     id: [''],
@@ -25,7 +32,9 @@ export class PersonalDetailsComponent implements OnInit {
   constructor(
     private userService: UserService,
     private formBuilder: FormBuilder,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private proximamenteService: ProximamenteService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -41,6 +50,9 @@ export class PersonalDetailsComponent implements OnInit {
     this.loginService.userLoginOn.subscribe({
       next: (userLoginOn) => {
         this.userLoginOn = userLoginOn;
+        if (!this.userLoginOn) {
+          this.router.navigate(['/inicio']); // Redirige a la página de inicio si no está logueado
+        }
       },
     });
   }
@@ -54,6 +66,7 @@ export class PersonalDetailsComponent implements OnInit {
         this.registerForm.controls.id.setValue(userData.id);
         this.registerForm.controls.realname.setValue(userData.realname);
         this.registerForm.controls.surname.setValue(userData.surname);
+        this.loadUserRol();
       },
       error: (errorData) => {
         this.errorMessage = errorData;
@@ -62,6 +75,27 @@ export class PersonalDetailsComponent implements OnInit {
         console.info('User Data ok');
       },
     });
+  }
+
+  loadUserRol(): void {
+    this.subscriptions.add(
+      this.loginService.userRol.subscribe({
+        next: (role) => {
+          this.userRol = role; // Asigna el rol
+        },
+        error: (err) => {
+          console.error('Error al obtener el rol del usuario', err);
+        },
+      })
+    );
+  }
+
+  goToWishlist(): void {
+    this.router.navigate(['/wishlist']);
+  }
+
+  showProximamente(): void {
+    this.proximamenteService.mostrarMensaje();
   }
 
   get realname() {
@@ -80,6 +114,7 @@ export class PersonalDetailsComponent implements OnInit {
           next: () => {
             this.editMode = false;
             this.user = this.registerForm.value as User;
+            location.reload();
           },
           error: (errorData) => console.error(errorData),
         });
