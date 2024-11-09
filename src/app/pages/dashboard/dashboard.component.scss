@@ -1,3 +1,38 @@
-.card{
-    overflow-y: auto;
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+
+}
+
+.card-item {
+    width: 100%;
+    margin-bottom: 1em;
+    max-width: 1200px;
+    .mat-card {
+        width: 100%;
+    }
+
+}
+
+
+
+
+@media (min-width: 600px) {
+    .dashboard-container {
+        padding: 30px;
+        gap: 30px;
+        .card-item{
+        border-radius: 8px;
+        }
+
+    }
+
+}
+
+@media (min-width: 992px) {
+    .dashboard-container {
+        padding-left: 100px;
+
+    }
 }
