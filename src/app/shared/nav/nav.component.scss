@@ -46,6 +46,11 @@
   .search-container {
     display: flex;
     align-items: center;
+    margin-top: 10px;
+    @media (min-width: 992px) {
+      position: absolute;
+      right: 15px;
+    }
   }
 
   .input-group {

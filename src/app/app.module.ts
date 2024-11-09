@@ -22,13 +22,14 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { LoginComponent } from './auth/login/login.component';
 import { NavComponent } from './shared/nav/nav.component';
-import { PersonalDetailsComponent } from './components/personal-details/personal-details.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
 import { AlertService } from './components/alert/alert.service';
@@ -79,6 +80,7 @@ import { JuegoDetailDialogComponent } from './aplicacion/juegos/juegos-crud/jueg
 import { NotAuthorizedComponent } from './components/not-authorized/not-authorized.component';
 import { WishlistComponent } from './pages/wishlist/wishlist.component';
 import { WishlistService } from './aplicacion/juegos/wishlist.service';
+import { PersonalDetailsComponent } from './pages/personal-details/personal-details.component';
 
 @NgModule({
   declarations: [
@@ -152,6 +154,8 @@ import { WishlistService } from './aplicacion/juegos/wishlist.service';
     MatNativeDateModule,
     MatSelectModule,
     MatExpansionModule,
+    MatDividerModule,
+    MatSnackBarModule,
   ],
 
   providers: [

@@ -8,7 +8,6 @@ import { NotAuthorizedComponent } from './components/not-authorized/not-authoriz
 import { LoginComponent } from './auth/login/login.component';
 
 import { AppComponent } from './app.component';
-import { PersonalDetailsComponent } from './components/personal-details/personal-details.component';
 
 import { PublisherComponent } from './aplicacion/publishers/publishers.component';
 import { PublisherCreateComponent } from './aplicacion/publishers/publisher-create/publisher-create.component';
@@ -25,6 +24,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { JuegoDetailComponent } from './aplicacion/juegos/juego-detail/juego-detail.component';
 import { ResultadosBusquedaComponent } from './aplicacion/juegos/resultados-busqueda/resultados-busqueda.component';
 import { WishlistComponent } from './pages/wishlist/wishlist.component';
+import { PersonalDetailsComponent } from './pages/personal-details/personal-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
