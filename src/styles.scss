@@ -1,12 +1,10 @@
-@import '../src/assets/styles/variables'; // Variables should be imported first
-@import "../node_modules/bootstrap/scss/bootstrap"; // Import Bootstrap SCSS
-@import "~@angular/material/prebuilt-themes/deeppurple-amber.css"; // Import Angular Material theme
+@import '../src/assets/styles/variables';
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 @import "./app/shared/header/header.component.scss";
 @import "./app/shared/footer/footer.component.scss";
 @import "./app/shared/nav/nav.component.scss";
-@import "./app/shared/nav/nav.component.scss";
 
-/* Import custom font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Protest+Guerrilla&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=SUSE:wght@100..800&display=swap');
@@ -15,8 +13,6 @@ html,
 body {
   height: 100%;
   margin: 0;
-  //font-family: 'Roboto Mono', monospace !important; // Font applied globally
-  //font-weight: 700; // Default weight
   font-family: "SUSE", sans-serif;
   font-optical-sizing: auto;
   font-weight: 700;
@@ -25,7 +21,6 @@ body {
   padding-bottom: 50px;
 }
 
-// Sobrescribe la tipografía para todos los componentes de Angular Material
 mat-mdc-typography,
 mat-mdc-button,
 mat-mdc-card,
@@ -48,19 +43,14 @@ mdc-card-actions {
   gap: 20px;
 }
 
-
-
-// Example variables or settings for Bootstrap overrides
-$primary: #900; // Bootstrap primary color override (optional)
-$enable-shadows: true; // Enable shadows if needed
-$prefix: "mo-"; // Example prefix (if used in components)
+$primary: #900;
+$enable-shadows: true;
+$prefix: "mo-";
 
 mat-mdc-icon-button,
 mat-mdc-button-touch-target {
-  height: 0 !important; //Para que la zona de tocar boton no sea mas grande que el boton
+  height: 0 !important;
 }
-
-
 
 $primary-color: #1976d2;
 $icon-size: 25px;
@@ -79,7 +69,6 @@ $icon-size: 25px;
   }
 }
 
-
 .tabla-crud {
   margin: 10px;
 
@@ -96,11 +85,6 @@ $icon-size: 25px;
     width: 100%;
     table-layout: fixed;
   }
-
-  /*.mat-column-publishername {
-  width: 60%;
-  padding-left: 5px;
-}*/
 
   .mat-column-actions {
     font-style: italic;

@@ -18,6 +18,7 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
   user: User = new User();
+  today: Date = new Date();
 
   constructor(
     private formBuilder: FormBuilder,
