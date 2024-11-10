@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "build": "ng build --configuration production",
+    "build": "tsc -p tsconfig.json",
     "start": "serve -s dist",
-    "start-dev": "ng serve",
+    "start-dev": "ng serve -o",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
