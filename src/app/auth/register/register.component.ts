@@ -18,6 +18,7 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
   user: User = new User();
+  today: Date = new Date();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -42,8 +43,8 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void { };
 
   register() {
-    this.user.realname = this.registerForm.controls['realname'].value;
     this.user.surname = this.registerForm.controls['surname'].value;
+    this.user.realname = this.registerForm.controls['realname'].value;
     this.user.username = this.registerForm.controls['username'].value;
     this.user.creationuser = 'admin';
     this.user.creationtimestamp = new Date();
@@ -53,8 +54,6 @@ export class RegisterComponent implements OnInit {
     this.user.password = this.encryptionService.encrypt(this.registerForm.controls['password'].value);
     this.user.birth_date = this.registerForm.controls['birth_date'].value;
 
-
-    console.log(this.user);
     this.registerService.register(this.user).subscribe(data => {
     })
   }
