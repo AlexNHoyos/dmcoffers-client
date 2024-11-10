@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { RegisterService } from 'src/app/services/auth/register.service';
 import { ErrorHandlerService } from 'src/app/services/error-handler.service';
@@ -17,7 +17,7 @@ import { EncryptionService } from 'src/app/services/auth/encryption.service';
 export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
-  user: User;
+  user: User = new User();
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,27 +29,17 @@ export class RegisterComponent implements OnInit {
   ) {
     this.registerForm = this.formBuilder.group({
       username: ['', [Validators.required]],
-      realname: ['', [Validators.required]],
-      surname: ['', [Validators.required]],
-      paswword: ['', [Validators.required]],
-      password2: ['', [Validators.required]]
-    });
+      realname: [,],
+      surname: [,],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      password2: ['', [Validators.required, Validators.minLength(8)]],
+      birth_date: ['', [Validators.required]]
+    },
+      { validators: this.passwordMatchValidator() });
     this.user = new User();
   }
 
-  ngOnInit(): void { console.log('entra') };
-
-  get username() {
-    return this.registerForm.controls['username'];
-  }
-
-  get password() {
-    return this.registerForm.controls['password'];
-  }
-
-  get password2() {
-    return this.registerForm.controls['password2'];
-  }
+  ngOnInit(): void { };
 
   register() {
     this.user.realname = this.registerForm.controls['realname'].value;
@@ -57,13 +47,15 @@ export class RegisterComponent implements OnInit {
     this.user.username = this.registerForm.controls['username'].value;
     this.user.creationuser = 'admin';
     this.user.creationtimestamp = new Date();
+    this.user.modificationuser = 'admin';
+    this.user.modificationtimestamp = new Date();
     this.user.status = true;
     this.user.password = this.encryptionService.encrypt(this.registerForm.controls['password'].value);
+    this.user.birth_date = this.registerForm.controls['birth_date'].value;
 
-    console.log(this.user.password);
 
+    console.log(this.user);
     this.registerService.register(this.user).subscribe(data => {
-      console.log(data);
     })
   }
 
@@ -73,4 +65,17 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  passwordMatchValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const formGroup = control as FormGroup;
+      const password = formGroup.controls['password']?.value;
+      const confirmPassword = formGroup.controls['password2']?.value;
+
+      if (password && confirmPassword && password !== confirmPassword) {
+        return { passwordsMismatch: true };
+      }
+
+      return null;
+    };
+  }
 }

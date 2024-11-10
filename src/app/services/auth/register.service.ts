@@ -14,11 +14,8 @@ export class RegisterService {
     }
 
     register(user: User): Observable<any> {
+        console.log("entra");
         return this.http.post<any>(`${environment.urlHost}users/register`, user);
     }
-
-
-
-
 
 }
