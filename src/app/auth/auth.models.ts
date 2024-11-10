@@ -1,8 +1,8 @@
 export class User {
     id: string = '';
     idUserAuth?: string;
-    realname: string = '';
-    surname: string = '';
+    realname: undefined | string = '';
+    surname: undefined | string = '';
     username: string = '';
     birth_date?: Date;
     delete_date?: Date;
