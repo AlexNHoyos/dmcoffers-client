@@ -12,13 +12,38 @@
 
             <mat-form-field appearance="fill">
                 <mat-label>Contraseña</mat-label>
-                <input matInput formControlName="password" type="password" placeholder="Ingrese su contraseña" />
+                <input matInput formControlName="password" type="password" placeholder="Ingrese su contraseña"
+                    required />
+                <mat-error
+                    *ngIf="this.registerForm.controls['password'].value != this.registerForm.controls['password2'].value">
+                    Las contraseñas deben coincidir.
+                </mat-error>
+                <mat-error *ngIf="this.registerForm.controls['password'].value.length < 8">
+                    La contraseña debe tener al menos 8 caracteres.
+                </mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="fill">
                 <mat-label>Confirma tu contraseña</mat-label>
-                <input matInput formControlName="password2" type="password" placeholder="Repita su contraseña" />
+                <input matInput formControlName="password2" type="password" placeholder="Repita su contraseña"
+                    required />
+                <mat-error
+                    *ngIf="this.registerForm.controls['password'].value != this.registerForm.controls['password2'].value">
+                    Las contraseñas deben coincidir.
+                </mat-error>
+                <mat-error *ngIf="this.registerForm.controls['password2'].value.length < 8">
+                    La contraseña debe tener al menos 8 caracteres.
+                </mat-error>
             </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Fecha de nacimiento</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="birth_date" name="birth_date" />
+                <mat-hint>DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
 
             <mat-accordion>
                 <mat-expansion-panel>
@@ -35,21 +60,13 @@
                         <mat-label>Apellido</mat-label>
                         <input matInput formControlName="surname" type="text" placeholder="Apellido" />
                     </mat-form-field>
-
-                    <mat-form-field>
-                        <mat-label>Fecha de nacimiento</mat-label>
-                        <input matInput [matDatepicker]="picker" formControlName="birth_date" name="birth_date" />
-                        <mat-hint>DD/MM/YYYY</mat-hint>
-                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                    </mat-form-field>
-
                 </mat-expansion-panel>
             </mat-accordion>
         </mat-card-content>
 
         <mat-card-actions>
-            <button mat-raised-button color="primary" type="submit" (clicked)="register()">
+            <button mat-raised-button color="primary" type="submit" (clicked)="register()"
+                [disabled]="registerForm.invalid">
                 Registrarse
             </button>
         </mat-card-actions>

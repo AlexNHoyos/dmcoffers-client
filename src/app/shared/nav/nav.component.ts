@@ -22,7 +22,7 @@ export class NavComponent implements OnInit, OnDestroy {
     private userUtilsService: UserUtilsService,
     private router: Router,
     private proximamenteService: ProximamenteService
-  ) {}
+  ) { }
 
   menuOpen: boolean = false; // Estado inicial cerrado
 
@@ -93,6 +93,10 @@ export class NavComponent implements OnInit, OnDestroy {
 
   login() {
     this.router.navigate(['/login']);
+  }
+
+  register() {
+    this.router.navigate(['/register']);
   }
 
   logout() {
