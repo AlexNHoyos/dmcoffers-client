@@ -63,7 +63,9 @@ export class PersonalDetailsComponent implements OnInit {
       next: (userData) => {
         console.log(userData);
         this.user = userData;
-        this.registerForm.controls.id.setValue(userData.id.toString());
+        this.registerForm.controls.id.setValue(
+          userData.idUser.toString() ?? ''
+        );
         this.registerForm.controls.realname.setValue(userData.realname ?? '');
         this.registerForm.controls.surname.setValue(userData.surname ?? '');
         this.loadUserRol();
