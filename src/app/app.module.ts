@@ -82,6 +82,8 @@ import { WishlistComponent } from './pages/wishlist/wishlist.component';
 import { WishlistService } from './aplicacion/juegos/wishlist.service';
 import { PersonalDetailsComponent } from './pages/personal-details/personal-details.component';
 import { SoporteComponent } from './components/soporte/soporte.component';
+import { UsuariosComponent } from './aplicacion/usuarios/usuarios.component';
+import { UpdateRolComponent } from './aplicacion/usuarios/update-rol/update-rol.component';
 
 @NgModule({
   declarations: [
@@ -133,6 +135,8 @@ import { SoporteComponent } from './components/soporte/soporte.component';
     NotAuthorizedComponent,
     WishlistComponent,
     SoporteComponent,
+    UsuariosComponent,
+    UpdateRolComponent,
   ],
   imports: [
     CommonModule,
@@ -182,4 +186,4 @@ import { SoporteComponent } from './components/soporte/soporte.component';
 
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
