@@ -4,6 +4,7 @@ export class User {
   id: number = 0;
   idUser: number = 0;
   idUserAuth?: string;
+  rolDescription: string | undefined;
   rolDesc: string | undefined;
   realname?: string;
   surname?: string;
