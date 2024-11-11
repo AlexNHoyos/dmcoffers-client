@@ -1,11 +1,18 @@
-@import 'src/styles.scss';
+@import '../../../assets/styles/variables';
 
 .header {
-  display: none; 
+  display: none;
 
   @media (min-width: 600px) {
 
-    display: block; 
+    display: block;
+  }
+
+  .logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid white;
   }
 
   .toolbar {
@@ -20,8 +27,8 @@
       gap: 1rem;
       width: 100%;
       padding: 10px;
-        /* Ajusta el padding según sea necesario */
-        box-sizing: border-box;
+      /* Ajusta el padding según sea necesario */
+      box-sizing: border-box;
 
       img.logo {
         width: 65px;
@@ -51,4 +58,3 @@
     }
   }
 }
-

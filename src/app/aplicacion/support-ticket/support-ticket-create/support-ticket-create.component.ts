@@ -5,6 +5,7 @@ import { UserUtilsService } from 'src/app/services/user/user-util-service.servic
 
 import { SupportTicket } from '../support-ticket.model';
 import { SupportTicketService } from '../support-ticket.service';
+import { ProximamenteService } from 'src/app/services/proximamente.service';
 
 @Component({
   selector: 'app-support-ticket-create',
@@ -19,11 +20,13 @@ export class SupportTicketCreateComponent {
     creationtimestamp: new Date().toISOString(),
     modificationuser: '',
     modificationtimestamp: '',
+    description: '',
   };
   constructor(
     private supportTicketService: SupportTicketService,
     private dialogRef: MatDialogRef<SupportTicketCreateComponent>,
-    private userUtilsService: UserUtilsService
+    private userUtilsService: UserUtilsService,
+    private proximamenteService: ProximamenteService
   ) {}
   ngOnInit(): void {
     this.userUtilsService.setLoggedInUser().subscribe((username) => {
@@ -48,7 +51,10 @@ export class SupportTicketCreateComponent {
     };
 
     this.supportTicketService
-      .createSupportTicket(supportTicketToSend)
+      .createSupportTicket(
+        supportTicketToSend,
+        supportTicketToSend.creationuser
+      )
       .subscribe({
         next: (response) => {
           console.log('supportTicket creado exitosamente', response);
@@ -61,5 +67,9 @@ export class SupportTicketCreateComponent {
   }
   cancel(): void {
     this.dialogRef.close(false); // Cierra el diálogo sin guardar cambios
+  }
+
+  showProximamente(): void {
+    this.proximamenteService.mostrarMensaje();
   }
 }

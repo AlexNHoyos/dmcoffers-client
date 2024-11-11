@@ -95,6 +95,10 @@ export class NavComponent implements OnInit, OnDestroy {
     this.router.navigate(['/login']);
   }
 
+  register() {
+    this.router.navigate(['/register']);
+  }
+
   logout() {
     this.loginService.logout();
     this.router.navigate(['/inicio']);
@@ -107,6 +111,10 @@ export class NavComponent implements OnInit, OnDestroy {
 
   wishlist() {
     this.router.navigate(['/wishlist']);
+  }
+
+  soporte() {
+    this.router.navigate(['/soporte']);
   }
 
   onSearch() {

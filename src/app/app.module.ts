@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { MatButtonModule } from '@angular/material/button';
+import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
@@ -81,6 +81,9 @@ import { NotAuthorizedComponent } from './components/not-authorized/not-authoriz
 import { WishlistComponent } from './pages/wishlist/wishlist.component';
 import { WishlistService } from './aplicacion/juegos/wishlist.service';
 import { PersonalDetailsComponent } from './pages/personal-details/personal-details.component';
+import { SoporteComponent } from './components/soporte/soporte.component';
+import { UsuariosComponent } from './aplicacion/usuarios/usuarios.component';
+import { UpdateRolComponent } from './aplicacion/usuarios/update-rol/update-rol.component';
 
 @NgModule({
   declarations: [
@@ -131,6 +134,9 @@ import { PersonalDetailsComponent } from './pages/personal-details/personal-deta
     JuegoDetailDialogComponent,
     NotAuthorizedComponent,
     WishlistComponent,
+    SoporteComponent,
+    UsuariosComponent,
+    UpdateRolComponent,
   ],
   imports: [
     CommonModule,
@@ -165,6 +171,7 @@ import { PersonalDetailsComponent } from './pages/personal-details/personal-deta
     CategoriaService,
     AlertService,
     DesarrolladoresService,
+    RegisterService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptorService,
