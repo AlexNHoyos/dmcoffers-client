@@ -1,13 +1,31 @@
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
-  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #673ab7">
-    <a class="navbar-brand navbar-small" href="#"><img src="assets/images/logo.png" alt="DMC - Offers Logo" width="40"
-        height="40" class="d-inline-block align-text-top small-logo" routerLink="/inicio" />
-      <span class="navbar-title" routerLink="/inicio">DMC</span></a>
+  <nav
+    class="navbar navbar-expand-lg navbar-dark"
+    style="background-color: #673ab7"
+  >
+    <a class="navbar-brand navbar-small" href="#"
+      ><img
+        src="assets/images/logo.png"
+        alt="DMC - Offers Logo"
+        width="40"
+        height="40"
+        class="d-inline-block align-text-top small-logo"
+        routerLink="/inicio"
+      />
+      <span class="navbar-title" routerLink="/inicio">DMC</span></a
+    >
 
     <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -25,21 +43,32 @@
               <!-- Mensaje de usuario no autenticado -->
               <ng-template #notLoggedIn>
                 <p class="mb-0">
-                  <span class="unauthenticated-text">Usuario NO autenticado</span>
+                  <span class="unauthenticated-text"
+                    >Usuario NO autenticado</span
+                  >
                 </p>
               </ng-template>
             </a>
           </li>
 
           <li *ngIf="userLoginOn && userRol === 'admin'" class="nav-item">
-            <a class="nav-link active" (click)="dashboard()" routerLink="/inicio">Dashboard</a>
+            <a
+              class="nav-link active"
+              (click)="dashboard()"
+              routerLink="/inicio"
+              >Dashboard</a
+            >
           </li>
           <li *ngIf="!userLoginOn" class="nav-item">
-            <a class="nav-link" (click)="login()" routerLink="/iniciar-sesion">Iniciar Sesion</a>
+            <a class="nav-link" (click)="login()" routerLink="/iniciar-sesion"
+              >Iniciar Sesion</a
+            >
           </li>
 
           <li *ngIf="!userLoginOn" class="nav-item">
-            <a class="nav-link" (click)="register()" routerLink="/register">Registrarse</a>
+            <a class="nav-link" (click)="register()" routerLink="/register"
+              >Registrarse</a
+            >
           </li>
 
           <li *ngIf="userLoginOn" class="nav-item">
@@ -47,23 +76,42 @@
           </li>
 
           <li *ngIf="userLoginOn" class="nav-item">
-            <a class="nav-link" (click)="wishlist()" routerLink="/wishlist">Lista de deseos</a>
+            <a class="nav-link" (click)="wishlist()" routerLink="/wishlist"
+              >Lista de deseos</a
+            >
           </li>
 
           <li *ngIf="userLoginOn" class="nav-item">
-            <a class="nav-link" (click)="logout()" routerLink="/inicio">Cerrar Sesion</a>
+            <a class="nav-link" (click)="soporte()" routerLink="/soporte"
+              >Soporte</a
+            >
+          </li>
+
+          <li *ngIf="userLoginOn" class="nav-item">
+            <a class="nav-link" (click)="logout()" routerLink="/inicio"
+              >Cerrar Sesion</a
+            >
           </li>
 
           <li *ngIf="userLoginOn" class="nav-item carrito">
-            <button mat-icon-button (click)="showProximamente()" aria-label="Carrito de compras">
+            <button
+              mat-icon-button
+              (click)="showProximamente()"
+              aria-label="Carrito de compras"
+            >
               <mat-icon>shopping_cart</mat-icon>
             </button>
           </li>
 
           <li class="nav-item search-container">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Buscar juegos..." [(ngModel)]="searchTerm"
-                (keydown.enter)="onSearch()" />
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Buscar juegos..."
+                [(ngModel)]="searchTerm"
+                (keydown.enter)="onSearch()"
+              />
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary" (click)="onSearch()">
                   <i class="fas fa-search"></i>

@@ -25,6 +25,7 @@ import { JuegoDetailComponent } from './aplicacion/juegos/juego-detail/juego-det
 import { ResultadosBusquedaComponent } from './aplicacion/juegos/resultados-busqueda/resultados-busqueda.component';
 import { WishlistComponent } from './pages/wishlist/wishlist.component';
 import { PersonalDetailsComponent } from './pages/personal-details/personal-details.component';
+import { SoporteComponent } from './components/soporte/soporte.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -36,6 +37,7 @@ const routes: Routes = [
     canActivate: [adminGuard],
   },
   { path: 'not-authorized', component: NotAuthorizedComponent },
+  { path: 'soporte', component: SoporteComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'info', component: PersonalDetailsComponent },
@@ -64,4 +66,4 @@ const routes: Routes = [
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

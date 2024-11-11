@@ -81,6 +81,7 @@ import { NotAuthorizedComponent } from './components/not-authorized/not-authoriz
 import { WishlistComponent } from './pages/wishlist/wishlist.component';
 import { WishlistService } from './aplicacion/juegos/wishlist.service';
 import { PersonalDetailsComponent } from './pages/personal-details/personal-details.component';
+import { SoporteComponent } from './components/soporte/soporte.component';
 
 @NgModule({
   declarations: [
@@ -131,6 +132,7 @@ import { PersonalDetailsComponent } from './pages/personal-details/personal-deta
     JuegoDetailDialogComponent,
     NotAuthorizedComponent,
     WishlistComponent,
+    SoporteComponent,
   ],
   imports: [
     CommonModule,

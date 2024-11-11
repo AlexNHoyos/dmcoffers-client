@@ -42,7 +42,7 @@ export class ErrorHandlerService {
               'Error interno del servidor. Inténtelo nuevamente más tarde.';
             break;
           default:
-            errorMsg = `Error inesperado: ${error.status} - ${error.message}`;
+            errorMsg = `Credenciales invalidas`;
             break;
         }
       }
