@@ -8,6 +8,7 @@ import {
   SupportTicket,
   SupportTicketPage,
 } from '../../aplicacion/support-ticket/support-ticket.model';
+import { LoginService } from 'src/app/services/auth/login.service';
 
 @Injectable({
   providedIn: 'root',
@@ -19,9 +20,12 @@ export class SupportTicketService extends CrudService<SupportTicketPage> {
     super(http);
   }
 
-  createSupportTicket(supportTicket: SupportTicket): Observable<SupportTicket> {
+  createSupportTicket(
+    supportTicket: SupportTicket,
+    username: string
+  ): Observable<SupportTicket> {
     return this.http.post<SupportTicket>(
-      `${this.endpoint}/create`,
+      `${this.endpoint}/createTicket/${username}`,
       supportTicket
     );
   }

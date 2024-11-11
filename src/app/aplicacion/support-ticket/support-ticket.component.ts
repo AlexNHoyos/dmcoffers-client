@@ -92,7 +92,7 @@ export class SupportTicketComponent extends CrudComponent<SupportTicket> {
     });
   }
 
-  override displayedColumns: string[] = ['id', 'actions'];
+  override displayedColumns: string[] = ['id', 'user', 'actions'];
 
   showTable: boolean = false;
   buttonText: string = 'Mostrar SupportTickets';

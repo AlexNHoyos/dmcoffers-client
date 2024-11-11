@@ -7,6 +7,7 @@ export class SupportTicket {
   creationtimestamp: string | null = null;
   modificationuser?: string;
   modificationtimestamp?: string | null = null;
+  description: string = '';
 }
 
 export interface SupportTicketPage extends Page<SupportTicket> {

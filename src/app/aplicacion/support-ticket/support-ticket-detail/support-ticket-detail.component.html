@@ -6,6 +6,10 @@
     {{ data.supportTicket.status ? "Activo" : "Inactivo" }}
   </p>
   <p>
+    <strong>Descripcion del problema:</strong>
+    {{ data.supportTicket.description }}
+  </p>
+  <p>
     <strong>Fecha de carga:</strong>
     {{ data.supportTicket.creationtimestamp | date }}
   </p>
