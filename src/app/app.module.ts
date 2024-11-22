@@ -24,6 +24,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatListModule } from '@angular/material/list';
 
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FooterComponent } from './shared/footer/footer.component';
@@ -84,6 +85,8 @@ import { PersonalDetailsComponent } from './pages/personal-details/personal-deta
 import { SoporteComponent } from './components/soporte/soporte.component';
 import { UsuariosComponent } from './aplicacion/usuarios/usuarios.component';
 import { UpdateRolComponent } from './aplicacion/usuarios/update-rol/update-rol.component';
+import { SweItemMenuComponent } from './components/sweitemmenu/sweitemmenu.component';
+import { SweItemMenuService } from './components/sweitemmenu/sweitemmenu.service';
 
 @NgModule({
   declarations: [
@@ -137,6 +140,7 @@ import { UpdateRolComponent } from './aplicacion/usuarios/update-rol/update-rol.
     SoporteComponent,
     UsuariosComponent,
     UpdateRolComponent,
+    SweItemMenuComponent,
   ],
   imports: [
     CommonModule,
@@ -162,6 +166,7 @@ import { UpdateRolComponent } from './aplicacion/usuarios/update-rol/update-rol.
     MatExpansionModule,
     MatDividerModule,
     MatSnackBarModule,
+    MatListModule
   ],
 
   providers: [
@@ -172,6 +177,7 @@ import { UpdateRolComponent } from './aplicacion/usuarios/update-rol/update-rol.
     AlertService,
     DesarrolladoresService,
     RegisterService,
+    SweItemMenuService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptorService,
@@ -186,4 +192,4 @@ import { UpdateRolComponent } from './aplicacion/usuarios/update-rol/update-rol.
 
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

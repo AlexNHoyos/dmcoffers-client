@@ -1,0 +1,23 @@
+<mat-toolbar>
+    <button mat-icon-button>
+        <mat-icon>menu</mat-icon>
+    </button>
+    <div *ngFor="let item of menuItems">
+        <mat-toolbar-row [routerLink]="item.route">
+            <span>{{ item.label }}</span>
+        </mat-toolbar-row>
+
+        <!-- Submenús -->
+        <div *ngIf="item.subMenus?.length">
+            <button mat-button (click)="toggleSubMenu(item)">
+                <mat-icon>{{ item['expanded'] ? 'expand_less' : 'expand_more' }}</mat-icon>
+            </button>
+            <div *ngIf="item['expanded']">
+                <mat-toolbar-row *ngFor="let subItem of item.subMenus" [routerLink]="subItem.route">
+
+                    <span>{{ subItem.label }}</span>
+                </mat-toolbar-row>
+            </div>
+        </div>
+    </div>
+</mat-toolbar>
