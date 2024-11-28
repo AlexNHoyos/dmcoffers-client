@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SweItemMenuService } from './sweitemmenu.service';
-import { MenuItem } from './models/sweitemmenu.models';
+import { MenuItem } from './sweitemmenu.models';
 import { Router } from '@angular/router';
 
 
@@ -23,6 +23,8 @@ export class SweItemMenuComponent implements OnInit {
 
   loadMenuItems(): void {
     this.sweItemMenuService.getMenuItem().subscribe((items: MenuItem[]) => {
+      console.log(items);
+
       this.menuItems = items.map(item => ({
         ...item,
         expanded: false
