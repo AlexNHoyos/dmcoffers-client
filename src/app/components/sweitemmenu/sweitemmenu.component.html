@@ -1,25 +1,41 @@
-<mat-toolbar>
-    <button mat-icon-button>
-        <mat-icon>menu</mat-icon>
-    </button>
-    <mat-toolbar-row>
-        <button *ngFor="let item of menuItems" mat-button [routerLink]="item.endpoint">
-            {{ item.title }}
-        </button>
-
-    </mat-toolbar-row>
-
-    <!-- Submenús -->
-    <mat-toolbar-row *ngFor="let item of menuItems">
-        <div *ngIf="item.subMenus?.length">
-            <button mat-button (click)="toggleSubMenu(item)">
-                <mat-icon>{{ item['expanded'] ? 'expand_less' : 'expand_more' }}</mat-icon>
+<mat-sidenav-container>
+    <!-- Contenido principal -->
+    <mat-sidenav-content>
+        <mat-toolbar>
+            <!-- Botón para abrir/cerrar el menú lateral -->
+            <button mat-icon-button (click)="sidenav.toggle()">
+                <mat-icon>menu</mat-icon>
             </button>
-            <div *ngIf="item['expanded']">
-                <span *ngFor="let subItem of item.subMenus" [routerLink]="subItem.endpoint">
-                    {{ subItem.title }}
-                </span>
-            </div>
+        </mat-toolbar>
+        <div class="main-content">
+            <!-- Aquí va el contenido principal de la aplicación -->
+            <router-outlet></router-outlet>
         </div>
-    </mat-toolbar-row>
-</mat-toolbar>
+    </mat-sidenav-content>
+
+    <!-- Menú lateral -->
+    <mat-sidenav #sidenav mode="side" closed>
+        <mat-nav-list>
+            <mat-list-item *ngFor="let item of menuItems">
+                <button mat-button (click)="navigate(item.endpoint)">
+                    {{ item.title }}
+                </button>
+                <mat-list *ngIf="item.subMenus?.length">
+                    <mat-list-item>
+                        <button mat-icon-button (click)="toggleSubMenu(item)">
+                            <mat-icon>{{ item['expanded'] ? 'expand_less' : 'expand_more' }}</mat-icon>
+                        </button>
+                    </mat-list-item>
+                    <mat-list-item *ngIf="item['expanded']">
+                        <ng-container *ngFor="let subItem of item.subMenus">
+                            <button mat-button (click)="navigate(subItem.endpoint)">
+                                {{ subItem.title }}
+                            </button>
+                        </ng-container>
+                    </mat-list-item>
+                </mat-list>
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-sidenav>
+
+</mat-sidenav-container>
