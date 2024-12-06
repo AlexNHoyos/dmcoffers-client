@@ -266,7 +266,8 @@
 
   /* Responsive Styles */
   @media screen and (max-width: 767px) {
-    .card-container > *:not(.circle-link),
+
+    .card-container>*:not(.circle-link),
     .terminal {
       width: 100%;
     }
@@ -295,5 +296,6 @@
 </style>
 
 <app-header></app-header>
+<app-sweitemmenu *ngIf="userLoginOn"></app-sweitemmenu>
 <router-outlet></router-outlet>
 <app-footer></app-footer>

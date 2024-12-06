@@ -1,9 +1,10 @@
-<div class="container-fluid">
+<div *ngIf="userLoginOn" class="container-fluid">
 
-    <app-sweitemmenu></app-sweitemmenu>
 
     <div class="titulo-container">
         <h1 class="titulo">Nuevos lanzamientos</h1>
     </div>
 
     <app-juegos></app-juegos>
+
+</div>

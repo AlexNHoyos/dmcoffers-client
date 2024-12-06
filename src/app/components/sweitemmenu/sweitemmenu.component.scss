@@ -1,11 +1,51 @@
-.sidenav-container {
+/* mat-sidenav-container {
+    width: 10%;
+} */
+
+/* Estilo para el contenedor del sidenav */
+mat-sidenav {
+    width: 10vw;
+    /* El menú lateral ocupará un máximo del 10% del ancho de la pantalla */
+    max-width: 10%;
+    min-width: 100px;
+    /* Ajusta según sea necesario para pantallas pequeñas */
+    background-color: #f5f5f5;
+    /* Color de fondo del menú */
+}
+
+/* Estilo para la lista de navegación */
+mat-nav-list {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    /* Asegura que los elementos estén apilados verticalmente */
     height: 100vh;
+    /* Ocupa toda la altura de la pantalla */
+    overflow-y: auto;
+    /* Permite el scroll si los elementos superan la altura */
 }
 
-.sidenav {
-    width: 250px;
+/* Estilo para cada ítem de la lista */
+mat-list-item {
+    display: flex;
+    flex-direction: column;
+    /* Asegura que los submenús también estén alineados verticalmente */
+    align-items: flex-start;
+    /* Alinea los botones al inicio */
+    margin: 0;
+    padding: 8px 16px;
 }
 
-.submenu {
-    margin-left: 16px; // Identación para submenús
+/* Estilo para los botones */
+button[mat-button] {
+    width: 100%;
+    /* Asegura que los botones ocupen todo el ancho disponible */
+    text-align: left;
+    /* Texto alineado a la izquierda */
+    font-size: 14px;
+}
+
+button[mat-icon-button] {
+    margin-right: 8px;
+    /* Espaciado entre el botón y el texto */
 }

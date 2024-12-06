@@ -1,18 +1,10 @@
 <mat-sidenav-container>
-    <!-- Contenido principal -->
-    <mat-sidenav-content>
-        <mat-toolbar>
-            <!-- Botón para abrir/cerrar el menú lateral -->
-            <button mat-icon-button (click)="sidenav.toggle()">
-                <mat-icon>menu</mat-icon>
-            </button>
-        </mat-toolbar>
-        <div class="main-content">
-            <!-- Aquí va el contenido principal de la aplicación -->
-            <router-outlet></router-outlet>
-        </div>
-    </mat-sidenav-content>
 
+
+    <!-- Botón para abrir/cerrar el menú lateral -->
+    <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
     <!-- Menú lateral -->
     <mat-sidenav #sidenav mode="side" closed>
         <mat-nav-list>
