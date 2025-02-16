@@ -1,12 +1,6 @@
-<mat-sidenav-container>
-
-
-    <!-- Botón para abrir/cerrar el menú lateral -->
-    <button mat-icon-button (click)="sidenav.toggle()">
-        <mat-icon>menu</mat-icon>
-    </button>
+<mat-sidenav-container class="sidenav-container">
     <!-- Menú lateral -->
-    <mat-sidenav #sidenav mode="side" closed>
+    <mat-sidenav #sidenav mode="side" class="sidenav">
         <mat-nav-list>
             <mat-list-item *ngFor="let item of menuItems">
                 <button mat-button (click)="navigate(item.endpoint)">
@@ -30,4 +24,12 @@
         </mat-nav-list>
     </mat-sidenav>
 
+    <!-- Contenido principal -->
+    <mat-sidenav-content class="content">
+        <button mat-icon-button (click)="sidenav.toggle()">
+            <mat-icon>{{ sidenav.opened ? 'chevron_left' : 'menu' }}</mat-icon>
+        </button>
+
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
 </mat-sidenav-container>

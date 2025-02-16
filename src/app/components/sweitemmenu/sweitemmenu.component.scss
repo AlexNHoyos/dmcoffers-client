@@ -1,51 +1,38 @@
-/* mat-sidenav-container {
-    width: 10%;
-} */
-
-/* Estilo para el contenedor del sidenav */
-mat-sidenav {
-    width: 10vw;
-    /* El menú lateral ocupará un máximo del 10% del ancho de la pantalla */
-    max-width: 10%;
-    min-width: 100px;
-    /* Ajusta según sea necesario para pantallas pequeñas */
-    background-color: #f5f5f5;
-    /* Color de fondo del menú */
-}
-
-/* Estilo para la lista de navegación */
-mat-nav-list {
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    /* Asegura que los elementos estén apilados verticalmente */
-    height: 100vh;
-    /* Ocupa toda la altura de la pantalla */
-    overflow-y: auto;
-    /* Permite el scroll si los elementos superan la altura */
-}
-
-/* Estilo para cada ítem de la lista */
-mat-list-item {
-    display: flex;
-    flex-direction: column;
-    /* Asegura que los submenús también estén alineados verticalmente */
-    align-items: flex-start;
-    /* Alinea los botones al inicio */
+html,
+body {
+    height: 100%;
     margin: 0;
-    padding: 8px 16px;
+    padding: 0;
+    overflow: hidden;
 }
 
-/* Estilo para los botones */
-button[mat-button] {
+.sidenav-container {
+    height: 100vh;
+    /* Asegura que ocupe toda la pantalla */
+}
+
+.sidenav {
+    width: 250px;
+    /* Ajusta el ancho del menú lateral */
+    height: 100%;
+    /* Que ocupe toda la altura */
+    background: #fff;
+    /* Asegurar que el fondo sea blanco */
+}
+
+mat-sidenav-content {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    /* Permite desplazamiento si hay mucho contenido */
+}
+
+mat-nav-list {
     width: 100%;
-    /* Asegura que los botones ocupen todo el ancho disponible */
-    text-align: left;
-    /* Texto alineado a la izquierda */
-    font-size: 14px;
 }
 
-button[mat-icon-button] {
-    margin-right: 8px;
-    /* Espaciado entre el botón y el texto */
+button {
+    width: 100%;
+    text-align: left;
 }
