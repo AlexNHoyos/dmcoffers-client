@@ -1,3 +1,8 @@
+$primary-color: rgb(72, 24, 92);
+$hover-color: rgb(54, 15, 72);
+$text-color: rgb(188, 185, 185);
+$shadow-color: rgba(0, 0, 0, 0.3);
+
 html,
 body {
     height: 100%;
@@ -8,31 +13,50 @@ body {
 
 .sidenav-container {
     height: 100vh;
-    /* Asegura que ocupe toda la pantalla */
+    display: flex;
 }
 
 .sidenav {
-    width: 250px;
-    /* Ajusta el ancho del menú lateral */
+    min-width: max-content;
+    max-width: 300px;
     height: 100%;
-    /* Que ocupe toda la altura */
-    background: #fff;
-    /* Asegurar que el fondo sea blanco */
-}
-
-mat-sidenav-content {
-    height: 100vh;
+    background: $primary-color;
+    color: $text-color;
     display: flex;
     flex-direction: column;
-    overflow: auto;
-    /* Permite desplazamiento si hay mucho contenido */
 }
 
 mat-nav-list {
-    width: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
 }
 
-button {
+mat-list-item {
+    display: flex;
+    justify-content: center;
     width: 100%;
-    text-align: left;
+
+    button {
+        width: 100%;
+        text-align: center;
+        background-color: transparent;
+        color: $text-color;
+        border: none;
+        padding: 12px 20px;
+        font-size: 16px;
+        font-weight: lighter;
+
+        &:hover {
+            background-color: $hover-color;
+            box-shadow: $shadow-color;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+mat-sidenav-content {
+    flex-grow: 1;
+    overflow: auto;
 }
