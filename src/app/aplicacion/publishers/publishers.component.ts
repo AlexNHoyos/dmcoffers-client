@@ -20,6 +20,12 @@ export class PublisherComponent extends CrudComponent<Publisher> {
     override dialog: MatDialog
   ) {
     super(publisherService, dialog);
+
+    // Carga y muestra la tabla
+    this.loadPublishers();
+    // Muestra la tabla
+    this.showTable = true;
+    this.buttonText = 'Ocultar publishers'; // Cambia el texto del botón
   }
 
   getCreateComponent() {
@@ -92,19 +98,6 @@ export class PublisherComponent extends CrudComponent<Publisher> {
   showTable: boolean = false;
   buttonText: string = 'Mostrar Publishers';
 
-  togglePublishers() {
-    if (this.showTable) {
-      // Oculta la tabla
-      this.showTable = false;
-      this.buttonText = 'Mostrar Publishers'; // Cambia el texto del botón
-    } else {
-      // Carga y muestra la tabla
-      this.loadPublishers();
-      // Muestra la tabla
-      this.showTable = true;
-      this.buttonText = 'Ocultar publishers'; // Cambia el texto del botón
-    }
-  }
   override ngOnInit(): void {
     // Con esta funcion se puede cargar los publishers al inicio
     // this.loadPublishers();

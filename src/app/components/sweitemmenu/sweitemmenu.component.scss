@@ -1,0 +1,38 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.sidenav-container {
+    height: 100vh;
+    /* Asegura que ocupe toda la pantalla */
+}
+
+.sidenav {
+    width: 250px;
+    /* Ajusta el ancho del menú lateral */
+    height: 100%;
+    /* Que ocupe toda la altura */
+    background: #fff;
+    /* Asegurar que el fondo sea blanco */
+}
+
+mat-sidenav-content {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    /* Permite desplazamiento si hay mucho contenido */
+}
+
+mat-nav-list {
+    width: 100%;
+}
+
+button {
+    width: 100%;
+    text-align: left;
+}

@@ -26,6 +26,7 @@ import { ResultadosBusquedaComponent } from './aplicacion/juegos/resultados-busq
 import { WishlistComponent } from './pages/wishlist/wishlist.component';
 import { PersonalDetailsComponent } from './pages/personal-details/personal-details.component';
 import { SoporteComponent } from './components/soporte/soporte.component';
+import { JuegosComponent } from './aplicacion/juegos/juegos.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -43,12 +44,11 @@ const routes: Routes = [
   { path: 'info', component: PersonalDetailsComponent },
   { path: 'juego/:id', component: JuegoDetailComponent },
   { path: 'wishlist', component: WishlistComponent },
-  /*{
-    path: 'publishers',
-    component: PublisherComponent,
-    canActivate: [adminGuard],
-  },
-  { path: 'create-publisher', component: PublisherCreateComponent,
+  { path: 'categorias', component: CategoriasComponent, canActivate: [adminGuard], },
+  { path: 'publicadores', component: PublisherComponent, canActivate: [adminGuard], },
+  { path: 'juegos', component: JuegosComponent, canActivate: [adminGuard], },
+  { path: 'desarrolladores', component: DesarrolladoresComponent, canActivate: [adminGuard], },
+  /*{ path: 'create-publisher', component: PublisherCreateComponent,
     canActivate: [adminGuard], },
   { path: 'editP/:id', component: PublisherUpdateComponent },
   { path: 'categorias', component: CategoriasComponent },
@@ -66,4 +66,4 @@ const routes: Routes = [
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

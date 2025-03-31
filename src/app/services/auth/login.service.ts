@@ -53,7 +53,7 @@ export class LoginService {
     sessionStorage.removeItem('accessToken');
     this.currentUserLoginOnSubject.next(false);
     this.currentUserDataSubject.next('');
-    this.userService.setUserId('');
+    this.userService.setUserId(0);
   }
 
   private updateUserId(token: string | null) {

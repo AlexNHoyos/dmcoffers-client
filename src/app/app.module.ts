@@ -24,6 +24,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatListModule } from '@angular/material/list';
 
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FooterComponent } from './shared/footer/footer.component';
@@ -82,6 +83,11 @@ import { WishlistComponent } from './pages/wishlist/wishlist.component';
 import { WishlistService } from './aplicacion/juegos/wishlist.service';
 import { PersonalDetailsComponent } from './pages/personal-details/personal-details.component';
 import { SoporteComponent } from './components/soporte/soporte.component';
+import { UsuariosComponent } from './aplicacion/usuarios/usuarios.component';
+import { UpdateRolComponent } from './aplicacion/usuarios/update-rol/update-rol.component';
+import { SweItemMenuComponent } from './components/sweitemmenu/sweitemmenu.component';
+import { SweItemMenuService } from './components/sweitemmenu/sweitemmenu.service';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -133,6 +139,9 @@ import { SoporteComponent } from './components/soporte/soporte.component';
     NotAuthorizedComponent,
     WishlistComponent,
     SoporteComponent,
+    UsuariosComponent,
+    UpdateRolComponent,
+    SweItemMenuComponent,
   ],
   imports: [
     CommonModule,
@@ -158,6 +167,8 @@ import { SoporteComponent } from './components/soporte/soporte.component';
     MatExpansionModule,
     MatDividerModule,
     MatSnackBarModule,
+    MatListModule,
+    MatSidenavModule
   ],
 
   providers: [
@@ -168,6 +179,7 @@ import { SoporteComponent } from './components/soporte/soporte.component';
     AlertService,
     DesarrolladoresService,
     RegisterService,
+    SweItemMenuService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptorService,

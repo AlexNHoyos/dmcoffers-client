@@ -21,6 +21,12 @@ export class CategoriasComponent extends CrudComponent<Categoria> {
     override dialog: MatDialog
   ) {
     super(categoriaService, dialog);
+
+    // Carga y muestra la tabla
+    this.loadCategorias();
+    // Muestra la tabla
+    this.showTable = true;
+    this.buttonText = 'Ocultar Categorias'; // Cambia el texto del botón
   }
 
   getCreateComponent() {
@@ -94,19 +100,6 @@ export class CategoriasComponent extends CrudComponent<Categoria> {
   showTable: boolean = false;
   buttonText: string = 'Mostrar Categorias';
 
-  toggleCategorias() {
-    if (this.showTable) {
-      // Oculta la tabla
-      this.showTable = false;
-      this.buttonText = 'Mostrar Categorias'; // Cambia el texto del botón
-    } else {
-      // Carga y muestra la tabla
-      this.loadCategorias();
-      // Muestra la tabla
-      this.showTable = true;
-      this.buttonText = 'Ocultar Categorias'; // Cambia el texto del botón
-    }
-  }
   override ngOnInit(): void {
     // Con esta funcion se puede cargar los categorias al inicio
     // this.loadcategorias();
