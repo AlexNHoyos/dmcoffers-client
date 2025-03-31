@@ -13,7 +13,7 @@ export class EncryptionService {
   encrypt(text: string): string {
     const encrypted = CryptoJS.AES.encrypt(text, this.key, {
       iv: this.iv,
-      mode: CryptoJS.mode.CBC,
+      mode: CryptoJS.mode.CBC, //Cifrado de Blockchain
       padding: CryptoJS.pad.Pkcs7
     });
     return encrypted.toString();
