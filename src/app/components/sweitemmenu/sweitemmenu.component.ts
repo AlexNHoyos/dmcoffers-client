@@ -23,13 +23,26 @@ export class SweItemMenuComponent implements OnInit {
 
   loadMenuItems(): void {
     this.sweItemMenuService.getMenuItem().subscribe((items: MenuItem[]) => {
-      console.log(items);
-
       this.menuItems = items.map(item => ({
         ...item,
         expanded: false
       }));
+      this.menuItems.forEach(item => {
+        console.log(item.idSupItemMenu);
+        if (item.idSupItemMenu != null) {
+          item.idSupItemMenu.then(itemSuperior => {
+            this.menuItems.forEach(item2 => {
+              if (item2.id == itemSuperior.id) {
+                let itemIndex = this.menuItems.indexOf(item2);
+                this.menuItems[itemIndex].subMenus?.push(item);
+              }
+            })
+
+          })
+        }
+      })
     });
+
   }
 
   toggleSubMenu(item: MenuItem): void {

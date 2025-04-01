@@ -12,7 +12,7 @@ export interface MenuItem {
     creationuser: string;
     modificationtimestamp: Date;
     modificationuser: string;
-    subMenus?: null | MenuItem[];
+    subMenus?: MenuItem[];
     expanded?: boolean;
 }
 
