@@ -19,11 +19,12 @@ export class SweItemMenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadMenuItems();
+    console.log(this.menuItems);
+
   }
 
   loadMenuItems(): void {
     this.sweItemMenuService.getMenuItem().subscribe((items: MenuItem[]) => {
-      console.log(items);
 
       this.menuItems = items.map(item => ({
         ...item,
