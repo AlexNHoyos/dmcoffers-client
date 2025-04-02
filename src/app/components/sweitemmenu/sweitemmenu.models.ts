@@ -4,7 +4,7 @@ export interface MenuItem {
     id: number;
     title: string;
     description: string;
-    idSupItemMenu: Promise<MenuItem>;
+    idSupItemMenu: MenuItem;
     idSweAccModApl: any;
     endpoint: string;
     ordernumber: number;
@@ -12,7 +12,7 @@ export interface MenuItem {
     creationuser: string;
     modificationtimestamp: Date;
     modificationuser: string;
-    subMenus?: null | MenuItem[];
+    subMenus: MenuItem[];
     expanded?: boolean;
 }
 

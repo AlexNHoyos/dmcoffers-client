@@ -19,18 +19,28 @@ export class SweItemMenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadMenuItems();
-    console.log(this.menuItems);
 
   }
 
   loadMenuItems(): void {
     this.sweItemMenuService.getMenuItem().subscribe((items: MenuItem[]) => {
-
       this.menuItems = items.map(item => ({
         ...item,
         expanded: false
       }));
+      this.menuItems.forEach(item => {
+        if (item.idSupItemMenu != null) {
+          this.menuItems.forEach(item2 => {
+            if (item2.id == item.idSupItemMenu.id) {
+              let itemIndex = this.menuItems.indexOf(item2);
+              this.menuItems[itemIndex].subMenus.push(item);
+            }
+          })
+        }
+      })
+      console.log(this.menuItems);
     });
+
   }
 
   toggleSubMenu(item: MenuItem): void {
