@@ -1,6 +1,6 @@
 $primary-color: rgb(72, 24, 92);
 $hover-color: rgb(54, 15, 72);
-$text-color: rgb(188, 185, 185);
+$text-color: #F8F8F8;
 $shadow-color: rgba(0, 0, 0, 0.3);
 
 html,
@@ -26,60 +26,81 @@ body {
     flex-direction: column;
 }
 
-mat-nav-list {
+.mat-nav-list {
     padding: 0;
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
+/* Ajuste en la estructura de los ítems del menú */
 .mat-list-item {
     display: flex;
     flex-direction: column;
-    /* Asegura que los elementos se apilen correctamente */
     width: 100%;
     padding: 0;
+}
 
-    .menu-item-container {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        padding: 12px 16px;
-        /* Ajusta el espacio para que el contenido no se recorte */
+/* Contenedor de los elementos principales */
+.menu-item-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+/* Botón principal del menú */
+.menu-button {
+    flex-grow: 2;
+    text-align: left;
+    background-color: transparent;
+    color: $text-color;
+    border: none;
+    font-size: 16px;
+    font-weight: lighter;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 12px 0;
+
+    &:hover {
+        background-color: $hover-color;
     }
+}
 
-    .menu-button {
-        flex-grow: 1;
-        /* Hace que el texto del botón ocupe el máximo espacio */
+/* Botón para expandir submenús */
+.expand-button {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $text-color;
+    padding: 10px;
+}
+
+/* Lista de submenús */
+.submenu-list {
+    padding-left: 10px;
+    overflow: visible;
+}
+
+/* Ítems de submenús */
+.submenu-item {
+    padding-left: 24px;
+
+    button {
         text-align: left;
-        background-color: transparent;
+        width: 100%;
         color: $text-color;
-        border: none;
-        font-size: 16px;
-        font-weight: lighter;
-        white-space: nowrap;
-        /* Evita que el texto se divida en varias líneas */
-        overflow: hidden;
-        text-overflow: ellipsis;
 
         &:hover {
             background-color: $hover-color;
         }
     }
-
-    .expand-button {
-        flex-shrink: 0;
-        /* Evita que el botón se reduzca demasiado */
-        margin-left: 8px;
-        width: 40px;
-        height: 40px;
-    }
 }
 
-.submenu-item {
-    padding-left: 24px;
-    /* Indenta los submenús */
-}
-
+/* Ajusta el contenido para que no se corte */
 .mat-sidenav-content {
     flex-grow: 1;
     overflow: auto;

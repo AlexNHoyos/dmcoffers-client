@@ -2,22 +2,22 @@
     <!-- Menú lateral -->
     <mat-sidenav #sidenav mode="side" class="sidenav">
         <mat-nav-list>
-            <mat-list-item *ngFor="let item of menuItems">
+            <mat-list-item *ngFor="let item of menuItems" [ngStyle]="{'height': getItemHeight(item) }">
                 <div class="menu-item-container">
-                    <!-- Botón del menú principal -->
-                    <button mat-button (click)="navigate(item.endpoint)" class="menu-button">
+                    <!-- Botón principal alineado correctamente -->
+                    <button mat-button (click)="navigate(item.endpoint)" class="menu-button" style="color: white;">
                         {{ item.title }}
                     </button>
 
-                    <!-- Botón para expandir (solo si tiene submenús) -->
+                    <!-- Botón para expandir submenús -->
                     <button *ngIf="item.subMenus?.length" mat-icon-button (click)="toggleSubMenu(item)"
                         class="expand-button">
                         <mat-icon>{{ item.expanded ? 'expand_less' : 'expand_more' }}</mat-icon>
                     </button>
                 </div>
 
-                <!-- Lista de submenús -->
-                <mat-nav-list *ngIf="item.expanded">
+                <!-- Submenús alineados correctamente -->
+                <mat-nav-list *ngIf="item.expanded" class="submenu-list">
                     <mat-list-item *ngFor="let subItem of item.subMenus" class="submenu-item">
                         <button mat-button (click)="navigate(subItem.endpoint)">
                             {{ subItem.title }}
@@ -25,8 +25,6 @@
                     </mat-list-item>
                 </mat-nav-list>
             </mat-list-item>
-
-
         </mat-nav-list>
     </mat-sidenav>
 
@@ -35,7 +33,6 @@
         <button mat-icon-button (click)="sidenav.toggle()">
             <mat-icon>{{ sidenav.opened ? 'chevron_left' : 'menu' }}</mat-icon>
         </button>
-
         <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>

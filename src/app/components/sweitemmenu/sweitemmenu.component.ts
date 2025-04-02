@@ -30,7 +30,10 @@ export class SweItemMenuComponent implements OnInit {
         expanded: false
       }));
       this.menuItems.forEach(item => {
+        console.log(item);
+
         if (item.idSupItemMenu != null) {
+          /* console.log(item); */
           let subItemIndex = this.menuItems.indexOf(item);
           this.menuItems.splice(subItemIndex, 1);
           this.menuItems.forEach(item2 => {
@@ -52,4 +55,14 @@ export class SweItemMenuComponent implements OnInit {
   navigate(route: string): void {
     this.router.navigate([route]);
   }
+
+  getItemHeight(item: MenuItem): string {
+    if (!item.expanded) {
+      return '50px'; // Altura normal cuando está colapsado
+    }
+    const baseHeight = 50; // Altura base del ítem principal
+    const subItemHeight = 40; // Altura de cada submenú
+    return `${baseHeight + (item.subMenus?.length || 0) * subItemHeight}px`;
+  }
+
 }
