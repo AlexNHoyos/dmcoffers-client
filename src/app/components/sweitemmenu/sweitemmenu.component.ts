@@ -26,19 +26,21 @@ export class SweItemMenuComponent implements OnInit {
     this.sweItemMenuService.getMenuItem().subscribe((items: MenuItem[]) => {
       this.menuItems = items.map(item => ({
         ...item,
+        subMenus: [],
         expanded: false
       }));
       this.menuItems.forEach(item => {
         if (item.idSupItemMenu != null) {
+          let subItemIndex = this.menuItems.indexOf(item);
+          this.menuItems.splice(subItemIndex, 1);
           this.menuItems.forEach(item2 => {
-            if (item2.id == item.idSupItemMenu.id) {
+            if (item2.id == Number(item.idSupItemMenu)) {
               let itemIndex = this.menuItems.indexOf(item2);
               this.menuItems[itemIndex].subMenus.push(item);
             }
           })
         }
       })
-      console.log(this.menuItems);
     });
 
   }
