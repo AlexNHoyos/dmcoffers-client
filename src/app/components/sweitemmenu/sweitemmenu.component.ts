@@ -24,29 +24,45 @@ export class SweItemMenuComponent implements OnInit {
 
   loadMenuItems(): void {
     this.sweItemMenuService.getMenuItem().subscribe((items: MenuItem[]) => {
-      this.menuItems = items.map(item => ({
-        ...item,
-        subMenus: [],
-        expanded: false
-      }));
-      this.menuItems.forEach(item => {
-        console.log(item);
+      // Crear un mapa para encontrar rápidamente los ítems por ID
+      const itemMap = new Map<number, MenuItem>();
 
-        if (item.idSupItemMenu != null) {
-          /* console.log(item); */
-          let subItemIndex = this.menuItems.indexOf(item);
-          this.menuItems.splice(subItemIndex, 1);
-          this.menuItems.forEach(item2 => {
-            if (item2.id == Number(item.idSupItemMenu)) {
-              let itemIndex = this.menuItems.indexOf(item2);
-              this.menuItems[itemIndex].subMenus.push(item);
-            }
-          })
-        }
+      // Inicializar el mapa con los items, asegurando que cada uno tenga un array de subMenus
+      items.forEach(item => {
+        itemMap.set(item.id, { ...item, subMenus: [], expanded: false });
+      });
+
+      // Filtrar y asignar subitems a sus respectivos padres
+      let menuItems: MenuItem[] = [];
+
+      menuItems.forEach(item => {
+        item.subMenus = [];
       })
-    });
 
+      items.forEach(item => {
+        if (!item.idSupItemMenu) {
+          menuItems.push(itemMap.get(item.id)!);
+        }
+      });
+
+      // Buscar el padre en el mapa y agregar este ítem como submenú
+      items.forEach(itemHijo => {
+        if (itemHijo.idSupItemMenu) {
+          items.forEach(itemPadre => {
+            if (itemPadre.id == Number(itemHijo.idSupItemMenu)) { }
+            let indexItemPadre = items.indexOf(itemPadre);
+            menuItems[indexItemPadre].subMenus.push(itemHijo);
+          })
+
+        }
+
+      })
+
+      // Asignar los ítems procesados al array de menú principal
+      this.menuItems = menuItems;
+    });
   }
+
 
   toggleSubMenu(item: MenuItem): void {
     item['expanded'] = !item['expanded'];

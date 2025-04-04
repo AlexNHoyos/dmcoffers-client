@@ -1,5 +1,4 @@
 $primary-color: rgb(72, 24, 92);
-$hover-color: rgb(54, 15, 72);
 $text-color: #F8F8F8;
 $shadow-color: rgba(0, 0, 0, 0.3);
 
@@ -61,10 +60,6 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
     padding: 12px 0;
-
-    &:hover {
-        background-color: $hover-color;
-    }
 }
 
 /* Botón para expandir submenús */
@@ -93,10 +88,8 @@ body {
         text-align: left;
         width: 100%;
         color: $text-color;
-
-        &:hover {
-            background-color: $hover-color;
-        }
+        font-weight: lighter;
+        font-size: 16px;
     }
 }
 
