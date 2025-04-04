@@ -45,13 +45,16 @@ export class SweItemMenuComponent implements OnInit {
         }
       });
 
+
       // Buscar el padre en el mapa y agregar este ítem como submenú
       items.forEach(itemHijo => {
         if (itemHijo.idSupItemMenu) {
           items.forEach(itemPadre => {
-            if (itemPadre.id == Number(itemHijo.idSupItemMenu)) { }
-            let indexItemPadre = items.indexOf(itemPadre);
-            menuItems[indexItemPadre].subMenus.push(itemHijo);
+            let indexItemPadre: number;
+            if (itemPadre.id == Number(itemHijo.idSupItemMenu)) {
+              indexItemPadre = items.indexOf(itemPadre);
+              menuItems[indexItemPadre].subMenus.push(itemHijo);
+            }
           })
 
         }
@@ -60,6 +63,7 @@ export class SweItemMenuComponent implements OnInit {
 
       // Asignar los ítems procesados al array de menú principal
       this.menuItems = menuItems;
+      console.log(this.menuItems);
     });
   }
 
