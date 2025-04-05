@@ -30,7 +30,9 @@
 
     <!-- Contenido principal -->
     <mat-sidenav-content class="content">
-        <button mat-icon-button (click)="sidenav.toggle()">
+        <button mat-icon-button (click)="sidenav.toggle()" [ngStyle]="{'padding-left':
+                getPaddingFromMenu(sidenav.toggle())
+                }">
             <mat-icon>{{ sidenav.opened ? 'chevron_left' : 'menu' }}</mat-icon>
         </button>
         <router-outlet></router-outlet>

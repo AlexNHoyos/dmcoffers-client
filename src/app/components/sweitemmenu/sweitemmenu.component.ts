@@ -24,15 +24,12 @@ export class SweItemMenuComponent implements OnInit {
 
   loadMenuItems(): void {
     this.sweItemMenuService.getMenuItem().subscribe((items: MenuItem[]) => {
-      // Crear un mapa para encontrar rápidamente los ítems por ID
       const itemMap = new Map<number, MenuItem>();
 
-      // Inicializar el mapa con los items, asegurando que cada uno tenga un array de subMenus
       items.forEach(item => {
         itemMap.set(item.id, { ...item, subMenus: [], expanded: false });
       });
 
-      // Filtrar y asignar subitems a sus respectivos padres
       let menuItems: MenuItem[] = [];
 
       menuItems.forEach(item => {
@@ -45,8 +42,6 @@ export class SweItemMenuComponent implements OnInit {
         }
       });
 
-
-      // Buscar el padre en el mapa y agregar este ítem como submenú
       items.forEach(itemHijo => {
         if (itemHijo.idSupItemMenu) {
           items.forEach(itemPadre => {
@@ -61,9 +56,7 @@ export class SweItemMenuComponent implements OnInit {
 
       })
 
-      // Asignar los ítems procesados al array de menú principal
       this.menuItems = menuItems;
-      console.log(this.menuItems);
     });
   }
 
@@ -81,8 +74,12 @@ export class SweItemMenuComponent implements OnInit {
       return '50px'; // Altura normal cuando está colapsado
     }
     const baseHeight = 50; // Altura base del ítem principal
-    const subItemHeight = 40; // Altura de cada submenú
+    const subItemHeight = 50; // Altura de cada submenú
     return `${baseHeight + (item.subMenus?.length || 0) * subItemHeight}px`;
   }
 
+  getPaddingFromMenu(toggled: any): string {
+    console.log(toggled);
+    return '10px'
+  }
 }
