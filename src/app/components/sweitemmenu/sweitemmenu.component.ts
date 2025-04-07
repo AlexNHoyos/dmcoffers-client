@@ -13,6 +13,7 @@ export class SweItemMenuComponent implements OnInit {
 
 
   menuItems: MenuItem[] = [];
+  espaciadoLateral: string = '';
   //userRole: string = '';
 
   constructor(private sweItemMenuService: SweItemMenuService, private router: Router) { }
@@ -78,8 +79,4 @@ export class SweItemMenuComponent implements OnInit {
     return `${baseHeight + (item.subMenus?.length || 0) * subItemHeight}px`;
   }
 
-  getPaddingFromMenu(toggled: any): string {
-    console.log(toggled);
-    return '10px'
-  }
 }

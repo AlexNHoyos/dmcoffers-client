@@ -1,6 +1,15 @@
 <mat-sidenav-container class="sidenav-container">
+    <button mat-icon-button (click)="sidenav.toggle()" *ngIf="!sidenav.opened" class="menu-open-button">
+        <mat-icon>menu</mat-icon>
+    </button>
     <!-- Menú lateral -->
     <mat-sidenav #sidenav mode="side" class="sidenav">
+        <div class="sidenav-header" *ngIf="sidenav.opened">
+            <button mat-icon-button (click)="sidenav.toggle()" class="sidenav-toggle-button">
+                <mat-icon>chevron_left</mat-icon>
+            </button>
+        </div>
+
         <mat-nav-list>
             <mat-list-item *ngFor="let item of menuItems" [ngStyle]="{'height': getItemHeight(item) }">
                 <div class="menu-item-container">
@@ -29,12 +38,11 @@
     </mat-sidenav>
 
     <!-- Contenido principal -->
-    <mat-sidenav-content class="content">
-        <button mat-icon-button (click)="sidenav.toggle()" [ngStyle]="{'padding-left':
-                getPaddingFromMenu(sidenav.toggle())
-                }">
+    <!--     <mat-sidenav-content class="content">
+        <button mat-icon-button (click)="sidenav.toggle()">
             <mat-icon>{{ sidenav.opened ? 'chevron_left' : 'menu' }}</mat-icon>
         </button>
         <router-outlet></router-outlet>
-    </mat-sidenav-content>
+    </mat-sidenav-content> -->
+
 </mat-sidenav-container>

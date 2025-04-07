@@ -16,7 +16,7 @@ body {
 }
 
 .sidenav {
-    min-width: max-content;
+    min-width: 200px;
     max-width: 300px;
     height: 100%;
     background: $primary-color;
@@ -97,4 +97,15 @@ body {
 .mat-sidenav-content {
     flex-grow: 1;
     overflow: auto;
+}
+
+.sidenav-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 8px 16px;
+    align-items: center;
+}
+
+.sidenav-toggle-button {
+    margin-left: auto;
 }
