@@ -13,6 +13,7 @@ body {
 .sidenav-container {
     height: 100vh;
     display: flex;
+    text-align: left;
 }
 
 .sidenav {
@@ -22,6 +23,7 @@ body {
     background: $primary-color;
     color: $text-color;
     display: flex;
+    text-align: left;
     flex-direction: column;
 }
 
@@ -40,16 +42,14 @@ body {
     padding: 0;
 }
 
-/* Contenedor de los elementos principales */
 .menu-item-container {
     display: flex;
     align-items: center;
     width: 100%;
 }
 
-/* Botón principal del menú */
 .menu-button {
-    flex-grow: 2;
+    flex: 1 1 auto;
     text-align: left;
     background-color: transparent;
     color: $text-color;
@@ -77,6 +77,7 @@ body {
 /* Lista de submenús */
 .submenu-list {
     padding-left: 10px;
+    text-align: left;
     overflow: visible;
 }
 
