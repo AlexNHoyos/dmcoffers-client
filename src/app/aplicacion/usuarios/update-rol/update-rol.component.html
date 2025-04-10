@@ -1,0 +1,28 @@
+<div class="update-user-container">
+  <form #userForm="ngForm">
+    <!-- Selección de Rol -->
+    <mat-form-field>
+      <mat-label>Rol</mat-label>
+      <mat-select [(ngModel)]="user.rolDesc" name="rolDescription" required>
+        <mat-option *ngFor="let role of roles" [value]="role">
+          {{ role }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Botones de acción -->
+    <br />
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      (click)="onUpdateUser()"
+      [disabled]="userForm.invalid"
+    >
+      Actualizar
+    </button>
+    <button mat-flat-button type="button" color="secondary" (click)="cancel()">
+      Cancelar
+    </button>
+  </form>
+</div>

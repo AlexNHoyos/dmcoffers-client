@@ -14,10 +14,7 @@ export class JuegoListComponent implements OnInit {
   @Output() wishlistToggled = new EventEmitter<Juego>();
   @Output() removeFromWishlist = new EventEmitter<number>();
 
-  ngOnInit(): void {
-    // Log para verificar si se está en wishlist
-    console.log('isWishlist:', this.isWishlist);
-  }
+  ngOnInit(): void {}
 
   onGameClick(juegoId: number): void {
     this.gameSelected.emit(juegoId);

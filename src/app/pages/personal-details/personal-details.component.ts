@@ -16,7 +16,7 @@ import { ProximamenteService } from 'src/app/services/proximamente.service';
 })
 export class PersonalDetailsComponent implements OnInit {
   errorMessage: String = '';
-  userId: string | null = '';
+  userId: number = 0;
   user?: User;
   userLoginOn: boolean = false;
   editMode: boolean = false;
@@ -57,15 +57,15 @@ export class PersonalDetailsComponent implements OnInit {
     });
   }
 
-  loadUserData(userId: string) {
+  loadUserData(userId: number) {
     // Reemplaza environment.userId con this.userId
     this.userService.getUser(userId).subscribe({
       next: (userData) => {
         console.log(userData);
         this.user = userData;
-        this.registerForm.controls.id.setValue(userData.id);
-        this.registerForm.controls.realname.setValue(userData.realname);
-        this.registerForm.controls.surname.setValue(userData.surname);
+        this.registerForm.controls.id.setValue(userData.id.toString());
+        this.registerForm.controls.realname.setValue(userData.realname ?? '');
+        this.registerForm.controls.surname.setValue(userData.surname ?? '');
         this.loadUserRol();
       },
       error: (errorData) => {
@@ -109,11 +109,11 @@ export class PersonalDetailsComponent implements OnInit {
   savePersonalDetailsData() {
     if (this.registerForm.valid && this.userId) {
       this.userService
-        .updateUser(this.userId, this.registerForm.value as User)
+        .updateUser(this.userId, this.registerForm.value as unknown as User)
         .subscribe({
           next: () => {
             this.editMode = false;
-            this.user = this.registerForm.value as User;
+            this.user = this.registerForm.value as unknown as User;
             location.reload();
           },
           error: (errorData) => console.error(errorData),

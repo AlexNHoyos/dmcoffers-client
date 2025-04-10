@@ -1,9 +1,13 @@
-export interface User {
-  id: string;
+import { Page } from './pagination';
+
+export class User {
+  id: number = 0;
+  idUser: number = 0;
   idUserAuth?: string;
-  realname: string;
-  surname: string;
-  username: string;
+  rolDesc: string | undefined;
+  realname?: string;
+  surname?: string;
+  username: string = '';
   birth_date?: Date;
   delete_date?: Date;
   creationuser?: string;
@@ -12,5 +16,9 @@ export interface User {
   salt?: string;
   status?: boolean;
   modificationuser?: string;
-  modificationtimestamp?: Date;
+  modificationtimestamp?: string | null = null;
+}
+
+export interface UserPage extends Page<User> {
+  content: User[];
 }

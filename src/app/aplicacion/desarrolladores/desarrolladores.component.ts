@@ -21,6 +21,12 @@ export class DesarrolladoresComponent extends CrudComponent<Desarrollador> {
     override dialog: MatDialog
   ) {
     super(desarrolladoresService, dialog);
+
+    // Carga y muestra la tabla
+    this.loadDesarrolladores();
+    // Muestra la tabla
+    this.showTable = true;
+    this.buttonText = 'Ocultar desarrollador'; // Cambia el texto del botón
   }
 
   getCreateComponent() {
@@ -97,19 +103,6 @@ export class DesarrolladoresComponent extends CrudComponent<Desarrollador> {
   showTable: boolean = false;
   buttonText: string = 'Mostrar Desarrolladores';
 
-  toggleDesarrolladores() {
-    if (this.showTable) {
-      // Oculta la tabla
-      this.showTable = false;
-      this.buttonText = 'Mostrar Desarrolladores'; // Cambia el texto del botón
-    } else {
-      // Carga y muestra la tabla
-      this.loadDesarrolladores();
-      // Muestra la tabla
-      this.showTable = true;
-      this.buttonText = 'Ocultar desarrollador'; // Cambia el texto del botón
-    }
-  }
   override ngOnInit(): void {
     // Con esta funcion se puede cargar los publishers al inicio
     // this.loadPublishers();
