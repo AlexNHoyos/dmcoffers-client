@@ -3,7 +3,11 @@
     <!-- Selección de Rol -->
     <mat-form-field>
       <mat-label>Rol</mat-label>
-      <mat-select [(ngModel)]="user.rolDesc" name="rolDescription" required>
+      <mat-select
+        [(ngModel)]="user.rolDescription"
+        name="rolDescription"
+        required
+      >
         <mat-option *ngFor="let role of roles" [value]="role">
           {{ role }}
         </mat-option>

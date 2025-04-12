@@ -34,7 +34,7 @@ export class UserService extends CrudService<UserPage> {
     return this.http.get<User[]>(`${this.endpoint}/findall`);
   }
 
-  updateUser(id: number, userRequest: User): Observable<any> {
+  updateUser(id: number, userRequest: any): Observable<any> {
     return this.http
       .put<User>(`${this.endpoint}/updateUser/${id}`, userRequest)
       .pipe(catchError(this.handleError));
