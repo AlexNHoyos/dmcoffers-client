@@ -1,7 +1,17 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 $main-color: #5A189A; //Se puede cambiar!!
 
-header{
+header {
   background-color: $main-color;
 }
 
+.main-container {
+  display: flex;
+  /* si tenés una toolbar fija */
+}
+
+.content-container {
+  flex: 1;
+  padding: 16px;
+  /* mismo valor que el ancho del menú si es fijo */
+}

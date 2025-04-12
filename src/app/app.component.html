@@ -296,6 +296,12 @@
 </style>
 
 <app-header></app-header>
-<app-sweitemmenu *ngIf="userLoginOn"></app-sweitemmenu>
-<router-outlet></router-outlet>
+
+<div class="main-container">
+  <app-sweitemmenu *ngIf="userLoginOn"></app-sweitemmenu>
+  <div class="content-container">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
 <app-footer></app-footer>
