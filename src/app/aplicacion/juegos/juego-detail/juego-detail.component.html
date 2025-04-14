@@ -42,9 +42,11 @@
 <button
   *ngIf="isInCart && token"
   class="btn btn-secondary"
-  disabled
+  (mouseenter)="cartBtnHover = true"
+  (mouseleave)="cartBtnHover = false"
+  (click)="removeFromCart()"
 >
-  Ya está en el Carrito
+  {{ cartBtnHover ? 'Quitar del Carrito' : 'Ya está en el Carrito' }}
 </button>
   </div>
 

@@ -21,6 +21,7 @@ export class JuegoDetailComponent implements OnInit {
   token: string | null = null;
   userId: string = '';
   isInCart: boolean = false;
+  cartBtnHover: boolean = false;
   private userSubscription!: Subscription;
 
   constructor(
@@ -45,6 +46,7 @@ export class JuegoDetailComponent implements OnInit {
       });
       if (this.token) {
         this.checkIfInWishlist(this.idJuego);
+        this.checkIfInCart(this.idJuego);
       }
     }
   }
@@ -83,6 +85,14 @@ addToCart(): void {
     console.log('Juego agregado al carrito');
   });
 }
+
+removeFromCart(): void {
+    this.cartService.removeFromCart(this.juego!.id).subscribe(() => {
+      this.isInCart = false;
+      console.log('Juego eliminado del carrito');
+    });
+  }
+
 
   back() {
     this.location.back();
