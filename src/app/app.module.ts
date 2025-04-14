@@ -88,6 +88,8 @@ import { UpdateRolComponent } from './aplicacion/usuarios/update-rol/update-rol.
 import { SweItemMenuComponent } from './components/sweitemmenu/sweitemmenu.component';
 import { SweItemMenuService } from './components/sweitemmenu/sweitemmenu.service';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { CartService } from './aplicacion/juegos/cart.service';
+
 
 @NgModule({
   declarations: [
@@ -173,6 +175,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 
   providers: [
     WishlistService,
+    CartService,
     RegisterService,
     PublisherService,
     CategoriaService,

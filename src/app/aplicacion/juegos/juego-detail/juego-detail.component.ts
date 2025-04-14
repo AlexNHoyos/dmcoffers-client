@@ -7,6 +7,7 @@ import { WishlistService } from '../wishlist.service';
 import { LoginService } from 'src/app/services/auth/login.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { Subscription } from 'rxjs';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-juego-detail',
@@ -19,6 +20,7 @@ export class JuegoDetailComponent implements OnInit {
   idJuego?: number;
   token: string | null = null;
   userId: string = '';
+  isInCart: boolean = false;
   private userSubscription!: Subscription;
 
   constructor(
@@ -26,6 +28,7 @@ export class JuegoDetailComponent implements OnInit {
     private juegoService: JuegoService,
     private location: Location,
     private wishlistService: WishlistService,
+    private cartService: CartService,
     private loginService: LoginService,
     private userService: UserService
   ) {}
@@ -67,6 +70,19 @@ export class JuegoDetailComponent implements OnInit {
       console.log('Juego eliminado de la wishlist');
     });
   }
+
+  checkIfInCart(idJuego: number): void {
+  this.cartService.isInCart(idJuego).subscribe((response) => {
+    this.isInCart = response.isInCart;
+  });
+}
+
+addToCart(): void {
+  this.cartService.addToCart(this.juego!.id).subscribe(() => {
+    this.isInCart = true;
+    console.log('Juego agregado al carrito');
+  });
+}
 
   back() {
     this.location.back();

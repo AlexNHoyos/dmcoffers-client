@@ -30,6 +30,22 @@
     >
       Eliminar de la Wishlist
     </button>
+
+    <button
+  *ngIf="!isInCart && token"
+  (click)="addToCart()"
+  class="btn btn-success"
+>
+  Agregar al Carrito
+</button>
+
+<button
+  *ngIf="isInCart && token"
+  class="btn btn-secondary"
+  disabled
+>
+  Ya está en el Carrito
+</button>
   </div>
 
   <div class="game-content">
