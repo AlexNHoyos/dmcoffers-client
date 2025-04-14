@@ -1,81 +1,71 @@
-.toolbar {
-  .navbar-brand.navbar-small {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.toolbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-    @media (min-width: 600px) {
-      display: none;
-    }
+.left-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+}
 
-    .small-logo {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      margin-right: 0.5rem;
-    }
+.app-name {
+  font-size: 18px;
+  font-weight: bold;
+}
 
-    .navbar-title {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: white;
-    }
-  }
+.center-section {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
 
-  .navbar-brand {
-    font-size: 1rem;
-    font-weight: bold;
-    display: block;
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-    .welcome-text {
-      color: white;
-    }
+.search-bar {
+  display: flex;
+  align-items: center;
+  width: 400px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  overflow: hidden;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
 
-    .role-text {
-      font-size: 0.9rem;
-      color: #6c757d;
-    }
+.search-bar input {
+  flex: 1;
+  padding: 6px 8px;
+  border: none;
+  background: transparent;
+  color: #fff;
+  outline: none;
+}
 
-    .unauthenticated-text {
-      color: #dc3545;
-    }
-  }
+.search-bar .divider {
+  width: 1px;
+  height: 60%;
+  background-color: rgba(255, 255, 255, 0.5);
+}
 
-  .search-container {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
+.search-bar button {
+  background: transparent;
+  border: none;
+  padding: 6px 8px;
+  color: #fff;
+  cursor: pointer;
+}
 
-    @media (min-width: 992px) {
-      position: absolute;
-      right: 15px;
-      bottom: 10px;
-    }
-  }
+.search-bar button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
 
-  .carrito {
-    color: white;
-
-    @media (min-width: 992px) {
-      position: absolute;
-      right: 330px;
-      bottom: 8px;
-    }
-  }
-
-  .input-group {
-    width: 300px;
-  }
-
-  .form-control {
-    border-radius: 25px 0 0 25px;
-  }
-
-  .btn {
-    border-radius: 0 25px 25px 0;
-  }
+.h1 {
+  font-family: 'DarkerHollow';
 }

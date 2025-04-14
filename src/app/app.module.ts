@@ -88,6 +88,7 @@ import { UpdateRolComponent } from './aplicacion/usuarios/update-rol/update-rol.
 import { SweItemMenuComponent } from './components/sweitemmenu/sweitemmenu.component';
 import { SweItemMenuService } from './components/sweitemmenu/sweitemmenu.service';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatMenuModule } from '@angular/material/menu'
 
 @NgModule({
   declarations: [
@@ -168,7 +169,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatDividerModule,
     MatSnackBarModule,
     MatListModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatMenuModule
   ],
 
   providers: [

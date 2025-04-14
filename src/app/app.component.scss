@@ -1,10 +1,6 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 $main-color: #5A189A; //Se puede cambiar!!
 
-header {
-  background-color: $main-color;
-}
-
 .main-container {
   display: flex;
 }
@@ -42,7 +38,7 @@ p {
   flex: 1;
 }
 
-.toolbar {
+/* .toolbar {
   position: absolute;
   top: 0;
   left: 0;
@@ -71,7 +67,7 @@ p {
 .toolbar #twitter-logo:hover,
 .toolbar #youtube-logo:hover {
   opacity: 0.8;
-}
+} */
 
 .content {
   display: flex;

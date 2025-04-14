@@ -1,83 +1,47 @@
 <!-- Toolbar -->
-<div class="toolbar" role="banner">
-  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgb(55, 17, 72);">
-    <a class="navbar-brand navbar-small" href="#"><img src="assets/images/logo.png" alt="DMC - Offers Logo" width="40"
-        height="40" class="d-inline-block align-text-top small-logo" routerLink="/inicio" />
-    </a>
+<div role="banner">
+  <nav style="background-color: rgb(55, 17, 72); padding: 10px 20px;">
+    <div class="toolbar-container">
 
-    <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="navbar-brand" (click)="info()" routerLink="/info">
-              <!-- Mensaje de usuario autenticado -->
-              <div *ngIf="userLoginOn; else notLoggedIn">
-                <p class="mb-0">
-                  <span class="welcome-text">Bienvenido, {{ username }}</span>
-                  <br />
-                  <span class="role-text">Rol: {{ userRol }}</span>
-                </p>
-              </div>
-              <!-- Mensaje de usuario no autenticado -->
-              <ng-template #notLoggedIn>
-                <p class="mb-0">
-                  <span class="unauthenticated-text">Usuario NO autenticado</span>
-                </p>
-              </ng-template>
-            </a>
-          </li>
+      <header class="header toolbar">
 
-          <li *ngIf="userLoginOn && userRol === 'admin'" class="nav-item">
-            <a class="nav-link active" (click)="dashboard()" routerLink="/inicio">Dashboard</a>
-          </li>
-          <li *ngIf="!userLoginOn" class="nav-item">
-            <a class="nav-link" (click)="login()" routerLink="/iniciar-sesion">Iniciar Sesion</a>
-          </li>
+        <div class="header-content">
+          <img src="assets/images/logo.png" alt="DMC - Offers Logo" class="logo" routerLink="/inicio" />
+          <h1>DmcOffers</h1>
+        </div>
+      </header>
 
-          <li *ngIf="!userLoginOn" class="nav-item">
-            <a class="nav-link" (click)="register()" routerLink="/register">Registrarse</a>
-          </li>
-
-          <li *ngIf="userLoginOn" class="nav-item">
-            <a class="nav-link" (click)="info()" routerLink="/info">Perfil</a>
-          </li>
-
-          <li *ngIf="userLoginOn" class="nav-item">
-            <a class="nav-link" (click)="wishlist()" routerLink="/wishlist">Lista de deseos</a>
-          </li>
-
-          <li *ngIf="userLoginOn" class="nav-item">
-            <a class="nav-link" (click)="soporte()" routerLink="/soporte">Soporte</a>
-          </li>
-
-          <li *ngIf="userLoginOn" class="nav-item">
-            <a class="nav-link" (click)="logout()" routerLink="/inicio">Cerrar Sesion</a>
-          </li>
-
-          <li *ngIf="userLoginOn" class="nav-item carrito">
-            <button mat-icon-button (click)="showProximamente()" aria-label="Carrito de compras">
-              <mat-icon>shopping_cart</mat-icon>
-            </button>
-          </li>
-
-          <li class="nav-item search-container">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Buscar juegos..." [(ngModel)]="searchTerm"
-                (keydown.enter)="onSearch()" />
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary" (click)="onSearch()">
-                  <i class="fas fa-search"></i>
-                  <!-- Icono de búsqueda -->
-                </button>
-              </div>
-            </div>
-          </li>
-        </ul>
+      <!-- Sección central: Buscador -->
+      <div class="center-section">
+        <div class="search-bar">
+          <input type="text" [(ngModel)]="searchTerm" (keydown.enter)="onSearch()" />
+          <div class="divider"></div>
+          <button (click)="onSearch()">
+            <mat-icon>search</mat-icon>
+          </button>
+        </div>
       </div>
+
+      <!-- Sección derecha: Menú + Carrito -->
+      <div class="right-section">
+        <button mat-icon-button [matMenuTriggerFor]="menu" style="color: white;">
+          <mat-icon>person</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="login()" routerLink="/iniciar-sesion">
+            <span>Iniciar Sesión</span>
+          </button>
+          <button mat-menu-item (click)="register()" routerLink="/register">
+            <span>Registrarse</span>
+          </button>
+        </mat-menu>
+
+        <button mat-icon-button *ngIf="userLoginOn" (click)="showProximamente()" aria-label="Carrito de compras"
+          style="color: white;">
+          <mat-icon>shopping_cart</mat-icon>
+        </button>
+      </div>
+
     </div>
   </nav>
 </div>
