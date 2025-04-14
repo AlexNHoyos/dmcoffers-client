@@ -1,0 +1,19 @@
+<div *ngIf="isLoading">Cargando Carrito...</div>
+
+<div *ngIf="!isLoading && cart.length === 0">
+  No tienes juegos en tu Carrito.
+</div>
+
+<div *ngIf="!isLoading && cart.length > 0" class="titulo-container">
+  <h1 class="titulo">Carrito</h1>
+</div>
+
+<app-juego-list
+  *ngIf="!isLoading && cart.length > 0"
+  [juegos]="cart"
+  [isLoggedIn]="isLoggedIn"
+  [isWishlist]="isWishlist"
+  (gameSelected)="verDetalle($event)"
+  (removeFromWishlist)="removeFromCart($event)"
+>
+</app-juego-list>
