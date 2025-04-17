@@ -1,19 +1,24 @@
-<div *ngIf="isLoading">Cargando Carrito...</div>
+<div class="container mt-4">
+  <h2>Mi Carrito</h2>
 
-<div *ngIf="!isLoading && cart.length === 0">
-  No tienes juegos en tu Carrito.
+  <div *ngIf="juegos.length === 0">No tienes juegos en tu carrito.</div>
+
+  <div *ngFor="let juego of juegos" class="card mb-3 p-3">
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <h5>{{ juego.gamename }}</h5>
+        <p>Precio: ${{ juego.price }}</p>
+      </div>
+      <button class="btn btn-danger" (click)="removeFromCart(juego.id)">
+        Quitar
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="juegos.length > 0" class="text-end mt-3">
+    <h4>Total: ${{ total }}</h4>
+    <button class="btn btn-success mt-2" (click)="checkout()">
+      Finalizar compra
+    </button>
+  </div>
 </div>
-
-<div *ngIf="!isLoading && cart.length > 0" class="titulo-container">
-  <h1 class="titulo">Carrito</h1>
-</div>
-
-<app-juego-list
-  *ngIf="!isLoading && cart.length > 0"
-  [juegos]="cart"
-  [isLoggedIn]="isLoggedIn"
-  [isWishlist]="isWishlist"
-  (gameSelected)="verDetalle($event)"
-  (removeFromWishlist)="removeFromCart($event)"
->
-</app-juego-list>

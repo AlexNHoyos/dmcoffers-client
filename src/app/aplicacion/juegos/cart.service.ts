@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { LoginService } from 'src/app/services/auth/login.service';
 import { environment } from 'src/environments/environment';
 import { Juego } from './juegos.model';
@@ -44,4 +44,17 @@ export class CartService {
       headers: { Authorization: `Bearer ${this.token}` },
     });
   }
+  
+  public async getCartTotal(): Promise<number> {
+  const juegos = await firstValueFrom(this.getCart());
+  return juegos.reduce((total, juego) => total + juego.price!, 0);
+  }
+
+  checkout(): Observable<any> {
+  return this.http.post(`${this.apiUrl}/cart/checkout`, null, {
+    headers: { Authorization: `Bearer ${this.token}` },
+  });
+  }
+
+
 }

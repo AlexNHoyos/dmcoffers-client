@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/aplicacion/juegos/cart.service';
+import { Juego } from 'src/app/aplicacion/juegos/juegos.model';
 import { ConfirmComponent } from 'src/app/components/confirm/confirm.component';
 import { LoginService } from 'src/app/services/auth/login.service';
 
@@ -15,6 +16,8 @@ export class CartComponent implements OnInit {
   isLoggedIn: boolean = false;
   isLoading = true;
   isWishlist = true;
+  juegos: Juego[] = [];
+  total: number = 0;
 
   constructor(
     private cartService: CartService,
@@ -36,8 +39,9 @@ export class CartComponent implements OnInit {
 
   loadCart() {
     this.cartService.getCart().subscribe(
-      (data) => {
-        this.cart = data;
+      (juegos) => {
+        this.juegos = juegos;
+        this.total = juegos.reduce((sum,juego) => sum + juego.price!,0);
         this.isLoading = false;
       },
       (error) => {
@@ -71,6 +75,13 @@ export class CartComponent implements OnInit {
           }
         );
       }
+    });
+  }
+
+  checkout(): void {
+    this.cartService.checkout().subscribe(() => {
+      alert('Compra realizada con éxito 🎉');
+      this.loadCart(); // Para que se vacíe el carrito
     });
   }
 
