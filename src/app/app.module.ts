@@ -90,6 +90,7 @@ import { SweItemMenuService } from './components/sweitemmenu/sweitemmenu.service
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { CartService } from './aplicacion/juegos/cart.service';
 import { CartComponent } from './pages/cart/cart.component';
+import { LibraryComponent } from './pages/library/library.component';
 
 
 @NgModule({
@@ -146,6 +147,7 @@ import { CartComponent } from './pages/cart/cart.component';
     UpdateRolComponent,
     SweItemMenuComponent,
     CartComponent,
+    LibraryComponent,
   ],
   imports: [
     CommonModule,

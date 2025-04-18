@@ -18,6 +18,7 @@ export class Juego {
   categoriasNames: string[] = [];
   price?: number;
   isInWishlist?: boolean;
+  isInLibrary?: boolean;
 }
 
 export interface JuegoPage extends Page<Juego> {

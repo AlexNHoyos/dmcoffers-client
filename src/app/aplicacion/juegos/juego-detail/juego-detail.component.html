@@ -32,7 +32,7 @@
     </button>
 
     <button
-  *ngIf="!isInCart && token"
+  *ngIf="!isInCart && token && !isInLibrary"
   (click)="addToCart()"
   class="btn btn-success"
 >
@@ -40,7 +40,7 @@
 </button>
 
 <button
-  *ngIf="isInCart && token"
+  *ngIf="isInCart && token && !isInLibrary"
   class="btn btn-secondary"
   (mouseenter)="cartBtnHover = true"
   (mouseleave)="cartBtnHover = false"
@@ -48,6 +48,10 @@
 >
   {{ cartBtnHover ? 'Quitar del Carrito' : 'Ya está en el Carrito' }}
 </button>
+
+<p *ngIf="isInLibrary" class="text-muted mt-2">
+  Este juego ya está en tu biblioteca.
+</p>
   </div>
 
   <div class="game-content">

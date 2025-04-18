@@ -1,11 +1,13 @@
 <div class="game-list">
-  <div *ngFor="let juego of juegos" class="game-card">
+  <div *ngFor="let juego of juegos" class="game-card" [class.in-library]="juego.isInLibrary">
+    
+    <div class="library-badge" *ngIf="juego.isInLibrary">🎮 En biblioteca</div>
+
     <div class="game-image" (click)="onGameClick(juego.id)">
       <img
         [src]="'https://picsum.photos/350/120' || 'path/to/default-image.jpg'"
         alt="Imagen de {{ juego.gamename }}"
       />
-    </div>
 
     <div class="game-details" (click)="onGameClick(juego.id)">
       <h3>{{ juego.gamename }}</h3>
@@ -26,7 +28,6 @@
     </div>
 
     <div *ngIf="isLoggedIn">
-      <!-- If para mostrar la estrella o el botón de eliminar -->
       <ng-container *ngIf="!isWishlist; else removeButton">
         <div (click)="toggleWishlist(juego)" class="wishlist-icon-container">
           <i
@@ -39,7 +40,6 @@
         </div>
       </ng-container>
 
-      <!-- Eliminar si estoy en wishlist -->
       <ng-template #removeButton>
         <p class="eliminar-juego">
           <span (click)="removeFromWishlist.emit(juego.id)">Eliminar</span>

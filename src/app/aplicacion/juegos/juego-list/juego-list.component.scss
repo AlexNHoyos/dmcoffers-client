@@ -25,7 +25,7 @@
   }
 
   .wishlist-icon-container {
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
 
@@ -44,23 +44,24 @@
   }
 
   .eliminar-juego {
-  display: block;
-  text-align: end;
-  color: #a3a3a3;
-  cursor: pointer;
-  margin: 0.2em 0.5em;
-  font-size: 1em;
-  text-decoration: underline;
+    display: block;
+    text-align: end;
+    color: #a3a3a3;
+    cursor: pointer;
+    margin: 0.2em 0.5em;
+    font-size: 1em;
+    text-decoration: underline;
   }
 
   .eliminar-juego>span:hover {
-  color: #c9302c;
+    color: #c9302c;
 
   }
 
   .game-image {
     cursor: pointer;
     position: relative;
+
     img {
       width: 100%;
       height: 120px;
@@ -110,6 +111,18 @@
       justify-content: space-between;
       align-items: baseline;
     }
+  }
+
+  .library-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: #4caf50;
+    color: white;
+    font-size: 0.7rem;
+    padding: 4px 6px;
+    border-radius: 4px;
+    z-index: 3;
   }
 }
 

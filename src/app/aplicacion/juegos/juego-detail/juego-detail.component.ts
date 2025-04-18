@@ -8,6 +8,7 @@ import { LoginService } from 'src/app/services/auth/login.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { Subscription } from 'rxjs';
 import { CartService } from '../cart.service';
+import { LibraryService } from '../library.service';
 
 @Component({
   selector: 'app-juego-detail',
@@ -17,6 +18,7 @@ import { CartService } from '../cart.service';
 export class JuegoDetailComponent implements OnInit {
   juego?: Juego;
   isInWishlist: boolean = false;
+  isInLibrary: boolean = false;
   idJuego?: number;
   token: string | null = null;
   userId: string = '';
@@ -31,11 +33,11 @@ export class JuegoDetailComponent implements OnInit {
     private wishlistService: WishlistService,
     private cartService: CartService,
     private loginService: LoginService,
-    private userService: UserService
+    private userService: UserService,
+    private libraryService: LibraryService
   ) {}
 
   ngOnInit(): void {
-    console.log(this.token);
     this.token = this.loginService.userToken;
     console.log(this.token);
     const idJuegoParam = this.route.snapshot.paramMap.get('id');
@@ -47,6 +49,7 @@ export class JuegoDetailComponent implements OnInit {
       if (this.token) {
         this.checkIfInWishlist(this.idJuego);
         this.checkIfInCart(this.idJuego);
+        this.checkIfInLibrary(this.idJuego);
       }
     }
   }
@@ -55,21 +58,21 @@ export class JuegoDetailComponent implements OnInit {
     // Verificar si el juego está en la wishlist
     this.wishlistService.isInWishlist(idJuego).subscribe((response) => {
       this.isInWishlist = response.isInWishlist;
-      console.log('Está en wishlist:', this.isInWishlist);
+
     });
   }
 
   addToWishlist(): void {
     this.wishlistService.addToWishlist(this.juego!.id).subscribe(() => {
       this.isInWishlist = true;
-      console.log('Juego agregado a la wishlist');
+
     });
   }
 
   removeFromWishlist(): void {
     this.wishlistService.removeFromWishlist(this.juego!.id).subscribe(() => {
       this.isInWishlist = false;
-      console.log('Juego eliminado de la wishlist');
+
     });
   }
 
@@ -79,17 +82,21 @@ export class JuegoDetailComponent implements OnInit {
   });
 }
 
+checkIfInLibrary(idJuego: number): void {
+      this.libraryService.isInLibrary(idJuego).subscribe((response) => {
+        this.isInLibrary = response.isInBiblioteca;
+      });
+  }
+
 addToCart(): void {
   this.cartService.addToCart(this.juego!.id).subscribe(() => {
     this.isInCart = true;
-    console.log('Juego agregado al carrito');
   });
 }
 
 removeFromCart(): void {
     this.cartService.removeFromCart(this.juego!.id).subscribe(() => {
       this.isInCart = false;
-      console.log('Juego eliminado del carrito');
     });
   }
 
