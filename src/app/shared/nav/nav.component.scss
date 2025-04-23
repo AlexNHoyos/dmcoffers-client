@@ -1,6 +1,27 @@
 .toolbar-container {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+
+.header {
+  display: flex;
+  align-items: left;
+  max-width: 5%;
+  flex: 0;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+}
+
+.h1 {
+  color: whitesmoke;
+  font-family: 'DarkerHollow';
+  font-size: 60px;
+  margin-top: 20px;
+  margin-left: 20px;
 }
 
 .left-section {
@@ -16,7 +37,7 @@
 }
 
 .center-section {
-  flex-grow: 1;
+  flex: 1;
   display: flex;
   justify-content: center;
 }
@@ -36,44 +57,32 @@
   overflow: hidden;
   backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.4);
-}
 
-.search-bar input {
-  flex: 1;
-  padding: 6px 8px;
-  border: none;
-  background: transparent;
-  color: #fff;
-  outline: none;
-}
+  input {
+    flex: 1;
+    padding: 6px 8px;
+    border: none;
+    background: transparent;
+    color: #fff;
+    outline: none;
+  }
 
-.search-bar .divider {
-  width: 1px;
-  height: 60%;
-  background-color: rgba(255, 255, 255, 0.5);
-}
+  .divider {
+    width: 1px;
+    height: 60%;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
 
-.search-bar button {
-  background: transparent;
-  border: none;
-  padding: 6px 8px;
-  color: #fff;
-  cursor: pointer;
-}
+  button {
+    background: transparent;
+    border: none;
+    padding: 6px 8px;
+    color: #fff;
+    cursor: pointer;
+    vertical-align: middle;
 
-.search-bar button:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.h1 {
-  color: whitesmoke;
-  font-family: 'DarkerHollow';
-  font-size: 60px;
-  margin-top: 20px;
-  margin-left: 20px;
-}
-
-.header-content {
-  display: flex;
-  align-items: center;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
 }
