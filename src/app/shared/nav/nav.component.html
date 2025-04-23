@@ -41,10 +41,23 @@
 
 
       </div>
-      <button mat-icon-button *ngIf="userLoginOn" (click)="showProximamente()" aria-label="Carrito de compras"
-        style="color: white;">
-        <mat-icon>shopping_cart</mat-icon>
-      </button>
+
+      <div class="right-section" *ngIf="userLoginOn">
+        <div>
+          <button mat-icon-button [matMenuTriggerFor]="menu" style="color: white;">
+            <mat-icon>person</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink="/info">
+              <span>Mi Perfil</span>
+            </button>
+          </mat-menu>
+
+          <button mat-icon-button (click)="showProximamente()" aria-label="Carrito de compras" style="color: white;">
+            <mat-icon>shopping_cart</mat-icon>
+          </button>
+        </div>
+      </div>
     </div>
   </nav>
 </div>
