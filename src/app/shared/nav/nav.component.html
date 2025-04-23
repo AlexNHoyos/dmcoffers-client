@@ -51,6 +51,10 @@
             <button mat-menu-item routerLink="/info">
               <span>Mi Perfil</span>
             </button>
+            <button mat-menu-item (click)="logout()">
+              <span>Cerrar Sesión</span>
+            </button>
+
           </mat-menu>
 
           <button mat-icon-button (click)="showProximamente()" aria-label="Carrito de compras" style="color: white;">
