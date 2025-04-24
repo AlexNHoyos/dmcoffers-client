@@ -1,1 +1,19 @@
-<p>library works!</p>
+<div *ngIf="isLoading">Cargando Biblioteca...</div>
+
+<div *ngIf="!isLoading && library.length === 0">
+  No tienes juegos en tu Biblioteca.
+</div>
+
+<div *ngIf="!isLoading && library.length > 0" class="titulo-container">
+  <h1 class="titulo">Biblioteca</h1>
+</div>
+
+<app-juego-list
+  *ngIf="!isLoading && library.length > 0"
+  [juegos]="library"
+  [isLoggedIn]="isLoggedIn"
+  [isWishlist]="false"
+  [isLibrary]="true"
+  (gameSelected)="verDetalle($event)"
+>
+</app-juego-list>

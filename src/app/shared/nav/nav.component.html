@@ -51,6 +51,10 @@
           </li>
 
           <li *ngIf="userLoginOn" class="nav-item">
+            <a class="nav-link" (click)="library()" routerLink="/biblioteca">Biblioteca</a>
+          </li>
+
+          <li *ngIf="userLoginOn" class="nav-item">
             <a class="nav-link" (click)="soporte()" routerLink="/soporte">Soporte</a>
           </li>
 

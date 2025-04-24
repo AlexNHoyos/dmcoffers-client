@@ -28,6 +28,7 @@ import { PersonalDetailsComponent } from './pages/personal-details/personal-deta
 import { SoporteComponent } from './components/soporte/soporte.component';
 import { JuegosComponent } from './aplicacion/juegos/juegos.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { LibraryComponent } from './pages/library/library.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -45,6 +46,7 @@ const routes: Routes = [
   { path: 'info', component: PersonalDetailsComponent },
   { path: 'juego/:id', component: JuegoDetailComponent },
   { path: 'wishlist', component: WishlistComponent },
+  { path: 'biblioteca', component: LibraryComponent },
   { path: 'cart', component: CartComponent},
   { path: 'categorias', component: CategoriasComponent, canActivate: [adminGuard], },
   { path: 'publicadores', component: PublisherComponent, canActivate: [adminGuard], },

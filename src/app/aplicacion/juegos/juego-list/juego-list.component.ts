@@ -10,6 +10,7 @@ export class JuegoListComponent implements OnInit {
   @Input() juegos: Juego[] = [];
   @Input() isLoggedIn: boolean = false;
   @Input() isWishlist: boolean = false;
+  @Input() isLibrary: boolean = false;
   @Output() gameSelected = new EventEmitter<number>();
   @Output() wishlistToggled = new EventEmitter<Juego>();
   @Output() removeFromWishlist = new EventEmitter<number>();

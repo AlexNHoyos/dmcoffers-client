@@ -27,7 +27,8 @@
       </div>
     </div>
 
-    <div *ngIf="isLoggedIn">
+    <div *ngIf="isLoggedIn && !isLibrary">
+      <!-- Wishlist Mode -->
       <ng-container *ngIf="!isWishlist; else removeButton">
         <div (click)="toggleWishlist(juego)" class="wishlist-icon-container">
           <i

@@ -113,6 +113,10 @@ export class NavComponent implements OnInit, OnDestroy {
     this.router.navigate(['/wishlist']);
   }
 
+  library() {
+    this.router.navigate(['/biblioteca']);
+  }
+
   soporte() {
     this.router.navigate(['/soporte']);
   }
