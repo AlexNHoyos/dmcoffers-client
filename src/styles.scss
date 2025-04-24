@@ -2,12 +2,36 @@
 @import "../node_modules/bootstrap/scss/bootstrap";
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 @import "./app/shared/header/header.component.scss";
-@import "./app/shared/footer/footer.component.scss";
 @import "./app/shared/nav/nav.component.scss";
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Protest+Guerrilla&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=SUSE:wght@100..800&display=swap');
+
+@font-face {
+  font-family: 'Darker';
+  src: url('assets/fonts/Darker.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DarkerHollow';
+  src: url('assets/fonts/DarkerHollow.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+body {
+  user-select: none;
+}
+
+input,
+textarea,
+[contenteditable="true"] {
+  user-select: text;
+}
 
 html,
 body {
@@ -19,6 +43,14 @@ body {
   font-style: normal;
   overflow-y: auto;
   padding-bottom: 50px;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #ffffff; // opcional, para controlar bien todo
 }
 
 mat-mdc-typography,

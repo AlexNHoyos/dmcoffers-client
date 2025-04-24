@@ -22,7 +22,7 @@ export class NavComponent implements OnInit, OnDestroy {
     private userUtilsService: UserUtilsService,
     private router: Router,
     private proximamenteService: ProximamenteService
-  ) {}
+  ) { }
 
   menuOpen: boolean = false; // Estado inicial cerrado
 
