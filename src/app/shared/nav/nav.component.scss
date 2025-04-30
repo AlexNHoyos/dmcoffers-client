@@ -2,26 +2,36 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: nowrap; // evitar que salten de línea
+  gap: 10px;
+  width: 100%;
+  overflow: hidden;
 }
 
 .header {
   display: flex;
-  align-items: left;
-  max-width: 5%;
-  flex: 0;
+  align-items: center;
+  flex-shrink: 0; // evita que se achique
 }
 
 .header-content {
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  img.logo {
+    width: 75px;
+    height: 75px;
+  }
 }
 
 .h1 {
   color: whitesmoke;
   font-family: 'DarkerHollow';
-  font-size: 60px;
-  margin-top: 20px;
-  margin-left: 20px;
+  font-size: 48px;
+  margin-left: 12px;
+  white-space: nowrap;
 }
 
 .left-section {
@@ -40,18 +50,16 @@
   flex: 1;
   display: flex;
   justify-content: center;
-}
-
-.right-section {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  min-width: 0; // permite que flex reduzca si es necesario
+  overflow: hidden;
 }
 
 .search-bar {
+  width: 100%;
+  max-width: 400px;
   display: flex;
   align-items: center;
-  width: 600px;
+  flex-shrink: 1;
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 3px;
   overflow: hidden;
@@ -84,5 +92,80 @@
     &:hover {
       background-color: rgba(255, 255, 255, 0.1);
     }
+  }
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 10px;
+}
+
+/* Ajustes para resoluciones medianas: ya no usamos margin/padding hack */
+@media (max-width: 1195px) and (min-width: 769px) {
+  .center-section {
+    justify-content: flex-end;
+  }
+
+  .search-bar {
+    max-width: 300px;
+  }
+
+  .h1 {
+    font-size: 42px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .user-actions {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+  }
+
+  .toolbar-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .right-section {
+    order: 2;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 20px;
+    margin-bottom: 10px;
+  }
+
+  .header {
+    order: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .center-section {
+    display: none !important;
+  }
+
+  .header-content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    img.logo {
+      width: 90px;
+      height: 90px;
+    }
+  }
+
+  .h1 {
+    font-size: 40px;
+    margin: 10px 0 0 0;
   }
 }
