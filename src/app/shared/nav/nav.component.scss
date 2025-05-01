@@ -18,6 +18,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  vertical-align: middle;
   flex-shrink: 0;
 
   img.logo {
@@ -31,6 +32,7 @@
   font-family: 'DarkerHollow';
   font-size: 48px;
   margin-left: 12px;
+  margin-top: 15px;
   white-space: nowrap;
 }
 
