@@ -5,7 +5,7 @@
 <div *ngIf="juego" class="game-details">
   <div class="game-image">
     <!--*ngIf="juego.imagen_url">-->
-    <img [src]="'https://picsum.photos/400/300'" alt="Imagen del juego" />
+    <img [src]="environmentImg + juego.image_path" alt="Imagen del juego" />
   </div>
   <div class="game-header">
     <h2>{{ juego.gamename }}</h2>

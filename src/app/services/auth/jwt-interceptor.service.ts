@@ -28,14 +28,23 @@ export class JwtInterceptorService implements HttpInterceptor {
     let token: String = this.loginService.userToken;
 
     if (token) {
-      req = req.clone({
-        setHeaders: {
-          'Content-Type': 'application/json;charset=utf-8',
-          Accept: 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      });
-    }
+      if (req.body instanceof FormData) {
+            req = req.clone({
+              setHeaders: {
+                Authorization: `Bearer ${token}`,
+                // NO seteamos Content-Type ni Accept, el navegador se encarga
+              },
+            });
+          } else {
+            req = req.clone({
+              setHeaders: {
+                'Content-Type': 'application/json;charset=utf-8',
+                Accept: 'application/json',
+                Authorization: `Bearer ${token}`,
+              },
+            });
+          }
+        }
 
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {

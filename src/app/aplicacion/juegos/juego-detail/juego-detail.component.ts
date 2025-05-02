@@ -9,6 +9,7 @@ import { UserService } from 'src/app/services/user/user.service';
 import { Subscription } from 'rxjs';
 import { CartService } from '../cart.service';
 import { LibraryService } from '../library.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-juego-detail',
@@ -24,9 +25,11 @@ export class JuegoDetailComponent implements OnInit {
   userId: string = '';
   isInCart: boolean = false;
   cartBtnHover: boolean = false;
+  environmentImg: string="";
   private userSubscription!: Subscription;
 
   constructor(
+
     private route: ActivatedRoute,
     private juegoService: JuegoService,
     private location: Location,
@@ -39,19 +42,23 @@ export class JuegoDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.token = this.loginService.userToken;
-    console.log(this.token);
+    this.environmentImg = environment.urlImg;
+
     const idJuegoParam = this.route.snapshot.paramMap.get('id');
     if (idJuegoParam) {
       this.idJuego = +idJuegoParam;
       this.juegoService.getJuego(this.idJuego).subscribe((juego) => {
         this.juego = juego;
+
       });
       if (this.token) {
         this.checkIfInWishlist(this.idJuego);
         this.checkIfInCart(this.idJuego);
         this.checkIfInLibrary(this.idJuego);
+
       }
     }
+    
   }
 
   checkIfInWishlist(idJuego: number): void {

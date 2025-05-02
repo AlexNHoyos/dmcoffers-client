@@ -16,8 +16,8 @@ export class JuegoService extends CrudService<JuegoPage> {
     super(http);
   }
 
-  createJuego(juego: Juego): Observable<Juego> {
-    return this.http.post<Juego>(`${this.endpoint}/`, juego);
+  createJuego(juego: FormData): Observable<any> {
+    return this.http.post<any>(`${this.endpoint}/`, juego);
   }
 
   updateJuego(id: number, juego: Juego): Observable<Juego> {
