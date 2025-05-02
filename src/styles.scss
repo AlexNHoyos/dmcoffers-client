@@ -29,6 +29,8 @@ $gutter-width: 16px;
 
 body {
   user-select: none;
+  display: flex;
+  flex-direction: column;
 }
 
 input,
