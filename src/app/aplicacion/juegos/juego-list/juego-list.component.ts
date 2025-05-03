@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Juego } from '../juegos.model';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-juego-list',
@@ -7,6 +8,7 @@ import { Juego } from '../juegos.model';
   styleUrls: ['./juego-list.component.scss'],
 })
 export class JuegoListComponent implements OnInit {
+  environmentImg: string="";
   @Input() juegos: Juego[] = [];
   @Input() isLoggedIn: boolean = false;
   @Input() isWishlist: boolean = false;
@@ -15,7 +17,9 @@ export class JuegoListComponent implements OnInit {
   @Output() wishlistToggled = new EventEmitter<Juego>();
   @Output() removeFromWishlist = new EventEmitter<number>();
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.environmentImg = environment.urlImg;
+  }
 
   onGameClick(juegoId: number): void {
     this.gameSelected.emit(juegoId);

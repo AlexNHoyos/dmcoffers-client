@@ -143,5 +143,5 @@ export class JuegoCreateComponent implements OnInit {
   if (file) {
     this.selectedFile = file;
   }
-}
+  }
 }
