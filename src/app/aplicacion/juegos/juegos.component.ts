@@ -6,6 +6,7 @@ import { WishlistService } from './wishlist.service';
 import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/services/auth/login.service';
 import { UserService } from 'src/app/services/user/user.service';
+import { LibraryService } from './library.service';
 
 @Component({
   selector: 'app-juegos',
@@ -18,6 +19,7 @@ export class JuegosComponent implements OnInit {
   juegos: Juego[] = [];
   userId: string = '';
   isInWishlist: boolean = false;
+  isInLibrary: boolean = false;
   isLoggedIn: boolean = false;
   private userSubscription!: Subscription;
 
@@ -25,7 +27,8 @@ export class JuegosComponent implements OnInit {
     private juegoService: JuegoService,
     private router: Router,
     private wishlistService: WishlistService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private libraryService: LibraryService
   ) {}
 
   ngOnInit(): void {
@@ -37,9 +40,12 @@ export class JuegosComponent implements OnInit {
         this.juegos = data.map((juego) => ({
           ...juego,
           isInWishlist: false, // Inicialmente, no están en la wishlist
+          isInLibrary: false, // Inicialmente, no están en la biblioteca
         }));
         // Verificar si cada juego está en la wishlist
         this.juegos.forEach((juego) => this.checkIfInWishlist(juego));
+        this.juegos.forEach((juego) => this.checkIfInLibrary(juego));
+
       },
       (error) => {
         console.error('Error al obtener los juegos:', error);
@@ -72,7 +78,6 @@ export class JuegosComponent implements OnInit {
     if (this.isLoggedIn) {
       this.wishlistService.addToWishlist(juego.id).subscribe(() => {
         juego.isInWishlist = true;
-        console.log('Juego agregado a la wishlist');
       });
     }
   }
@@ -81,7 +86,14 @@ export class JuegosComponent implements OnInit {
     if (this.isLoggedIn) {
       this.wishlistService.removeFromWishlist(juego.id).subscribe(() => {
         juego.isInWishlist = false;
-        console.log('Juego eliminado de la wishlist');
+      });
+    }
+  }
+
+  checkIfInLibrary(juego: Juego): void {
+    if (this.isLoggedIn) {
+      this.libraryService.isInLibrary(juego.id).subscribe((response) => {
+        juego.isInLibrary = response.isInBiblioteca;
       });
     }
   }

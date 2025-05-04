@@ -89,6 +89,10 @@ import { SweItemMenuComponent } from './components/sweitemmenu/sweitemmenu.compo
 import { SweItemMenuService } from './components/sweitemmenu/sweitemmenu.service';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatMenuModule } from '@angular/material/menu'
+import { CartService } from './aplicacion/juegos/cart.service';
+import { CartComponent } from './pages/cart/cart.component';
+import { LibraryComponent } from './pages/library/library.component';
+
 
 @NgModule({
   declarations: [
@@ -143,6 +147,8 @@ import { MatMenuModule } from '@angular/material/menu'
     UsuariosComponent,
     UpdateRolComponent,
     SweItemMenuComponent,
+    CartComponent,
+    LibraryComponent,
   ],
   imports: [
     CommonModule,
@@ -175,6 +181,7 @@ import { MatMenuModule } from '@angular/material/menu'
 
   providers: [
     WishlistService,
+    CartService,
     RegisterService,
     PublisherService,
     CategoriaService,

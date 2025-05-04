@@ -5,7 +5,7 @@
 <div *ngIf="juego" class="game-details">
   <div class="game-image">
     <!--*ngIf="juego.imagen_url">-->
-    <img [src]="'https://picsum.photos/400/300'" alt="Imagen del juego" />
+    <img [src]="environmentImg + juego.image_path" alt="Imagen del juego" />
   </div>
   <div class="game-header">
     <h2>{{ juego.gamename }}</h2>
@@ -30,6 +30,28 @@
     >
       Eliminar de la Wishlist
     </button>
+
+    <button
+  *ngIf="!isInCart && token && !isInLibrary"
+  (click)="addToCart()"
+  class="btn btn-success"
+>
+  Agregar al Carrito
+</button>
+
+<button
+  *ngIf="isInCart && token && !isInLibrary"
+  class="btn btn-secondary"
+  (mouseenter)="cartBtnHover = true"
+  (mouseleave)="cartBtnHover = false"
+  (click)="removeFromCart()"
+>
+  {{ cartBtnHover ? 'Quitar del Carrito' : 'Ya está en el Carrito' }}
+</button>
+
+<p *ngIf="isInLibrary" class="text-muted mt-2">
+  Este juego ya está en tu biblioteca.
+</p>
   </div>
 
   <div class="game-content">

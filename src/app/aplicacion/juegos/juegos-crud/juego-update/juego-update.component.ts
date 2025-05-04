@@ -22,6 +22,7 @@ export class JuegoUpdateComponent {
   desarrolladores: any[] = []; // Lista de desarrolladores
   publishers: any[] = []; // Lista de publishers
   categorias: any[] = []; // Lista de categorías
+  selectedFile: File | null = null;
 
   constructor(
     private juegoService: JuegoService,
@@ -76,6 +77,7 @@ export class JuegoUpdateComponent {
   }
 
   onUpdateJuego(): void {
+    const formData = new FormData();
     const juegoToSend = {
       ...this.juego,
       release_date: this.juego.release_date
@@ -106,7 +108,13 @@ export class JuegoUpdateComponent {
       ),
     };
 
-    this.juegoService.updateJuego(this.juego.id, juegoToSend).subscribe({
+  formData.append('juego', JSON.stringify(juegoToSend));
+  
+  if (this.selectedFile) {
+    formData.append('image', this.selectedFile);
+  }
+
+    this.juegoService.updateJuego(this.juego.id, formData).subscribe({
       next: () => {
         this.dialogRef.close(true);
       },
@@ -117,6 +125,13 @@ export class JuegoUpdateComponent {
       },
     });
   }
+
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+      if (file) {
+        this.selectedFile = file;
+      }
+}
 
   private showErrorDialog(message: string): void {
     this.dialog.open(ErrorDialogComponent, {

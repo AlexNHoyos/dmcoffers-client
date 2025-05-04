@@ -27,6 +27,9 @@ import { WishlistComponent } from './pages/wishlist/wishlist.component';
 import { PersonalDetailsComponent } from './pages/personal-details/personal-details.component';
 import { SoporteComponent } from './components/soporte/soporte.component';
 import { JuegosComponent } from './aplicacion/juegos/juegos.component';
+import { CartComponent } from './pages/cart/cart.component';
+import { LibraryComponent } from './pages/library/library.component';
+import { JuegosCrudComponent } from './aplicacion/juegos/juegos-crud/juegos-crud.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -44,9 +47,11 @@ const routes: Routes = [
   { path: 'info', component: PersonalDetailsComponent },
   { path: 'juego/:id', component: JuegoDetailComponent },
   { path: 'wishlist', component: WishlistComponent },
+  { path: 'biblioteca', component: LibraryComponent },
+  { path: 'cart', component: CartComponent},
   { path: 'categorias', component: CategoriasComponent, canActivate: [adminGuard], },
   { path: 'publicadores', component: PublisherComponent, canActivate: [adminGuard], },
-  { path: 'juegos', component: JuegosComponent, canActivate: [adminGuard], },
+  { path: 'juegos', component: JuegosCrudComponent, canActivate: [adminGuard], },
   { path: 'desarrolladores', component: DesarrolladoresComponent, canActivate: [adminGuard], },
   /*{ path: 'create-publisher', component: PublisherCreateComponent,
     canActivate: [adminGuard], },

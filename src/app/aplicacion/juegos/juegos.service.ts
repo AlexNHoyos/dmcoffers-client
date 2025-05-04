@@ -16,13 +16,13 @@ export class JuegoService extends CrudService<JuegoPage> {
     super(http);
   }
 
-  createJuego(juego: Juego): Observable<Juego> {
-    return this.http.post<Juego>(`${this.endpoint}/`, juego);
+  createJuego(juego: FormData): Observable<any> {
+    return this.http.post<any>(`${this.endpoint}/`, juego);
   }
 
-  updateJuego(id: number, juego: Juego): Observable<Juego> {
-    console.log(id, juego);
-    return this.http.patch<Juego>(`${this.endpoint}/${id}`, juego);
+  updateJuego(id: number, juegoData: FormData): Observable<any> {
+    console.log(id, juegoData);
+    return this.http.patch<Juego>(`${this.endpoint}/${id}`, juegoData);
   }
 
   getJuegos(): Observable<Juego[]> {

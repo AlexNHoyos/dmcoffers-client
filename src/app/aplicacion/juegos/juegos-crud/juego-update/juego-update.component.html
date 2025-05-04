@@ -95,6 +95,15 @@
       </mat-error>
     </mat-form-field>
 
+      <div class="image-upload">
+        <label>Imagen del Juego</label><br />
+          <input
+            type="file"
+            (change)="onFileSelected($event)"
+            accept="image/*"
+        />
+      </div>
+
     <!-- Botones de acción -->
     <br />
     <button

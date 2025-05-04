@@ -25,8 +25,8 @@ export class UpdateRolComponent {
       id: data.user.idUser,
     };
 
-    if (this.data.rolDesc) {
-      this.user.rolDesc = this.data.user.rolDesc;
+    if (this.data.user.rolDesc) {
+      this.user.rolDescription = this.data.user.rolDesc;
     }
   }
 
@@ -37,12 +37,12 @@ export class UpdateRolComponent {
         this.user.modificationtimestamp = new Date().toISOString();
 
         // Actualiza el objeto del usuario con el rol actualizado
-        const updatedUser: User = {
+        const userRequest = {
           ...this.user,
-          rolDesc: this.user.rolDesc, // Cambia solo el campo de rol
+          rolDesc: this.user.rolDescription, // Cambia solo el campo de rol
         };
 
-        this.userService.updateUser(this.user.id, updatedUser).subscribe(
+        this.userService.updateUser(this.user.idUser, userRequest).subscribe(
           (response) => {
             console.log('Usuario actualizado:', response);
             this.dialogRef.close(true);

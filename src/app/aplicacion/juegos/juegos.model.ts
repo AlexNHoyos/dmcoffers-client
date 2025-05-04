@@ -17,7 +17,9 @@ export class Juego {
   developerName: string = '';
   categoriasNames: string[] = [];
   price?: number;
+  image_path?:string | null = null;
   isInWishlist?: boolean;
+  isInLibrary?: boolean;
 }
 
 export interface JuegoPage extends Page<Juego> {
