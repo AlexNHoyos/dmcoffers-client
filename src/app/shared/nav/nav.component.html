@@ -6,22 +6,21 @@
       <header class="header toolbar">
         <div class="header-content">
           <img src="assets/images/logo.png" alt="DMC - Offers Logo" class="logo" routerLink="/inicio" />
-          <h1 class="h1">DmcOffers</h1>
         </div>
       </header>
 
-      <!-- Centro: Buscador -->
-      <div class="col-12 center-section">
-        <div class="col-md-4 col-lg-4 search-bar">
-          <input type="text" [(ngModel)]="searchTerm" (keydown.enter)="onSearch()" />
-          <div class="divider"></div>
-          <button (click)="onSearch()">
-            <mat-icon>search</mat-icon>
-          </button>
+      <div class="center-section">
+        <div class="col-12 col-lg-5 col-md-8 col-sm-8">
+          <div class="search-bar">
+            <input type="text" [(ngModel)]="searchTerm" (keydown.enter)="onSearch()" />
+            <div class="divider"></div>
+            <button (click)="onSearch()">
+              <mat-icon>search</mat-icon>
+            </button>
+          </div>
         </div>
       </div>
 
-      <!-- Derecha: Usuario + Carrito -->
       <div class="right-section">
         <div *ngIf="!userLoginOn" class="user-actions">
           <button mat-icon-button [matMenuTriggerFor]="menu" style="color: white;">
