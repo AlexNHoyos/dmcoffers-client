@@ -1,173 +1,168 @@
-.toolbar-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: nowrap; // evitar que salten de línea
-  gap: 10px;
-  width: 100%;
-  overflow: hidden;
-}
-
-.header {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0; // evita que se achique
-}
-
-.header-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  vertical-align: middle;
-  flex-shrink: 0;
-
-  img.logo {
-    width: 75px;
-    height: 75px;
-  }
-}
-
-.h1 {
-  color: whitesmoke;
-  font-family: 'DarkerHollow';
-  font-size: 48px;
-  margin-left: 12px;
-  margin-top: 15px;
-  white-space: nowrap;
-}
-
-.left-section {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: white;
-}
-
-.app-name {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.center-section {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  min-width: 0; // permite que flex reduzca si es necesario
-  overflow: hidden;
-}
-
-.search-bar {
-  width: 100%;
-  max-width: 400px;
-  display: flex;
-  align-items: center;
-  flex-shrink: 1;
-  background-color: rgba(255, 255, 255, 0.3);
-  border-radius: 3px;
-  overflow: hidden;
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-
-  input {
-    flex: 1;
-    padding: 6px 8px;
-    border: none;
-    background: transparent;
-    color: #fff;
-    outline: none;
-  }
-
-  .divider {
-    width: 1px;
-    height: 60%;
-    background-color: rgba(255, 255, 255, 0.5);
-  }
-
-  button {
-    background: transparent;
-    border: none;
-    padding: 6px 8px;
-    color: #fff;
-    cursor: pointer;
-    vertical-align: middle;
-
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-  }
-}
-
-.right-section {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-  gap: 10px;
-}
-
-/* Ajustes para resoluciones medianas: ya no usamos margin/padding hack */
-@media (max-width: 1195px) and (min-width: 769px) {
-  .center-section {
-    justify-content: flex-end;
-  }
-
-  .search-bar {
-    max-width: 300px;
-  }
-
-  .h1 {
-    font-size: 42px;
-  }
-}
-
-@media (max-width: 768px) {
-
-  .user-actions {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    padding-right: 10px;
-  }
-
   .toolbar-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .right-section {
-    order: 2;
-    width: 100%;
     display: flex;
-    justify-content: flex-start;
-    padding-left: 20px;
-    margin-bottom: 10px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap; // evitar que salten de línea
+    gap: 10px;
+    width: 100%;
+    overflow: hidden;
   }
 
   .header {
-    order: 1;
-    width: 100%;
     display: flex;
-    justify-content: center;
-    margin-bottom: 10px;
-  }
-
-  .center-section {
-    display: none !important;
+    align-items: center;
+    flex-shrink: 0; // evita que se achique
   }
 
   .header-content {
-    flex-direction: column;
+    display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
+    vertical-align: middle;
+    flex-shrink: 0;
 
     img.logo {
-      width: 90px;
-      height: 90px;
+      width: 75px;
+      height: 75px;
     }
   }
 
   .h1 {
-    font-size: 40px;
-    margin: 10px 0 0 0;
+    color: whitesmoke;
+    font-family: 'DarkerHollow';
+    font-size: 48px;
+    margin-left: 12px;
+    margin-top: 15px;
+    white-space: nowrap;
   }
-}
+
+  .left-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+  }
+
+  .app-name {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .center-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    min-width: 0; // permite que flex reduzca si es necesario
+    overflow: hidden;
+  }
+
+  .search-bar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-shrink: 1;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    overflow: hidden;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+
+    input {
+      flex: 1;
+      padding: 6px 8px;
+      border: none;
+      background: transparent;
+      color: #fff;
+      outline: none;
+    }
+
+    .divider {
+      width: 1px;
+      height: 60%;
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    button {
+      background: transparent;
+      border: none;
+      padding: 6px 8px;
+      color: #fff;
+      cursor: pointer;
+      vertical-align: middle;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+    }
+  }
+
+  .right-section {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 10px;
+  }
+
+  /* Ajustes para resoluciones medianas: ya no usamos margin/padding hack */
+  @media (max-width: 1195px) and (min-width: 769px) {
+    .center-section {
+      justify-content: flex-end;
+    }
+
+    .h1 {
+      font-size: 42px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .toolbar-container {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .header {
+      order: 1;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    .header-content {
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+
+      img.logo {
+        width: 60px;
+        height: 60px;
+      }
+    }
+
+    .h1 {
+      display: none; // Ocultar título en móviles
+    }
+
+    .center-section,
+    .right-section {
+      order: 2;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .search-bar {
+      max-width: 300px;
+      margin-right: 10px; // Espacio entre buscador y botones
+    }
+
+    .user-actions {
+      flex-direction: row;
+      justify-content: flex-start;
+      gap: 10px;
+    }
+
+  }
