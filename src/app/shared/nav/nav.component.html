@@ -13,11 +13,11 @@
         <div class="col-12 col-lg-5 col-md-8 col-sm-8">
           <div class="search-bar">
             <input type="text" [(ngModel)]="searchTerm" (keydown.enter)="onSearch()" />
-            <div class="divider"></div>
             <button (click)="onSearch()">
-              <mat-icon>search</mat-icon>
+              <mat-icon class="search-icon">search</mat-icon>
             </button>
           </div>
+
         </div>
       </div>
 
@@ -38,7 +38,7 @@
 
         <div *ngIf="userLoginOn" class="user-actions">
           <button mat-icon-button [matMenuTriggerFor]="menu" style="color: white;">
-            <mat-icon>person</mat-icon>
+            <mat-icon class="header-item-button">person</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
             <button mat-menu-item routerLink="/info">
@@ -50,7 +50,7 @@
           </mat-menu>
 
           <button mat-icon-button (click)="carrito()" aria-label="Carrito de compras" style="color: white;">
-            <mat-icon>shopping_cart</mat-icon>
+            <mat-icon class="header-item-button">shopping_cart</mat-icon>
           </button>
         </div>
       </div>

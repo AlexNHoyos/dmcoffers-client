@@ -104,7 +104,6 @@
     order: 1;
     width: 100%;
     justify-content: center;
-    margin-bottom: 10px;
   }
 
   .header-content {
@@ -120,7 +119,6 @@
   .center-section,
   .right-section {
     width: 100%;
-    margin-bottom: 10px;
   }
 
   .center-section {
@@ -133,6 +131,21 @@
 
   .user-actions {
     justify-content: flex-end;
-    gap: 10px;
   }
+
+  .search-bar {
+    height: 70%;
+  }
+
+  .search-icon {
+    font-size: 20px;
+    padding-top: 2px;
+    padding-left: 5px;
+  }
+
+  .header-item-button {
+    font-size: 20px;
+    margin: 0 0 0 0;
+  }
+
 }
