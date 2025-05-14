@@ -9,9 +9,10 @@ import { ErrorDialogComponent } from '../../../components/error-dialog/error-dia
 import { CategoriaService } from '../categoria.service';
 
 @Component({
-  selector: 'app-categoria-delete',
-  templateUrl: './categoria-delete.component.html',
-  styleUrls: ['./categoria-delete.component.scss'],
+    selector: 'app-categoria-delete',
+    templateUrl: './categoria-delete.component.html',
+    styleUrls: ['./categoria-delete.component.scss'],
+    standalone: false
 })
 export class CategoriaDeleteComponent implements OnInit {
   categoriaId: number = 0;

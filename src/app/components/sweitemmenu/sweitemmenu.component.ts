@@ -5,9 +5,10 @@ import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-sweitemmenu',
-  templateUrl: './sweitemmenu.component.html',
-  styleUrls: ['./sweitemmenu.component.scss']
+    selector: 'app-sweitemmenu',
+    templateUrl: './sweitemmenu.component.html',
+    styleUrls: ['./sweitemmenu.component.scss'],
+    standalone: false
 })
 export class SweItemMenuComponent implements OnInit {
 

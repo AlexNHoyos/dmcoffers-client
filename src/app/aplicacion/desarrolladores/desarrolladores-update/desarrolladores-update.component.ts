@@ -11,8 +11,9 @@ import { UserUtilsService } from 'src/app/services/user/user-util-service.servic
 import { DesarrolladoresService } from '../desarrolladores.service';
 
 @Component({
-  selector: 'app-desarrolladores-update',
-  templateUrl: './desarrolladores-update.component.html',
+    selector: 'app-desarrolladores-update',
+    templateUrl: './desarrolladores-update.component.html',
+    standalone: false
 })
 export class DesarrolladoresUpdateComponent {
   today = new Date();

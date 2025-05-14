@@ -3,9 +3,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Desarrollador } from '../desarrolladores.models';
 
 @Component({
-  selector: 'app-desarrolladores-detail',
-  templateUrl: './desarrolladores-detail.component.html',
-  styleUrls: ['./desarrolladores-detail.component.scss'],
+    selector: 'app-desarrolladores-detail',
+    templateUrl: './desarrolladores-detail.component.html',
+    styleUrls: ['./desarrolladores-detail.component.scss'],
+    standalone: false
 })
 export class DesarrolladoresDetailComponent {
   constructor(

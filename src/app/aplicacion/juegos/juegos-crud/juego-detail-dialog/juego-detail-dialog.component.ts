@@ -3,9 +3,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Juego } from '../../juegos.model';
 
 @Component({
-  selector: 'app-juego-detail-dialog',
-  templateUrl: './juego-detail-dialog.component.html',
-  styleUrls: ['./juego-detail-dialog.component.scss'],
+    selector: 'app-juego-detail-dialog',
+    templateUrl: './juego-detail-dialog.component.html',
+    styleUrls: ['./juego-detail-dialog.component.scss'],
+    standalone: false
 })
 export class JuegoDetailDialogComponent {
   constructor(

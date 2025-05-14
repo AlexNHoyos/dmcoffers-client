@@ -9,9 +9,10 @@ import { HostingDeleteComponent } from './hosting-delete/hosting-delete.componen
 import { HostingDetailComponent } from './hosting-detail/hosting-detail.component';
 
 @Component({
-  selector: 'app-hosting',
-  templateUrl: './hosting.component.html',
-  styleUrls: ['./hosting.component.scss'],
+    selector: 'app-hosting',
+    templateUrl: './hosting.component.html',
+    styleUrls: ['./hosting.component.scss'],
+    standalone: false
 })
 export class HostingComponent extends CrudComponent<Hosting> {
   hostings: Hosting[] = [];

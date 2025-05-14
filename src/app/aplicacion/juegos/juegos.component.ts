@@ -9,9 +9,10 @@ import { UserService } from 'src/app/services/user/user.service';
 import { LibraryService } from './library.service';
 
 @Component({
-  selector: 'app-juegos',
-  templateUrl: './juegos.component.html',
-  styleUrls: ['./juegos.component.scss'],
+    selector: 'app-juegos',
+    templateUrl: './juegos.component.html',
+    styleUrls: ['./juegos.component.scss'],
+    standalone: false
 })
 
 //Idealmente mostrar los primeros 10 para "Nuevos lanzamientos"

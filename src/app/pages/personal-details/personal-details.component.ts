@@ -9,10 +9,11 @@ import { Subscription } from 'rxjs';
 import { ProximamenteService } from 'src/app/services/proximamente.service';
 
 @Component({
-  selector: 'app-personal-details',
-  templateUrl: './personal-details.component.html',
-  styleUrls: ['./personal-details.component.scss'],
-  providers: [DatePipe],
+    selector: 'app-personal-details',
+    templateUrl: './personal-details.component.html',
+    styleUrls: ['./personal-details.component.scss'],
+    providers: [DatePipe],
+    standalone: false
 })
 export class PersonalDetailsComponent implements OnInit {
   errorMessage: String = '';

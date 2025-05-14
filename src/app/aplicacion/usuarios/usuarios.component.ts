@@ -8,9 +8,10 @@ import { User } from 'src/app/models/user.model';
 import { RegisterComponent } from 'src/app/auth/register/register.component';
 
 @Component({
-  selector: 'app-usuarios',
-  templateUrl: './usuarios.component.html',
-  styleUrls: ['./usuarios.component.scss'],
+    selector: 'app-usuarios',
+    templateUrl: './usuarios.component.html',
+    styleUrls: ['./usuarios.component.scss'],
+    standalone: false
 })
 export class UsuariosComponent extends CrudComponent<User> {
   usuarios: User[] = [];

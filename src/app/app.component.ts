@@ -4,9 +4,10 @@ import { Subscription } from 'rxjs';
 import { LoginService } from './services/auth/login.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    standalone: false
 })
 export class AppComponent implements OnInit {
   publishers: Publisher[] = [];

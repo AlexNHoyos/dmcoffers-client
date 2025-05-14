@@ -7,9 +7,10 @@ import { UserUtilsService } from 'src/app/services/user/user-util-service.servic
 import { CategoriaService } from '../categoria.service';
 
 @Component({
-  selector: 'app-categoria-create',
-  templateUrl: './categoria-create.component.html',
-  styleUrls: ['./categoria-create.component.scss'],
+    selector: 'app-categoria-create',
+    templateUrl: './categoria-create.component.html',
+    styleUrls: ['./categoria-create.component.scss'],
+    standalone: false
 })
 export class CategoriaCreateComponent {
   categoria: Categoria = {

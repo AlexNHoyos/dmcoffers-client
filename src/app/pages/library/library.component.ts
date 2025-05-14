@@ -6,9 +6,10 @@ import { ConfirmComponent } from 'src/app/components/confirm/confirm.component';
 import { LoginService } from 'src/app/services/auth/login.service';
 
 @Component({
-  selector: 'app-library',
-  templateUrl: './library.component.html',
-  styleUrls: ['./library.component.scss']
+    selector: 'app-library',
+    templateUrl: './library.component.html',
+    styleUrls: ['./library.component.scss'],
+    standalone: false
 })
 export class LibraryComponent {
   library: any[] = [];

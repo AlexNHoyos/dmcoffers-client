@@ -8,9 +8,10 @@ export interface ConfirmModel {
 }
 
 @Component({
-  selector: 'app-confirm',
-  styleUrls: ['./confirm.component.scss'],
-  templateUrl: './confirm.component.html',
+    selector: 'app-confirm',
+    styleUrls: ['./confirm.component.scss'],
+    templateUrl: './confirm.component.html',
+    standalone: false
 })
 export class ConfirmComponent {
   constructor(
