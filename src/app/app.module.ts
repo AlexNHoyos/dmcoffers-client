@@ -92,6 +92,8 @@ import { MatMenuModule } from '@angular/material/menu'
 import { CartService } from './aplicacion/juegos/cart.service';
 import { CartComponent } from './pages/cart/cart.component';
 import { LibraryComponent } from './pages/library/library.component';
+import { HttpClient } from '@angular/common/http';
+
 
 
 @NgModule({ declarations: [
