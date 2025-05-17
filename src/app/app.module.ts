@@ -93,6 +93,7 @@ import { CartService } from './aplicacion/juegos/cart.service';
 import { CartComponent } from './pages/cart/cart.component';
 import { LibraryComponent } from './pages/library/library.component';
 import { HttpClient } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 
 
@@ -175,7 +176,35 @@ import { HttpClient } from '@angular/common/http';
         MatSnackBarModule,
         MatListModule,
         MatSidenavModule,
-        MatMenuModule], providers: [
+        MatMenuModule
+    ], exports: [
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatDialogModule,
+        MatToolbarModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatIconModule,
+        MatCardModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatSelectModule,
+        MatExpansionModule,
+        MatDividerModule,
+        MatSnackBarModule,
+        MatListModule,
+        MatSidenavModule,
+        MatMenuModule,
+        MatButton,
+        MatFormFieldModule,
+        MatInputModule,
+        MatDialogModule,
+        MatToolbarModule,
+        MatTableModule,
+        MatPaginatorModule
+        ], providers: [
         WishlistService,
         CartService,
         RegisterService,
