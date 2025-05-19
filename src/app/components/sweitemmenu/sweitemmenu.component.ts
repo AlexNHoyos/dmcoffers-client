@@ -20,7 +20,6 @@ export class SweItemMenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadMenuItems();
-
   }
 
   loadMenuItems(): void {
@@ -58,6 +57,8 @@ export class SweItemMenuComponent implements OnInit {
       })
 
       this.menuItems = menuItems;
+
+      console.log(menuItems);
     });
   }
 
