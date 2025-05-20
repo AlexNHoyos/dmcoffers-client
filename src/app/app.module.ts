@@ -8,13 +8,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule} from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -176,8 +176,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
         MatSnackBarModule,
         MatListModule,
         MatSidenavModule,
-        MatMenuModule
-    ], exports: [
+        MatMenuModule,
         MatButtonModule,
         MatFormFieldModule,
         MatInputModule,
