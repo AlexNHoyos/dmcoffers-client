@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+
 import { SweItemMenuComponent } from './sweitemmenu.component';
 
 describe('SidemenuComponent', () => {
@@ -8,7 +11,11 @@ describe('SidemenuComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SweItemMenuComponent]
+      declarations: [SweItemMenuComponent],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+      ]
     });
     fixture = TestBed.createComponent(SweItemMenuComponent);
     component = fixture.componentInstance;

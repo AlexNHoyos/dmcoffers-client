@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+/*import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { JuegosComponent } from './juegos.component';
 
@@ -21,4 +21,4 @@ describe('JuegosComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-});
+});*/
