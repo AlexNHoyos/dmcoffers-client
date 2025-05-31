@@ -3,6 +3,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatFormField } from '@angular/material/input';
+
 import { SupportTicketUpdateComponent } from './support-ticket-update.component';
 
 describe('SupportTicketUpdateComponent', () => {
@@ -12,7 +15,10 @@ describe('SupportTicketUpdateComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [SupportTicketUpdateComponent],
+      imports: [MatDialogModule, MatFormField],
       providers: [
+        { provide: MatDialogRef, useValue: {} },
+        { provide: MAT_DIALOG_DATA, useValue: {} },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting()
       ]

@@ -89,11 +89,11 @@ describe('JuegoCreateComponent', () => {
   it('Debería crear el juego', () => {
     expect(component).toBeTruthy();
   });
-  it('el formulario debería ser inválido inicialmente', () => {
+  it('El formulario debería ser inválido inicialmente', () => {
     expect(fixture.nativeElement.querySelector('form').checkValidity()).toBeFalse();
   });
 
-  it('debería habilitar el botón cuando el formulario sea válido', fakeAsync(() => {
+  it('Debería habilitar el botón cuando el formulario sea válido', fakeAsync(() => {
     component.juego = {
       id: 1,
       gamename: 'Nombre Juego',
@@ -113,7 +113,7 @@ describe('JuegoCreateComponent', () => {
     expect(btnCrear.disabled).toBeFalse();
   }));
 
-  it('debería llamar a createJuego al hacer clic en Crear', fakeAsync(() => {
+  it('Debería llamar a createJuego al hacer clic en Crear', fakeAsync(() => {
     spyOn(component, 'createJuego');
     component.juego = {
       id: 1,
