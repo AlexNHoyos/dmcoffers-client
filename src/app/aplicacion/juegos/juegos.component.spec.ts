@@ -1,5 +1,8 @@
-/*import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+
 import { JuegosComponent } from './juegos.component';
 
 describe('JuegosComponent', () => {
@@ -10,6 +13,7 @@ describe('JuegosComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [JuegosComponent],
       providers: [
+        provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting()]
     }).compileComponents();
 
@@ -21,4 +25,4 @@ describe('JuegosComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-});*/
+});

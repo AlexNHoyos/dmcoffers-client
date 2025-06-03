@@ -50,7 +50,7 @@ describe('CategoriaCreateComponent', () => {
     }
   });
 
-  it('debería inicializar creationuser con el usuario logueado en ngOnInit', fakeAsync(() => {
+  it('Debería inicializar creationuser con el usuario logueado en ngOnInit', fakeAsync(() => {
     userUtilsServiceSpy.setLoggedInUser.and.returnValue(of('testUser'));
 
     fixture.detectChanges();
@@ -60,7 +60,7 @@ describe('CategoriaCreateComponent', () => {
     expect(component.categoria.creationuser).toBe('testUser');
   }));
 
-  it('debería registrar un error si no se encuentra el usuario logueado', fakeAsync(() => {
+  it('Debería registrar un error si no se encuentra el usuario logueado', fakeAsync(() => {
     spyOn(console, 'log');
 
     userUtilsServiceSpy.setLoggedInUser.and.returnValue(of(null));
