@@ -18,7 +18,7 @@ import { MatDialogModule} from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -92,10 +92,7 @@ import { MatMenuModule } from '@angular/material/menu'
 import { CartService } from './aplicacion/juegos/cart.service';
 import { CartComponent } from './pages/cart/cart.component';
 import { LibraryComponent } from './pages/library/library.component';
-import { HttpClient } from '@angular/common/http';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-
-
+import { MatDatepicker } from '@angular/material/datepicker';
 
 @NgModule({ declarations: [
         AppComponent,
@@ -213,6 +210,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
         DesarrolladoresService,
         RegisterService,
         SweItemMenuService,
+        provideNativeDateAdapter(),
         {
             provide: HTTP_INTERCEPTORS,
             useClass: JwtInterceptorService,

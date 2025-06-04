@@ -1,9 +1,16 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, tick, fakeAsync } from "@angular/core/testing";
 
 import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";  
 import { provideHttpClientTesting } from "@angular/common/http/testing";
 
 import { DesarrolladoresCreateComponent } from "src/app/aplicacion/desarrolladores/desarrolladores-create/desarrolladores-create.component";
+
+import { MatDialogRef, MatDialogModule, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { MatCardModule } from "@angular/material/card";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { provideNativeDateAdapter } from "@angular/material/core";
 
 import { FormsModule } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
@@ -16,10 +23,21 @@ describe("DesarrolladoresCreateComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DesarrolladoresCreateComponent],
-      imports: [FormsModule, NoopAnimationsModule],
+      imports: [
+        FormsModule, 
+        NoopAnimationsModule, 
+        MatDialogModule,
+        MatCardModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatDatepickerModule
+      ],
       providers: [
+        { provide: MatDialogRef, useValue: {} },
+        { provide: MAT_DIALOG_DATA, useValue: {} },
         provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting()
+        provideHttpClientTesting(),
+        provideNativeDateAdapter()
       ]
     }).compileComponents();
 
@@ -36,4 +54,11 @@ describe("DesarrolladoresCreateComponent", () => {
   it("should create", () => {
     expect(component).toBeTruthy();
   });
+
+  it("Debería deshabilitar el botón de guardar si el formulario es inválido", fakeAsync(() => {
+    fixture.detectChanges();
+    tick();
+    const submitButton = fixture.nativeElement.querySelector("button[type='submit']");
+    expect(submitButton.disabled).toBeFalse();
+  }));
 });
