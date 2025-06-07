@@ -37,6 +37,11 @@ describe("HostingDetailComponent", () => {
     expect(component).toBeTruthy();
   });
 
+  it("Debería mostrar el nombre del hosting en el título", () => {
+    const titleElement = fixture.nativeElement.querySelector("h2");
+    expect(titleElement.textContent).toContain(mockDialogData.hostingName);
+  });
+  
   it("Debería llamar a onClose cuando el diálogo se cierra sin confirmación", fakeAsync(() => {
     spyOn(component, "onClose");
 
