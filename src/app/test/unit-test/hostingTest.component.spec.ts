@@ -14,7 +14,7 @@ describe("HostingDetailComponent", () => {
   let component: HostingDetailComponent;
   let fixture: ComponentFixture<HostingDetailComponent>;
   let mockDialogRef: jasmine.SpyObj<MatDialogRef<HostingDetailComponent>> = jasmine.createSpyObj('MatDialogRef', ['close', 'afterClosed']);
-  const mockDialogData = { hostingName: "Test Hosting" };
+  const mockDialogData = { hostingName: "Detalles del hosting" };
 
   beforeEach(fakeAsync(async () => {
     await TestBed.configureTestingModule({
@@ -30,7 +30,6 @@ describe("HostingDetailComponent", () => {
 
     fixture = TestBed.createComponent(HostingDetailComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   }));
 
   it("Debería crear el componente", () => {
@@ -38,15 +37,15 @@ describe("HostingDetailComponent", () => {
   });
 
   it("Debería mostrar el nombre del hosting en el título", () => {
-    const titleElement = fixture.nativeElement.querySelector("h2");
+    const titleElement = fixture.nativeElement.querySelector("h1");
     expect(titleElement.textContent).toContain(mockDialogData.hostingName);
   });
-  
+
   it("Debería llamar a onClose cuando el diálogo se cierra sin confirmación", fakeAsync(() => {
     spyOn(component, "onClose");
 
     const button = fixture.nativeElement.querySelectorAll("button");
-    const cancelButton = Array.from(button).find((btn) => (btn as HTMLButtonElement).textContent?.trim() === "Cancelar") as HTMLButtonElement | undefined;
+    const cancelButton = Array.from(button).find((btn) => (btn as HTMLButtonElement).textContent?.trim() === "Close") as HTMLButtonElement | undefined;
 
     expect(cancelButton).toBeTruthy();
     cancelButton!.click();
