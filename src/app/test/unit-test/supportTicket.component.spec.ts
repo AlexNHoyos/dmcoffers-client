@@ -15,3 +15,36 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 
 import { of } from "rxjs";
+
+describe("SupportTicketComponent", () => {
+  let component: SupportTicketComponent;
+  let fixture: ComponentFixture<SupportTicketComponent>;
+  let mockDialogRef: jasmine.SpyObj<MatDialogRef<SupportTicketComponent>> = jasmine.createSpyObj('MatDialogRef', ['close', 'afterClosed']);
+  const mockDialogData = { ticketId: "12345" };
+
+  beforeEach(fakeAsync(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [SupportTicketComponent],
+      imports: [
+        FormsModule,
+        NoopAnimationsModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatIconModule
+      ],
+      providers: [
+        { provide: MatDialogRef, useValue: mockDialogRef },
+        { provide: MAT_DIALOG_DATA, useValue: mockDialogData },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+      ]
+    }).compileComponents();
+    fixture = TestBed.createComponent(SupportTicketComponent);
+    component = fixture.componentInstance;
+  }));
+    it("should create", () => {
+        expect(component).toBeTruthy();
+    });
+});
