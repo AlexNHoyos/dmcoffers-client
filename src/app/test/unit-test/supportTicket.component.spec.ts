@@ -47,4 +47,16 @@ describe("SupportTicketComponent", () => {
     it("should create", () => {
         expect(component).toBeTruthy();
     });
+    it("Debería mostrar los detalles del ticket cuando se hace click en showDetails", fakeAsync(() => {
+        spyOn(component, "showDetails");
+
+        const button = fixture.nativeElement.querySelectorAll("button");
+        const detailsButton = Array.from(button).find((btn) => (btn as HTMLButtonElement).textContent?.trim() === "Show Details") as HTMLButtonElement | undefined;
+
+        expect(detailsButton).toBeTruthy();
+        detailsButton!.click();
+        tick();
+
+        expect(component.showDetails).toHaveBeenCalled();
+    }));
 });

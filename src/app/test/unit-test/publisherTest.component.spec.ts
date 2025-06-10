@@ -45,7 +45,7 @@ describe("PublisherDeleteComponent", () => {
     spyOn(component, "onCancel");
     
     const button = fixture.nativeElement.querySelectorAll("button");
-    const cancelButton = Array.from(button).find((btn) => (btn as HTMLButtonElement).textContent?.trim() === "Cancelar") as HTMLButtonElement | undefined;
+    const cancelButton = Array.from(button).find((btn) => (btn as HTMLButtonElement).textContent?.trim() === "Close") as HTMLButtonElement | undefined;
 
     expect(cancelButton).toBeTruthy();
     cancelButton!.click();
