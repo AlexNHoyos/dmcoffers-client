@@ -92,6 +92,7 @@ import { MatMenuModule } from '@angular/material/menu'
 import { CartService } from './aplicacion/juegos/cart.service';
 import { CartComponent } from './pages/cart/cart.component';
 import { LibraryComponent } from './pages/library/library.component';
+import { JuegosPorCategoriaComponent } from './aplicacion/juegos/juegos-por-categoria/juegos-por-categoria.component';
 
 
 @NgModule({
@@ -149,6 +150,7 @@ import { LibraryComponent } from './pages/library/library.component';
     SweItemMenuComponent,
     CartComponent,
     LibraryComponent,
+    JuegosPorCategoriaComponent,
   ],
   imports: [
     CommonModule,

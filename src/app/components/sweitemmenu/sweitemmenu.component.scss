@@ -12,6 +12,7 @@ body {
 .sidenav-container {
     height: 100vh;
     display: flex;
+    width: 100vw;
     background-color: white;
 }
 
@@ -60,6 +61,16 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
     padding: 12px 16px;
+}
+
+.menu-open-button {
+    color: $primary-color;
+}
+
+.navbar-container {
+    height: 56px;
+    z-index: 1000;
+    width: 100vw;
 }
 
 .expand-button {
