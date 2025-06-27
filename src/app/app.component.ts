@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { LoginService } from './services/auth/login.service';
+import { LoadingService } from './services/loading.service';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +10,16 @@ import { LoginService } from './services/auth/login.service';
 })
 export class AppComponent implements OnInit {
   title = 'dmcoffers-client';
+  isLoading$: Observable<boolean>;
   userLoginOn: boolean = false;
   private subscription: Subscription = new Subscription();
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, 
+              private loadingService: LoadingService) {  
+
+                this.isLoading$ = this.loadingService.loading$;
+    }
+
 
   ngOnInit(): void {
     this.subscription.add(

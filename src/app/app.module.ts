@@ -25,6 +25,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatListModule } from '@angular/material/list';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FooterComponent } from './shared/footer/footer.component';
@@ -37,6 +38,7 @@ import { AlertService } from './components/alert/alert.service';
 
 import { JwtInterceptorService } from './services/auth/jwt-interceptor.service';
 import { ErrorInterceptorService } from './services/auth/error-interceptor.service';
+import { LoadingInterceptor } from './components/loading.interceptor';
 
 import { PublisherService } from './aplicacion/publishers/publisher.service';
 import { PublisherComponent } from './aplicacion/publishers/publishers.component';
@@ -93,6 +95,7 @@ import { CartService } from './aplicacion/juegos/cart.service';
 import { CartComponent } from './pages/cart/cart.component';
 import { LibraryComponent } from './pages/library/library.component';
 import { JuegosPorCategoriaComponent } from './aplicacion/juegos/juegos-por-categoria/juegos-por-categoria.component';
+import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
 
 
 @NgModule({
@@ -151,6 +154,7 @@ import { JuegosPorCategoriaComponent } from './aplicacion/juegos/juegos-por-cate
     CartComponent,
     LibraryComponent,
     JuegosPorCategoriaComponent,
+    LoadingOverlayComponent,
   ],
   imports: [
     CommonModule,
@@ -178,7 +182,8 @@ import { JuegosPorCategoriaComponent } from './aplicacion/juegos/juegos-por-cate
     MatSnackBarModule,
     MatListModule,
     MatSidenavModule,
-    MatMenuModule
+    MatMenuModule,
+    MatProgressSpinnerModule
   ],
 
   providers: [
@@ -201,6 +206,11 @@ import { JuegosPorCategoriaComponent } from './aplicacion/juegos/juegos-por-cate
       useClass: ErrorInterceptorService,
       multi: true,
     },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true
+    }
   ],
 
   bootstrap: [AppComponent],

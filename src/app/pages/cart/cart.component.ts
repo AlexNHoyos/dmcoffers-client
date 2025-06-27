@@ -5,6 +5,7 @@ import { CartService } from 'src/app/aplicacion/juegos/cart.service';
 import { Juego } from 'src/app/aplicacion/juegos/juegos.model';
 import { ConfirmComponent } from 'src/app/components/confirm/confirm.component';
 import { LoginService } from 'src/app/services/auth/login.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-cart',
@@ -18,6 +19,7 @@ export class CartComponent implements OnInit {
   isWishlist = true;
   juegos: Juego[] = [];
   total: number = 0;
+  environmentImg: string="";
 
   constructor(
     private cartService: CartService,
@@ -28,6 +30,7 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoggedIn = this.loginService.isLoggedIn();
+    this.environmentImg = environment.urlImg;
 
     if (!this.isLoggedIn) {
       // Si no está autenticado, redirige a la página de inicio
