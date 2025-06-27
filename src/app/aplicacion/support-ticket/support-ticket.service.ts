@@ -21,11 +21,10 @@ export class SupportTicketService extends CrudService<SupportTicketPage> {
   }
 
   createSupportTicket(
-    supportTicket: SupportTicket,
-    username: string
+    supportTicket: SupportTicket
   ): Observable<SupportTicket> {
     return this.http.post<SupportTicket>(
-      `${this.endpoint}/createTicket/${username}`,
+      `${this.endpoint}/create`,
       supportTicket
     );
   }

@@ -53,13 +53,23 @@ export class LoginService {
     sessionStorage.removeItem('accessToken');
     this.currentUserLoginOnSubject.next(false);
     this.currentUserDataSubject.next('');
-    this.userService.setUserId(0);
+    this.userService.setUserId(null);
   }
 
   private updateUserId(token: string | null) {
     if (token) {
       const decodedToken: any = jwtDecode(token);
-      this.userService.setUserId(decodedToken.id || '');
+      const userId = decodedToken?.id;
+
+      console.log('🔍 Token decodificado. ID:', userId);
+
+    if (typeof userId === 'number' && userId > 0) {
+      this.userService.setUserId(userId);
+      console.log('ID seteado en UserService:', userId);
+    } else {
+      console.warn('ID de usuario inválido en el token:', userId);
+      this.userService.setUserId(null);
+    }
       this.currentUserRolSubject.next(decodedToken.rol || '');
     }
   }

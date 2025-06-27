@@ -1,0 +1,70 @@
+.carousel-container {
+  padding: 1em;
+}
+
+.seccion-titulo {
+  margin-left: 0.5em;
+  font-size: 1.4rem;
+  color: #333;
+}
+
+.carousel-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding: 1em 0;
+  scroll-behavior: smooth;
+}
+
+.game-card {
+  flex: 0 0 auto;
+  width: 250px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  position: relative;
+}
+
+.game-card:hover {
+  transform: scale(1.03);
+}
+
+.game-image {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+
+.game-details {
+  padding: 0.6em;
+
+  h3 {
+    font-size: 1rem;
+    margin: 0 0 0.3em 0;
+  }
+
+  .info {
+    font-size: 0.8rem;
+    color: #666;
+  }
+
+  .game-price {
+    font-weight: bold;
+    color: #4caf50;
+    margin-top: 0.5em;
+  }
+}
+
+.wishlist-icon-container {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: white;
+  border-radius: 50%;
+  padding: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}

@@ -18,10 +18,6 @@ export class SoporteComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.isLoggedIn = this.loginService.isLoggedIn();
-    if (!this.isLoggedIn) {
-      this.router.navigate(['/inicio']);
-    }
   }
   openCreateDialog(): void {
     const dialogRef = this.dialog.open(SupportTicketCreateComponent, {

@@ -1,3 +1,38 @@
+<!--<div class="carousel-container">
+  <h2 class="seccion-titulo">Nuevos lanzamientos</h2>
+  <div class="carousel-scroll">
+    <div
+      class="game-card"
+      *ngFor="let juego of ultimosLanzamientos"
+      (click)="verDetalle(juego.id)"
+    >
+      <div class="wishlist-icon-container" *ngIf="isLoggedIn && !isInLibrary" (click)="toggleWishlist(juego); $event.stopPropagation()">
+        <i
+          class="material-icons wishlist-icon"
+          [ngClass]="{ 'wishlist-added': juego.isInWishlist }"
+          [ngStyle]="{ color: 'purple' }"
+        >
+          {{ juego.isInWishlist ? "star" : "star_border" }}
+        </i>
+      </div>
+
+      <img
+        class="game-image"
+        [src]="juego.image_path ? environmentImg + juego.image_path : 'https://picsum.photos/250/140'"
+        alt="{{ juego.gamename }}"
+      />
+      <div class="game-details">
+        <h3>{{ juego.gamename }}</h3>
+        <p class="info">
+          {{ juego.publisherName }} • {{ juego.release_date | date : "MMMM yyyy" }}
+        </p>
+        <p class="game-price">{{ juego.price | currency:'USD' }}</p>
+      </div>
+    </div>
+  </div>
+</div>-->
+
+
 <app-juego-list
   [juegos]="juegos"
   [isLoggedIn]="isLoggedIn"

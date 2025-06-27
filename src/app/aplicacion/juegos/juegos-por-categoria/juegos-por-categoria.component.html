@@ -9,15 +9,15 @@
 </div>
 
 <mat-list *ngIf="juegosFiltrados.length > 0">
-  <mat-list-item *ngFor="let juego of juegosFiltrados">
-    <img matListItemAvatar
+  <mat-list-item class="game-item" *ngFor="let juego of juegosFiltrados" (click)="verDetalle(juego.id)">
+  
+    <img matListItemIcon
       [src]="environmentImg + juego.image_path"
       alt="{{ juego.gamename }}"
     />
     <div matListItemTitle>{{ juego.gamename }}</div>
     <div matListItemLine>{{ juego.price | currency:'USD' }}</div>
-    <mat-icon matListItemIcon (click)="verDetalle(juego.id)">chevron_right</mat-icon>
-    <mat-divider></mat-divider>
+
   </mat-list-item>
 
 </mat-list>

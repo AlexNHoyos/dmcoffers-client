@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Publisher } from './aplicacion/publishers/publisher.model';
 import { Subscription } from 'rxjs';
 import { LoginService } from './services/auth/login.service';
 
@@ -9,7 +8,6 @@ import { LoginService } from './services/auth/login.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  publishers: Publisher[] = [];
   title = 'dmcoffers-client';
   userLoginOn: boolean = false;
   private subscription: Subscription = new Subscription();

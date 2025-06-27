@@ -30,17 +30,23 @@ export class SupportTicketCreateComponent {
     private proximamenteService: ProximamenteService,
     private dialog: MatDialog
   ) {}
+
   ngOnInit(): void {
-    this.userUtilsService.setLoggedInUser().subscribe((username) => {
-      if (username) {
-        this.supportTicket.creationuser = username;
-      } else {
-        console.log('No userId found');
-      }
+    this.userUtilsService.setLoggedInUser().subscribe({
+      next: (username) => {
+        this.supportTicket.creationuser = username || 'Usuario Anonimo';
+        console.log('Usuario asignado:', this.supportTicket.creationuser);
+      },
+      error: (err) => {
+        console.error('Error obteniendo usuario logueado:', err);
+        this.supportTicket.creationuser = 'Anonimo';
+      },
     });
   }
 
-  createSupportTicket(): void {
+  createSupportTicket(event?: Event): void {
+    event?.preventDefault();
+
     //Validacion de fechas
     const supportTicketToSend = {
       ...this.supportTicket,
@@ -52,11 +58,12 @@ export class SupportTicketCreateComponent {
         : null,
     };
 
+
     this.supportTicketService
       .createSupportTicket(
         supportTicketToSend,
-        supportTicketToSend.creationuser
       )
+      
       .subscribe({
         next: (response) => {
           console.log('supportTicket creado exitosamente', response);
