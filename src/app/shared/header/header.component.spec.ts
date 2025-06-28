@@ -6,6 +6,11 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
+
+import { FormsModule } from '@angular/forms';
 
 import { HeaderComponent } from './header.component';
 import { NavComponent } from '../nav/nav.component';
@@ -17,7 +22,13 @@ describe('HeaderComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [HeaderComponent, NavComponent],
-      imports: [MatIconModule],
+      imports: [
+        MatIconModule,
+        MatFormFieldModule,
+        MatToolbarModule,
+        FormsModule,
+        MatMenuModule
+      ],
       providers: [
         provideHttpClient(),
         provideHttpClientTesting()

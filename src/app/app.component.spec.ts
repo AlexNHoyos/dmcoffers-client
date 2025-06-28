@@ -9,8 +9,17 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { LoginService } from './services/auth/login.service';
+import { MatMenuModule } from '@angular/material/menu';
+
+import { HeaderComponent } from './shared/header/header.component';
+import { NavComponent } from './shared/nav/nav.component';
+
+import { RouterOutlet } from '@angular/router';
+import { FooterComponent } from './shared/footer/footer.component';
 
 describe('AppComponent', () => {
   let service: LoginService;
@@ -23,9 +32,13 @@ describe('AppComponent', () => {
         MatCardModule,
         MatDialogModule,
         MatFormFieldModule,
-        MatInputModule
+        MatInputModule,
+        MatIconModule,
+        RouterOutlet,
+        MatToolbarModule,
+        MatMenuModule
       ],
-      declarations: [AppComponent],
+      declarations: [AppComponent, HeaderComponent, NavComponent, FooterComponent],
       providers: [
         LoginService,
         provideHttpClient(withInterceptorsFromDi()),
@@ -47,12 +60,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app.title).toEqual('dmcoffers-client');
-  });
-
-  it('Debería renderizar el título', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('dmcoffers-client app is running!');
   });
 });

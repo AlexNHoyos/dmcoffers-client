@@ -3,7 +3,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatFormFieldModule, MatFormField } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+
+import { FormsModule } from '@angular/forms';
 
 import { NavComponent } from './nav.component';
 
@@ -13,8 +18,14 @@ describe('NavComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [NavComponent],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      declarations: [NavComponent],
+      imports: [
+        MatFormFieldModule,
+        MatToolbarModule,
+        MatIconModule,
+        FormsModule,
+        MatMenuModule
+      ],
       providers: [
         provideHttpClient(),
         provideHttpClientTesting()
