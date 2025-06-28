@@ -4,7 +4,7 @@
     <mat-card-subtitle>Ingrese los siguientes datos:</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <form #juegoForm="ngForm" enctype="multipart/form-data">
+    <form #juegoForm="ngForm" enctype="multipart/form-data" (ngSubmit)="createJuego()">
       <mat-form-field class="form-field">
         <mat-label>Nombre del Juego</mat-label>
         <input
@@ -121,7 +121,6 @@
           mat-flat-button
           type="submit"
           color="primary"
-          (click)="createJuego()"
           [disabled]="juegoForm.invalid"
         >
           Crear

@@ -4,20 +4,21 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
-
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
-
 import { MatInputModule } from '@angular/material/input';
-import { JuegoCreateComponent } from './juego-create.component';
-import { JuegoService } from '../../juegos.service';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatIconModule } from '@angular/material/icon';
 import { MatNativeDateModule } from '@angular/material/core';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { By } from '@angular/platform-browser';
 import { of } from 'rxjs';
+
+import { JuegoCreateComponent } from './juego-create.component';
+import { JuegoService } from '../../juegos.service';
 import { DesarrolladoresService } from 'src/app/aplicacion/desarrolladores/desarrolladores.service';
 import { CategoriaService } from 'src/app/aplicacion/categorias/categoria.service';
+import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
 
 describe('JuegoCreateComponent', () => {
   let component: JuegoCreateComponent;
@@ -28,8 +29,7 @@ describe('JuegoCreateComponent', () => {
   let categoriaServiceSpy: jasmine.SpyObj<CategoriaService>;
 
   beforeEach(async () => {
-
-    categoriaServiceSpy = jasmine.createSpyObj('CategoriaService', ['getCategorias']);
+    categoriaServiceSpy = jasmine.createSpyObj('CategoriaService', ['getAllCategorias']);
     categoriaServiceSpy.getAllCategorias.and.returnValue(of([{
       id: 1,
       description: 'Aventura',
@@ -41,26 +41,15 @@ describe('JuegoCreateComponent', () => {
     userUtilsServiceSpy.setLoggedInUser.and.returnValue(of('testUser'));
 
     juegoServiceSpy = jasmine.createSpyObj('JuegoService', ['createJuego']);
-    juegoServiceSpy.createJuego.and.returnValue(of({
-      id: 1,
-      gamename: 'Nombre Juego',
-      developerName: 'Dev Studio',
-      publisherName: 'Pub House',
-      categoriasNames: ['Aventura'],
-      price: 49.99,
-      publishment_date: new Date().toISOString(),
-      release_date: new Date().toISOString(),
-      creationtimestamp: new Date().toISOString(),
-      creationuser: 'testUser'
-    }));
+    juegoServiceSpy.createJuego.and.returnValue(of({}));
 
-    desarrolladoresServiceSpy = jasmine.createSpyObj('DesarrolladoresService', ['getDesarrolladores']);
+    desarrolladoresServiceSpy = jasmine.createSpyObj('DesarrolladoresService', ['getAllDesarrolladores']);
     desarrolladoresServiceSpy.getAllDesarrolladores.and.returnValue(of([{
       id: 1,
       developername: 'Dev Studio',
-      foundation_date: '2020-01-01',
+      foundation_date: new Date().toISOString(),
       status: true,
-      creationtimestamp: '2020-01-01T00:00:00Z',
+      creationtimestamp: new Date().toISOString(),
       creationuser: 'testUser'
     }]));
 
@@ -75,7 +64,8 @@ describe('JuegoCreateComponent', () => {
         MatInputModule,
         MatSelectModule,
         MatDatepickerModule,
-        MatNativeDateModule
+        MatNativeDateModule,
+        MatIconModule
       ],
       providers: [
         { provide: DesarrolladoresService, useValue: desarrolladoresServiceSpy },
@@ -92,26 +82,21 @@ describe('JuegoCreateComponent', () => {
     fixture = TestBed.createComponent(JuegoCreateComponent);
     component = fixture.componentInstance;
 
-    // Opcional: setear arrays iniciales para simulación
-    component.desarrolladores = [{ developername: 'Dev Studio' }];
-    component.publishers = [{ publishername: 'Pub House' }];
-    component.categorias = [{ description: 'Aventura' }];
+    // Datos simulados para listas
+    component.desarrolladores = [{ id: 1, developername: 'Dev Studio' }];
+    component.publishers = [{ id: 1, publishername: 'Pub House' }];
+    component.categorias = [{ id: 1, description: 'Aventura' }];
+  });
 
+  it('Debería crear el componente', () => {
     fixture.detectChanges();
-  });
-
-  afterEach(() => {
-    if (fixture) {
-      fixture.destroy();
-    }
-  });
-
-  it('Debería crear el juego', () => {
     expect(component).toBeTruthy();
   });
 
   it('El formulario debería ser inválido inicialmente', () => {
-    expect(fixture.nativeElement.querySelector('form').checkValidity()).toBeFalse();
+    fixture.detectChanges();
+    const form = fixture.nativeElement.querySelector('form');
+    expect(form.checkValidity()).toBeFalse();
   });
 
   it('Debería habilitar el botón cuando el formulario sea válido', fakeAsync(() => {
@@ -134,8 +119,10 @@ describe('JuegoCreateComponent', () => {
     expect(btnCrear.disabled).toBeFalse();
   }));
 
-  it('Debería llamar a createJuego al hacer clic en Crear', fakeAsync(() => {
-    spyOn(component, 'createJuego');
+  it('Debería llamar a createJuego al hacer submit', fakeAsync(() => {
+    // 👇 El espía se declara ANTES de detectChanges para enganchar bien
+    const spy = spyOn(component, 'createJuego').and.callThrough();
+
     component.juego = {
       id: 1,
       gamename: 'Nombre Juego',
@@ -152,9 +139,12 @@ describe('JuegoCreateComponent', () => {
     fixture.detectChanges();
     tick();
 
-    const btnCrear = fixture.nativeElement.querySelector('button[type="submit"]');
-    btnCrear.click();
+    // 👉 Usa el disparador del formulario real
+    const form = fixture.debugElement.query(By.css('form'));
+    form.triggerEventHandler('ngSubmit', null);
+    tick();
 
-    expect(component.createJuego).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalled();
+    expect(juegoServiceSpy.createJuego).toHaveBeenCalled();
   }));
 });

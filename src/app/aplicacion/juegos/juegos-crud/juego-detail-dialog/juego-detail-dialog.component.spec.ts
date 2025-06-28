@@ -8,14 +8,15 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialogModule } from '@angular/material/dialog';
 
-import { AppRoutingModule } from 'src/app/app-routing.module';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { JuegoDetailDialogComponent } from './juego-detail-dialog.component';
 import { ActivatedRoute } from '@angular/router';
 
 import { MatSelectModule } from '@angular/material/select';
-import { Juego } from '../../juegos.model';
 
 describe('JuegoDetailDialogComponent', () => {
   let component: JuegoDetailDialogComponent;
@@ -25,18 +26,20 @@ describe('JuegoDetailDialogComponent', () => {
     TestBed.configureTestingModule({
       declarations: [JuegoDetailDialogComponent],
       imports: [
-        AppRoutingModule,
         MatCardModule,
         MatFormFieldModule,
-        MatSelectModule
+        MatSelectModule,
+        MatDialogModule,
+        MatInputModule,
+        MatDatepickerModule
       ],
       providers: [
-        {provide: ActivatedRoute, useValue: { snapshot: { params: { id: 1 } } }},
+        {provide: ActivatedRoute, useValue: { snapshot: { paramMap: { get: () => '1' } } }},
         { provide: 'JuegoService', useValue: {} }, // Mock JuegoService
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
         { provide: MatDialogRef, useValue: {} },
-        { provide: MAT_DIALOG_DATA, useValue: { juego: new Juego() } }
+        { provide: MAT_DIALOG_DATA, useValue: { juego: {id: 1, gamename: 'Test Game', categoriasNames: ['Acción', 'Aventura'] } } }
       ]
     });
     fixture = TestBed.createComponent(JuegoDetailDialogComponent);
