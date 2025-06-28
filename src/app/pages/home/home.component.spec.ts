@@ -5,7 +5,10 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
+import { JuegoListComponent } from 'src/app/aplicacion/juegos/juego-list/juego-list.component';
+import { JuegosComponent } from 'src/app/aplicacion/juegos/juegos.component';
 import { HomeComponent } from './home.component';
+import { Juego } from 'src/app/aplicacion/juegos/juegos.model';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -13,7 +16,7 @@ describe('HomeComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [HomeComponent],
+      declarations: [HomeComponent, JuegosComponent, JuegoListComponent],
       providers: [
         provideHttpClient(),
         provideHttpClientTesting()

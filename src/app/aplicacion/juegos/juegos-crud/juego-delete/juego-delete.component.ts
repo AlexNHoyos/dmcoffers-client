@@ -7,6 +7,7 @@ import {
 
 import { JuegoService } from '../../juegos.service';
 import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
     selector: 'app-juego-delete',
