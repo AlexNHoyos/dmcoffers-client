@@ -6,6 +6,8 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatFormField } from '@angular/material/input';
 
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
 import { SupportTicketUpdateComponent } from './support-ticket-update.component';
 
 describe('SupportTicketUpdateComponent', () => {
