@@ -3,6 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 
+
+import { JuegoListComponent } from './juego-list/juego-list.component';
 import { JuegosComponent } from './juegos.component';
 
 describe('JuegosComponent', () => {
@@ -11,7 +13,7 @@ describe('JuegosComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [JuegosComponent],
+      declarations: [JuegosComponent, JuegoListComponent],
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting()]

@@ -7,7 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
 
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { provideHttpClientTesting } from '@angular/common/http/testing'; // solo esto
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { MatInputModule } from '@angular/material/input';
 import { JuegoCreateComponent } from './juego-create.component';
@@ -19,35 +19,55 @@ import { of } from 'rxjs';
 import { DesarrolladoresService } from 'src/app/aplicacion/desarrolladores/desarrolladores.service';
 import { CategoriaService } from 'src/app/aplicacion/categorias/categoria.service';
 
-
-
 describe('JuegoCreateComponent', () => {
   let component: JuegoCreateComponent;
-  let service: DesarrolladoresService;
   let fixture: ComponentFixture<JuegoCreateComponent>;
   let juegoServiceSpy: jasmine.SpyObj<JuegoService>;
   let userUtilsServiceSpy: jasmine.SpyObj<UserUtilsService>;
   let desarrolladoresServiceSpy: jasmine.SpyObj<DesarrolladoresService>;
+  let categoriaServiceSpy: jasmine.SpyObj<CategoriaService>;
 
+  beforeEach(async () => {
 
-  beforeEach(async() => {
+    categoriaServiceSpy = jasmine.createSpyObj('CategoriaService', ['getCategorias']);
+    categoriaServiceSpy.getAllCategorias.and.returnValue(of([{
+      id: 1,
+      description: 'Aventura',
+      creationtimestamp: new Date().toISOString(),
+      creationuser: 'testUser'
+    }]));
 
     userUtilsServiceSpy = jasmine.createSpyObj('UserUtilsService', ['setLoggedInUser']);
+    userUtilsServiceSpy.setLoggedInUser.and.returnValue(of('testUser'));
+
     juegoServiceSpy = jasmine.createSpyObj('JuegoService', ['createJuego']);
-    desarrolladoresServiceSpy = jasmine.createSpyObj('DesarrolladoresService', ['getDesarrolladores', 'getDesarrollador', 'getPublishers']);
-    desarrolladoresServiceSpy.getDesarrollador.and.returnValue(of({
+    juegoServiceSpy.createJuego.and.returnValue(of({
+      id: 1,
+      gamename: 'Nombre Juego',
+      developerName: 'Dev Studio',
+      publisherName: 'Pub House',
+      categoriasNames: ['Aventura'],
+      price: 49.99,
+      publishment_date: new Date().toISOString(),
+      release_date: new Date().toISOString(),
+      creationtimestamp: new Date().toISOString(),
+      creationuser: 'testUser'
+    }));
+
+    desarrolladoresServiceSpy = jasmine.createSpyObj('DesarrolladoresService', ['getDesarrolladores']);
+    desarrolladoresServiceSpy.getAllDesarrolladores.and.returnValue(of([{
       id: 1,
       developername: 'Dev Studio',
       foundation_date: '2020-01-01',
       status: true,
       creationtimestamp: '2020-01-01T00:00:00Z',
       creationuser: 'testUser'
-    }));
+    }]));
 
     await TestBed.configureTestingModule({
       declarations: [JuegoCreateComponent],
-      imports: 
-      [FormsModule,
+      imports: [
+        FormsModule,
         NoopAnimationsModule,
         MatCardModule,
         MatDialogModule,
@@ -57,22 +77,22 @@ describe('JuegoCreateComponent', () => {
         MatDatepickerModule,
         MatNativeDateModule
       ],
-      providers: [  
-        DesarrolladoresService,
-        CategoriaService,
-              {provide : DesarrolladoresService, useValue:desarrolladoresServiceSpy },
-              { provide: JuegoService, useValue: juegoServiceSpy },
-              { provide: UserUtilsService, useValue: userUtilsServiceSpy },
-              { provide: MatDialogRef, useValue: { close: jasmine.createSpy('close') } },
-              { provide: MAT_DIALOG_DATA, useValue: {} },
-              provideHttpClient(withInterceptorsFromDi()),
-              provideHttpClientTesting()]
+      providers: [
+        { provide: DesarrolladoresService, useValue: desarrolladoresServiceSpy },
+        { provide: JuegoService, useValue: juegoServiceSpy },
+        { provide: UserUtilsService, useValue: userUtilsServiceSpy },
+        { provide: MatDialogRef, useValue: { close: jasmine.createSpy('close') } },
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: CategoriaService, useValue: categoriaServiceSpy },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+      ]
     }).compileComponents();
 
-    service = TestBed.inject(DesarrolladoresService);
     fixture = TestBed.createComponent(JuegoCreateComponent);
     component = fixture.componentInstance;
 
+    // Opcional: setear arrays iniciales para simulación
     component.desarrolladores = [{ developername: 'Dev Studio' }];
     component.publishers = [{ publishername: 'Pub House' }];
     component.categorias = [{ description: 'Aventura' }];
@@ -89,6 +109,7 @@ describe('JuegoCreateComponent', () => {
   it('Debería crear el juego', () => {
     expect(component).toBeTruthy();
   });
+
   it('El formulario debería ser inválido inicialmente', () => {
     expect(fixture.nativeElement.querySelector('form').checkValidity()).toBeFalse();
   });

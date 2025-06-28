@@ -17,6 +17,7 @@ describe('JuegoDeleteComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [JuegoDeleteComponent],
+      imports: [MatDialogModule, MatCardModule],
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),

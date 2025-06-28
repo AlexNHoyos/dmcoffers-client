@@ -13,6 +13,7 @@ import { MatInputModule } from "@angular/material/input";
 
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
+import { MatTableModule } from "@angular/material/table";
 
 import { of } from "rxjs";
 
@@ -31,6 +32,7 @@ describe("SupportTicketComponent", () => {
         MatCardModule,
         MatFormFieldModule,
         MatInputModule,
+        MatTableModule,
         MatButtonModule,
         MatIconModule
       ],
@@ -43,20 +45,36 @@ describe("SupportTicketComponent", () => {
     }).compileComponents();
     fixture = TestBed.createComponent(SupportTicketComponent);
     component = fixture.componentInstance;
+
+    // Simular que la tabla está visible y tiene datos
+    component.supportTickets = [
+      {
+        id: 1, creationuser: 'Usuario1',
+        status: false,
+        creationtimestamp: null,
+        description: ""
+      }
+    ];
+    component.showTable = true;
+
+    fixture.detectChanges();
   }));
-    it("should create", () => {
-        expect(component).toBeTruthy();
-    });
-    it("Debería mostrar los detalles del ticket cuando se hace click en showDetails", fakeAsync(() => {
-        spyOn(component, "showDetails");
 
-        const button = fixture.nativeElement.querySelectorAll("button");
-        const detailsButton = Array.from(button).find((btn) => (btn as HTMLButtonElement).textContent?.trim() === "visibility") as HTMLButtonElement | undefined;
+  it("should create", () => {
+    expect(component).toBeTruthy();
+  });
 
-        expect(detailsButton).toBeTruthy();
-        detailsButton!.click();
-        tick();
+  it("Debería mostrar los detalles del ticket cuando se hace click en showDetails", fakeAsync(() => {
+    spyOn(component, "showDetails");
 
-        expect(component.showDetails).toHaveBeenCalled();
-    }));
+    fixture.detectChanges(); // Asegura que el DOM esté actualizado
+
+    const button = fixture.nativeElement.querySelector('button.showDetails');
+    expect(button).toBeTruthy();
+
+    button.click();
+    tick();
+
+    expect(component.showDetails).toHaveBeenCalledWith(1);
+  }));
 });

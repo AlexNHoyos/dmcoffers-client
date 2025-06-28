@@ -5,6 +5,11 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatFormField } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
@@ -17,7 +22,7 @@ describe('SupportTicketUpdateComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [SupportTicketUpdateComponent],
-      imports: [MatDialogModule, MatFormField],
+      imports: [MatDialogModule, MatFormFieldModule, MatInputModule, NoopAnimationsModule, MatSelectModule, FormsModule],
       providers: [
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: {} },
