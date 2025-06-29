@@ -41,6 +41,7 @@ export class LoginService {
           this.currentUserDataSubject.next(userData.accessToken);
           this.currentUserLoginOnSubject.next(true);
           this.updateUserId(userData.accessToken);
+          console.log(userData);
         }),
         map((userData) => userData.accessToken),
         catchError((error: HttpErrorResponse) =>
@@ -63,13 +64,13 @@ export class LoginService {
 
       console.log('🔍 Token decodificado. ID:', userId);
 
-    if (typeof userId === 'number' && userId > 0) {
-      this.userService.setUserId(userId);
-      console.log('ID seteado en UserService:', userId);
-    } else {
-      console.warn('ID de usuario inválido en el token:', userId);
-      this.userService.setUserId(null);
-    }
+      if (typeof userId === 'number' && userId > 0) {
+        this.userService.setUserId(userId);
+        console.log('ID seteado en UserService:', userId);
+      } else {
+        console.warn('ID de usuario inválido en el token:', userId);
+        this.userService.setUserId(null);
+      }
       this.currentUserRolSubject.next(decodedToken.rol || '');
     }
   }

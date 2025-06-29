@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SweItemMenuService } from './sweitemmenu.service';
-import { MenuItem } from './sweitemmenu.models';
+import { idRolesPorItemMenu, MenuItem } from './sweitemmenu.models';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/auth/login.service';
 
 
 @Component({
@@ -9,14 +10,25 @@ import { Router } from '@angular/router';
   templateUrl: './sweitemmenu.component.html',
   styleUrls: ['./sweitemmenu.component.scss']
 })
+
 export class SweItemMenuComponent implements OnInit {
 
 
   menuItems: MenuItem[] = [];
   espaciadoLateral: string = '';
-  //userRole: string = '';
+  userRoles: string = '';
+  itemMenuRoles: idRolesPorItemMenu[] = [];
 
-  constructor(private sweItemMenuService: SweItemMenuService, private router: Router) { }
+  constructor(
+    private sweItemMenuService: SweItemMenuService,
+    private router: Router,
+    private loginService: LoginService
+  ) {
+    //console.log(this.loginService.userRol);
+    /* ().subscribe((data: string) => {
+      console.log(data);
+    }) */
+  }
 
   ngOnInit(): void {
     this.loadMenuItems();
@@ -37,10 +49,25 @@ export class SweItemMenuComponent implements OnInit {
       })
 
       items.forEach(item => {
+        let rolMenu: idRolesPorItemMenu = new idRolesPorItemMenu();
+        let roles: string[] = [];
+
+        rolMenu.idItemMenu = item.id
+
+        roles = item.roles_permitidos.split(',');
+
+        roles.forEach(r => {
+          rolMenu.idRoles.push(Number(r));
+        });
+
+        this.itemMenuRoles.push(rolMenu);
+
         if (!item.idSupItemMenu) {
           menuItems.push(itemMap.get(item.id)!);
         }
       });
+
+      //console.log(this.itemMenuRoles);
 
       items.forEach(itemHijo => {
         if (itemHijo.idSupItemMenu) {
@@ -50,15 +77,13 @@ export class SweItemMenuComponent implements OnInit {
               indexItemPadre = items.indexOf(itemPadre);
               menuItems[indexItemPadre].subMenus.push(itemHijo);
             }
-          })
-
+          });
         }
-
-      })
+      });
 
       this.menuItems = menuItems;
 
-      console.log(menuItems);
+
     });
   }
 

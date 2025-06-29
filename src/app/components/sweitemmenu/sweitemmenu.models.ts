@@ -5,7 +5,7 @@ export interface MenuItem {
     title: string;
     description: string;
     idSupItemMenu: MenuItem;
-    rolesPermitidos: string;
+    roles_permitidos: string;
     endpoint: string;
     ordernumber: number;
     creationtimestamp: Date;
@@ -14,6 +14,11 @@ export interface MenuItem {
     modificationuser: string;
     subMenus: MenuItem[];
     expanded?: boolean;
+}
+
+export class idRolesPorItemMenu {
+    idItemMenu: number = 0;
+    idRoles: number[] = [];
 }
 
 export interface SweItemMenuPage extends Page<MenuItem> {
