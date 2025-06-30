@@ -14,11 +14,14 @@
         color: #a65cfa;
         font-size: 1.8em;
         font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 0.4em;
     }
 
     .full-width {
         width: 100%;
-        margin-bottom: 1.2em;
+        margin-bottom: 1.4em;
     }
 
     .register-card-actions {
@@ -31,8 +34,24 @@
         width: 100%;
         padding: 0.8em;
     }
-}
 
+    .already-account-text {
+        text-align: center;
+        margin-top: 1.5em;
+        font-size: 0.9em;
+
+        .login-link {
+            color: #a65cfa;
+            cursor: pointer;
+            text-decoration: underline;
+            margin-left: 0.3em;
+        }
+    }
+
+    .p2 {
+        margin-top: 1.3em;
+    }
+}
 
 @media (max-width: 600px) {
     .register-card {
