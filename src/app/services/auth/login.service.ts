@@ -41,7 +41,6 @@ export class LoginService {
           this.currentUserDataSubject.next(userData.accessToken);
           this.currentUserLoginOnSubject.next(true);
           this.updateUserId(userData.accessToken);
-          console.log(userData);
         }),
         map((userData) => userData.accessToken),
         catchError((error: HttpErrorResponse) =>

@@ -24,10 +24,6 @@ export class SweItemMenuComponent implements OnInit {
     private router: Router,
     private loginService: LoginService
   ) {
-    //console.log(this.loginService.userRol);
-    /* ().subscribe((data: string) => {
-      console.log(data);
-    }) */
   }
 
   ngOnInit(): void {
