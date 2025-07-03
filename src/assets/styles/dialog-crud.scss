@@ -89,3 +89,69 @@
     gap: 1rem;
   }
 }
+
+.detail-view-card {
+  max-width: 640px;
+  border-radius: 16px;
+  max-height: 90vh;
+  overflow: hidden;
+
+  .mat-mdc-card-content {
+    overflow-y: auto;
+    max-height: 70vh;
+  }
+
+  mat-card-header {
+    align-items: center;
+
+    .header-icon {
+      background-color: #3f51b5;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    mat-card-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+    }
+
+    mat-card-subtitle {
+      font-size: 0.9rem;
+      color: #888;
+    }
+  }
+
+  mat-card-content {
+    margin-top: 1rem;
+  }
+
+  .detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    font-size: 0.95rem;
+    padding: 0.5rem 0;
+
+    .detail-item {
+      display: flex;
+      flex-direction: column;
+
+      .label {
+        font-weight: 600;
+        color: #555;
+        margin-bottom: 0.25rem;
+      }
+
+      span {
+        color: #333;
+      }
+    }
+  }
+
+  mat-card-actions {
+    margin-top: 1rem;
+    padding-right: 1rem;
+  }
+}

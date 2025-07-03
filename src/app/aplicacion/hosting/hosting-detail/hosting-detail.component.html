@@ -1,21 +1,44 @@
-<h1 mat-dialog-title>Detalles del hosting</h1>
-<div mat-dialog-content>
-  <p><strong>ID:</strong> {{ data.hosting.id }}</p>
-  <p><strong>Nombre:</strong> {{ data.hosting.name }}</p>
-  <p>
-    <strong>Estado:</strong> {{ data.hosting.status ? "Activo" : "Inactivo" }}
-  </p>
-  <p>
-    <strong>Fecha de carga:</strong>
-    {{ data.hosting.creationtimestamp | date }}
-  </p>
-  <p>
-    <strong>Fecha de modificacion:</strong>
-    {{ data.hosting.modificationtimestamp | date }}
-  </p>
-  <p><strong>Cargado por:</strong> {{ data.hosting.creationuser }}</p>
-  <p><strong>Modificado por:</strong> {{ data.hosting.modificationuser }}</p>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onClose()">Close</button>
-</div>
+<mat-card class="detail-view-card">
+  <mat-card-header>
+    <div mat-card-avatar class="header-icon">
+      <mat-icon>cloud</mat-icon>
+    </div>
+    <mat-card-title>{{ data.hosting.name }}</mat-card-title>
+    <mat-card-subtitle>ID: {{ data.hosting.id }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="detail-grid">
+      <div class="detail-item">
+        <span class="label">Estado:</span>
+        <span>{{ data.hosting.status ? 'Activo' : 'Inactivo' }}</span>
+      </div>
+
+      <div class="detail-item">
+        <span class="label">Fecha de carga:</span>
+        <span>{{ data.hosting.creationtimestamp | date: 'dd/MM/yyyy HH:mm' }}</span>
+      </div>
+
+      <div class="detail-item">
+        <span class="label">Fecha de modificación:</span>
+        <span>
+          {{ data.hosting.modificationtimestamp ? (data.hosting.modificationtimestamp | date: 'dd/MM/yyyy HH:mm') : '—' }}
+        </span>
+      </div>
+
+      <div class="detail-item">
+        <span class="label">Cargado por:</span>
+        <span>{{ data.hosting.creationuser }}</span>
+      </div>
+
+      <div class="detail-item">
+        <span class="label">Modificado por:</span>
+        <span>{{ data.hosting.modificationuser || '—' }}</span>
+      </div>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button mat-stroked-button color="primary" (click)="onClose()">Cerrar</button>
+  </mat-card-actions>
+</mat-card>

@@ -1,29 +1,56 @@
-<h1 mat-dialog-title>Detalles del publisher</h1>
-<div mat-dialog-content>
-  <p><strong>ID:</strong> {{ data.publisher.id }}</p>
-  <p><strong>Nombre:</strong> {{ data.publisher.publishername }}</p>
-  <p>
-    <strong>Fundacion:</strong>
-    {{ data.publisher.foundation_date | date }}
-  </p>
-  <p>
-    <strong>Disolucion:</strong>
-    {{ data.publisher.dissolution_date | date }}
-  </p>
-  <p>
-    <strong>Estado:</strong> {{ data.publisher.status ? "Activo" : "Inactivo" }}
-  </p>
-  <p>
-    <strong>Fecha de carga:</strong>
-    {{ data.publisher.creationtimestamp | date }}
-  </p>
-  <p>
-    <strong>Fecha de modificacion:</strong>
-    {{ data.publisher.modificationtimestamp | date }}
-  </p>
-  <p><strong>Cargado por:</strong> {{ data.publisher.creationuser }}</p>
-  <p><strong>Modificado por:</strong> {{ data.publisher.modificationuser }}</p>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onClose()">Close</button>
-</div>
+<mat-card class="detail-view-card">
+  <mat-card-header>
+    <div mat-card-avatar class="header-icon">
+      <mat-icon>business</mat-icon>
+    </div>
+    <mat-card-title>{{ data.publisher.publishername }}</mat-card-title>
+    <mat-card-subtitle>ID: {{ data.publisher.id }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="detail-grid">
+      <div class="detail-item">
+        <span class="label">Fundación:</span>
+        <span>{{ data.publisher.foundation_date | date:'dd/MM/yyyy' }}</span>
+      </div>
+
+      <div class="detail-item">
+        <span class="label">Disolución:</span>
+        <span>
+          {{ data.publisher.dissolution_date ? (data.publisher.dissolution_date | date:'dd/MM/yyyy') : '—' }}
+        </span>
+      </div>
+
+      <div class="detail-item">
+        <span class="label">Estado:</span>
+        <span>{{ data.publisher.status ? 'Activo' : 'Inactivo' }}</span>
+      </div>
+
+      <div class="detail-item">
+        <span class="label">Fecha de carga:</span>
+        <span>{{ data.publisher.creationtimestamp | date:'dd/MM/yyyy HH:mm' }}</span>
+      </div>
+
+      <div class="detail-item">
+        <span class="label">Modificación:</span>
+        <span>
+          {{ data.publisher.modificationtimestamp ? (data.publisher.modificationtimestamp | date:'dd/MM/yyyy HH:mm') : '—' }}
+        </span>
+      </div>
+
+      <div class="detail-item">
+        <span class="label">Cargado por:</span>
+        <span>{{ data.publisher.creationuser }}</span>
+      </div>
+
+      <div class="detail-item">
+        <span class="label">Modificado por:</span>
+        <span>{{ data.publisher.modificationuser || '—' }}</span>
+      </div>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button mat-stroked-button color="primary" (click)="onClose()">Cerrar</button>
+  </mat-card-actions>
+</mat-card>
