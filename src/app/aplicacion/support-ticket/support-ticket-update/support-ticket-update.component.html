@@ -1,24 +1,41 @@
-<div class="update-container">
-  <form>
-    <mat-form-field>
-      <mat-label>Estado del Ticket</mat-label>
-      <mat-select [(ngModel)]="supportTicket.status" name="status">
-        <mat-option [value]="true">Activo</mat-option>
-        <mat-option [value]="false">Inactivo</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <br />
+<mat-card class="update-card">
+  <mat-card-header>
+    <mat-card-title>Editar Ticket de Soporte</mat-card-title>
+    <mat-card-subtitle>Cambiar el estado del ticket</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form #supportForm="ngForm" class="form-grid">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Estado del Ticket</mat-label>
+        <mat-select [(ngModel)]="supportTicket.status" name="status" required>
+          <mat-option [value]="true">Activo</mat-option>
+          <mat-option [value]="false">Inactivo</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </form>
+  </mat-card-content>
+
+  <mat-card-actions class="action-buttons">
     <button
       mat-raised-button
       color="primary"
       type="submit"
       (click)="onUpdateSupportTicket()"
+      [disabled]="supportForm.invalid"
     >
       Actualizar
     </button>
 
-    <button mat-flat-button color="secondary" (click)="cancel()">
+    <button
+      mat-stroked-button
+      color="warn"
+      type="button"
+      (click)="cancel()"
+    >
       Cancelar
     </button>
-  </form>
-</div>
+  </mat-card-actions>
+</mat-card>

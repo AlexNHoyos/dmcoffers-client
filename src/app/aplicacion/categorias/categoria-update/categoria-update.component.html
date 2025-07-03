@@ -1,33 +1,43 @@
-<div class="update-container">
-  <form #categoriasForm="ngForm">
-    <mat-form-field class="form-field">
-      <mat-label>Descripcion de la categoria</mat-label>
-      <input
-        matInput
-        type="text"
-        [(ngModel)]="categoria.description"
-        name="descripcion"
-        #name="ngModel"
-        required
-        minlength="1"
-      />
+<mat-card class="update-card">
+  <mat-card-header>
+    <mat-card-title>Editar Categoría</mat-card-title>
+    <mat-card-subtitle>Modifica la descripción de la categoría</mat-card-subtitle>
+  </mat-card-header>
 
-      <button
-        *ngIf="categoria.description"
-        matSuffix
-        mat-icon-button
-        aria-label="Clear"
-        (click)="categoria.description = ''"
-      >
-        <mat-icon>close</mat-icon>
-      </button>
+  <mat-card-content>
+    <form #categoriasForm="ngForm" class="form-grid">
 
-      <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
-        La descripcion no puede estar vacía.
-      </mat-error>
-    </mat-form-field>
+      <!-- Descripción de la categoría -->
+      <mat-form-field appearance="outline">
+        <mat-label>Descripción de la categoría</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="categoria.description"
+          name="descripcion"
+          #name="ngModel"
+          required
+          minlength="1"
+        />
 
-    <br />
+        <button
+          *ngIf="categoria.description"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="categoria.description = ''"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+
+        <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
+          La descripción no puede estar vacía.
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+
+  <mat-card-actions class="action-buttons">
     <button
       mat-raised-button
       color="primary"
@@ -38,8 +48,13 @@
       Actualizar
     </button>
 
-    <button mat-flat-button type="button" color="secondary" (click)="cancel()">
+    <button
+      mat-stroked-button
+      color="warn"
+      type="button"
+      (click)="cancel()"
+    >
       Cancelar
     </button>
-  </form>
-</div>
+  </mat-card-actions>
+</mat-card>

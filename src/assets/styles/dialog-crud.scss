@@ -11,6 +11,10 @@
     color: #d32f2f;
   }
 
+  mat-icon {
+    margin-right: .6em;
+  }
+
   .content {
     padding-top: 1rem;
 
@@ -30,5 +34,58 @@
     button {
       min-width: 100px;
     }
+  }
+}
+
+.update-card {
+  max-width: 600px;
+  padding: 1rem;
+  border-radius: 12px;
+  max-height: 90vh;
+  overflow: hidden;
+
+  .mat-mdc-card-content {
+    padding: 0;
+    overflow-y: auto;
+    padding-top: 1rem;
+    padding-right: 1rem;
+    max-height: 70vh;
+    margin-bottom: 1rem;
+  }
+
+  mat-card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  mat-card-subtitle {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 1rem;
+  }
+
+  .form-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .image-upload {
+    margin-top: 1rem;
+
+    label {
+      font-weight: 500;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    input[type='file'] {
+      margin-top: 0.25rem;
+    }
+  }
+
+  .action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
   }
 }
