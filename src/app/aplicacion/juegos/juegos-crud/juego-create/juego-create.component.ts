@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Juego } from '../../juegos.model';
 import { JuegoService } from '../../juegos.service';
 import { DesarrolladoresService } from 'src/app/aplicacion/desarrolladores/desarrolladores.service';
 import { PublisherService } from 'src/app/aplicacion/publishers/publisher.service';
 import { CategoriaService } from 'src/app/aplicacion/categorias/categoria.service';
 import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
+import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-juego-create',
@@ -40,7 +41,8 @@ export class JuegoCreateComponent implements OnInit {
     private publisherService: PublisherService,
     private categoriaService: CategoriaService,
     private dialogRef: MatDialogRef<JuegoCreateComponent>,
-    private userUtilsService: UserUtilsService
+    private userUtilsService: UserUtilsService,
+    private dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
@@ -140,8 +142,28 @@ export class JuegoCreateComponent implements OnInit {
 
   onFileSelected(event: any): void {
   const file: File = event.target.files[0];
-  if (file) {
-    this.selectedFile = file;
+
+  if (!file) return;
+  
+  const maxSizeMB = 2;
+  const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+
+  if (!allowedTypes.includes(file.type)) {
+    this.selectedFile = null;
+    this.dialog.open(ErrorDialogComponent, {
+        data: { message: 'Solo se permiten imágenes JPEG, PNG o WebP.', type: 'error' },
+      });
+    return;
   }
+
+  if (file.size > maxSizeMB * 1024 * 1024) {
+    this.selectedFile = null;
+    this.dialog.open(ErrorDialogComponent, {
+      data: { message: `La imagen no debe superar los ${maxSizeMB}MB.`, type: 'error' },
+    });
+  return;
+  }
+
+  this.selectedFile = file;
   }
 }

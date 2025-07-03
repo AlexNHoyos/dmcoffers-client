@@ -1,137 +1,77 @@
-<mat-card class="card">
+<mat-card class="create-card">
   <mat-card-header>
-    <mat-card-title>Crear Juego</mat-card-title>
-    <mat-card-subtitle>Ingrese los siguientes datos:</mat-card-subtitle>
+    <mat-card-title>Añadir Nuevo Juego</mat-card-title>
+    <mat-card-subtitle>Complete todos los campos requeridos</mat-card-subtitle>
   </mat-card-header>
+
   <mat-card-content>
-    <form #juegoForm="ngForm" enctype="multipart/form-data">
-      <mat-form-field class="form-field">
+    <form #juegoForm="ngForm" enctype="multipart/form-data" class="form-grid">
+      <!-- Nombre -->
+      <mat-form-field class="full-width" appearance="outline">
         <mat-label>Nombre del Juego</mat-label>
-        <input
-          matInput
-          type="text"
-          [(ngModel)]="juego.gamename"
-          name="juegoname"
-          #name="ngModel"
-          required
-          minlength="1"
-        />
-        <button
-          *ngIf="juego.gamename"
-          matSuffix
-          mat-icon-button
-          aria-label="Clear"
-          (click)="juego.gamename = ''"
-        >
+        <input matInput [(ngModel)]="juego.gamename" name="juegoname" required #name="ngModel" />
+        <button mat-icon-button *ngIf="juego.gamename" matSuffix (click)="juego.gamename = ''">
           <mat-icon>close</mat-icon>
         </button>
-        <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
-          El nombre no puede estar vacío.
-        </mat-error>
+        <mat-error *ngIf="name.invalid && (name.touched || name.dirty)">Nombre requerido</mat-error>
       </mat-form-field>
 
-      <mat-form-field>
-        <mat-label>Fecha de Salida</mat-label>
-        <input
-          matInput
-          [matDatepicker]="picker1"
-          [(ngModel)]="juego.release_date"
-          name="release_date"
-          required
-        />
-        <mat-datepicker-toggle
-          matIconSuffix
-          [for]="picker1"
-        ></mat-datepicker-toggle>
+      <!-- Fecha de salida -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Fecha de salida</mat-label>
+        <input matInput [matDatepicker]="picker1" [(ngModel)]="juego.release_date" name="release_date" required />
+        <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
       </mat-form-field>
 
-      <mat-form-field>
+      <!-- Desarrollador -->
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Desarrollador</mat-label>
-        <mat-select
-          [(ngModel)]="juego.developerName"
-          name="developername"
-          required
-        >
-          <mat-option
-            *ngFor="let desarrollador of desarrolladores"
-            [value]="desarrollador.developername"
-          >
+        <mat-select [(ngModel)]="juego.developerName" name="developername" required>
+          <mat-option *ngFor="let desarrollador of desarrolladores" [value]="desarrollador.developername">
             {{ desarrollador.developername }}
           </mat-option>
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field>
+      <!-- Publisher -->
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Publisher</mat-label>
-        <mat-select
-          [(ngModel)]="juego.publisherName"
-          name="publishername"
-          required
-        >
-          <mat-option
-            *ngFor="let publisher of publishers"
-            [value]="publisher.publishername"
-          >
+        <mat-select [(ngModel)]="juego.publisherName" name="publishername" required>
+          <mat-option *ngFor="let publisher of publishers" [value]="publisher.publishername">
             {{ publisher.publishername }}
           </mat-option>
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field>
+      <!-- Categorías -->
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Categorías</mat-label>
-        <mat-select
-          [(ngModel)]="juego.categoriasNames"
-          name="categoriasnames"
-          multiple
-          required
-        >
-          <mat-option
-            *ngFor="let categoria of categorias"
-            [value]="categoria.description"
-          >
+        <mat-select [(ngModel)]="juego.categoriasNames" name="categoriasnames" multiple required>
+          <mat-option *ngFor="let categoria of categorias" [value]="categoria.description">
             {{ categoria.description }}
           </mat-option>
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field>
+      <!-- Precio -->
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Precio Inicial</mat-label>
-        <input
-          matInput
-          type="number"
-          [(ngModel)]="juego.price"
-          name="price"
-          required
-          min="0"
-        />
+        <input matInput type="number" [(ngModel)]="juego.price" name="price" required min="0" />
       </mat-form-field>
 
+      <!-- Imagen -->
       <div class="image-upload">
-        <label>Imagen del Juego</label><br />
-        <input
-          type="file"
-          (change)="onFileSelected($event)"
-          accept="image/*"
-        />
+        <label>Imagen del juego</label>
+        <input type="file" accept="image/*" (change)="onFileSelected($event)" />
       </div>
 
-      <div class="btns">
-        <button
-          mat-flat-button
-          type="submit"
-          color="primary"
-          (click)="createJuego()"
-          [disabled]="juegoForm.invalid"
-        >
+      <!-- Botones -->
+      <div class="actions">
+        <button mat-flat-button color="primary" (click)="createJuego()" [disabled]="juegoForm.invalid">
           Crear
         </button>
-        <button
-          mat-flat-button
-          type="button"
-          color="secondary"
-          (click)="cancel()"
-        >
+        <button mat-flat-button color="warn" type="button" (click)="cancel()">
           Cancelar
         </button>
       </div>
