@@ -71,14 +71,14 @@
         "serve": {
   "builder": "@angular-devkit/build-angular:dev-server",
   "options": {
-    "browserTarget": "dmcoffers-client:build:development"
+    "buildTarget": "dmcoffers-client:build:development"
   },
   "configurations": {
     "production": {
-      "browserTarget": "dmcoffers-client:build:production"
+      "buildTarget": "dmcoffers-client:build:production"
     },
     "development": {
-      "browserTarget": "dmcoffers-client:build:development"
+      "buildTarget": "dmcoffers-client:build:development"
     }
   },
   "defaultConfiguration": "development"
@@ -86,7 +86,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "dmcoffers-client:build"
+            "buildTarget": "dmcoffers-client:build"
           }
         },
         "test": {
