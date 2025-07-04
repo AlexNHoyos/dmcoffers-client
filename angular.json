@@ -69,17 +69,20 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "configurations": {
-            "production": {
-              "browserTarget": "dmcoffers-client:build:production"
-            },
-            "development": {
-              "browserTarget": "dmcoffers-client:build:development"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
+  "builder": "@angular-devkit/build-angular:dev-server",
+  "options": {
+    "browserTarget": "dmcoffers-client:build:development"
+  },
+  "configurations": {
+    "production": {
+      "browserTarget": "dmcoffers-client:build:production"
+    },
+    "development": {
+      "browserTarget": "dmcoffers-client:build:development"
+    }
+  },
+  "defaultConfiguration": "development"
+},
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
