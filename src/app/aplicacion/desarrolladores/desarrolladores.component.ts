@@ -9,9 +9,10 @@ import { DesarrolladoresDeleteComponent } from './desarrolladores-delete/desarro
 import { DesarrolladoresDetailComponent } from './desarrolladores-detail/desarrolladores-detail.component';
 
 @Component({
-  selector: 'app-desarrolladores',
-  templateUrl: './desarrolladores.component.html',
-  styleUrls: ['./desarrolladores.component.scss'],
+    selector: 'app-desarrolladores',
+    templateUrl: './desarrolladores.component.html',
+    styleUrls: ['./desarrolladores.component.scss'],
+    standalone: false
 })
 export class DesarrolladoresComponent extends CrudComponent<Desarrollador> {
   desarrolladores: Desarrollador[] = [];

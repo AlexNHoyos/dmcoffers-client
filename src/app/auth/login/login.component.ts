@@ -8,9 +8,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { EncryptionService } from 'src/app/services/auth/encryption.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss'],
+    standalone: false
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;

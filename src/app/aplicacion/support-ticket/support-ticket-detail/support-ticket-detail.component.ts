@@ -4,9 +4,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { SupportTicket } from '../support-ticket.model';
 
 @Component({
-  selector: 'app-support-ticket-detail',
-  templateUrl: './support-ticket-detail.component.html',
-  styleUrls: ['./support-ticket-detail.component.scss'],
+    selector: 'app-support-ticket-detail',
+    templateUrl: './support-ticket-detail.component.html',
+    styleUrls: ['./support-ticket-detail.component.scss'],
+    standalone: false
 })
 export class SupportTicketDetailComponent {
   constructor(

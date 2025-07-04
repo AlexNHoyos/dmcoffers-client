@@ -9,9 +9,10 @@ import { ProximamenteService } from 'src/app/services/proximamente.service';
 import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
 
 @Component({
-  selector: 'app-support-ticket-create',
-  templateUrl: './support-ticket-create.component.html',
-  styleUrls: ['./support-ticket-create.component.scss'],
+    selector: 'app-support-ticket-create',
+    templateUrl: './support-ticket-create.component.html',
+    styleUrls: ['./support-ticket-create.component.scss'],
+    standalone: false
 })
 export class SupportTicketCreateComponent {
   supportTicket: SupportTicket = {

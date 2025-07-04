@@ -11,9 +11,10 @@ import { UserUtilsService } from 'src/app/services/user/user-util-service.servic
 import { HostingService } from '../hosting.service';
 
 @Component({
-  selector: 'app-hosting-update',
-  templateUrl: './hosting-update.component.html',
-  styleUrls: ['./hosting-update.component.scss'],
+    selector: 'app-hosting-update',
+    templateUrl: './hosting-update.component.html',
+    styleUrls: ['./hosting-update.component.scss'],
+    standalone: false
 })
 export class HostingUpdateComponent {
   hosting: Hosting;

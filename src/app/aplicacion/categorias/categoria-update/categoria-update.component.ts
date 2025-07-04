@@ -11,9 +11,10 @@ import { UserUtilsService } from 'src/app/services/user/user-util-service.servic
 import { CategoriaService } from '../categoria.service';
 
 @Component({
-  selector: 'app-categoria-update',
-  templateUrl: './categoria-update.component.html',
-  styleUrls: ['./categoria-update.component.scss'],
+    selector: 'app-categoria-update',
+    templateUrl: './categoria-update.component.html',
+    styleUrls: ['./categoria-update.component.scss'],
+    standalone: false
 })
 export class CategoriaUpdateComponent {
   categoria: Categoria;

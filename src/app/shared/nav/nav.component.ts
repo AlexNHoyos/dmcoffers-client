@@ -6,9 +6,10 @@ import { UserUtilsService } from 'src/app/services/user/user-util-service.servic
 import { ProximamenteService } from 'src/app/services/proximamente.service';
 
 @Component({
-  selector: 'app-nav',
-  templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.scss'],
+    selector: 'app-nav',
+    templateUrl: './nav.component.html',
+    styleUrls: ['./nav.component.scss'],
+    standalone: false
 })
 export class NavComponent implements OnInit, OnDestroy {
   searchTerm: string = '';

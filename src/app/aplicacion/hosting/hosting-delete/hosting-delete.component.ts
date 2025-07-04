@@ -9,9 +9,10 @@ import { ErrorDialogComponent } from '../../../components/error-dialog/error-dia
 import { HostingService } from '../hosting.service';
 
 @Component({
-  selector: 'app-hosting-delete',
-  templateUrl: './hosting-delete.component.html',
-  styleUrls: ['./hosting-delete.component.scss'],
+    selector: 'app-hosting-delete',
+    templateUrl: './hosting-delete.component.html',
+    styleUrls: ['./hosting-delete.component.scss'],
+    standalone: false
 })
 export class HostingDeleteComponent implements OnInit {
   hostingName: string = '';

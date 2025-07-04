@@ -14,8 +14,9 @@ import { PublisherService } from 'src/app/aplicacion/publishers/publisher.servic
 import { CategoriaService } from 'src/app/aplicacion/categorias/categoria.service';
 
 @Component({
-  selector: 'app-juego-update',
-  templateUrl: './juego-update.component.html',
+    selector: 'app-juego-update',
+    templateUrl: './juego-update.component.html',
+    standalone: false
 })
 export class JuegoUpdateComponent {
   juego: Juego;

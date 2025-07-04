@@ -11,9 +11,10 @@ import { UserUtilsService } from 'src/app/services/user/user-util-service.servic
 import { SupportTicketService } from '../support-ticket.service';
 
 @Component({
-  selector: 'app-support-ticket-update',
-  templateUrl: './support-ticket-update.component.html',
-  styleUrls: ['./support-ticket-update.component.scss'],
+    selector: 'app-support-ticket-update',
+    templateUrl: './support-ticket-update.component.html',
+    styleUrls: ['./support-ticket-update.component.scss'],
+    standalone: false
 })
 export class SupportTicketUpdateComponent {
   supportTicket: SupportTicket;

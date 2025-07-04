@@ -8,9 +8,10 @@ import { CategoriaService } from 'src/app/aplicacion/categorias/categoria.servic
 import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
 
 @Component({
-  selector: 'app-juego-create',
-  templateUrl: './juego-create.component.html',
-  styleUrls: ['./juego-create.component.scss'],
+    selector: 'app-juego-create',
+    templateUrl: './juego-create.component.html',
+    styleUrls: ['./juego-create.component.scss'],
+    standalone: false
 })
 export class JuegoCreateComponent implements OnInit {
   selectedFile: File | null = null;

@@ -9,9 +9,10 @@ import { ErrorDialogComponent } from '../../../components/error-dialog/error-dia
 import { SupportTicketService } from '../support-ticket.service';
 
 @Component({
-  selector: 'app-support-ticket-delete',
-  templateUrl: './support-ticket-delete.component.html',
-  styleUrls: ['./support-ticket-delete.component.scss'],
+    selector: 'app-support-ticket-delete',
+    templateUrl: './support-ticket-delete.component.html',
+    styleUrls: ['./support-ticket-delete.component.scss'],
+    standalone: false
 })
 export class SupportTicketDeleteComponent implements OnInit {
   supportTicketName: number = 0;

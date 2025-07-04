@@ -9,9 +9,10 @@ import { CategoriaDeleteComponent } from './categoria-delete/categoria-delete.co
 import { CategoriaDetailComponent } from './categoria-detail/categoria-detail.component';
 
 @Component({
-  selector: 'app-categorias',
-  templateUrl: './categorias.component.html',
-  styleUrls: ['./categorias.component.scss'],
+    selector: 'app-categorias',
+    templateUrl: './categorias.component.html',
+    styleUrls: ['./categorias.component.scss'],
+    standalone: false
 })
 export class CategoriasComponent extends CrudComponent<Categoria> {
   categorias: Categoria[] = [];

@@ -9,9 +9,10 @@ import { JuegoDeleteComponent } from './juego-delete/juego-delete.component';
 import { JuegoDetailDialogComponent } from './juego-detail-dialog/juego-detail-dialog.component';
 
 @Component({
-  selector: 'app-juegos-crud',
-  templateUrl: './juegos-crud.component.html',
-  styleUrls: ['./juegos-crud.component.scss'],
+    selector: 'app-juegos-crud',
+    templateUrl: './juegos-crud.component.html',
+    styleUrls: ['./juegos-crud.component.scss'],
+    standalone: false
 })
 export class JuegosCrudComponent extends CrudComponent<Juego> {
   juegos: Juego[] = [];
