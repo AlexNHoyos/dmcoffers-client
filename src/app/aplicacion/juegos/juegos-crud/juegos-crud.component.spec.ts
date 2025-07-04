@@ -2,6 +2,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { MatDialogRef } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { JuegosCrudComponent } from './juegos-crud.component';
 
@@ -15,6 +19,11 @@ describe('JuegosCrudComponent', () => {
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting()
+      ],
+      imports: [
+        MatCardModule,
+        MatSnackBarModule,
+        MatDialogModule,
       ]
     });
     fixture = TestBed.createComponent(JuegosCrudComponent);

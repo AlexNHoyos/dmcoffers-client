@@ -19,9 +19,7 @@
           "options": {
             "aot": true,
             "allowedCommonJsDependencies": [],
-            "outputPath": {
-              "base": "dist/dmcoffers-client"
-            },
+            "outputPath": "dist/dmcoffers-client",
             "index": "src/index.html",
             "polyfills": [
               "zone.js"
@@ -62,8 +60,7 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
+              "sourceMap": true
             }
           },
           "defaultConfiguration": "production"
@@ -72,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "dmcoffers-client:build:production"
+              "browserTarget": "dmcoffers-client:build:production"
             },
             "development": {
-              "buildTarget": "dmcoffers-client:build:development"
+              "browserTarget": "dmcoffers-client:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "dmcoffers-client:build"
+            "browserTarget": "dmcoffers-client:build"
           }
         },
         "test": {

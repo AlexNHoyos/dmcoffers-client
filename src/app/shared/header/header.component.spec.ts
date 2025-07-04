@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { FormsModule } from '@angular/forms';
 
@@ -27,7 +28,8 @@ describe('HeaderComponent', () => {
         MatFormFieldModule,
         MatToolbarModule,
         FormsModule,
-        MatMenuModule
+        MatMenuModule,
+        MatSnackBarModule
       ],
       providers: [
         provideHttpClient(),

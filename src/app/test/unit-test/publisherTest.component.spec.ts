@@ -5,7 +5,7 @@ import { PublisherDeleteComponent } from "src/app/aplicacion/publishers/publishe
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
-
+import { MatDialogModule } from "@angular/material/dialog";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule } from "@angular/forms";
 import { MatCardModule } from "@angular/material/card";
@@ -24,7 +24,8 @@ describe("PublisherDeleteComponent", () => {
         FormsModule,
         NoopAnimationsModule,
         MatCardModule,
-        MatFormFieldModule
+        MatFormFieldModule,
+        MatDialogModule
       ],
       providers: [
         { provide: MatDialogRef, useValue: mockDialogRef },

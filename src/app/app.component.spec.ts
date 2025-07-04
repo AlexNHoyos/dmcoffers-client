@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { LoginService } from './services/auth/login.service';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { HeaderComponent } from './shared/header/header.component';
 import { NavComponent } from './shared/nav/nav.component';
@@ -36,7 +37,8 @@ describe('AppComponent', () => {
         MatIconModule,
         RouterOutlet,
         MatToolbarModule,
-        MatMenuModule
+        MatMenuModule,
+        MatSnackBarModule
       ],
       declarations: [AppComponent, HeaderComponent, NavComponent, FooterComponent],
       providers: [

@@ -18,7 +18,7 @@ import { MatDialogModule} from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
+import { MatNativeDateModule, NativeDateAdapter } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -93,6 +93,8 @@ import { CartService } from './aplicacion/juegos/cart.service';
 import { CartComponent } from './pages/cart/cart.component';
 import { LibraryComponent } from './pages/library/library.component';
 import { MatDatepicker } from '@angular/material/datepicker';
+import { DateAdapter } from '@angular/material/core';
+
 
 @NgModule({ declarations: [
         AppComponent,
@@ -173,34 +175,9 @@ import { MatDatepicker } from '@angular/material/datepicker';
         MatSnackBarModule,
         MatListModule,
         MatSidenavModule,
-        MatMenuModule,
-        MatButtonModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatDialogModule,
-        MatToolbarModule,
-        MatTableModule,
-        MatPaginatorModule,
-        MatSortModule,
-        MatIconModule,
-        MatCardModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        MatSelectModule,
-        MatExpansionModule,
-        MatDividerModule,
-        MatSnackBarModule,
-        MatListModule,
-        MatSidenavModule,
-        MatMenuModule,
-        MatButton,
-        MatFormFieldModule,
-        MatInputModule,
-        MatDialogModule,
-        MatToolbarModule,
-        MatTableModule,
-        MatPaginatorModule
-        ], providers: [
+        MatMenuModule
+      ],
+      providers: [
         WishlistService,
         CartService,
         RegisterService,
@@ -210,7 +187,10 @@ import { MatDatepicker } from '@angular/material/datepicker';
         DesarrolladoresService,
         RegisterService,
         SweItemMenuService,
-        provideNativeDateAdapter(),
+        {
+            provide: DateAdapter,
+            useClass: NativeDateAdapter
+        },
         {
             provide: HTTP_INTERCEPTORS,
             useClass: JwtInterceptorService,

@@ -10,11 +10,11 @@ import { MatCardModule } from "@angular/material/card";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatDatepickerModule } from "@angular/material/datepicker";
-import { provideNativeDateAdapter } from "@angular/material/core";
 
 import { FormsModule } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { of } from "rxjs";
+import { MatNativeDateModule } from "@angular/material/core";
 
 describe("DesarrolladoresCreateComponent", () => {
   let component: DesarrolladoresCreateComponent;
@@ -30,14 +30,14 @@ describe("DesarrolladoresCreateComponent", () => {
         MatCardModule,
         MatInputModule,
         MatFormFieldModule,
-        MatDatepickerModule
+        MatDatepickerModule,
+        MatNativeDateModule
       ],
       providers: [
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: {} },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
-        provideNativeDateAdapter()
       ]
     }).compileComponents();
 

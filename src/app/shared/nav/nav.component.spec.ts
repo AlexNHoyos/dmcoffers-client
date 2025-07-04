@@ -7,7 +7,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule, MatFormField } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 
 import { NavComponent } from './nav.component';
@@ -24,10 +24,11 @@ describe('NavComponent', () => {
         MatToolbarModule,
         MatIconModule,
         FormsModule,
-        MatMenuModule
+        MatMenuModule,
+        MatSnackBarModule
       ],
       providers: [
-        provideHttpClient(),
+        provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting()
       ] 
     });

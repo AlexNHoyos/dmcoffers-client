@@ -10,6 +10,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { SweItemMenuComponent } from './sweitemmenu.component';
 
 describe('SidemenuComponent', () => {
@@ -24,7 +26,8 @@ describe('SidemenuComponent', () => {
         MatSidenavModule,
         MatIconModule,
         MatListModule,
-        MatButtonModule
+        MatButtonModule,
+        BrowserAnimationsModule
       ],
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
