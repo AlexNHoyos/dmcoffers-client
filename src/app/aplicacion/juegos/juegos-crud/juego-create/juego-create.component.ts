@@ -41,7 +41,7 @@ export class JuegoCreateComponent implements OnInit {
     private categoriaService: CategoriaService,
     private dialogRef: MatDialogRef<JuegoCreateComponent>,
     private userUtilsService: UserUtilsService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     // Obtén y asigna el usuario al crear el juego
@@ -86,52 +86,52 @@ export class JuegoCreateComponent implements OnInit {
   }
 
   createJuego(): void {
-  const formData = new FormData();
+    const formData = new FormData();
 
-  const juegoToSend = {
-    gamename: this.juego.gamename,
-    release_date: this.juego.release_date
-      ? new Date(this.juego.release_date).toISOString()
-      : null,
-    publishment_date: this.juego.publishment_date
-      ? new Date(this.juego.publishment_date).toISOString()
-      : null,
-    creationuser: this.juego.creationuser,
-    creationtimestamp: this.juego.creationtimestamp
-      ? new Date(this.juego.creationtimestamp).toISOString()
-      : null,
-    id_developer: this.juego.developerName
-      ? this.desarrolladores.find(
+    const juegoToSend = {
+      gamename: this.juego.gamename,
+      release_date: this.juego.release_date
+        ? new Date(this.juego.release_date).toISOString()
+        : null,
+      publishment_date: this.juego.publishment_date
+        ? new Date(this.juego.publishment_date).toISOString()
+        : null,
+      creationuser: this.juego.creationuser,
+      creationtimestamp: this.juego.creationtimestamp
+        ? new Date(this.juego.creationtimestamp).toISOString()
+        : null,
+      id_developer: this.juego.developerName
+        ? this.desarrolladores.find(
           (dev) => dev.developername === this.juego.developerName
         ).id
-      : null,
-    id_publisher: this.juego.publisherName
-      ? this.publishers.find(
+        : null,
+      id_publisher: this.juego.publisherName
+        ? this.publishers.find(
           (pub) => pub.publishername === this.juego.publisherName
         ).id
-      : null,
-    categorias: this.juego.categoriasNames.map(
-      (catName) =>
-        this.categorias.find((cat) => cat.description === catName).id
-    ),
-    price: this.juego.price,
-  };
+        : null,
+      categorias: this.juego.categoriasNames.map(
+        (catName) =>
+          this.categorias.find((cat) => cat.description === catName).id
+      ),
+      price: this.juego.price,
+    };
 
-  formData.append('juego', JSON.stringify(juegoToSend));
-  
-  if (this.selectedFile) {
-    formData.append('image', this.selectedFile);
-  }
-  console.log('Juego enviado', formData);
-  this.juegoService.createJuego(formData).subscribe({
-    next: (response) => {
-      console.log('Juego creado exitosamente', response);
-      this.dialogRef.close(true);
-    },
-    error: (error) => {
-      console.error('Error creando juego', error);
-    },
-  });
+    formData.append('juego', JSON.stringify(juegoToSend));
+
+    if (this.selectedFile) {
+      formData.append('image', this.selectedFile);
+    }
+    console.log('Juego enviado', formData);
+    this.juegoService.createJuego(formData).subscribe({
+      next: (response) => {
+        console.log('Juego creado exitosamente', response);
+        this.dialogRef.close(true);
+      },
+      error: (error) => {
+        console.error('Error creando juego', error);
+      },
+    });
   }
 
   cancel(): void {
@@ -139,9 +139,9 @@ export class JuegoCreateComponent implements OnInit {
   }
 
   onFileSelected(event: any): void {
-  const file: File = event.target.files[0];
-  if (file) {
-    this.selectedFile = file;
-  }
+    const file: File = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+    }
   }
 }
