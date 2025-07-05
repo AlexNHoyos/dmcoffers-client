@@ -105,9 +105,10 @@ export class JuegosCrudComponent extends CrudComponent<Juego> {
     }
   }
   override ngOnInit(): void {
-    // Con esta funcion se puede cargar los juegos al inicio
-    // this.loadjuegos();
-    super.ngOnInit();
+      // Carga y muestra la tabla
+      //this.loadJuegos();
+      // Muestra la tabla
+      this.showTable = true;
   }
 
   loadJuegos(): void {

@@ -4,48 +4,41 @@
     <div class="toolbar-container">
 
       <header class="header toolbar">
-
         <div class="header-content">
           <img src="assets/images/logo.png" alt="DMC - Offers Logo" class="logo" routerLink="/inicio" />
-          <h1 class="h1">
-            DmcOffers
-          </h1>
         </div>
-
       </header>
 
-      <!-- Sección central: Buscador -->
       <div class="center-section">
-        <div class="search-bar">
-          <input type="text" [(ngModel)]="searchTerm" (keydown.enter)="onSearch()" />
-          <div class="divider"></div>
-          <button (click)="onSearch()">
-            <mat-icon>search</mat-icon>
-          </button>
+        <div class="col-12 col-lg-5 col-md-8 col-sm-8">
+          <div class="search-bar">
+            <input type="text" [(ngModel)]="searchTerm" (keydown.enter)="onSearch()" />
+            <button (click)="onSearch()">
+              <mat-icon class="search-icon">search</mat-icon>
+            </button>
+          </div>
+
         </div>
       </div>
 
-      <!-- Sección derecha: Menú + Carrito -->
-      <div class="right-section" *ngIf="!userLoginOn">
-        <button mat-icon-button [matMenuTriggerFor]="menu" style="color: white;">
-          <mat-icon>person</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="login()" routerLink="/iniciar-sesion">
-            <span>Iniciar Sesión</span>
-          </button>
-          <button mat-menu-item (click)="register()" routerLink="/register">
-            <span>Registrarse</span>
-          </button>
-        </mat-menu>
-
-
-      </div>
-
-      <div class="right-section" *ngIf="userLoginOn">
-        <div>
+      <div class="right-section">
+        <div *ngIf="!userLoginOn" class="user-actions">
           <button mat-icon-button [matMenuTriggerFor]="menu" style="color: white;">
             <mat-icon>person</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="login()" routerLink="/iniciar-sesion">
+              <span>Iniciar Sesión</span>
+            </button>
+            <button mat-menu-item (click)="register()" routerLink="/register">
+              <span>Registrarse</span>
+            </button>
+          </mat-menu>
+        </div>
+
+        <div *ngIf="userLoginOn" class="user-actions">
+          <button mat-icon-button [matMenuTriggerFor]="menu" style="color: white;">
+            <mat-icon class="header-item-button">person</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
             <button mat-menu-item routerLink="/info">
@@ -54,14 +47,14 @@
             <button mat-menu-item (click)="logout()">
               <span>Cerrar Sesión</span>
             </button>
-
           </mat-menu>
 
           <button mat-icon-button (click)="carrito()" aria-label="Carrito de compras" style="color: white;">
-            <mat-icon>shopping_cart</mat-icon>
+            <mat-icon class="header-item-button">shopping_cart</mat-icon>
           </button>
         </div>
       </div>
+
     </div>
   </nav>
 </div>

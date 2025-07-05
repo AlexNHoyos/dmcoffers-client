@@ -30,7 +30,7 @@
     <div *ngIf="isLoggedIn && !isLibrary">
       <!-- Wishlist Mode -->
       <ng-container *ngIf="!isWishlist; else removeButton">
-        <div (click)="toggleWishlist(juego)" class="wishlist-icon-container">
+        <div (click)="toggleWishlist(juego); $event.stopPropagation()" class="wishlist-icon-container">
           <i
             class="material-icons wishlist-icon"
             [ngClass]="{ 'wishlist-added': juego.isInWishlist }"
@@ -43,7 +43,7 @@
 
       <ng-template #removeButton>
         <p class="eliminar-juego">
-          <span (click)="removeFromWishlist.emit(juego.id)">Eliminar</span>
+          <span (click)="removeFromWishlist.emit(juego.id); $event.stopPropagation()">Eliminar</span>
         </p>
       </ng-template>
     </div>

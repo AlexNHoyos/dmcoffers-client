@@ -32,26 +32,36 @@ export class JuegosComponent implements OnInit {
     private libraryService: LibraryService
   ) {}
 
+  ultimosLanzamientos: Juego[] = [];
+  environmentImg: string="";
+
   ngOnInit(): void {
     // Verificar si el usuario está logueado
     this.isLoggedIn = this.loginService.isLoggedIn();
 
-    this.juegoService.getJuegos().subscribe(
-      (data: Juego[]) => {
-        this.juegos = data.map((juego) => ({
+    this.juegoService.getJuegos().subscribe({
+      next: (data: Juego[]) => {
+        const juegosOrdenados = [...data].sort((a, b) => {
+          return new Date(b.release_date!).getTime() - new Date(a.release_date!).getTime();
+        });
+  
+        this.ultimosLanzamientos = juegosOrdenados.slice(0, 5);
+        this.juegos = data.map(juego => ({
           ...juego,
-          isInWishlist: false, // Inicialmente, no están en la wishlist
-          isInLibrary: false, // Inicialmente, no están en la biblioteca
+          isInWishlist: false,
+          isInLibrary: false
         }));
-        // Verificar si cada juego está en la wishlist
-        this.juegos.forEach((juego) => this.checkIfInWishlist(juego));
-        this.juegos.forEach((juego) => this.checkIfInLibrary(juego));
-
+  
+        // ✅ Solo si el usuario está logueado se consultan estas relaciones
+        if (this.isLoggedIn) {
+          this.juegos.forEach(j => this.checkIfInWishlist(j));
+          this.juegos.forEach(j => this.checkIfInLibrary(j));
+        }
       },
-      (error) => {
+      error: (error) => {
         console.error('Error al obtener los juegos:', error);
       }
-    );
+    });
   }
 
   verDetalle(juegoId: number): void {

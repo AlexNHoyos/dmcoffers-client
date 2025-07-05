@@ -17,7 +17,7 @@ import { ProximamenteService } from 'src/app/services/proximamente.service';
 })
 export class PersonalDetailsComponent implements OnInit {
   errorMessage: String = '';
-  userId: number = 0;
+  userId: number | null = null;
   user?: User;
   userLoginOn: boolean = false;
   editMode: boolean = false;

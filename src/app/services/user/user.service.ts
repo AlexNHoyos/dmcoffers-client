@@ -14,13 +14,14 @@ export class UserService extends CrudService<UserPage> {
     super(http);
   }
 
-  private userId: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  private userId: BehaviorSubject<number | null> = new BehaviorSubject<number | null>(null);
 
-  setUserId(id: number): void {
+  setUserId(id: number | null): void {
+    console.log('📌 setUserId llamado con:', id);
     this.userId.next(id);
   }
 
-  getUserId(): Observable<number> {
+  getUserId(): Observable<number | null> {
     return this.userId.asObservable();
   }
 

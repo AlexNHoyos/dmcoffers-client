@@ -1,0 +1,25 @@
+<div class="categoria-selector">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Filtrar por categoría</mat-label>
+    <mat-select [(value)]="categoriaSeleccionada">
+      <mat-option *ngFor="let cat of categorias" [value]="cat">{{ cat }}</mat-option>
+      <mat-option [value]="''">Todas</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<mat-list *ngIf="juegosFiltrados.length > 0">
+  <mat-list-item class="game-item" *ngFor="let juego of juegosFiltrados" (click)="verDetalle(juego.id)">
+  
+    <img matListItemIcon
+      [src]="environmentImg + juego.image_path"
+      alt="{{ juego.gamename }}"
+    />
+    <div matListItemTitle>{{ juego.gamename }}</div>
+    <div matListItemLine>{{ juego.price | currency:'USD' }}</div>
+
+  </mat-list-item>
+
+</mat-list>
+
+<p *ngIf="juegosFiltrados.length === 0" class="no-results">No hay juegos en esta categoría.</p>

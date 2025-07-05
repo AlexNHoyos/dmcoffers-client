@@ -2,33 +2,38 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 10px;
+  width: 100%;
+  overflow: hidden;
 }
 
 .header {
   display: flex;
-  align-items: left;
-  max-width: 5%;
-  flex: 0;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 .header-content {
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  img.logo {
+    width: 75px;
+    height: 75px;
+    cursor: pointer;
+  }
 }
 
-.h1 {
-  color: whitesmoke;
-  font-family: 'DarkerHollow';
-  font-size: 60px;
-  margin-top: 20px;
-  margin-left: 20px;
-}
-
-.left-section {
+.left-section,
+.right-section {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   color: white;
+  flex-shrink: 0;
 }
 
 .app-name {
@@ -40,18 +45,15 @@
   flex: 1;
   display: flex;
   justify-content: center;
-}
-
-.right-section {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .search-bar {
+  width: 100%;
   display: flex;
   align-items: center;
-  width: 600px;
+  flex-shrink: 1;
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 3px;
   overflow: hidden;
@@ -79,10 +81,71 @@
     padding: 6px 8px;
     color: #fff;
     cursor: pointer;
-    vertical-align: middle;
 
     &:hover {
       background-color: rgba(255, 255, 255, 0.1);
     }
   }
+}
+
+@media (max-width: 1195px) and (min-width: 769px) {
+  .center-section {
+    justify-content: flex; // Esto parece incompleto, quizás querías "flex-end"
+  }
+}
+
+@media (max-width: 768px) {
+  .toolbar-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header {
+    order: 1;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .header-content {
+    flex-direction: row;
+    text-align: center;
+
+    img.logo {
+      width: 60px;
+      height: 60px;
+    }
+  }
+
+  .center-section,
+  .right-section {
+    width: 100%;
+  }
+
+  .center-section {
+    order: 3;
+  }
+
+  .right-section {
+    order: 2;
+  }
+
+  .user-actions {
+    justify-content: flex-end;
+  }
+
+  .search-bar {
+    height: 70%;
+  }
+
+  .search-icon {
+    font-size: 20px;
+    padding-top: 2px;
+    padding-left: 5px;
+  }
+
+  .header-item-button {
+    font-size: 20px;
+    margin: 0 0 0 0;
+  }
+
 }

@@ -30,6 +30,8 @@ import { JuegosComponent } from './aplicacion/juegos/juegos.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { LibraryComponent } from './pages/library/library.component';
 import { JuegosCrudComponent } from './aplicacion/juegos/juegos-crud/juegos-crud.component';
+import { SupportTicketComponent } from './aplicacion/support-ticket/support-ticket.component';
+import { SupportTicketCreateComponent } from './aplicacion/support-ticket/support-ticket-create/support-ticket-create.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -53,6 +55,7 @@ const routes: Routes = [
   { path: 'publicadores', component: PublisherComponent, canActivate: [adminGuard], },
   { path: 'juegos', component: JuegosCrudComponent, canActivate: [adminGuard], },
   { path: 'desarrolladores', component: DesarrolladoresComponent, canActivate: [adminGuard], },
+  { path: 'support-ticket', component: SupportTicketComponent },
   /*{ path: 'create-publisher', component: PublisherCreateComponent,
     canActivate: [adminGuard], },
   { path: 'editP/:id', component: PublisherUpdateComponent },

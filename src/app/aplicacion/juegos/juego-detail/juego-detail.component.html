@@ -1,77 +1,79 @@
+<!-- Botón volver -->
 <div class="back-button-container">
-  <mat-icon class="back-button" (click)="back()">arrow_back</mat-icon>
+  <button mat-icon-button (click)="back()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
 </div>
 
-<div *ngIf="juego" class="game-details">
-  <div class="game-image">
-    <!--*ngIf="juego.imagen_url">-->
-    <img [src]="environmentImg + juego.image_path" alt="Imagen del juego" />
-  </div>
-  <div class="game-header">
-    <h2>{{ juego.gamename }}</h2>
-    <p class="release-date">
-      <strong>Fecha de Lanzamiento:</strong> {{ juego.release_date }}
-    </p>
-  </div>
+<!-- Contenido principal -->
+<mat-card *ngIf="juego" class="game-details-card">
+  <!-- Imagen -->
+  <mat-card-header>
+    <mat-card-title>{{ juego.gamename }}</mat-card-title>
+    <mat-card-subtitle>Fecha de lanzamiento: {{ juego.release_date }}</mat-card-subtitle>
+  </mat-card-header>
 
-  <div *ngIf="token">
+  <img mat-card-image [src]="environmentImg + juego.image_path" alt="Imagen del juego" />
+
+  <!-- Contenido del juego -->
+  <mat-card-content>
+    <p><strong>Publicador:</strong> {{ juego.publisherName }}</p>
+    <p><strong>Desarrollador:</strong> {{ juego.developerName }}</p>
+
+    <div class="game-categories">
+      <p><strong>Categorías:</strong></p>
+      <ul>
+        <li *ngFor="let categoria of juego.categoriasNames" class="category-tag">
+          {{ categoria }}
+        </li>
+      </ul>
+    </div>
+
+    <p><strong>Precio:</strong> {{ juego.price }} USD</p>
+
+    <p *ngIf="isInLibrary" class="text-muted">
+      Este juego ya está en tu biblioteca.
+    </p>
+  </mat-card-content>
+
+  <!-- Botones -->
+  <mat-card-actions *ngIf="token">
     <button
       *ngIf="!isInWishlist"
+      mat-raised-button
+      color="primary"
       (click)="addToWishlist()"
-      class="btn btn-primary"
     >
       Agregar a la Wishlist
     </button>
 
     <button
       *ngIf="isInWishlist"
+      mat-raised-button
+      color="warn"
       (click)="removeFromWishlist()"
-      class="btn btn-danger"
     >
       Eliminar de la Wishlist
     </button>
 
     <button
-  *ngIf="!isInCart && token && !isInLibrary"
-  (click)="addToCart()"
-  class="btn btn-success"
->
-  Agregar al Carrito
-</button>
+      *ngIf="!isInCart && !isInLibrary"
+      mat-raised-button
+      color="accent"
+      (click)="addToCart()"
+    >
+      Agregar al Carrito
+    </button>
 
-<button
-  *ngIf="isInCart && token && !isInLibrary"
-  class="btn btn-secondary"
-  (mouseenter)="cartBtnHover = true"
-  (mouseleave)="cartBtnHover = false"
-  (click)="removeFromCart()"
->
-  {{ cartBtnHover ? 'Quitar del Carrito' : 'Ya está en el Carrito' }}
-</button>
-
-<p *ngIf="isInLibrary" class="text-muted mt-2">
-  Este juego ya está en tu biblioteca.
-</p>
-  </div>
-
-  <div class="game-content">
-    <div class="game-info">
-      <p><strong>Publicador:</strong> {{ juego.publisherName }}</p>
-      <p><strong>Desarrollador:</strong> {{ juego.developerName }}</p>
-
-      <div class="game-categories">
-        <p><strong>Categorías:</strong></p>
-        <ul>
-          <li
-            *ngFor="let categoria of juego.categoriasNames"
-            class="category-tag"
-          >
-            {{ categoria }}
-          </li>
-        </ul>
-      </div>
-
-      <p class="game-price"><strong>Precio:</strong> {{ juego.price }} USD</p>
-    </div>
-  </div>
-</div>
+    <button
+      *ngIf="isInCart && !isInLibrary"
+      mat-raised-button
+      [color]="cartBtnHover ? 'warn' : 'accent'"
+      (mouseenter)="cartBtnHover = true"
+      (mouseleave)="cartBtnHover = false"
+      (click)="removeFromCart()"
+    >
+      {{ cartBtnHover ? 'Quitar del Carrito' : 'Ya está en el Carrito' }}
+    </button>
+  </mat-card-actions>
+</mat-card>

@@ -13,7 +13,7 @@ export class UserUtilsService {
   setLoggedInUser(): Observable<string | null> {
     return this.userService.getUserId().pipe(
       switchMap((userId) => {
-        if (userId) {
+        if (userId != null) {
           return this.userService
             .getUser(userId)
             .pipe(map((user) => user.username));

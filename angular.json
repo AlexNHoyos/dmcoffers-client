@@ -19,7 +19,9 @@
           "options": {
             "aot": true,
             "allowedCommonJsDependencies": [],
-            "outputPath": "dist/dmcoffers-client",
+            "outputPath": {
+              "base": "dist/dmcoffers-client"
+            },
             "index": "src/index.html",
             "polyfills": [
               "zone.js"

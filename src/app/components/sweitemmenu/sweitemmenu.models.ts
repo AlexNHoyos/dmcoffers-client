@@ -5,7 +5,7 @@ export interface MenuItem {
     title: string;
     description: string;
     idSupItemMenu: MenuItem;
-    idSweAccModApl: any;
+    rolesPermitidos: string;
     endpoint: string;
     ordernumber: number;
     creationtimestamp: Date;

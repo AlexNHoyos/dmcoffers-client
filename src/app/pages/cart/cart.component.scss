@@ -1,0 +1,37 @@
+mat-card {
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+mat-spinner {
+  margin-top: 3rem;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+}
+
+.juego-nombre {
+  font-size: 1.3rem;
+  //font-weight: bold;
+}
+
+.precio {
+  font-size: 1rem;
+  color: #555;
+}
+
+img {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin: 0;
+}
+
+.mat-mdc-list-item-icon {
+  width: 15% !important;
+  height: 80px !important;
+  margin: 0 1em !important;
+}
