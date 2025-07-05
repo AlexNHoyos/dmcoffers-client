@@ -94,7 +94,8 @@ import { MatMenuModule } from '@angular/material/menu'
 import { CartService } from './aplicacion/juegos/cart.service';
 import { CartComponent } from './pages/cart/cart.component';
 import { LibraryComponent } from './pages/library/library.component';
-
+import { JuegosPorCategoriaComponent } from './aplicacion/juegos/juegos-por-categoria/juegos-por-categoria.component';
+import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
 
 @NgModule({
   declarations: [
@@ -151,6 +152,7 @@ import { LibraryComponent } from './pages/library/library.component';
     SweItemMenuComponent,
     CartComponent,
     LibraryComponent,
+    JuegosPorCategoriaComponent
   ],
   imports: [
     CommonModule,
@@ -177,7 +179,11 @@ import { LibraryComponent } from './pages/library/library.component';
     MatSnackBarModule,
     MatListModule,
     MatSidenavModule,
-    MatMenuModule
+    MatMenuModule,
+    MatProgressSpinnerModule,
+    SweItemMenuComponent,
+    LoadingOverlayComponent,
+    LoadingInterceptor
   ],
 
   providers: [
