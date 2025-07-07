@@ -3,6 +3,7 @@ import { SweItemMenuService } from './sweitemmenu.service';
 import { idRolesPorItemMenu, MenuItem } from './sweitemmenu.models';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/auth/login.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 
 @Component({
@@ -17,12 +18,12 @@ export class SweItemMenuComponent implements OnInit {
   menuItems: MenuItem[] = [];
   espaciadoLateral: string = '';
   userRoles: string = '';
-  itemMenuRoles: idRolesPorItemMenu[] = [];
 
   constructor(
     private sweItemMenuService: SweItemMenuService,
     private router: Router,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private userService: UserService
   ) {
   }
 
@@ -31,58 +32,82 @@ export class SweItemMenuComponent implements OnInit {
   }
 
   loadMenuItems(): void {
+    let menuItems: MenuItem[] = [];
+
+    menuItems.forEach(item => {
+      item.subMenus = [];
+    });
+
     this.sweItemMenuService.getMenuItem().subscribe((items: MenuItem[]) => {
       const itemMap = new Map<number, MenuItem>();
+      let flag: number = 0;
 
       items.forEach(item => {
         itemMap.set(item.id, { ...item, subMenus: [], expanded: false });
-      });
 
-      let menuItems: MenuItem[] = [];
+        flag = this.validaRoles(item);
 
-      menuItems.forEach(item => {
-        item.subMenus = [];
-      })
-
-      items.forEach(item => {
-        let rolMenu: idRolesPorItemMenu = new idRolesPorItemMenu();
-        let roles: string[] = [];
-
-        rolMenu.idItemMenu = item.id
-
-        roles = item.roles_permitidos.split(',');
-
-        roles.forEach(r => {
-          rolMenu.idRoles.push(Number(r));
-        });
-
-        this.itemMenuRoles.push(rolMenu);
-
-        if (!item.idSupItemMenu) {
-          menuItems.push(itemMap.get(item.id)!);
+        if (flag == 1) {
+          if (!item.idSupItemMenu) {
+            menuItems.push(itemMap.get(item.id)!);
+          }
         }
       });
 
-      //console.log(this.itemMenuRoles);
+      flag = 0;
 
       items.forEach(itemHijo => {
-        if (itemHijo.idSupItemMenu) {
+
+        flag = this.validaRoles(itemHijo);
+
+        if (flag == 1) {
           items.forEach(itemPadre => {
             let indexItemPadre: number;
             if (itemPadre.id == Number(itemHijo.idSupItemMenu)) {
-              indexItemPadre = items.indexOf(itemPadre);
+              indexItemPadre = menuItems.indexOf(itemPadre);
               menuItems[indexItemPadre].subMenus.push(itemHijo);
             }
           });
         }
       });
-
-      this.menuItems = menuItems;
-
-
     });
+
+    this.menuItems = [...menuItems];
+
   }
 
+  validaRoles(item: MenuItem): number {
+    let flag: number = 0;
+    let idUser: number;
+    let rolesUsuario: number[];
+    let rolMenu: idRolesPorItemMenu = new idRolesPorItemMenu();
+    let roles: string[] = [];
+
+    this.userService.getUserId().subscribe(data => {
+      if (data != null) {
+        this.userService.getAllUserRoles(data).subscribe(data => {
+          rolesUsuario = data;
+
+          rolMenu.idItemMenu = item.id
+
+          roles = item.roles_permitidos.split(',');
+
+          roles.forEach(r => {
+            rolMenu.idRoles.push(Number(r));
+          });
+
+          rolesUsuario.forEach(ru => {
+            rolMenu.idRoles.forEach(idRol => { // ===============> SEGUIR CORRIGIENDO DESDE ACA
+              if (idRol == ru) {
+                return 1;
+              }
+            })
+          });
+        });
+      }
+    });
+    return 0;
+  }
 
   toggleSubMenu(item: MenuItem): void {
     item['expanded'] = !item['expanded'];
