@@ -8,6 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 import { MatInputModule } from '@angular/material/input';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -96,6 +98,7 @@ import { CartComponent } from './pages/cart/cart.component';
 import { LibraryComponent } from './pages/library/library.component';
 import { JuegosPorCategoriaComponent } from './aplicacion/juegos/juegos-por-categoria/juegos-por-categoria.component';
 import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
+import { DateAdapter } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -152,7 +155,8 @@ import { LoadingOverlayComponent } from './components/loading-overlay/loading-ov
     SweItemMenuComponent,
     CartComponent,
     LibraryComponent,
-    JuegosPorCategoriaComponent
+    JuegosPorCategoriaComponent,
+    LoadingOverlayComponent
   ],
   imports: [
     CommonModule,
@@ -181,32 +185,35 @@ import { LoadingOverlayComponent } from './components/loading-overlay/loading-ov
     MatSidenavModule,
     MatMenuModule,
     MatProgressSpinnerModule,
-    SweItemMenuComponent,
-    LoadingOverlayComponent,
-    LoadingInterceptor
+    HttpClientModule
   ],
 
   providers: [
-    WishlistService,
-    CartService,
-    RegisterService,
-    PublisherService,
-    CategoriaService,
-    AlertService,
-    DesarrolladoresService,
-    RegisterService,
-    SweItemMenuService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptorService,
-      multi: true,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ErrorInterceptorService,
-      multi: true,
-    },
-  ],
+        WishlistService,
+        CartService,
+        RegisterService,
+        PublisherService,
+        CategoriaService,
+        AlertService,
+        DesarrolladoresService,
+        RegisterService,
+        SweItemMenuService,
+        {
+            provide: DateAdapter,
+            useClass: NativeDateAdapter
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: JwtInterceptorService,
+            multi: true,
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: ErrorInterceptorService,
+            multi: true,
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+    ] ,
 
   bootstrap: [AppComponent],
 })
