@@ -97,6 +97,7 @@ import { LibraryComponent } from './pages/library/library.component';
 import { JuegosPorCategoriaComponent } from './aplicacion/juegos/juegos-por-categoria/juegos-por-categoria.component';
 import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
 import { CarouselModule } from './components/carousel/carousel.module';
+import { HelpDialogComponent } from './components/help-dialog/help-dialog.component';
 
 
 @NgModule({
@@ -156,6 +157,7 @@ import { CarouselModule } from './components/carousel/carousel.module';
     LibraryComponent,
     JuegosPorCategoriaComponent,
     LoadingOverlayComponent,
+    HelpDialogComponent,
   ],
   imports: [
     CommonModule,

@@ -100,6 +100,12 @@
       <div class="image-upload">
         <label>Imagen del juego:</label><br />
         <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+        <img
+        *ngIf="data.juego.image_path"
+        [src]="environmentImg + data.juego.image_path"
+        alt="Imagen del Juego"
+        class="game-thumbnail"
+        />
       </div>
     </form>
   </mat-card-content>

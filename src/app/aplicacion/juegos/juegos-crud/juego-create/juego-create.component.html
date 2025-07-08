@@ -63,7 +63,11 @@
       <!-- Imagen -->
       <div class="image-upload">
         <label>Imagen del juego</label>
-        <input type="file" accept="image/*" (change)="onFileSelected($event)" />
+        <input #fileInput type="file" accept="image/*" (change)="onFileSelected($event)" />
+
+        <div *ngIf="selectedFile" class="image-file-info">
+          <button mat-stroked-button color="warn" (click)="removeImage()">Quitar imagen</button>
+        </div>
       </div>
 
       <!-- Botones -->
