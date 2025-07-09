@@ -11,7 +11,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { RouterOutlet } from '@angular/router';
 import { SweItemMenuComponent } from './sweitemmenu.component';
 
 describe('SidemenuComponent', () => {
@@ -27,7 +27,8 @@ describe('SidemenuComponent', () => {
         MatIconModule,
         MatListModule,
         MatButtonModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        RouterOutlet
       ],
       providers: [
         provideHttpClient(withInterceptorsFromDi()),

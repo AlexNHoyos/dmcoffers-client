@@ -3,7 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { MatDividerModule } from '@angular/material/divider';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CartComponent } from './cart.component';
 
 describe('CartComponent', () => {
@@ -18,7 +19,9 @@ describe('CartComponent', () => {
         provideHttpClientTesting()
       ],
       imports: [
-        MatDialogModule
+        MatDialogModule,
+        MatDividerModule,
+        MatProgressSpinnerModule
       ]
     });
     fixture = TestBed.createComponent(CartComponent);
