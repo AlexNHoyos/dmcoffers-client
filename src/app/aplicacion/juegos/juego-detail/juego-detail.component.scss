@@ -1,91 +1,95 @@
 .game-details-card {
-  margin: 1rem;
-  padding: 0;
-  border-radius: 12px;
+  margin: 2rem auto;
+  max-width: 800px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: #fff;
 
   mat-card-header {
+    padding: 1rem 1.5rem;
     flex-direction: column;
     align-items: flex-start;
 
     mat-card-title {
-      font-size: 1.4rem;
+      font-size: 2rem;
+      font-weight: bold;
     }
 
     mat-card-subtitle {
       font-size: 1rem;
-      color: #666;
+      color: #777;
+      margin-top: 0.5rem;
     }
   }
 
   img[mat-card-image] {
     width: 100%;
-    height: auto;
+    max-height: 400px;
     object-fit: cover;
-    max-height: 250px;
   }
 
   mat-card-content {
+    padding: 1.5rem;
     font-size: 1rem;
-    padding: 1rem;
+    line-height: 1.6;
+    color: #444;
+
+    .text-muted {
+      color: #999;
+      font-style: italic;
+      margin-top: 1rem;
+    }
+
+    .game-categories {
+      margin: 1rem 0;
+
+      mat-chip-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+    }
   }
 
   mat-card-actions {
+    padding: 1.5rem;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    padding: 1rem;
+    gap: 1rem;
   }
 }
 
-
-.category-tag {
-  display: inline-block;
-  background-color: #e0e0e0;
-  color: #333;
-  padding: 4px 10px;
-  margin: 4px 4px 0 0;
-  border-radius: 16px;
-  font-size: 0.85rem;
-}
-
-
 .back-button-container {
   display: flex;
-  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem;
+
+  .back-fab {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  }
 }
 
-
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   .game-details-card {
-    max-width: 800px;
-    margin: 2rem auto;
-
-    img[mat-card-image] {
-      max-height: 600px;
-    }
+    margin: 1rem;
 
     mat-card-header {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-
       mat-card-title {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
       }
 
       mat-card-subtitle {
-        font-size: 1.2rem;
+        font-size: 0.9rem;
       }
     }
 
-    mat-card-content {
-      font-size: 1.1rem;
+    img[mat-card-image] {
+      max-height: 250px;
     }
 
-    mat-card-actions {
-      justify-content: flex-start;
+    mat-card-content {
+      font-size: 0.95rem;
     }
   }
 }

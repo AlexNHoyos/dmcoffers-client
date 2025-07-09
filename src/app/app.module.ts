@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatChipListbox, MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -188,6 +189,7 @@ import { HelpDialogComponent } from './components/help-dialog/help-dialog.compon
     MatMenuModule,
     MatProgressSpinnerModule,
     CarouselModule,
+    MatChipsModule,
   ],
 
   providers: [

@@ -25,6 +25,7 @@ import { CartComponent } from './pages/cart/cart.component';
 import { LibraryComponent } from './pages/library/library.component';
 import { JuegosCrudComponent } from './aplicacion/juegos/juegos-crud/juegos-crud.component';
 import { SupportTicketComponent } from './aplicacion/support-ticket/support-ticket.component';
+import { UsuariosComponent } from './aplicacion/usuarios/usuarios.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -36,6 +37,7 @@ const routes: Routes = [
     canActivate: [adminGuard],
   },
   { path: 'not-authorized', component: NotAuthorizedComponent },
+  { path: 'usuarios', component: UsuariosComponent,canActivate: [adminGuard]},
   { path: 'soporte', component: SoporteComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

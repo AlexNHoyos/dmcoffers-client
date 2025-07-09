@@ -1,9 +1,4 @@
 <div>
-  <button mat-flat-button color="primary" (click)="toggleUsuarios()">
-    {{ buttonText }}
-  </button>
-
-  <div *ngIf="showTable">
     <div class="title-crud">
       <h3>Listado de usuarios</h3>
     </div>
@@ -46,5 +41,5 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
     </section>
-  </div>
+  
 </div>

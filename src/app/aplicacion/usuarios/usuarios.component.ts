@@ -45,27 +45,11 @@ export class UsuariosComponent extends CrudComponent<User> {
 
   override displayedColumns: string[] = ['id', 'user', 'actions'];
 
-  showTable: boolean = false;
-  buttonText: string = 'Mostrar Usuarios';
-
-  toggleUsuarios() {
-    if (this.showTable) {
-      // Oculta la tabla
-      this.showTable = false;
-      this.buttonText = 'Mostrar Usuarios';
-    } else {
-      // Carga y muestra la tabla
-      this.loadUsuarios();
-      // Muestra la tabla
-      this.showTable = true;
-      this.buttonText = 'Ocultar Usuarios';
-    }
+  override ngOnInit(): void {
+    this.loadUsuarios();
   }
 
-  override ngOnInit(): void {}
-
   loadUsuarios(): void {
-    this.showTable = true;
     this.userService.getAllUsers().subscribe((data) => {
       this.usuarios = data;
     });
