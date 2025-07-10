@@ -26,6 +26,7 @@ import { LibraryComponent } from './pages/library/library.component';
 import { JuegosCrudComponent } from './aplicacion/juegos/juegos-crud/juegos-crud.component';
 import { SupportTicketComponent } from './aplicacion/support-ticket/support-ticket.component';
 import { UsuariosComponent } from './aplicacion/usuarios/usuarios.component';
+import { HostingComponent } from './aplicacion/hosting/hosting.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -46,6 +47,7 @@ const routes: Routes = [
   { path: 'wishlist', component: WishlistComponent, canActivate: [authGuard], },
   { path: 'biblioteca', component: LibraryComponent , canActivate: [authGuard],},
   { path: 'cart', component: CartComponent},
+  { path: 'hostings', component: HostingComponent, canActivate: [adminGuard], },
   { path: 'categorias', component: CategoriasComponent, canActivate: [adminGuard], },
   { path: 'publicadores', component: PublisherComponent, canActivate: [adminGuard], },
   { path: 'juegos', component: JuegosCrudComponent, canActivate: [adminGuard], },

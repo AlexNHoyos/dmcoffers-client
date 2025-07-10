@@ -90,30 +90,12 @@ export class HostingComponent extends CrudComponent<Hosting> {
 
   override displayedColumns: string[] = ['id', 'name', 'actions'];
 
-  showTable: boolean = false;
-  buttonText: string = 'Mostrar Hostings';
-
-  toggleHostings() {
-    if (this.showTable) {
-      // Oculta la tabla
-      this.showTable = false;
-      this.buttonText = 'Mostrar Hostings'; // Cambia el texto del botón
-    } else {
-      // Carga y muestra la tabla
-      this.loadHostings();
-      // Muestra la tabla
-      this.showTable = true;
-      this.buttonText = 'Ocultar Hostings'; // Cambia el texto del botón
-    }
-  }
   override ngOnInit(): void {
-    // Con esta funcion se puede cargar los Hostings al inicio
-    // this.loadHostings();
+    this.loadHostings();
     super.ngOnInit();
   }
 
   loadHostings(): void {
-    this.showTable = true;
     this.hostingService.getAllHostings().subscribe((data) => {
       this.hostings = data;
     });
