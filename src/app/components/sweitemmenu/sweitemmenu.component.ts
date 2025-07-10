@@ -81,7 +81,6 @@ export class SweItemMenuComponent implements OnInit {
 
       this.menuItems = menuItems;
 
-      console.log(this.menuItems);
     });
   }
 
