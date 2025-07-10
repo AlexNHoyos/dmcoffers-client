@@ -10,7 +10,7 @@
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Roles</mat-label>
         <mat-select
-          [(ngModel)]="user.rolDescription"
+          [(ngModel)]="selectedRoles"
           name="rolDescriptions"
           multiple
           required
@@ -19,7 +19,7 @@
             {{ role }}
           </mat-option>
         </mat-select>
-        <mat-error *ngIf="userForm.submitted && (!user.rolDescription || user.rolDescription.length === 0)">
+        <mat-error *ngIf="userForm.submitted && selectedRoles.length === 0">
           Al menos un rol es obligatorio
         </mat-error>
       </mat-form-field>

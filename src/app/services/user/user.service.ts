@@ -41,6 +41,12 @@ export class UserService extends CrudService<UserPage> {
       .pipe(catchError(this.handleError));
   }
 
+  updateUserRoles(userId: number, roleIds: number[]): Observable<string[]> {
+    return this.http
+      .put<string[]>(`${this.endpoint}/${userId}/roles`, { roleIds })
+      .pipe(catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       console.error('Se ha producido un error ', error.error);
