@@ -4,6 +4,7 @@ import { idRolesPorItemMenu, MenuItem } from './sweitemmenu.models';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/auth/login.service';
 import { UserService } from 'src/app/services/user/user.service';
+import { filter, firstValueFrom, forkJoin, map, Observable, of, switchMap } from 'rxjs';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class SweItemMenuComponent implements OnInit {
 
   menuItems: MenuItem[] = [];
   espaciadoLateral: string = '';
-  userRoles: string = '';
+  userRoles: number[] = [];
+  flagMenu: number = 0;
 
   constructor(
     private sweItemMenuService: SweItemMenuService,
@@ -28,85 +30,78 @@ export class SweItemMenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadMenuItems();
+    this.loadServices();
+
   }
 
+  async loadServices() {
+    await this.loadUserRols()
+
+    this.loadMenuItems();
+
+  }
+
+  async loadUserRols(): Promise<number[]> {
+    try {
+      const idUser = await firstValueFrom(this.userService.getUserId());
+      if (idUser != null) {
+        const userRols = await firstValueFrom(this.userService.getAllUserRoles(idUser));
+        this.userRoles = userRols;
+        return userRols;
+      }
+    } catch (err) {
+      console.error('Error cargando roles:', err);
+    }
+    return [];
+  }
+
+
   loadMenuItems(): void {
-    let menuItems: MenuItem[] = [];
-
-    menuItems.forEach(item => {
-      item.subMenus = [];
-    });
-
-    this.sweItemMenuService.getMenuItem().subscribe((items: MenuItem[]) => {
+    this.sweItemMenuService.getMenuItem().subscribe(items => {
       const itemMap = new Map<number, MenuItem>();
-      let flag: number = 0;
+      const menuItems: MenuItem[] = [];
 
       items.forEach(item => {
-        itemMap.set(item.id, { ...item, subMenus: [], expanded: false });
-
-        flag = this.validaRoles(item);
-
-        if (flag == 1) {
-          if (!item.idSupItemMenu) {
-            menuItems.push(itemMap.get(item.id)!);
-          }
+        if (!item.idSupItemMenu && this.validaRoles(item)) {
+          itemMap.set(item.id, { ...item, expanded: false, subMenus: [] });
+          menuItems.push(itemMap.get(item.id)!);
         }
       });
 
-      flag = 0;
-
       items.forEach(itemHijo => {
-
-        flag = this.validaRoles(itemHijo);
-
-        if (flag == 1) {
-          items.forEach(itemPadre => {
-            let indexItemPadre: number;
-            if (itemPadre.id == Number(itemHijo.idSupItemMenu)) {
-              indexItemPadre = menuItems.indexOf(itemPadre);
+        if (itemHijo.idSupItemMenu && this.validaRoles(itemHijo)) {
+          menuItems.forEach(itemPadre => {
+            if (Number(itemHijo.idSupItemMenu) == itemPadre.id) {
+              let indexItemPadre = menuItems.indexOf(itemPadre);
               menuItems[indexItemPadre].subMenus.push(itemHijo);
             }
           });
         }
       });
+
+      this.menuItems = menuItems;
+
+      console.log(this.menuItems);
     });
-
-    this.menuItems = [...menuItems];
-
   }
 
-  validaRoles(item: MenuItem): number {
-    let flag: number = 0;
-    let idUser: number;
-    let rolesUsuario: number[];
-    let rolMenu: idRolesPorItemMenu = new idRolesPorItemMenu();
-    let roles: string[] = [];
+  //Valida que segun el item, alguno de los roles que posea el usuario coincida con los roles del item
+  validaRoles(item: MenuItem): boolean {
 
-    this.userService.getUserId().subscribe(data => {
-      if (data != null) {
-        this.userService.getAllUserRoles(data).subscribe(data => {
-          rolesUsuario = data;
+    let rolesItem: number[] = [];
 
-          rolMenu.idItemMenu = item.id
+    item.roles_permitidos.split(',').forEach(rol => {
+      rolesItem.push(Number(rol));
+    });
 
-          roles = item.roles_permitidos.split(',');
+    let flag: boolean = false;
 
-          roles.forEach(r => {
-            rolMenu.idRoles.push(Number(r));
-          });
-
-          rolesUsuario.forEach(ru => {
-            rolMenu.idRoles.forEach(idRol => { // ===============> SEGUIR CORRIGIENDO DESDE ACA
-              if (idRol == ru) {
-                return 1;
-              }
-            })
-          });
-        });
+    rolesItem.forEach(rol => {
+      if (this.userRoles.map(Number).includes(rol)) {
+        flag = true;
       }
     });
-    return 0;
+    return flag;
   }
 
   toggleSubMenu(item: MenuItem): void {
