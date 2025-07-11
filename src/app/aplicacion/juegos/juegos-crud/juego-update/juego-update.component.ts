@@ -12,12 +12,14 @@ import { Juego } from '../../juegos.model';
 import { DesarrolladoresService } from 'src/app/aplicacion/desarrolladores/desarrolladores.service';
 import { PublisherService } from 'src/app/aplicacion/publishers/publisher.service';
 import { CategoriaService } from 'src/app/aplicacion/categorias/categoria.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-juego-update',
   templateUrl: './juego-update.component.html',
 })
 export class JuegoUpdateComponent {
+  environmentImg: string="";
   juego: Juego;
   desarrolladores: any[] = []; // Lista de desarrolladores
   publishers: any[] = []; // Lista de publishers
@@ -39,6 +41,7 @@ export class JuegoUpdateComponent {
   }
 
   ngOnInit(): void {
+    this.environmentImg = environment.urlImg
     // Cargar listas completas y seleccionar relaciones actuales
     this.loadDropdownData();
 

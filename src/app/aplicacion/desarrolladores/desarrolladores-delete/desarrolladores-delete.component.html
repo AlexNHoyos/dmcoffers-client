@@ -1,18 +1,26 @@
-<mat-card class="card">
+<mat-card class="crud-delete-dialog">
     <mat-card-header>
-        <mat-card-title>¿Seguro que quieres eliminar al desarrollador
-            {{ desarrolladorName }}?</mat-card-title>
+        <mat-card-title>
+            <mat-icon color="warn" class="icon">warning</mat-icon>
+            Eliminar Desarrollador
+        </mat-card-title>
     </mat-card-header>
-    <mat-card-content>
-        <form (ngSubmit)="deleteDesarrollador()">
-            <mat-card-actions>
-                <button mat-raised-button color="warn" type="submit">
-                    Eliminar desarrollador
-                </button>
-                <button mat-raised-button color="primary" type="button" (click)="onCancel()">
-                    Cancelar
-                </button>
-            </mat-card-actions>
-        </form>
+
+    <mat-card-content class="content">
+        <p class="confirmation-text">
+      ¿Estás seguro de que deseas eliminar el desarrollador
+      <strong>"{{ desarrolladorName }}"</strong>?
+      <br />
+      Esta acción no se puede deshacer.
+    </p>
     </mat-card-content>
+
+    <mat-card-actions align="end" class="actions">
+        <button mat-stroked-button color="primary" (click)="onCancel()">
+          Cancelar
+        </button>
+        <button mat-flat-button color="warn" (click)="deleteDesarrollador()">
+          Eliminar
+        </button>
+    </mat-card-actions>
 </mat-card>

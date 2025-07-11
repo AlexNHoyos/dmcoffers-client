@@ -96,6 +96,8 @@ import { CartComponent } from './pages/cart/cart.component';
 import { LibraryComponent } from './pages/library/library.component';
 import { JuegosPorCategoriaComponent } from './aplicacion/juegos/juegos-por-categoria/juegos-por-categoria.component';
 import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
+import { CarouselModule } from './components/carousel/carousel.module';
+import { HelpDialogComponent } from './components/help-dialog/help-dialog.component';
 
 
 @NgModule({
@@ -155,6 +157,7 @@ import { LoadingOverlayComponent } from './components/loading-overlay/loading-ov
     LibraryComponent,
     JuegosPorCategoriaComponent,
     LoadingOverlayComponent,
+    HelpDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -183,7 +186,8 @@ import { LoadingOverlayComponent } from './components/loading-overlay/loading-ov
     MatListModule,
     MatSidenavModule,
     MatMenuModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    CarouselModule,
   ],
 
   providers: [

@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Juego } from '../../juegos.model';
 import { JuegoService } from '../../juegos.service';
 import { DesarrolladoresService } from 'src/app/aplicacion/desarrolladores/desarrolladores.service';
 import { PublisherService } from 'src/app/aplicacion/publishers/publisher.service';
 import { CategoriaService } from 'src/app/aplicacion/categorias/categoria.service';
 import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
+import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
 
 @Component({
   selector: 'app-juego-create',
@@ -13,6 +14,7 @@ import { UserUtilsService } from 'src/app/services/user/user-util-service.servic
   styleUrls: ['./juego-create.component.scss'],
 })
 export class JuegoCreateComponent implements OnInit {
+
   selectedFile: File | null = null;
   today: Date = new Date();
   juego: Juego = {
@@ -33,6 +35,8 @@ export class JuegoCreateComponent implements OnInit {
   desarrolladores: any[] = [];
   publishers: any[] = [];
   categorias: any[] = [];
+  fileValid: boolean = true;
+  @ViewChild('fileInput') fileInput!: ElementRef;
 
   constructor(
     private juegoService: JuegoService,
@@ -40,8 +44,14 @@ export class JuegoCreateComponent implements OnInit {
     private publisherService: PublisherService,
     private categoriaService: CategoriaService,
     private dialogRef: MatDialogRef<JuegoCreateComponent>,
+<<<<<<< HEAD
     private userUtilsService: UserUtilsService
   ) { }
+=======
+    private userUtilsService: UserUtilsService,
+    private dialog: MatDialog,
+  ) {}
+>>>>>>> develop
 
   ngOnInit(): void {
     // Obtén y asigna el usuario al crear el juego
@@ -117,6 +127,7 @@ export class JuegoCreateComponent implements OnInit {
       price: this.juego.price,
     };
 
+<<<<<<< HEAD
     formData.append('juego', JSON.stringify(juegoToSend));
 
     if (this.selectedFile) {
@@ -132,6 +143,32 @@ export class JuegoCreateComponent implements OnInit {
         console.error('Error creando juego', error);
       },
     });
+=======
+  formData.append('juego', JSON.stringify(juegoToSend));
+
+  
+  if (this.selectedFile) {
+    formData.append('image', this.selectedFile);
+  }
+
+  if (!this.fileValid) {
+    this.dialog.open(ErrorDialogComponent, {
+      data: { message: 'El archivo seleccionado no es válido.', type: 'error' },
+    });
+    return;
+  }
+
+  console.log('Juego enviado', formData);
+  this.juegoService.createJuego(formData).subscribe({
+    next: (response) => {
+      console.log('Juego creado exitosamente', response);
+      this.dialogRef.close(true);
+    },
+    error: (error) => {
+      console.error('Error creando juego', error);
+    },
+  });
+>>>>>>> develop
   }
 
   cancel(): void {
@@ -139,9 +176,52 @@ export class JuegoCreateComponent implements OnInit {
   }
 
   onFileSelected(event: any): void {
+<<<<<<< HEAD
     const file: File = event.target.files[0];
     if (file) {
       this.selectedFile = file;
     }
+=======
+  const file: File = event.target.files[0];
+
+  if (!file) {
+    // El usuario eliminó el archivo o no eligió ninguno
+    this.selectedFile = null;
+    this.fileValid = true;
+    return;
+  }
+  
+  const maxSizeMB = 2;
+  const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+
+  if (!allowedTypes.includes(file.type)) {
+    this.selectedFile = null;
+    this.fileValid = false;
+    event.target.value = '';
+    this.dialog.open(ErrorDialogComponent, {
+        data: { message: 'Solo se permiten imágenes JPEG, PNG o WebP.', type: 'error' },
+      });
+    return;
+  }
+
+  if (file.size > maxSizeMB * 1024 * 1024) {
+    this.selectedFile = null;
+    this.fileValid = false;
+    event.target.value = '';
+    this.dialog.open(ErrorDialogComponent, {
+      data: { message: `La imagen no debe superar los ${maxSizeMB}MB.`, type: 'error' },
+    });
+  return;
+  }
+
+  this.selectedFile = file;
+  this.fileValid = true;
+  }
+
+  removeImage(): void {
+    this.selectedFile = null;
+    this.fileValid = true;
+    this.fileInput.nativeElement.value = '';
+>>>>>>> develop
   }
 }

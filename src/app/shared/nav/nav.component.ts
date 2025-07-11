@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
 import { ProximamenteService } from 'src/app/services/proximamente.service';
+import { HelpDialogComponent } from 'src/app/components/help-dialog/help-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-nav',
@@ -21,7 +23,8 @@ export class NavComponent implements OnInit, OnDestroy {
     private loginService: LoginService,
     private userUtilsService: UserUtilsService,
     private router: Router,
-    private proximamenteService: ProximamenteService
+    private proximamenteService: ProximamenteService,
+    private dialog: MatDialog
   ) { }
 
   menuOpen: boolean = false; // Estado inicial cerrado
@@ -131,5 +134,11 @@ export class NavComponent implements OnInit, OnDestroy {
         queryParams: { param: this.searchTerm },
       });
     }
+  }
+
+  openHelp(): void {
+    this.dialog.open(HelpDialogComponent, {
+      width: '500px'
+    });
   }
 }

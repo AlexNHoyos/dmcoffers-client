@@ -3,10 +3,12 @@
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 @import "./app/shared/header/header.component.scss";
 @import "./app/shared/nav/nav.component.scss";
+@import './assets/styles/dialog-crud.scss';
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Protest+Guerrilla&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=SUSE:wght@100..800&display=swap');
+
 
 
 $grid-columns: 12;

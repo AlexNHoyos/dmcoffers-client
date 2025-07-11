@@ -1,18 +1,39 @@
-<h1 mat-dialog-title>Detalles de la categoria</h1>
-<div mat-dialog-content>
-  <p><strong>ID:</strong> {{ data.categoria.id }}</p>
-  <p><strong>Descripcion:</strong> {{ data.categoria.description }}</p>
-  <p>
-    <strong>Fecha de carga:</strong>
-    {{ data.categoria.creationtimestamp | date }}
-  </p>
-  <p>
-    <strong>Fecha de modificacion:</strong>
-    {{ data.categoria.modificationtimestamp | date }}
-  </p>
-  <p><strong>Cargado por:</strong> {{ data.categoria.creationuser }}</p>
-  <p><strong>Modificado por:</strong> {{ data.categoria.modificationuser }}</p>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onClose()">Close</button>
-</div>
+<mat-card class="detail-view-card">
+  <mat-card-header>
+    <div mat-card-avatar class="header-icon">
+      <mat-icon>category</mat-icon>
+    </div>
+    <mat-card-title>{{ data.categoria.description }}</mat-card-title>
+    <mat-card-subtitle>ID: {{ data.categoria.id }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="detail-grid">
+      <div class="detail-item">
+        <span class="label">Fecha de carga:</span>
+        <span>{{ data.categoria.creationtimestamp | date: 'dd/MM/yyyy HH:mm' }}</span>
+      </div>
+
+      <div class="detail-item">
+        <span class="label">Modificación:</span>
+        <span>
+          {{ data.categoria.modificationtimestamp ? (data.categoria.modificationtimestamp | date: 'dd/MM/yyyy HH:mm') : '—' }}
+        </span>
+      </div>
+
+      <div class="detail-item">
+        <span class="label">Cargado por:</span>
+        <span>{{ data.categoria.creationuser }}</span>
+      </div>
+
+      <div class="detail-item">
+        <span class="label">Modificado por:</span>
+        <span>{{ data.categoria.modificationuser || '—' }}</span>
+      </div>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button mat-stroked-button color="primary" (click)="onClose()">Cerrar</button>
+  </mat-card-actions>
+</mat-card>

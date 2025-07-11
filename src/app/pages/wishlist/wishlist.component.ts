@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { WishlistService } from 'src/app/aplicacion/juegos/wishlist.service';
 import { ConfirmComponent } from 'src/app/components/confirm/confirm.component';
-import { LoginService } from 'src/app/services/auth/login.service';
 
 @Component({
   selector: 'app-wishlist',
@@ -19,19 +18,11 @@ export class WishlistComponent implements OnInit {
   constructor(
     private wishlistService: WishlistService,
     private router: Router,
-    private loginService: LoginService,
     private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
-    this.isLoggedIn = this.loginService.isLoggedIn();
-
-    if (!this.isLoggedIn) {
-      // Si no está autenticado, redirige a la página de inicio
-      this.router.navigate(['/inicio']);
-    } else {
-      this.loadWishlist();
-    }
+    this.loadWishlist();
   }
 
   loadWishlist() {
@@ -49,6 +40,7 @@ export class WishlistComponent implements OnInit {
       }
     );
   }
+  
   // Eliminar juego de la wishlist
   removeFromWishlist(juegoId: number) {
     const dialogRef = this.dialog.open(ConfirmComponent, {

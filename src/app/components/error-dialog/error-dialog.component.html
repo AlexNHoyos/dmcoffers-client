@@ -1,10 +1,18 @@
-<h1 mat-dialog-title>{{ data.title }}</h1>
-<div mat-dialog-content>
-  <mat-icon [ngClass]="data.type === 'error' ? 'error-icon' : 'success-icon'">
-    {{ data.type === "error" ? "error" : "check_circle" }}
-  </mat-icon>
-  <p>{{ data.message }}</p>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onClose()">Cerrar</button>
-</div>
+<mat-dialog-content class="dialog-container">
+  <div class="icon-wrapper" [ngClass]="data.type">
+    <mat-icon class="dialog-icon">
+      {{ data.type === 'error' ? 'error_outline' : 'check_circle_outline' }}
+    </mat-icon>
+  </div>
+
+  <div class="dialog-text">
+    <h2 class="dialog-title">
+      {{ data.title || (data.type === 'error' ? 'Error' : 'Éxito') }}
+    </h2>
+    <p class="dialog-message">{{ data.message }}</p>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" (click)="onClose()">Cerrar</button>
+</mat-dialog-actions>

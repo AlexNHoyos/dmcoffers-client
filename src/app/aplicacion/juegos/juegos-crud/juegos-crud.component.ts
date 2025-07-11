@@ -97,10 +97,17 @@ export class JuegosCrudComponent extends CrudComponent<Juego> {
     }
   }
   override ngOnInit(): void {
+<<<<<<< HEAD
     // Carga y muestra la tabla
     this.loadJuegos();
     // Muestra la tabla
     this.showTable = true;
+=======
+      // Carga y muestra la tabla
+      this.loadJuegos();
+      // Muestra la tabla
+      this.showTable = true;
+>>>>>>> develop
   }
 
   loadJuegos(): void {
