@@ -44,14 +44,9 @@ export class JuegoCreateComponent implements OnInit {
     private publisherService: PublisherService,
     private categoriaService: CategoriaService,
     private dialogRef: MatDialogRef<JuegoCreateComponent>,
-<<<<<<< HEAD
-    private userUtilsService: UserUtilsService
-  ) { }
-=======
     private userUtilsService: UserUtilsService,
     private dialog: MatDialog,
-  ) {}
->>>>>>> develop
+  ) { }
 
   ngOnInit(): void {
     // Obtén y asigna el usuario al crear el juego
@@ -127,12 +122,20 @@ export class JuegoCreateComponent implements OnInit {
       price: this.juego.price,
     };
 
-<<<<<<< HEAD
     formData.append('juego', JSON.stringify(juegoToSend));
+
 
     if (this.selectedFile) {
       formData.append('image', this.selectedFile);
     }
+
+    if (!this.fileValid) {
+      this.dialog.open(ErrorDialogComponent, {
+        data: { message: 'El archivo seleccionado no es válido.', type: 'error' },
+      });
+      return;
+    }
+
     console.log('Juego enviado', formData);
     this.juegoService.createJuego(formData).subscribe({
       next: (response) => {
@@ -143,32 +146,6 @@ export class JuegoCreateComponent implements OnInit {
         console.error('Error creando juego', error);
       },
     });
-=======
-  formData.append('juego', JSON.stringify(juegoToSend));
-
-  
-  if (this.selectedFile) {
-    formData.append('image', this.selectedFile);
-  }
-
-  if (!this.fileValid) {
-    this.dialog.open(ErrorDialogComponent, {
-      data: { message: 'El archivo seleccionado no es válido.', type: 'error' },
-    });
-    return;
-  }
-
-  console.log('Juego enviado', formData);
-  this.juegoService.createJuego(formData).subscribe({
-    next: (response) => {
-      console.log('Juego creado exitosamente', response);
-      this.dialogRef.close(true);
-    },
-    error: (error) => {
-      console.error('Error creando juego', error);
-    },
-  });
->>>>>>> develop
   }
 
   cancel(): void {
@@ -176,52 +153,46 @@ export class JuegoCreateComponent implements OnInit {
   }
 
   onFileSelected(event: any): void {
-<<<<<<< HEAD
+
     const file: File = event.target.files[0];
-    if (file) {
-      this.selectedFile = file;
+
+    if (!file) {
+      // El usuario eliminó el archivo o no eligió ninguno
+      this.selectedFile = null;
+      this.fileValid = true;
+      return;
     }
-=======
-  const file: File = event.target.files[0];
 
-  if (!file) {
-    // El usuario eliminó el archivo o no eligió ninguno
-    this.selectedFile = null;
-    this.fileValid = true;
-    return;
-  }
-  
-  const maxSizeMB = 2;
-  const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+    const maxSizeMB = 2;
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
 
-  if (!allowedTypes.includes(file.type)) {
-    this.selectedFile = null;
-    this.fileValid = false;
-    event.target.value = '';
-    this.dialog.open(ErrorDialogComponent, {
+    if (!allowedTypes.includes(file.type)) {
+      this.selectedFile = null;
+      this.fileValid = false;
+      event.target.value = '';
+      this.dialog.open(ErrorDialogComponent, {
         data: { message: 'Solo se permiten imágenes JPEG, PNG o WebP.', type: 'error' },
       });
-    return;
-  }
+      return;
+    }
 
-  if (file.size > maxSizeMB * 1024 * 1024) {
-    this.selectedFile = null;
-    this.fileValid = false;
-    event.target.value = '';
-    this.dialog.open(ErrorDialogComponent, {
-      data: { message: `La imagen no debe superar los ${maxSizeMB}MB.`, type: 'error' },
-    });
-  return;
-  }
+    if (file.size > maxSizeMB * 1024 * 1024) {
+      this.selectedFile = null;
+      this.fileValid = false;
+      event.target.value = '';
+      this.dialog.open(ErrorDialogComponent, {
+        data: { message: `La imagen no debe superar los ${maxSizeMB}MB.`, type: 'error' },
+      });
+      return;
+    }
 
-  this.selectedFile = file;
-  this.fileValid = true;
+    this.selectedFile = file;
+    this.fileValid = true;
   }
 
   removeImage(): void {
     this.selectedFile = null;
     this.fileValid = true;
     this.fileInput.nativeElement.value = '';
->>>>>>> develop
   }
 }
