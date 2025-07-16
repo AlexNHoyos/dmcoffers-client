@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User, UserPage } from '../../models/user.model';
-import { BehaviorSubject, catchError, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CrudService } from 'src/app/components/crud/crud.service';
 
@@ -61,4 +61,10 @@ export class UserService extends CrudService<UserPage> {
       () => new Error('Algo fallo. Por favor intente nuevamente.')
     );
   }
+
+  getAllUserRoles(idUser: number): Observable<number[]> {
+    return this.http
+      .get<number[]>(`${this.endpoint}/getUserRolsByIdUser/${idUser}`);
+  }
+
 }
