@@ -33,6 +33,21 @@
     <p *ngIf="isInLibrary" class="text-muted">
       Este juego ya está en tu biblioteca.
     </p>
+
+    <!-- Código de Canje -->
+    <div *ngIf="isInLibrary" class="redeem-section">
+      <mat-icon color="primary">vpn_key</mat-icon>
+      <span class="redeem-label">Tu código de canje:</span>
+
+      <span class="redeem-code">
+        {{ showRedeemCode ? redeemCode : '•••••••••••••••' }}
+      </span>
+
+      <button mat-icon-button (click)="toggleRedeemCode()" [matTooltip]="showRedeemCode ? 'Ocultar' : 'Mostrar'">
+        <mat-icon>{{ showRedeemCode ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+    </div>
+
   </mat-card-content>
 
   <!-- Botones -->

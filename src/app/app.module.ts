@@ -27,6 +27,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatListModule } from '@angular/material/list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FooterComponent } from './shared/footer/footer.component';
@@ -190,6 +191,7 @@ import { HelpDialogComponent } from './components/help-dialog/help-dialog.compon
     MatProgressSpinnerModule,
     CarouselModule,
     MatChipsModule,
+    MatTooltipModule,
   ],
 
   providers: [
