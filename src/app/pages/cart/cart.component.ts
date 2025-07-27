@@ -35,7 +35,7 @@ export class CartComponent implements OnInit {
     this.cartService.getCart().subscribe(
       (juegos) => {
         this.juegos = juegos;
-        this.total = juegos.reduce((sum,juego) => sum + juego.price!,0);
+        this.total = juegos.reduce((sum,juego) => sum + (typeof juego.price === 'number' ? juego.price : 0), 0); // Verifica que si el juego no tiene precio le asigna 0
         this.isLoading = false;
       },
       (error) => {

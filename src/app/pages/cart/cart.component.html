@@ -23,7 +23,7 @@
   
         <!-- Precio -->
         <div class="text-end me-3">
-          <p class="precio mb-0">Precio: ${{ juego.price }}</p>
+          <p class="precio mb-0">Precio: ${{ juego.price ?? 0 | number: '1.2-2' }}</p> <!-- Redondeado -->
         </div>
 
         <button mat-icon-button color="warn" (click)="removeFromCart(juego.id)" matTooltip="Quitar del carrito">
@@ -36,7 +36,7 @@
   <mat-divider class="my-4"></mat-divider>
 
   <div *ngIf="juegos.length > 0" class="text-end">
-    <h4 class="mb-2">Total: <strong>${{ total }}</strong></h4>
+    <h4 class="mb-2">Total: <strong>${{ total | number: '1.2-2' }}</strong></h4>
     <button mat-raised-button color="primary" (click)="checkout()">
       <mat-icon>shopping_cart_checkout</mat-icon> Finalizar compra
     </button>
