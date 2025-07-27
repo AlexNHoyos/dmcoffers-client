@@ -1,0 +1,102 @@
+.titulo-biblioteca {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+
+
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: #444;
+  }
+
+  p {
+    font-size: 1rem;
+    color: #777;
+  }
+
+  i {
+    margin-right: 0.5em;
+    color: #8c5ebb;
+  }
+}
+
+.loading-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+
+  .loading-text {
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: #999;
+    text-align: center;
+  }
+}
+
+.empty-section {
+  text-align: center;
+  padding: 2rem 1rem;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  background-color: #fdfdfd;
+  color: #555;
+  margin: 2rem 0;
+  margin-inline: auto;
+  max-width: 600px;
+
+
+  h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    margin-bottom: 1.5rem;
+    color: #777;
+  }
+
+  button {
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* 🌐 Estilos para pantallas más grandes (tablet/desktop) */
+@media (min-width: 768px) {
+  .titulo-biblioteca {
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+    }
+  }
+
+  .loading-section {
+    .loading-text {
+      font-size: 1.2rem;
+    }
+  }
+
+  .empty-section {
+    img {
+      width: 200px;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+
+    button {
+      font-size: 1rem;
+    }
+  }
+}

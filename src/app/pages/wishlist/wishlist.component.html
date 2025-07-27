@@ -1,11 +1,22 @@
-<div *ngIf="isLoading">Cargando Lista de deseos...</div>
 
-<div *ngIf="!isLoading && wishlist.length === 0">
-  No tienes juegos en tu Lista de deseos.
+  <div *ngIf="isLoading" class="loading-section">
+    <mat-spinner></mat-spinner>
+    <p class="loading-text">Cargando tu lista de deseos...</p>
+  </div>
+
+
+<div *ngIf="!isLoading && wishlist.length === 0" class="empty-section">
+  <i class="fas fa-star title-icon"></i>
+  <h3>Tu lista de deseos está vacía</h3>
+  <p>Explora nuestra tienda y guarda tus juegos favoritos.</p>
+  <button mat-raised-button color="primary" routerLink="/inicio">
+    Ver juegos
+  </button>
 </div>
 
 <div *ngIf="!isLoading && wishlist.length > 0" class="titulo-container">
-  <h1 class="titulo">Lista de deseos</h1>
+  <i class="fas fa-star title-icon"></i>
+  <h3>Lista de deseos</h3>
 </div>
 
 <app-juego-list

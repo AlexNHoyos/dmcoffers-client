@@ -51,12 +51,6 @@ export class SupportTicketComponent extends CrudComponent<SupportTicket> {
           width: '400px',
           data: { supportTicket },
         });
-        /*  No es necesario porque no edito los datos adentro del dialog, pero podria implementarse a futuro
-      dialogRef.afterClosed().subscribe((result) => {
-        if (result) {
-          this.loadSupportTickets(); // Carga o actualiza la lista de SupportTickets
-        }
-      });*/
       });
   }
 
@@ -94,30 +88,12 @@ export class SupportTicketComponent extends CrudComponent<SupportTicket> {
 
   override displayedColumns: string[] = ['id', 'user', 'actions'];
 
-  showTable: boolean = false;
-  buttonText: string = 'Mostrar SupportTickets';
-
-  toggleSupportTickets() {
-    if (this.showTable) {
-      // Oculta la tabla
-      this.showTable = false;
-      this.buttonText = 'Mostrar SupportTickets'; // Cambia el texto del botón
-    } else {
-      // Carga y muestra la tabla
-      this.loadSupportTickets();
-      // Muestra la tabla
-      this.showTable = true;
-      this.buttonText = 'Ocultar SupportTickets'; // Cambia el texto del botón
-    }
-  }
   override ngOnInit(): void {
-    // Con esta funcion se puede cargar los SupportTickets al inicio
-    // this.loadSupportTickets();
+    this.loadSupportTickets();
     super.ngOnInit();
   }
 
   loadSupportTickets(): void {
-    this.showTable = true;
     this.supportTicketService.getAllSupportTickets().subscribe((data) => {
       this.supportTickets = data;
     });
