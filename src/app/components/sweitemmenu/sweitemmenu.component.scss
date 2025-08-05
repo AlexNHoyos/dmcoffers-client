@@ -1,5 +1,6 @@
-$primary-color: rgb(72, 24, 92);
-$text-color: #F8F8F8;
+@import "src/assets/styles/_variables.scss";
+
+
 
 html,
 body {
@@ -13,14 +14,14 @@ body {
     height: 100vh;
     display: flex;
     width: 100vw;
-    background-color: white;
+    background-color: $light-gray-background-color;
 }
 
 .sidenav {
     min-width: 200px;
     max-width: 300px;
     height: 100%;
-    background: $primary-color;
+    background: $side-nav-primary-color;
     color: $text-color;
     display: flex;
     flex-direction: column;
@@ -64,7 +65,7 @@ body {
 }
 
 .menu-open-button {
-    color: $primary-color;
+    color: $side-nav-primary-color;
 }
 
 .navbar-container {
