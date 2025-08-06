@@ -32,6 +32,8 @@ import { LibraryComponent } from './pages/library/library.component';
 import { JuegosCrudComponent } from './aplicacion/juegos/juegos-crud/juegos-crud.component';
 import { SupportTicketComponent } from './aplicacion/support-ticket/support-ticket.component';
 import { SupportTicketCreateComponent } from './aplicacion/support-ticket/support-ticket-create/support-ticket-create.component';
+import { ForgotPassComponent } from './auth/forgotPass/forgotPass.component';
+import { ResetPassComponent } from './auth/resetPass/resetPass.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -46,6 +48,8 @@ const routes: Routes = [
   { path: 'soporte', component: SoporteComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'forgotPass', component: ForgotPassComponent },
+  { path: 'reset-password', component: ResetPassComponent },
   { path: 'info', component: PersonalDetailsComponent },
   { path: 'juego/:id', component: JuegoDetailComponent },
   { path: 'wishlist', component: WishlistComponent },

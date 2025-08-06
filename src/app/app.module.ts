@@ -99,6 +99,7 @@ import { LibraryComponent } from './pages/library/library.component';
 import { JuegosPorCategoriaComponent } from './aplicacion/juegos/juegos-por-categoria/juegos-por-categoria.component';
 import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
 import { DateAdapter } from '@angular/material/core';
+import { ForgotPassComponent } from './auth/forgotPass/forgotPass.component';
 
 @NgModule({
   declarations: [
@@ -156,7 +157,8 @@ import { DateAdapter } from '@angular/material/core';
     CartComponent,
     LibraryComponent,
     JuegosPorCategoriaComponent,
-    LoadingOverlayComponent
+    LoadingOverlayComponent,
+    ForgotPassComponent
   ],
   imports: [
     CommonModule,
