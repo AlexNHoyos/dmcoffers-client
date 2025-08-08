@@ -100,6 +100,7 @@ import { JuegosPorCategoriaComponent } from './aplicacion/juegos/juegos-por-cate
 import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
 import { DateAdapter } from '@angular/material/core';
 import { ForgotPassComponent } from './auth/forgotPass/forgotPass.component';
+import { ResetPassComponent } from './auth/resetPass/resetPass.component';
 
 @NgModule({
   declarations: [
@@ -158,7 +159,8 @@ import { ForgotPassComponent } from './auth/forgotPass/forgotPass.component';
     LibraryComponent,
     JuegosPorCategoriaComponent,
     LoadingOverlayComponent,
-    ForgotPassComponent
+    ForgotPassComponent,
+    ResetPassComponent
   ],
   imports: [
     CommonModule,
