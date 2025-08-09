@@ -57,7 +57,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-color: $white-color; // opcional, para controlar bien todo
+  background-color: var(--body-background-color); // opcional, para controlar bien todo
 }
 
 mat-mdc-typography,
@@ -82,7 +82,6 @@ mdc-card-actions {
   gap: 20px;
 }
 
-$primary: #900;
 $enable-shadows: true;
 $prefix: "mo-";
 

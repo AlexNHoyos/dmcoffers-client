@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { LoginService } from './services/auth/login.service';
 import { LoadingService } from './services/loading.service';
+import { ThemeService } from './core/services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -14,10 +15,11 @@ export class AppComponent implements OnInit {
   userLoginOn: boolean = false;
   private subscription: Subscription = new Subscription();
 
-  constructor(private loginService: LoginService, 
+  constructor(private loginService: LoginService,
+              private themeService: ThemeService, 
               private loadingService: LoadingService) {  
 
-                this.isLoading$ = this.loadingService.loading$;
+     this.isLoading$ = this.loadingService.loading$;
     }
 
 

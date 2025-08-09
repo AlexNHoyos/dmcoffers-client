@@ -34,7 +34,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  color: $white-color;
+  color: var(--white-color);
   flex-shrink: 0;
 }
 
@@ -67,7 +67,7 @@
     padding: 6px 8px;
     border: none;
     background: transparent;
-    color: $white-color;
+    color: var(--input-text-color);
     outline: none;
   }
 
@@ -81,7 +81,7 @@
     background: transparent;
     border: none;
     padding: 6px 8px;
-    color: $white-color;
+    color: var(--button-text-color);
     cursor: pointer;
 
     &:hover {
