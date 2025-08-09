@@ -100,6 +100,7 @@ import { JuegosPorCategoriaComponent } from './aplicacion/juegos/juegos-por-cate
 import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
 import { CarouselModule } from './components/carousel/carousel.module';
 import { HelpDialogComponent } from './components/help-dialog/help-dialog.component';
+import { ThemeToggleComponent } from './shared/components/theme-toggle/theme-toggle.component';
 
 
 @NgModule({
@@ -160,6 +161,7 @@ import { HelpDialogComponent } from './components/help-dialog/help-dialog.compon
     JuegosPorCategoriaComponent,
     LoadingOverlayComponent,
     HelpDialogComponent,
+    ThemeToggleComponent,
   ],
   imports: [
     CommonModule,

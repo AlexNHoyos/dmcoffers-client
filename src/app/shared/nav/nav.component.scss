@@ -1,5 +1,10 @@
 @import "src/assets/styles/_variables.scss";
 
+
+.nav-main-container{
+  background-color: $nav-bar-background-color; 
+  padding: 10px 20px;
+}
 .toolbar-container {
   display: flex;
   align-items: center;

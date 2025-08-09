@@ -1,31 +1,33 @@
 import { Injectable } from '@angular/core';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root'
+})
 export class ThemeService {
-  private readonly themeKey = 'theme';
+  private themeKey = 'app-theme';
 
   constructor() {
-    this.loadTheme(); // al instanciar el servicio
+    this.loadTheme();
   }
 
-  toggleTheme(): void {
-    const body = document.body;
-    const isLight = body.classList.contains('light-theme');
-
-    const newTheme = isLight ? 'dark' : 'light';
-    this.setTheme(newTheme);
+  setTheme(isDark: boolean) {
+    const themeClass = isDark ? 'dark-theme' : 'light-theme';
+    document.body.classList.remove('dark-theme', 'light-theme');
+    document.body.classList.add(themeClass);
+    localStorage.setItem(this.themeKey, themeClass);
   }
 
-  setTheme(theme: 'light' | 'dark'): void {
-    const body = document.body;
-    body.classList.remove('light-theme', 'dark-theme');
-    body.classList.add(`${theme}-theme`);
-    localStorage.setItem(this.themeKey, theme); // guardar
+  isDarkTheme(): boolean {
+    return localStorage.getItem(this.themeKey) === 'dark-theme';
   }
 
-  loadTheme(): void {
-    const savedTheme = localStorage.getItem(this.themeKey) as 'light' | 'dark';
-    const theme = savedTheme || 'light'; // por defecto light
-    this.setTheme(theme);
+  private loadTheme() {
+    const savedTheme = localStorage.getItem(this.themeKey);
+    if (savedTheme) {
+      document.body.classList.add(savedTheme);
+    } else {
+      this.setTheme(false);
+    }
   }
 }
+
