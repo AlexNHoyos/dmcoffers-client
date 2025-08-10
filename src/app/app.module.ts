@@ -101,6 +101,7 @@ import { LoadingOverlayComponent } from './components/loading-overlay/loading-ov
 import { CarouselModule } from './components/carousel/carousel.module';
 import { HelpDialogComponent } from './components/help-dialog/help-dialog.component';
 import { ThemeToggleComponent } from './components/theme-toggle/theme-toggle.component';
+import { DropdownSelectComponent } from './components/dropdown-selector/dropdown-selector.component';
 
 
 @NgModule({
@@ -162,6 +163,7 @@ import { ThemeToggleComponent } from './components/theme-toggle/theme-toggle.com
     LoadingOverlayComponent,
     HelpDialogComponent,
     ThemeToggleComponent,
+    DropdownSelectComponent,
   ],
   imports: [
     CommonModule,
