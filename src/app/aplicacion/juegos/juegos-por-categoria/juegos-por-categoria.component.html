@@ -1,13 +1,12 @@
-<div class="categoria-selector">
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Filtrar por categoría</mat-label>
-    <mat-select [(value)]="categoriaSeleccionada">
-      <mat-option *ngFor="let cat of categorias" [value]="cat">{{ cat }}</mat-option>
-      <mat-option [value]="''">Todas</mat-option>
-    </mat-select>
-  </mat-form-field>
+<div class="dropdown-selector">
+  <app-dropdown-selector class="dropdown-component"
+    label="Filtrar por categoría"
+    [options]="categorias"
+    [multiple]="false"
+    [(valueSingle)]="categoriaSeleccionada"  
+    [placeholderAll]="'Todas'">
+  </app-dropdown-selector>
 </div>
-
 <mat-list *ngIf="juegosFiltrados.length > 0">
   <mat-list-item class="game-item" *ngFor="let juego of juegosFiltrados" (click)="verDetalle(juego.id)">
   
@@ -15,8 +14,8 @@
       [src]="environmentImg + juego.image_path"
       alt="{{ juego.gamename }}"
     />
-    <div matListItemTitle>{{ juego.gamename }}</div>
-    <div matListItemLine>{{ juego.price | currency:'USD' }}</div>
+    <div matListItemTitle class="gameListItemTitle">{{ juego.gamename }}</div>
+    <div matListItemLine class="gameListItemPrice">{{ juego.price | currency:'USD' }}</div>
 
   </mat-list-item>
 

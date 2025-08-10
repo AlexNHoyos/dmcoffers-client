@@ -1,10 +1,12 @@
+@import "src/assets/styles/_variables.scss";
+
 .carousel-container {
   position: relative;
   margin: auto;
   text-align: center;
   width: 700px;
   border-radius: 1px;
-  box-shadow: 0 6px 12px #dce1e1;
+  box-shadow: 0 6px 12px $gral-box-shadow;
   cursor: pointer;
 }
 
@@ -35,8 +37,7 @@
   height: 13px;
   width: 13px;
   margin: 0 5px;
-  background-color: rgb(55, 17, 72);
-  ;
+  background-color: var(--carousel-dot-color);
   display: inline-block;
   transition: opacity 0.6s ease;
   opacity: 0.5;
@@ -90,7 +91,7 @@
 }
 
 .icon-carousel {
-  color: rgb(55, 17, 72);
+  color:var(--carousel-arrow-color);
   opacity: 0.5;
   transition: all 0.15s ease;
 }
