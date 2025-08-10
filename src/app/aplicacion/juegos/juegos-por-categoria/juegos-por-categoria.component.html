@@ -7,18 +7,20 @@
     [placeholderAll]="'Todas'">
   </app-dropdown-selector>
 </div>
-<mat-list *ngIf="juegosFiltrados.length > 0">
-  <mat-list-item class="game-item" *ngFor="let juego of juegosFiltrados" (click)="verDetalle(juego.id)">
-  
-    <img matListItemIcon
-      [src]="environmentImg + juego.image_path"
-      alt="{{ juego.gamename }}"
-    />
-    <div matListItemTitle class="gameListItemTitle">{{ juego.gamename }}</div>
-    <div matListItemLine class="gameListItemPrice">{{ juego.price | currency:'USD' }}</div>
+<div class="game-list-component">
+  <mat-list *ngIf="juegosFiltrados.length > 0">
+    <mat-list-item class="game-item" *ngFor="let juego of juegosFiltrados" (click)="verDetalle(juego.id)">
+    
+      <img matListItemIcon
+        [src]="environmentImg + juego.image_path"
+        alt="{{ juego.gamename }}"
+      />
+      <div matListItemTitle class="gameListItemTitle">{{ juego.gamename }}</div>
+      <div matListItemLine class="gameListItemPrice">{{ juego.price | currency:'USD' }}</div>
 
-  </mat-list-item>
+    </mat-list-item>
 
-</mat-list>
+  </mat-list>
+</div>
 
 <p *ngIf="juegosFiltrados.length === 0" class="no-results">No hay juegos en esta categoría.</p>
