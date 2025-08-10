@@ -13,6 +13,11 @@ $nav-bar-background-color: #371148;
   --bs-body-bg: #f5f5f5;
   --title-text-color: #f5f5f5;
 
+   //menu
+  --menu-text-color: whitesmoke;
+  --menu-arrow-color: white;
+  --menu-open-button: #48185c;
+
   //unclisified colors
   --light-gray-background-color: #f5f5f5;
   --white-color: #ffffff;
@@ -34,9 +39,14 @@ $nav-bar-background-color: #371148;
 }
 .dark-theme {
   //body
-  --bs-body-bg:#000000;
+  --bs-body-bg:#181717;
   --body-background-color:#1e1e1e;
   --title-text-color: #e7db28;
+
+  //menu
+  --menu-text-color: whitesmoke;
+  --menu-arrow-color: white;
+  --menu-open-button: white;
 
   //unclisified colors
   --light-gray-background-color: #1e1e1e;
@@ -49,6 +59,7 @@ $nav-bar-background-color: #371148;
   //carousel
   --carousel-dot-color: #c7c2ca;
   --carousel-arrow-color: #ceb02b;
+  
 
   //game-item
   --game-item-border-bottom:  1.3px #e53ae5 solid;

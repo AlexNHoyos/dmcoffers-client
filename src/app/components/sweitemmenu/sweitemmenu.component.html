@@ -10,7 +10,7 @@
             <mat-list-item *ngFor="let item of menuItems" [ngStyle]="{ 'height': getItemHeight(item) }">
                 <div class="menu-item-container">
                     <button mat-button [disabled]="item.endpoint == null" (click)="navigate(item.endpoint)"
-                        class="menu-button" style="color: white;">
+                        class="menu-button">
                         {{ item.title }}
                     </button>
 
