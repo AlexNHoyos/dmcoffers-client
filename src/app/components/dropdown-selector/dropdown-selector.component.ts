@@ -6,15 +6,25 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./dropdown-selector.component.scss']
 })
 export class DropdownSelectComponent {
-  @Input() label: string = '';                  // Texto de la etiqueta
-  @Input() options: string[] = [];              // Lista de opciones
-  @Input() multiple: boolean = false;           // Si permite seleccionar varias
-  @Input() value: string  = '';                 // Valor actual
-  @Input() placeholderAll: string = '';         // Opción "Todas" opcional
+  @Input() label: string = '';
+  @Input() options: string[] = [];
+  @Input() multiple: boolean = false;
 
-  @Output() valueChange = new EventEmitter<string >();
+  @Input() valueSingle: string = '';
+  @Output() valueSingleChange = new EventEmitter<string>();
+
+  @Input() valueMultiple: string[] = [];
+  @Output() valueMultipleChange = new EventEmitter<string[]>();
+
+  @Input() placeholderAll: string = '';
 
   onValueChange(value: any) {
-    this.valueChange.emit(value);
+    if (this.multiple) {
+      this.valueMultiple = value;
+      this.valueMultipleChange.emit(value);
+    } else {
+      this.valueSingle = value;
+      this.valueSingleChange.emit(value);
+    }
   }
 }

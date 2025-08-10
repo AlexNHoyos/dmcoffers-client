@@ -1,12 +1,12 @@
-
-<app-dropdown-selector
-  label="Filtrar por categoría"
-  [options]="categorias"
-  [multiple]="false"
-  [(value)]="categoriaSeleccionada"
-  [placeholderAll]="'Todas'">
-</app-dropdown-selector>
-
+<div class="dropdown-selector">
+  <app-dropdown-selector class="dropdown-component"
+    label="Filtrar por categoría"
+    [options]="categorias"
+    [multiple]="false"
+    [(valueSingle)]="categoriaSeleccionada"  
+    [placeholderAll]="'Todas'">
+  </app-dropdown-selector>
+</div>
 <mat-list *ngIf="juegosFiltrados.length > 0">
   <mat-list-item class="game-item" *ngFor="let juego of juegosFiltrados" (click)="verDetalle(juego.id)">
   
