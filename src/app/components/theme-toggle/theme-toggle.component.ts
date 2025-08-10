@@ -3,7 +3,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { ThemeService } from 'src/app/core/services/theme.service';
 
 @Component({
-  selector: 'app-theme-toggle',
+  selector: 'app-theme-toggle-button',
   templateUrl: './theme-toggle.component.html',
   styleUrls: ['./theme-toggle.component.scss'],
   animations: [
