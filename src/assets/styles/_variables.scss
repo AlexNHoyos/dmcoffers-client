@@ -36,12 +36,14 @@ $nav-bar-background-color: #371148;
   --game-item-border-bottom:  1px black solid;
   --game-item-border-bottom-hover:  2px rgb(82, 10, 87) solid;
   --game-item-bg-color:#ececec;
+  --game-list-item-titulo: #222222;
+  --game-list-item-price: #505050;
 
-   //biblioteca de juegos
+  //biblioteca de juegos
   --titulo-bilbioteca-juegos: #444444;
   --sub-titulo-bilbioteca-juegos: #777777;
 
-   //whishlist
+  //whishlist
   --titulo-whish-list-section: #444444;
 
   //footer
@@ -70,13 +72,15 @@ $nav-bar-background-color: #371148;
 
   //carousel
   --carousel-dot-color: #c7c2ca;
-  --carousel-arrow-color: #ceb02b;
+  --carousel-arrow-color: #b19415;
   
 
   //game-item
   --game-item-border-bottom:  1.3px #e53ae5 solid;
   --game-item-border-bottom-hover:  2px rgb(82, 10, 87) solid;
   --game-item-bg-color:#353435;
+  --game-list-item-titulo: #ebebeb;
+  --game-list-item-price: rgb(175, 164, 11);
 
   //biblioteca de juegos
   --titulo-bilbioteca-juegos:  #e9e9e9;

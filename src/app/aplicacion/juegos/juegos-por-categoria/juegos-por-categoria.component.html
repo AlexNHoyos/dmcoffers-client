@@ -14,8 +14,8 @@
       [src]="environmentImg + juego.image_path"
       alt="{{ juego.gamename }}"
     />
-    <div matListItemTitle>{{ juego.gamename }}</div>
-    <div matListItemLine>{{ juego.price | currency:'USD' }}</div>
+    <div matListItemTitle class="gameListItemTitle">{{ juego.gamename }}</div>
+    <div matListItemLine class="gameListItemPrice">{{ juego.price | currency:'USD' }}</div>
 
   </mat-list-item>
 
