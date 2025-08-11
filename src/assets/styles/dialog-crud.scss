@@ -1,4 +1,9 @@
 
+//linea que divide
+mat-divider{
+  background-color: var(--line-divider);
+}
+
 .crud-delete-dialog {
   max-width: 500px;
   padding: 1.5rem;
@@ -68,6 +73,8 @@
     color: #666;
     margin-bottom: 1rem;
   }
+
+
 
   .form-grid {
     display: grid;
