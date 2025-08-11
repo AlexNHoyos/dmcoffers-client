@@ -1,3 +1,22 @@
+@import '../../../../assets/styles/mixins';
+
+.game-list-component{
+  padding: 0 1%;
+
+     @include respond-to(md) {
+      padding: 0 1%;
+    }
+
+    @include respond-to(lg) {
+      padding: 0 2%;
+    }
+
+    @include respond-to(xl) {
+      padding: 0 3%;
+    }
+}
+
+
 .game-item {
   border-bottom: var(--game-item-border-bottom);
   margin: 10px 2px;
@@ -21,6 +40,7 @@
     margin-top: 20px;
 }
 
+
 img {
   object-fit: cover;
   border-radius: 4px;
@@ -41,3 +61,6 @@ img {
 .gameListItemPrice{
   color:var(--game-list-item-price);
 }
+
+
+

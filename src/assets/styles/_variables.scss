@@ -13,7 +13,7 @@ $nav-bar-background-color: #371148;
   --bs-body-bg: #f5f5f5;
   --title-text-color: #f5f5f5;
 
-   //menu
+  //menu
   --menu-text-color: whitesmoke;
   --menu-arrow-color: white;
   --menu-open-button: #48185c;
@@ -24,6 +24,11 @@ $nav-bar-background-color: #371148;
   --text-color: #f8f8f8;
   --button-text-color:#f5f5f5;
   --input-text-color:#f5f5f5;
+  --line-divider: #e0e0e0;
+
+  //dropdown component
+  --dropdown-label-txt-color: #673ab7;
+  --dropdown-txt-arrow-inside-color: #535353;
 
   //Titulos para cada listado gestionar sistema
   --title-crud-h3: Black;
@@ -52,6 +57,14 @@ $nav-bar-background-color: #371148;
   //whishlist
   --titulo-whish-list-section: #444444;
 
+  //cart
+  --cart-title-h2-color: #1d1c1c;
+  --cart-total-price-color:#1b1a1a;
+  --cart-card-bg-color: whitesmoke;
+  --cart-card-title-txt-color:  #1d1c1c;
+  --cart-unfilled-txt-msg: #303030;
+  --cart-unit-price-txt-color: #303030; 
+
   //footer
   --footer-text-color: whitesmoke;
 }
@@ -72,6 +85,11 @@ $nav-bar-background-color: #371148;
   --text-color:  #e7db28;
   --button-text-color: #e7db28;
   --input-text-color: #e7db28;
+  --line-divider: #696969;
+
+  //dropdown component
+  --dropdown-label-txt-color: whitesmoke;
+    --dropdown-txt-arrow-inside-color: whitesmoke;
 
   //Titulos para cada listado gestionar sistema
   --title-crud-h3: white;
@@ -100,6 +118,14 @@ $nav-bar-background-color: #371148;
 
   //whishlist
   --titulo-whish-list-section:  #e9e9e9;
+
+   //cart
+  --cart-title-h2-color: whitesmoke;
+  --cart-total-price-color:whitesmoke;
+  --cart-card-bg-color: #303030;
+  --cart-card-title-txt-color: whitesmoke;
+  --cart-unfilled-txt-msg: whitesmoke;
+  --cart-unit-price-txt-color: whitesmoke; 
 
   //footer
   --footer-text-color: whitesmoke;

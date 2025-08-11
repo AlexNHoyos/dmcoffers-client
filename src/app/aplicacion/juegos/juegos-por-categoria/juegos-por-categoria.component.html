@@ -1,24 +1,27 @@
-<div class="dropdown-selector">
-  <app-dropdown-selector class="dropdown-component"
-    label="Filtrar por categoría"
-    [options]="categorias"
-    [multiple]="false"
-    [(valueSingle)]="categoriaSeleccionada"  
-    [placeholderAll]="'Todas'">
-  </app-dropdown-selector>
+
+<div class="game-list-component">
+    <div class="dropdown-selector">
+      <app-dropdown-selector class="dropdown-component"
+        label="Filtrar por categoría"
+        [options]="categorias"
+        [multiple]="false"
+        [(valueSingle)]="categoriaSeleccionada"  
+        [placeholderAll]="'Todas'">
+      </app-dropdown-selector>
+  </div>
+  <mat-list *ngIf="juegosFiltrados.length > 0">
+    <mat-list-item class="game-item" *ngFor="let juego of juegosFiltrados" (click)="verDetalle(juego.id)">
+    
+      <img matListItemIcon
+        [src]="environmentImg + juego.image_path"
+        alt="{{ juego.gamename }}"
+      />
+      <div matListItemTitle class="gameListItemTitle">{{ juego.gamename }}</div>
+      <div matListItemLine class="gameListItemPrice">{{ juego.price | currency:'USD' }}</div>
+
+    </mat-list-item>
+
+  </mat-list>
 </div>
-<mat-list *ngIf="juegosFiltrados.length > 0">
-  <mat-list-item class="game-item" *ngFor="let juego of juegosFiltrados" (click)="verDetalle(juego.id)">
-  
-    <img matListItemIcon
-      [src]="environmentImg + juego.image_path"
-      alt="{{ juego.gamename }}"
-    />
-    <div matListItemTitle class="gameListItemTitle">{{ juego.gamename }}</div>
-    <div matListItemLine class="gameListItemPrice">{{ juego.price | currency:'USD' }}</div>
-
-  </mat-list-item>
-
-</mat-list>
 
 <p *ngIf="juegosFiltrados.length === 0" class="no-results">No hay juegos en esta categoría.</p>

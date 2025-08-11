@@ -1,14 +1,14 @@
 <div class="container mt-4">
-  <h2 class="mb-4">🛒 Carrito de Juegos</h2>
+  <h2 class="cart-title-h2 mb-4">🛒 Carrito de Juegos</h2>
 
   <mat-spinner *ngIf="isLoading" diameter="50" class="mx-auto d-block"></mat-spinner>
 
-  <div *ngIf="!isLoading && juegos.length === 0" class="text-center text-muted">
+  <div *ngIf="!isLoading && juegos.length === 0" class="cart-unfilled text-center text-muted">
     No tienes juegos en tu carrito.
   </div>
 
   <div *ngFor="let juego of juegos" class="mb-3">
-    <mat-card>
+    <mat-card class="mat-card-container">
       <mat-card-content class="d-flex justify-content-between align-items-center">
 
         <!-- Imagen + nombre juego -->
@@ -23,7 +23,7 @@
   
         <!-- Precio -->
         <div class="text-end me-3">
-          <p class="precio mb-0">Precio: ${{ juego.price ?? 0 | number: '1.2-2' }}</p> <!-- Redondeado -->
+          <p class="price-txt mb-0">Precio: ${{ juego.price ?? 0 | number: '1.2-2' }}</p> <!-- Redondeado -->
         </div>
 
         <button mat-icon-button color="warn" (click)="removeFromCart(juego.id)" matTooltip="Quitar del carrito">
@@ -36,7 +36,7 @@
   <mat-divider class="my-4"></mat-divider>
 
   <div *ngIf="juegos.length > 0" class="text-end">
-    <h4 class="mb-2">Total: <strong>${{ total | number: '1.2-2' }}</strong></h4>
+    <h4 class="cart-total-price mb-2">Total: <strong>${{ total | number: '1.2-2' }}</strong></h4>
     <button mat-raised-button color="primary" (click)="checkout()">
       <mat-icon>shopping_cart_checkout</mat-icon> Finalizar compra
     </button>
