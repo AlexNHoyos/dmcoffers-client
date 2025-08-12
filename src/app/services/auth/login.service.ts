@@ -50,7 +50,7 @@ export class LoginService {
   }
 
   forgotPassword(email: string): Observable<any> {
-    return this.http.post(`${environment.urlHost}auth/forgot-password`, { email })
+    return this.http.post<any>(`${environment.urlHost}auth/forgot-password`, { email })
       .pipe(
         tap(() => {
           console.log('Contraseña enviada correctamente');

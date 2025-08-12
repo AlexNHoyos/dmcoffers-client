@@ -41,6 +41,7 @@ export class RegisterComponent implements OnInit {
         username: ['', [Validators.required]],
         realname: [,],
         surname: [,],
+        email: ['', [Validators.required, Validators.email]],
         password: [
           '',
           [
@@ -63,6 +64,7 @@ export class RegisterComponent implements OnInit {
     this.user.surname = this.registerForm.controls['surname'].value;
     this.user.realname = this.registerForm.controls['realname'].value;
     this.user.username = this.registerForm.controls['username'].value;
+    this.user.email = this.registerForm.controls['email'].value;
     this.user.creationuser = 'admin';
     this.user.creationtimestamp = new Date();
     this.user.modificationuser = 'admin';
