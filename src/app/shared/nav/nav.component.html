@@ -1,6 +1,6 @@
 <!-- Toolbar -->
 <div role="banner">
-  <nav style="background-color: rgb(55, 17, 72); padding: 10px 20px;">
+  <nav class="nav-main-container">
     <div class="toolbar-container">
 
       <header class="header toolbar">
@@ -38,6 +38,7 @@
           <button mat-icon-button (click)="openHelp()" aria-label="Ayuda" style="color: white;">
             <mat-icon>help_outline</mat-icon>
           </button>
+          <app-theme-toggle-button></app-theme-toggle-button>
 
         </div>
 
@@ -57,6 +58,7 @@
           <button mat-icon-button (click)="carrito()" aria-label="Carrito de compras" style="color: white;">
             <mat-icon class="header-item-button">shopping_cart</mat-icon>
           </button>
+          <app-theme-toggle-button></app-theme-toggle-button>
         </div>
       </div>
 

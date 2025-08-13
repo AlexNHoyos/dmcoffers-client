@@ -1,19 +1,45 @@
+@import '../../../../assets/styles/mixins';
+
+.game-list-component{
+  padding: 0 1%;
+
+     @include respond-to(md) {
+      padding: 0 1%;
+    }
+
+    @include respond-to(lg) {
+      padding: 0 2%;
+    }
+
+    @include respond-to(xl) {
+      padding: 0 3%;
+    }
+}
+
+
 .game-item {
-  border-bottom: 1px black solid;
-  margin: 2px;
+  border-bottom: var(--game-item-border-bottom);
+  margin: 10px 2px;
   display: flex;
   align-items: center;
   padding: 8px;
   gap: 1em;
+  background-color: var(--game-item-bg-color);
   transition: background-color 0.3s ease;
   overflow: visible;
 }
 
 .game-item:hover {
   transform: scale(1.01);
-  background-color: #eee;
+  background-color: #dbdbdb;
+  border-bottom: var(--game-item-border-bottom-hover);
   cursor: pointer;
 }
+
+.dropdown-selector{
+    margin-top: 20px;
+}
+
 
 img {
   object-fit: cover;
@@ -27,3 +53,14 @@ img {
   height: 100% !important;
   margin: 0 1em !important;
 }
+
+.gameListItemTitle{
+  color:var(--game-list-item-titulo);
+}
+
+.gameListItemPrice{
+  color:var(--game-list-item-price);
+}
+
+
+

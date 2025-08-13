@@ -13,10 +13,10 @@
   max-height: 300px;
   display: flex;
   flex-direction: column;
-  border: 1px solid #ddd;
+  border: 1px solid var(--game-card-border-color);
   border-radius: 6px;
   overflow: hidden;
-  background-color: #fff;
+  background-color: var(--game-card-bg-color);
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s;
 
@@ -77,12 +77,14 @@
 
     h3 {
       font-size: 1.2rem;
+      font-weight:500;
       margin: 0;
-      color: #333;
+      color: var(--game-card-title-color);
     }
 
     p {
       margin: 0;
+      color: var(--game-card-subtitle-color);
     }
 
     .game-categories {
@@ -103,7 +105,8 @@
 
     .game-price {
       font-weight: bold;
-      color: #ff5722;
+      color: var(--game-card-price-txt-color);
+      font-size: large;
     }
 
     .info2 {
