@@ -6,6 +6,7 @@ import { LoginRequest } from '../../models/loginRequest';
 import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { EncryptionService } from 'src/app/services/auth/encryption.service';
+import { ResetPasswordService } from 'src/app/services/auth/resetpass.service';
 
 @Component({
   selector: 'app-reset-pass',
@@ -23,7 +24,8 @@ export class ResetPassComponent implements OnInit {
     private router: Router,
     private loginService: LoginService,
     private dialog: MatDialog,
-    private encryptionService: EncryptionService
+    private encryptionService: EncryptionService,
+    private resetPasswordService: ResetPasswordService
   ) {
     this.ResetPassForm = this.fb.group({
       token: ['', Validators.required],
@@ -46,7 +48,7 @@ export class ResetPassComponent implements OnInit {
     this.password = this.newPasswordControl?.value;
 
     if (this.ResetPassForm.valid) {
-      this.loginService.resetPassword(this.token, this.password).subscribe({
+      this.resetPasswordService.resetPassword(this.token, this.password).subscribe({
         next: () => {
           this.dialog.open(ErrorDialogComponent, {
             data: {

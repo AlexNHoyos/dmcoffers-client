@@ -49,30 +49,6 @@ export class LoginService {
       );
   }
 
-  forgotPassword(email: string): Observable<any> {
-    return this.http.post<any>(`${environment.urlHost}auth/forgot-password`, { email })
-      .pipe(
-        tap(() => {
-          console.log('Contraseña enviada correctamente');
-        }),
-        catchError((error: HttpErrorResponse) =>
-          this.errorHandler.handleError(error)
-        )
-      );
-  }
-
-  resetPassword(token: string, newPassword: string): Observable<any> {
-    return this.http.post(`${environment.urlHost}auth/reset-password`, { token, newPassword })
-      .pipe(
-        tap(() => {
-          console.log('Contraseña restablecida correctamente');
-        }),
-        catchError((error: HttpErrorResponse) =>
-          this.errorHandler.handleError(error)
-        )
-      );
-  }
-
   logout(): void {
     sessionStorage.removeItem('accessToken');
     this.currentUserLoginOnSubject.next(false);

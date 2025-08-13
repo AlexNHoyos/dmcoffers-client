@@ -5,6 +5,7 @@ import { LoginService } from '../../services/auth/login.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EncryptionService } from 'src/app/services/auth/encryption.service';
 import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
+import { ForgotPasswordService } from 'src/app/services/auth/forgotpass.service';
 
 @Component({
   selector: 'app-forgot-pass',
@@ -21,7 +22,8 @@ export class ForgotPassComponent implements OnInit {
     private router: Router,
     private loginService: LoginService,
     private dialog: MatDialog,
-    private encryptionService: EncryptionService
+    private encryptionService: EncryptionService,
+    private ForgotPasswordService: ForgotPasswordService
   ) {
     this.forgotPassForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]]
@@ -37,7 +39,7 @@ export class ForgotPassComponent implements OnInit {
   forgotPass() {
     if (this.forgotPassForm.valid) {
       this.email = this.forgotPassForm.value.email;
-      this.loginService.forgotPassword(this.email).subscribe({
+      this.ForgotPasswordService.forgotPassword(this.email).subscribe({
         next: () => {
           this.dialog.open(ErrorDialogComponent, {
             data: {
