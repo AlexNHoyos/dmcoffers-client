@@ -5,7 +5,9 @@ import { User } from 'src/app/auth/auth.models';
 import { environment } from 'src/environments/environment';
 import { ErrorHandler } from '@angular/core';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ResetPasswordService {
 
   constructor(private http: HttpClient, private errorHandler: ErrorHandler) {}

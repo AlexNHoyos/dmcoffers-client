@@ -101,6 +101,9 @@ import { LoadingOverlayComponent } from './components/loading-overlay/loading-ov
 import { DateAdapter } from '@angular/material/core';
 import { ForgotPassComponent } from './auth/forgotPass/forgotPass.component';
 import { ResetPassComponent } from './auth/resetPass/resetPass.component';
+import { F } from '@angular/cdk/a11y-module.d-DBHGyKoh';
+import { ForgotPasswordService } from './services/auth/forgotpass.service';
+import { ResetPasswordService } from './services/auth/resetpass.service';
 
 @NgModule({
   declarations: [
@@ -202,6 +205,8 @@ import { ResetPassComponent } from './auth/resetPass/resetPass.component';
         DesarrolladoresService,
         RegisterService,
         SweItemMenuService,
+        ForgotPasswordService,
+        ResetPasswordService,
         {
             provide: DateAdapter,
             useClass: NativeDateAdapter
