@@ -14,7 +14,7 @@ export class ResetPasswordService {
 
   
 resetPassword(token: string, newPassword: string): Observable<any> {
-    return this.http.post(`${environment.urlHost}auth/reset-password`, { token, newPassword })
+    return this.http.post(`${environment.urlHost}users/reset-password`, { token, newPassword })
       .pipe(
         tap(() => {
           console.log('Contraseña restablecida correctamente');
