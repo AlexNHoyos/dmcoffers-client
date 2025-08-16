@@ -4,12 +4,14 @@ import { User, UserPage } from '../../models/user.model';
 import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CrudService } from 'src/app/components/crud/crud.service';
+import { RolApl } from 'src/app/models/rol.models.js';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService extends CrudService<UserPage> {
   override endpoint = `${environment.urlApi}users`;
+  endpointRoles = `${environment.urlApi}`;
   constructor(protected override http: HttpClient) {
     super(http);
   }
@@ -65,6 +67,10 @@ export class UserService extends CrudService<UserPage> {
   getAllUserRoles(idUser: number): Observable<number[]> {
     return this.http
       .get<number[]>(`${this.endpoint}/getUserRolsByIdUser/${idUser}`);
+  }
+
+  getRoles(): Observable<RolApl[] | undefined> {
+    return this.http.get<RolApl[]>(`${this.endpoint}/getAllRoles`)
   }
 
 }

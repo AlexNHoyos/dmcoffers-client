@@ -9,14 +9,9 @@
       <!-- Roles (múltiples) -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Roles</mat-label>
-        <mat-select
-          [(ngModel)]="selectedRoles"
-          name="rolDescriptions"
-          multiple
-          required
-        >
-          <mat-option *ngFor="let role of roles" [value]="role">
-            {{ role }}
+        <mat-select [(ngModel)]="selectedRoles" name="rolDescriptions" multiple required [checked]="role.rolSelected">
+          <mat-option *ngFor="let role of selectedRoles" [value]="role.rol.id">
+            {{ role.rol?.description }}
           </mat-option>
         </mat-select>
         <mat-error *ngIf="userForm.submitted && selectedRoles.length === 0">
@@ -30,13 +25,7 @@
     <button mat-flat-button color="warn" type="button" (click)="cancel()">
       Cancelar
     </button>
-    <button
-      mat-raised-button
-      color="primary"
-      type="submit"
-      (click)="onUpdateUser()"
-      [disabled]="userForm.invalid"
-    >
+    <button mat-raised-button color="primary" type="submit" (click)="onUpdateUser()" [disabled]="userForm.invalid">
       Actualizar
     </button>
   </mat-card-actions>
