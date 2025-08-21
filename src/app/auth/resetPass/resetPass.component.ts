@@ -55,6 +55,7 @@ export class ResetPassComponent implements OnInit {
               message: 'Contraseña actualizada correctamente. Puedes iniciar sesión con tu nueva contraseña.'
             }
           });
+          this.router.navigateByUrl('/login');
         },
         error: () => {
           this.dialog.open(ErrorDialogComponent, {
