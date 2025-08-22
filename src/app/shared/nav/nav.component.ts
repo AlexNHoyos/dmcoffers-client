@@ -8,9 +8,10 @@ import { HelpDialogComponent } from 'src/app/components/help-dialog/help-dialog.
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-nav',
-  templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.scss'],
+    selector: 'app-nav',
+    templateUrl: './nav.component.html',
+    styleUrls: ['./nav.component.scss'],
+    standalone: false
 })
 export class NavComponent implements OnInit, OnDestroy {
   searchTerm: string = '';

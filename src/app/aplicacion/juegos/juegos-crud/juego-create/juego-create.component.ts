@@ -9,9 +9,10 @@ import { UserUtilsService } from 'src/app/services/user/user-util-service.servic
 import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
 
 @Component({
-  selector: 'app-juego-create',
-  templateUrl: './juego-create.component.html',
-  styleUrls: ['./juego-create.component.scss'],
+    selector: 'app-juego-create',
+    templateUrl: './juego-create.component.html',
+    styleUrls: ['./juego-create.component.scss'],
+    standalone: false
 })
 export class JuegoCreateComponent implements OnInit {
 

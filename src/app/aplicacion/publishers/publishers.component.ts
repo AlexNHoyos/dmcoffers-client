@@ -8,9 +8,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { PublisherDeleteComponent } from './publisher-delete/publisher-delete.component';
 import { PublisherDetailComponent } from './publisher-detail/publisher-detail.component';
 @Component({
-  selector: 'app-publisher',
-  templateUrl: './publishers.component.html',
-  styleUrls: ['./publishers.component.scss'],
+    selector: 'app-publisher',
+    templateUrl: './publishers.component.html',
+    styleUrls: ['./publishers.component.scss'],
+    standalone: false
 })
 export class PublisherComponent extends CrudComponent<Publisher> {
   publishers: Publisher[] = [];

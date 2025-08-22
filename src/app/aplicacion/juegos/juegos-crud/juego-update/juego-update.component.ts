@@ -15,8 +15,9 @@ import { CategoriaService } from 'src/app/aplicacion/categorias/categoria.servic
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-juego-update',
-  templateUrl: './juego-update.component.html',
+    selector: 'app-juego-update',
+    templateUrl: './juego-update.component.html',
+    standalone: false
 })
 export class JuegoUpdateComponent {
   environmentImg: string="";

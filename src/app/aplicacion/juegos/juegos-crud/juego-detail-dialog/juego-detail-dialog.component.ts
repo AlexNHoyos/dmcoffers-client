@@ -4,9 +4,10 @@ import { Juego } from '../../juegos.model';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-juego-detail-dialog',
-  templateUrl: './juego-detail-dialog.component.html',
-  styleUrls: ['./juego-detail-dialog.component.scss'],
+    selector: 'app-juego-detail-dialog',
+    templateUrl: './juego-detail-dialog.component.html',
+    styleUrls: ['./juego-detail-dialog.component.scss'],
+    standalone: false
 })
 export class JuegoDetailDialogComponent implements OnInit {
   environmentImg: string="";

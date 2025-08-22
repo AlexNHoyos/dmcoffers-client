@@ -11,8 +11,9 @@ import { UserUtilsService } from 'src/app/services/user/user-util-service.servic
 import { PublisherService } from '../publisher.service';
 
 @Component({
-  selector: 'app-publisher-update',
-  templateUrl: './publisher-update.component.html',
+    selector: 'app-publisher-update',
+    templateUrl: './publisher-update.component.html',
+    standalone: false
 })
 export class PublisherUpdateComponent {
   today = new Date();

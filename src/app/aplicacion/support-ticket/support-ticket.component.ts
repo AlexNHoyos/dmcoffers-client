@@ -9,9 +9,10 @@ import { SupportTicketDetailComponent } from './support-ticket-detail/support-ti
 import { SupportTicketDeleteComponent } from './support-ticket-delete/support-ticket-delete.component';
 
 @Component({
-  selector: 'app-support-ticket',
-  templateUrl: './support-ticket.component.html',
-  styleUrls: ['./support-ticket.component.scss'],
+    selector: 'app-support-ticket',
+    templateUrl: './support-ticket.component.html',
+    styleUrls: ['./support-ticket.component.scss'],
+    standalone: false
 })
 export class SupportTicketComponent extends CrudComponent<SupportTicket> {
   supportTickets: SupportTicket[] = [];

@@ -5,9 +5,10 @@ import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-juegos-por-categoria',
-  templateUrl: './juegos-por-categoria.component.html',
-  styleUrls: ['./juegos-por-categoria.component.scss']
+    selector: 'app-juegos-por-categoria',
+    templateUrl: './juegos-por-categoria.component.html',
+    styleUrls: ['./juegos-por-categoria.component.scss'],
+    standalone: false
 })
 export class JuegosPorCategoriaComponent implements OnInit {
   juegos: Juego[] = [];

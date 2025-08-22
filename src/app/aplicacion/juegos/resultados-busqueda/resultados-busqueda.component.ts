@@ -7,9 +7,10 @@ import { LoginService } from 'src/app/services/auth/login.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-resultados-busqueda',
-  templateUrl: './resultados-busqueda.component.html',
-  styleUrls: ['./resultados-busqueda.component.scss'],
+    selector: 'app-resultados-busqueda',
+    templateUrl: './resultados-busqueda.component.html',
+    styleUrls: ['./resultados-busqueda.component.scss'],
+    standalone: false
 })
 export class ResultadosBusquedaComponent implements OnInit {
   juegos: any[] = [];
