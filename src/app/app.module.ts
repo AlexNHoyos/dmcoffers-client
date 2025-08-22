@@ -19,7 +19,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule} from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { MatCardModule } from '@angular/material/card';
+import { MatCardActions, MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, NativeDateAdapter } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
@@ -104,6 +104,8 @@ import { CarouselModule } from './components/carousel/carousel.module';
 import { HelpDialogComponent } from './components/help-dialog/help-dialog.component';
 import { ThemeToggleComponent } from './components/theme-toggle/theme-toggle.component';
 import { DropdownSelectComponent } from './components/dropdown-selector/dropdown-selector.component';
+import { ResetPassComponent } from './auth/resetPass/resetPass.component';
+import { ForgotPassComponent } from './auth/forgotPass/forgotPass.component';
 
 
 @NgModule({ declarations: [
@@ -165,6 +167,8 @@ import { DropdownSelectComponent } from './components/dropdown-selector/dropdown
         HelpDialogComponent,
         ThemeToggleComponent,
         DropdownSelectComponent,
+        ResetPassComponent,
+        ForgotPassComponent
     ],
     bootstrap: [AppComponent], imports: [CommonModule,
         BrowserModule,
@@ -182,6 +186,7 @@ import { DropdownSelectComponent } from './components/dropdown-selector/dropdown
         MatSortModule,
         MatIconModule,
         MatCardModule,
+        MatCardActions,
         MatDatepickerModule,
         MatNativeDateModule,
         MatSelectModule,

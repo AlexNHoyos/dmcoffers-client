@@ -12,11 +12,8 @@ import { Juego } from '../../juegos.model';
 import { DesarrolladoresService } from 'src/app/aplicacion/desarrolladores/desarrolladores.service';
 import { PublisherService } from 'src/app/aplicacion/publishers/publisher.service';
 import { CategoriaService } from 'src/app/aplicacion/categorias/categoria.service';
-<<<<<<< HEAD
 import { FormsModule } from '@angular/forms';
-=======
 import { environment } from 'src/environments/environment';
->>>>>>> develop
 
 @Component({
     selector: 'app-juego-update',
