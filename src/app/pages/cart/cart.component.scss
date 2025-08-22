@@ -7,6 +7,25 @@ mat-spinner {
   margin-top: 3rem;
 }
 
+.cart-unfilled{
+  color: var(--cart-unfilled-txt-msg) !important;
+}
+
+.mat-card-container{
+  background-color: var(--cart-card-bg-color);
+  color: var(--cart-card-title-txt-color);
+}
+.price-txt {
+  color: var(--cart-unit-price-txt-color) !important;
+}
+
+.cart-title-h2{
+  color:var(--cart-title-h2-color) ;
+}
+
+.cart-total-price{
+  color:var(--cart-total-price-color);
+}
 .container {
   max-width: 800px;
   margin: auto;
@@ -15,11 +34,6 @@ mat-spinner {
 .juego-nombre {
   font-size: 1.3rem;
   //font-weight: bold;
-}
-
-.precio {
-  font-size: 1rem;
-  color: #555;
 }
 
 img {

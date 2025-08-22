@@ -1,19 +1,17 @@
 <form [formGroup]="registerForm" (ngSubmit)="register()">
   <mat-card class="register-card">
     <mat-card-header class="register-card-header">
-      <mat-card-title class="register-card-title"
-        >CREA TU CUENTA</mat-card-title
-      >
+      <mat-card-title class="register-card-title">
+        <mat-icon style="vertical-align: middle;">person_add</mat-icon>
+        &nbsp;CREA TU CUENTA
+      </mat-card-title>
     </mat-card-header>
 
     <mat-card-content>
-      <mat-form-field appearance="fill" class="full-width">
+      <!-- Usuario -->
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Usuario</mat-label>
-        <input
-          matInput
-          formControlName="username"
-          placeholder="Ingrese su usuario"
-        />
+        <input matInput formControlName="username" placeholder="Ingrese su usuario" />
       </mat-form-field>
       
       <mat-form-field appearance="fill" class="full-width">
@@ -33,115 +31,65 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="fill" class="full-width">
+      <!-- Contraseña -->
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Contraseña</mat-label>
-        <input
-          matInput
-          formControlName="password"
-          type="password"
-          placeholder="Ingrese su contraseña"
-          required
-        />
-        <mat-error
-          *ngIf="
-            this.registerForm.controls['password'].value !=
-            this.registerForm.controls['password2'].value
-          "
-        >
-          Las contraseñas deben coincidir.
+        <input matInput formControlName="password" type="password" placeholder="Ingrese su contraseña" />
+        <mat-error *ngIf="registerForm.controls['password'].value.length < 8">
+          Mínimo 8 caracteres.
         </mat-error>
-        <mat-error
-          *ngIf="this.registerForm.controls['password'].value.length < 8"
-        >
-          La contraseña debe tener al menos 8 caracteres.
-        </mat-error>
-        <mat-error
-          *ngIf="registerForm.controls['password'].hasError('noUpperCase')"
-        >
-          {{ registerForm.controls["password"].getError("noUpperCase") }}
+        <mat-error *ngIf="registerForm.controls['password'].hasError('noUpperCase')">
+          {{ registerForm.controls['password'].getError('noUpperCase') }}
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="fill" class="full-width">
+      <!-- Confirmar contraseña -->
+      <mat-form-field appearance="outline" class="full-width p2">
         <mat-label>Confirma tu contraseña</mat-label>
-        <input
-          matInput
-          formControlName="password2"
-          type="password"
-          placeholder="Repita su contraseña"
-          required
-        />
-        <mat-error
-          *ngIf="
-            this.registerForm.controls['password'].value !=
-            this.registerForm.controls['password2'].value
-          "
-        >
+        <input matInput formControlName="password2" type="password" placeholder="Repita su contraseña" />
+        <mat-error *ngIf="passwordMatchValidator()">
           Las contraseñas deben coincidir.
         </mat-error>
-        <mat-error
-          *ngIf="this.registerForm.controls['password2'].value.length < 8"
-        >
-          La contraseña debe tener al menos 8 caracteres.
-        </mat-error>
       </mat-form-field>
 
-      <mat-form-field class="full-width">
+      <!-- Fecha de nacimiento -->
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Fecha de nacimiento</mat-label>
-        <input
-          matInput
-          [matDatepicker]="picker"
-          formControlName="birth_date"
-          name="birth_date"
-          [max]="today"
-        />
-        <mat-hint>DD/MM/YYYY</mat-hint>
-        <mat-datepicker-toggle
-          matIconSuffix
-          [for]="picker"
-        ></mat-datepicker-toggle>
+        <input matInput [matDatepicker]="picker" formControlName="birth_date" [max]="today" />
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
+        <mat-hint>DD/MM/YYYY</mat-hint>
       </mat-form-field>
 
+      <!-- Panel opcional -->
       <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             Información adicional (opcional)
           </mat-expansion-panel-header>
 
-          <mat-form-field appearance="fill" class="full-width">
+          <mat-form-field appearance="outline" class="full-width">
             <mat-label>Nombre</mat-label>
-            <input
-              matInput
-              formControlName="realname"
-              type="text"
-              placeholder="Nombre"
-            />
+            <input matInput formControlName="realname" placeholder="Nombre" />
           </mat-form-field>
 
-          <mat-form-field appearance="fill" class="full-width">
+          <mat-form-field appearance="outline" class="full-width">
             <mat-label>Apellido</mat-label>
-            <input
-              matInput
-              formControlName="surname"
-              type="text"
-              placeholder="Apellido"
-            />
+            <input matInput formControlName="surname" placeholder="Apellido" />
           </mat-form-field>
         </mat-expansion-panel>
       </mat-accordion>
     </mat-card-content>
 
-    <mat-card-actions>
-      <button
-        mat-raised-button
-        color="primary"
-        type="submit"
-        class="register-button"
-        [disabled]="registerForm.invalid"
-      >
+    <mat-card-actions class="register-card-actions">
+      <button mat-raised-button color="primary" type="submit" class="register-button" [disabled]="registerForm.invalid">
         Registrarse
       </button>
     </mat-card-actions>
+
+    <div class="already-account-text">
+      ¿Ya tenés cuenta?
+      <a (click)="goToLogin()" class="login-link">Iniciar sesión</a>
+    </div>
   </mat-card>
 </form>

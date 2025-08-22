@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { SweItemMenuService } from './sweitemmenu.service';
-import { MenuItem } from './sweitemmenu.models';
+import { idRolesPorItemMenu, MenuItem } from './sweitemmenu.models';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/auth/login.service';
+import { UserService } from 'src/app/services/user/user.service';
+import { filter, firstValueFrom, forkJoin, map, Observable, of, switchMap } from 'rxjs';
 
 
 @Component({
@@ -10,59 +13,96 @@ import { Router } from '@angular/router';
     styleUrls: ['./sweitemmenu.component.scss'],
     standalone: false
 })
+
 export class SweItemMenuComponent implements OnInit {
 
 
   menuItems: MenuItem[] = [];
   espaciadoLateral: string = '';
-  //userRole: string = '';
+  userRoles: number[] = [];
+  flagMenu: number = 0;
 
-  constructor(private sweItemMenuService: SweItemMenuService, private router: Router) { }
-
-  ngOnInit(): void {
-    this.loadMenuItems();
+  constructor(
+    private sweItemMenuService: SweItemMenuService,
+    private router: Router,
+    private loginService: LoginService,
+    private userService: UserService
+  ) {
   }
 
+  ngOnInit(): void {
+    this.loadServices();
+
+  }
+
+  async loadServices() {
+    await this.loadUserRols()
+
+    this.loadMenuItems();
+
+  }
+
+  async loadUserRols(): Promise<number[]> {
+    try {
+      const idUser = await firstValueFrom(this.userService.getUserId());
+      if (idUser != null) {
+        const userRols = await firstValueFrom(this.userService.getAllUserRoles(idUser));
+        this.userRoles = userRols;
+        return userRols;
+      }
+    } catch (err) {
+      console.error('Error cargando roles:', err);
+    }
+    return [];
+  }
+
+
   loadMenuItems(): void {
-    this.sweItemMenuService.getMenuItem().subscribe((items: MenuItem[]) => {
+    this.sweItemMenuService.getMenuItem().subscribe(items => {
       const itemMap = new Map<number, MenuItem>();
+      const menuItems: MenuItem[] = [];
 
       items.forEach(item => {
-        itemMap.set(item.id, { ...item, subMenus: [], expanded: false });
-      });
-
-      let menuItems: MenuItem[] = [];
-
-      menuItems.forEach(item => {
-        item.subMenus = [];
-      })
-
-      items.forEach(item => {
-        if (!item.idSupItemMenu) {
+        if (!item.idSupItemMenu && this.validaRoles(item)) {
+          itemMap.set(item.id, { ...item, expanded: false, subMenus: [] });
           menuItems.push(itemMap.get(item.id)!);
         }
       });
 
       items.forEach(itemHijo => {
-        if (itemHijo.idSupItemMenu) {
-          items.forEach(itemPadre => {
-            let indexItemPadre: number;
-            if (itemPadre.id == Number(itemHijo.idSupItemMenu)) {
-              indexItemPadre = items.indexOf(itemPadre);
+        if (itemHijo.idSupItemMenu && this.validaRoles(itemHijo)) {
+          menuItems.forEach(itemPadre => {
+            if (Number(itemHijo.idSupItemMenu) == itemPadre.id) {
+              let indexItemPadre = menuItems.indexOf(itemPadre);
               menuItems[indexItemPadre].subMenus.push(itemHijo);
             }
-          })
-
+          });
         }
-
-      })
+      });
 
       this.menuItems = menuItems;
 
-      console.log(menuItems);
     });
   }
 
+  //Valida que segun el item, alguno de los roles que posea el usuario coincida con los roles del item
+  validaRoles(item: MenuItem): boolean {
+
+    let rolesItem: number[] = [];
+
+    item.roles_permitidos.split(',').forEach(rol => {
+      rolesItem.push(Number(rol));
+    });
+
+    let flag: boolean = false;
+
+    rolesItem.forEach(rol => {
+      if (this.userRoles.map(Number).includes(rol)) {
+        flag = true;
+      }
+    });
+    return flag;
+  }
 
   toggleSubMenu(item: MenuItem): void {
     item['expanded'] = !item['expanded'];

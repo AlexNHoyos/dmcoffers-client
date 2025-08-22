@@ -1,32 +1,67 @@
-<h1 mat-dialog-title>Detalles del Juego</h1>
-<div mat-dialog-content>
-  <p><strong>ID:</strong> {{ data.juego.id }}</p>
-  <p><strong>Nombre:</strong> {{ data.juego.gamename }}</p>
-  <p>
-    <strong>Fecha de Lanzamiento:</strong>
-    {{ data.juego.release_date | date }}
-  </p>
-  <p>
-    <strong>Fecha de Publicación:</strong>
-    {{ data.juego.publishment_date | date }}
-  </p>
-  <p><strong>Precio Actual:</strong> {{ data.juego.price | currency }}</p>
-  <p><strong>Publisher:</strong> {{ data.juego.publisherName }}</p>
-  <p><strong>Desarrollador:</strong> {{ data.juego.developerName }}</p>
-  <p>
-    <strong>Categorías:</strong> {{ data.juego.categoriasNames.join(", ") }}
-  </p>
-  <p>
-    <strong>Fecha de Creación:</strong>
-    {{ data.juego.creationtimestamp | date }}
-  </p>
-  <p>
-    <strong>Fecha de Modificación:</strong>
-    {{ data.juego.modificationtimestamp | date }}
-  </p>
-  <p><strong>Cargado por:</strong> {{ data.juego.creationuser }}</p>
-  <p><strong>Modificado por:</strong> {{ data.juego.modificationuser }}</p>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onClose()">Cerrar</button>
-</div>
+<mat-card class="detail-view-card">
+  <mat-card-header>
+    <div mat-card-avatar class="header-icon">
+      <mat-icon>sports_esports</mat-icon>
+    </div>
+    <mat-card-title>{{ data.juego.gamename }}</mat-card-title>
+    <mat-card-subtitle>ID: {{ data.juego.id }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="detail-grid">
+      <div class="detail-item">
+        <span class="label">Fecha de Lanzamiento:</span>
+        <span>{{ data.juego.release_date | date:'dd/MM/yyyy' }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="label">Publicación:</span>
+        <span>{{ data.juego.publishment_date | date:'dd/MM/yyyy HH:mm' }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="label">Precio:</span>
+        <span>{{ data.juego.price | currency }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="label">Publisher:</span>
+        <span>{{ data.juego.publisherName }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="label">Desarrollador:</span>
+        <span>{{ data.juego.developerName }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="label">Categorías:</span>
+        <span>{{ data.juego.categoriasNames.join(', ') }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="label">Creado:</span>
+        <span>{{ data.juego.creationtimestamp | date:'dd/MM/yyyy HH:mm' }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="label">Creado por:</span>
+        <span>{{ data.juego.creationuser }}</span>
+      </div>
+      <div class="detail-item">
+        <span class="label">Modificado:</span>
+        <span>
+          {{ data.juego.modificationtimestamp ? (data.juego.modificationtimestamp | date:'dd/MM/yyyy HH:mm') : '—' }}
+        </span>
+      </div>
+      <div class="detail-item">
+        <span class="label">Modificado por:</span>
+        <span>{{ data.juego.modificationuser || '—' }}</span>
+      </div>
+    </div>
+
+    <img
+    *ngIf="data.juego.image_path"
+    [src]="environmentImg + data.juego.image_path"
+    alt="Imagen del Juego"
+    class="game-thumbnail"
+    />
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button mat-stroked-button color="primary" (click)="onClose()">Cerrar</button>
+  </mat-card-actions>
+</mat-card>

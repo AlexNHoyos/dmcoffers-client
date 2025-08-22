@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Juego } from '../../juegos.model';
 import { JuegoService } from '../../juegos.service';
 import { DesarrolladoresService } from 'src/app/aplicacion/desarrolladores/desarrolladores.service';
 import { PublisherService } from 'src/app/aplicacion/publishers/publisher.service';
 import { CategoriaService } from 'src/app/aplicacion/categorias/categoria.service';
 import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
+import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
 
 @Component({
     selector: 'app-juego-create',
@@ -14,6 +15,7 @@ import { UserUtilsService } from 'src/app/services/user/user-util-service.servic
     standalone: false
 })
 export class JuegoCreateComponent implements OnInit {
+
   selectedFile: File | null = null;
   today: Date = new Date();
   juego: Juego = {
@@ -34,6 +36,8 @@ export class JuegoCreateComponent implements OnInit {
   desarrolladores: any[] = [];
   publishers: any[] = [];
   categorias: any[] = [];
+  fileValid: boolean = true;
+  @ViewChild('fileInput') fileInput!: ElementRef;
 
   constructor(
     private juegoService: JuegoService,
@@ -41,8 +45,9 @@ export class JuegoCreateComponent implements OnInit {
     private publisherService: PublisherService,
     private categoriaService: CategoriaService,
     private dialogRef: MatDialogRef<JuegoCreateComponent>,
-    private userUtilsService: UserUtilsService
-  ) {}
+    private userUtilsService: UserUtilsService,
+    private dialog: MatDialog,
+  ) { }
 
   ngOnInit(): void {
     // Obtén y asigna el usuario al crear el juego
@@ -87,52 +92,61 @@ export class JuegoCreateComponent implements OnInit {
   }
 
   createJuego(): void {
-  const formData = new FormData();
+    const formData = new FormData();
 
-  const juegoToSend = {
-    gamename: this.juego.gamename,
-    release_date: this.juego.release_date
-      ? new Date(this.juego.release_date).toISOString()
-      : null,
-    publishment_date: this.juego.publishment_date
-      ? new Date(this.juego.publishment_date).toISOString()
-      : null,
-    creationuser: this.juego.creationuser,
-    creationtimestamp: this.juego.creationtimestamp
-      ? new Date(this.juego.creationtimestamp).toISOString()
-      : null,
-    id_developer: this.juego.developerName
-      ? this.desarrolladores.find(
+    const juegoToSend = {
+      gamename: this.juego.gamename,
+      release_date: this.juego.release_date
+        ? new Date(this.juego.release_date).toISOString()
+        : null,
+      publishment_date: this.juego.publishment_date
+        ? new Date(this.juego.publishment_date).toISOString()
+        : null,
+      creationuser: this.juego.creationuser,
+      creationtimestamp: this.juego.creationtimestamp
+        ? new Date(this.juego.creationtimestamp).toISOString()
+        : null,
+      id_developer: this.juego.developerName
+        ? this.desarrolladores.find(
           (dev) => dev.developername === this.juego.developerName
         ).id
-      : null,
-    id_publisher: this.juego.publisherName
-      ? this.publishers.find(
+        : null,
+      id_publisher: this.juego.publisherName
+        ? this.publishers.find(
           (pub) => pub.publishername === this.juego.publisherName
         ).id
-      : null,
-    categorias: this.juego.categoriasNames.map(
-      (catName) =>
-        this.categorias.find((cat) => cat.description === catName).id
-    ),
-    price: this.juego.price,
-  };
+        : null,
+      categorias: this.juego.categoriasNames.map(
+        (catName) =>
+          this.categorias.find((cat) => cat.description === catName).id
+      ),
+      price: this.juego.price,
+    };
 
-  formData.append('juego', JSON.stringify(juegoToSend));
-  
-  if (this.selectedFile) {
-    formData.append('image', this.selectedFile);
-  }
-  console.log('Juego enviado', formData);
-  this.juegoService.createJuego(formData).subscribe({
-    next: (response) => {
-      console.log('Juego creado exitosamente', response);
-      this.dialogRef.close(true);
-    },
-    error: (error) => {
-      console.error('Error creando juego', error);
-    },
-  });
+    formData.append('juego', JSON.stringify(juegoToSend));
+
+
+    if (this.selectedFile) {
+      formData.append('image', this.selectedFile);
+    }
+
+    if (!this.fileValid) {
+      this.dialog.open(ErrorDialogComponent, {
+        data: { message: 'El archivo seleccionado no es válido.', type: 'error' },
+      });
+      return;
+    }
+
+    console.log('Juego enviado', formData);
+    this.juegoService.createJuego(formData).subscribe({
+      next: (response) => {
+        console.log('Juego creado exitosamente', response);
+        this.dialogRef.close(true);
+      },
+      error: (error) => {
+        console.error('Error creando juego', error);
+      },
+    });
   }
 
   cancel(): void {
@@ -140,9 +154,46 @@ export class JuegoCreateComponent implements OnInit {
   }
 
   onFileSelected(event: any): void {
-  const file: File = event.target.files[0];
-  if (file) {
+
+    const file: File = event.target.files[0];
+
+    if (!file) {
+      // El usuario eliminó el archivo o no eligió ninguno
+      this.selectedFile = null;
+      this.fileValid = true;
+      return;
+    }
+
+    const maxSizeMB = 2;
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+
+    if (!allowedTypes.includes(file.type)) {
+      this.selectedFile = null;
+      this.fileValid = false;
+      event.target.value = '';
+      this.dialog.open(ErrorDialogComponent, {
+        data: { message: 'Solo se permiten imágenes JPEG, PNG o WebP.', type: 'error' },
+      });
+      return;
+    }
+
+    if (file.size > maxSizeMB * 1024 * 1024) {
+      this.selectedFile = null;
+      this.fileValid = false;
+      event.target.value = '';
+      this.dialog.open(ErrorDialogComponent, {
+        data: { message: `La imagen no debe superar los ${maxSizeMB}MB.`, type: 'error' },
+      });
+      return;
+    }
+
     this.selectedFile = file;
+    this.fileValid = true;
   }
+
+  removeImage(): void {
+    this.selectedFile = null;
+    this.fileValid = true;
+    this.fileInput.nativeElement.value = '';
   }
 }

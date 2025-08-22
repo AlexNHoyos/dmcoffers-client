@@ -46,13 +46,6 @@ export class JuegosCrudComponent extends CrudComponent<Juego> {
         width: '400px',
         data: { juego },
       });
-      console.log(juego);
-      /*  No es necesario porque no edito los datos adentro del dialog, pero podria implementarse a futuro
-      dialogRef.afterClosed().subscribe((result) => {
-        if (result) {
-          this.loadjuegos(); // Carga o actualiza la lista de juegos
-        }
-      });*/
     });
   }
 
@@ -105,10 +98,10 @@ export class JuegosCrudComponent extends CrudComponent<Juego> {
     }
   }
   override ngOnInit(): void {
-      // Carga y muestra la tabla
-      //this.loadJuegos();
-      // Muestra la tabla
-      this.showTable = true;
+    // Carga y muestra la tabla
+    this.loadJuegos();
+    // Muestra la tabla
+    this.showTable = true;
   }
 
   loadJuegos(): void {

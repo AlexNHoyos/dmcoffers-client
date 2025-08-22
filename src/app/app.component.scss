@@ -1,5 +1,6 @@
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
-$main-color: #5A189A; //Se puede cambiar!!
+@import "src/assets/styles/_variables.scss";
+
 
 /* ✅ Cambiado: ahora ocupa todo el alto y organiza verticalmente */
 :host {

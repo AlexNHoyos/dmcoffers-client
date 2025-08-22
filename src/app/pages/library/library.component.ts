@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { LibraryService } from 'src/app/aplicacion/juegos/library.service';
-import { ConfirmComponent } from 'src/app/components/confirm/confirm.component';
-import { LoginService } from 'src/app/services/auth/login.service';
 
 @Component({
     selector: 'app-library',
@@ -20,19 +17,10 @@ export class LibraryComponent {
   constructor(
     private libraryService: LibraryService,
     private router: Router,
-    private loginService: LoginService,
-    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
-    this.isLoggedIn = this.loginService.isLoggedIn();
-
-    if (!this.isLoggedIn) {
-      // Si no está autenticado, redirige a la página de inicio
-      this.router.navigate(['/inicio']);
-    } else {
-      this.loadLibrary();
-    }
+    this.loadLibrary();
   }
 
   loadLibrary() {

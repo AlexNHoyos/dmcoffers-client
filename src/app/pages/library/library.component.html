@@ -1,19 +1,30 @@
-<div *ngIf="isLoading">Cargando Biblioteca...</div>
 
-<div *ngIf="!isLoading && library.length === 0">
-  No tienes juegos en tu Biblioteca.
-</div>
+  <div class="titulo-biblioteca">
+    
+    <h1><i class="fas fa-gamepad"></i>Tu Biblioteca de Juegos</h1>
+    <p>Explorá y disfrutá tus juegos guardados</p>
+  </div>
 
-<div *ngIf="!isLoading && library.length > 0" class="titulo-container">
-  <h1 class="titulo">Biblioteca</h1>
-</div>
 
-<app-juego-list
-  *ngIf="!isLoading && library.length > 0"
-  [juegos]="library"
-  [isLoggedIn]="isLoggedIn"
-  [isWishlist]="false"
-  [isLibrary]="true"
-  (gameSelected)="verDetalle($event)"
->
-</app-juego-list>
+  <div *ngIf="isLoading" class="loading-section">
+    <mat-spinner></mat-spinner>
+    <p class="loading-text">Cargando tu colección...</p>
+  </div>
+
+
+  <div *ngIf="!isLoading && library.length === 0" class="empty-section">
+    <h3>Aún no tienes juegos</h3>
+    <p>¿Por qué no explorás algunos títulos para agregar a tu biblioteca?</p>
+    <button mat-raised-button color="primary" routerLink="/inicio">Explorar juegos</button>
+  </div>
+
+  <!-- Lista de juegos -->
+  <div *ngIf="!isLoading && library.length > 0">
+    <app-juego-list
+      [juegos]="library"
+      [isLoggedIn]="isLoggedIn"
+      [isWishlist]="false"
+      [isLibrary]="true"
+      (gameSelected)="verDetalle($event)">
+    </app-juego-list>
+  </div>

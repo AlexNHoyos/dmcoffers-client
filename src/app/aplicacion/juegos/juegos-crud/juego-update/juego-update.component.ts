@@ -12,7 +12,11 @@ import { Juego } from '../../juegos.model';
 import { DesarrolladoresService } from 'src/app/aplicacion/desarrolladores/desarrolladores.service';
 import { PublisherService } from 'src/app/aplicacion/publishers/publisher.service';
 import { CategoriaService } from 'src/app/aplicacion/categorias/categoria.service';
+<<<<<<< HEAD
 import { FormsModule } from '@angular/forms';
+=======
+import { environment } from 'src/environments/environment';
+>>>>>>> develop
 
 @Component({
     selector: 'app-juego-update',
@@ -20,6 +24,7 @@ import { FormsModule } from '@angular/forms';
     standalone: false
 })
 export class JuegoUpdateComponent {
+  environmentImg: string="";
   juego: Juego;
   desarrolladores: any[] = []; // Lista de desarrolladores
   publishers: any[] = []; // Lista de publishers
@@ -41,6 +46,7 @@ export class JuegoUpdateComponent {
   }
 
   ngOnInit(): void {
+    this.environmentImg = environment.urlImg
     // Cargar listas completas y seleccionar relaciones actuales
     this.loadDropdownData();
 

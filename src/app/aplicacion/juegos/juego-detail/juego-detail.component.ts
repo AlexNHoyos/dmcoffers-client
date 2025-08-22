@@ -27,6 +27,7 @@ export class JuegoDetailComponent implements OnInit {
   isInCart: boolean = false;
   cartBtnHover: boolean = false;
   environmentImg: string="";
+  redeemCode: string = '';
   private userSubscription!: Subscription;
 
   constructor(
@@ -90,26 +91,44 @@ export class JuegoDetailComponent implements OnInit {
   });
 }
 
-checkIfInLibrary(idJuego: number): void {
+  checkIfInLibrary(idJuego: number): void {
       this.libraryService.isInLibrary(idJuego).subscribe((response) => {
         this.isInLibrary = response.isInBiblioteca;
+        if (this.isInLibrary) {
+      this.generateRedeemCode();
+    }
       });
   }
 
-addToCart(): void {
-  this.cartService.addToCart(this.juego!.id).subscribe(() => {
-    this.isInCart = true;
-  });
-}
+  generateRedeemCode(): void { //Metodo para crear un codigo (hardcodeado)
+    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+    let code = '';
+    for (let i = 0; i < 15; i++) {
+      code += i > 0 && i % 5 === 0 ? '-' : chars[Math.floor(Math.random() * chars.length)];
+    }
+    this.redeemCode = code;
+  }
 
-removeFromCart(): void {
-    this.cartService.removeFromCart(this.juego!.id).subscribe(() => {
-      this.isInCart = false;
+  showRedeemCode = false;
+
+  toggleRedeemCode(): void {
+    this.showRedeemCode = !this.showRedeemCode;
+  }
+
+  addToCart(): void {
+    this.cartService.addToCart(this.juego!.id).subscribe(() => {
+      this.isInCart = true;
     });
   }
 
+  removeFromCart(): void {
+      this.cartService.removeFromCart(this.juego!.id).subscribe(() => {
+        this.isInCart = false;
+      });
+    }
 
-  back() {
-    this.location.back();
+
+    back() {
+      this.location.back();
+    }
   }
-}

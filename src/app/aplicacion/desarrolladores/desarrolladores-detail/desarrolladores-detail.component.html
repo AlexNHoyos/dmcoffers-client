@@ -1,32 +1,56 @@
-<h1 mat-dialog-title>Detalles del desarrollador</h1>
-<div mat-dialog-content>
-  <p><strong>ID:</strong> {{ data.desarrollador.id }}</p>
-  <p><strong>Nombre:</strong> {{ data.desarrollador.developername }}</p>
-  <p>
-    <strong>Fundacion:</strong>
-    {{ data.desarrollador.foundation_date | date }}
-  </p>
-  <p>
-    <strong>Disolucion:</strong>
-    {{ data.desarrollador.dissolution_date | date }}
-  </p>
-  <p>
-    <strong>Estado:</strong>
-    {{ data.desarrollador.status ? "Activo" : "Inactivo" }}
-  </p>
-  <p>
-    <strong>Fecha de carga:</strong>
-    {{ data.desarrollador.creationtimestamp | date }}
-  </p>
-  <p>
-    <strong>Fecha de modificacion:</strong>
-    {{ data.desarrollador.modificationtimestamp | date }}
-  </p>
-  <p><strong>Cargado por:</strong> {{ data.desarrollador.creationuser }}</p>
-  <p>
-    <strong>Modificado por:</strong> {{ data.desarrollador.modificationuser }}
-  </p>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onClose()">Close</button>
-</div>
+<mat-card class="detail-view-card">
+  <mat-card-header>
+    <div mat-card-avatar class="header-icon">
+      <mat-icon>engineering</mat-icon>
+    </div>
+    <mat-card-title>{{ data.desarrollador.developername }}</mat-card-title>
+    <mat-card-subtitle>ID: {{ data.desarrollador.id }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="detail-grid">
+      <div class="detail-item">
+        <span class="label">Fundación:</span>
+        <span>{{ data.desarrollador.foundation_date | date: 'dd/MM/yyyy' }}</span>
+      </div>
+
+      <div class="detail-item">
+        <span class="label">Disolución:</span>
+        <span>
+          {{ data.desarrollador.dissolution_date ? (data.desarrollador.dissolution_date | date: 'dd/MM/yyyy') : '—' }}
+        </span>
+      </div>
+
+      <div class="detail-item">
+        <span class="label">Estado:</span>
+        <span>{{ data.desarrollador.status ? 'Activo' : 'Inactivo' }}</span>
+      </div>
+
+      <div class="detail-item">
+        <span class="label">Fecha de carga:</span>
+        <span>{{ data.desarrollador.creationtimestamp | date: 'dd/MM/yyyy HH:mm' }}</span>
+      </div>
+
+      <div class="detail-item">
+        <span class="label">Fecha de modificación:</span>
+        <span>
+          {{ data.desarrollador.modificationtimestamp ? (data.desarrollador.modificationtimestamp | date: 'dd/MM/yyyy HH:mm') : '—' }}
+        </span>
+      </div>
+
+      <div class="detail-item">
+        <span class="label">Cargado por:</span>
+        <span>{{ data.desarrollador.creationuser }}</span>
+      </div>
+
+      <div class="detail-item">
+        <span class="label">Modificado por:</span>
+        <span>{{ data.desarrollador.modificationuser || '—' }}</span>
+      </div>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button mat-stroked-button color="primary" (click)="onClose()">Cerrar</button>
+  </mat-card-actions>
+</mat-card>

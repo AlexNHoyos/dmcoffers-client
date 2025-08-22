@@ -1,6 +1,6 @@
 <!-- Botón volver -->
 <div class="back-button-container">
-  <button mat-icon-button (click)="back()">
+  <button mat-fab color="primary" class="back-fab" (click)="back()" aria-label="Volver">
     <mat-icon>arrow_back</mat-icon>
   </button>
 </div>
@@ -8,52 +8,66 @@
 <!-- Contenido principal -->
 <mat-card *ngIf="juego" class="game-details-card">
   <!-- Imagen -->
-  <mat-card-header>
-    <mat-card-title>{{ juego.gamename }}</mat-card-title>
-    <mat-card-subtitle>Fecha de lanzamiento: {{ juego.release_date }}</mat-card-subtitle>
-  </mat-card-header>
-
   <img mat-card-image [src]="environmentImg + juego.image_path" alt="Imagen del juego" />
 
-  <!-- Contenido del juego -->
+  <mat-card-header>
+    <mat-card-title>{{ juego.gamename }}</mat-card-title>
+    <mat-card-subtitle>Fecha de lanzamiento: {{ juego.release_date | date:'longDate' }}</mat-card-subtitle>
+  </mat-card-header>
+
   <mat-card-content>
     <p><strong>Publicador:</strong> {{ juego.publisherName }}</p>
     <p><strong>Desarrollador:</strong> {{ juego.developerName }}</p>
 
     <div class="game-categories">
       <p><strong>Categorías:</strong></p>
-      <ul>
-        <li *ngFor="let categoria of juego.categoriasNames" class="category-tag">
+      <mat-chip-listbox>
+        <mat-chip *ngFor="let categoria of juego.categoriasNames" color="primary" selected>
           {{ categoria }}
-        </li>
-      </ul>
+        </mat-chip>
+      </mat-chip-listbox>
     </div>
 
-    <p><strong>Precio:</strong> {{ juego.price }} USD</p>
+    <p><strong>Precio:</strong> {{ juego.price | currency:'USD' }}</p>
 
     <p *ngIf="isInLibrary" class="text-muted">
       Este juego ya está en tu biblioteca.
     </p>
+
+    <!-- Código de Canje -->
+    <div *ngIf="isInLibrary" class="redeem-section">
+      <mat-icon color="primary">vpn_key</mat-icon>
+      <span class="redeem-label">Tu código de canje:</span>
+
+      <span class="redeem-code">
+        {{ showRedeemCode ? redeemCode : '•••••••••••••••' }}
+      </span>
+
+      <button mat-icon-button (click)="toggleRedeemCode()" [matTooltip]="showRedeemCode ? 'Ocultar' : 'Mostrar'">
+        <mat-icon>{{ showRedeemCode ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+    </div>
+
   </mat-card-content>
 
   <!-- Botones -->
   <mat-card-actions *ngIf="token">
     <button
       *ngIf="!isInWishlist"
-      mat-raised-button
+      mat-stroked-button
       color="primary"
       (click)="addToWishlist()"
     >
-      Agregar a la Wishlist
+      Agregar a Wishlist
     </button>
 
     <button
       *ngIf="isInWishlist"
-      mat-raised-button
+      mat-stroked-button
       color="warn"
       (click)="removeFromWishlist()"
     >
-      Eliminar de la Wishlist
+      Quitar de Wishlist
     </button>
 
     <button
@@ -73,7 +87,7 @@
       (mouseleave)="cartBtnHover = false"
       (click)="removeFromCart()"
     >
-      {{ cartBtnHover ? 'Quitar del Carrito' : 'Ya está en el Carrito' }}
+      {{ cartBtnHover ? 'Quitar del Carrito' : 'Ya en el Carrito' }}
     </button>
   </mat-card-actions>
 </mat-card>

@@ -10,8 +10,9 @@ import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
 
-import { MatInputModule } from '@angular/material/input';
 import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatChipListbox, MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -28,6 +29,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatListModule } from '@angular/material/list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FooterComponent } from './shared/footer/footer.component';
@@ -98,104 +100,101 @@ import { CartComponent } from './pages/cart/cart.component';
 import { LibraryComponent } from './pages/library/library.component';
 import { JuegosPorCategoriaComponent } from './aplicacion/juegos/juegos-por-categoria/juegos-por-categoria.component';
 import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
-import { DateAdapter } from '@angular/material/core';
-import { ForgotPassComponent } from './auth/forgotPass/forgotPass.component';
-import { ResetPassComponent } from './auth/resetPass/resetPass.component';
-import { F } from '@angular/cdk/a11y-module.d-DBHGyKoh';
-import { ForgotPasswordService } from './services/auth/forgotpass.service';
-import { ResetPasswordService } from './services/auth/resetpass.service';
+import { CarouselModule } from './components/carousel/carousel.module';
+import { HelpDialogComponent } from './components/help-dialog/help-dialog.component';
+import { ThemeToggleComponent } from './components/theme-toggle/theme-toggle.component';
+import { DropdownSelectComponent } from './components/dropdown-selector/dropdown-selector.component';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    ErrorDialogComponent,
-    DashboardComponent,
-    FooterComponent,
-    HeaderComponent,
-    LoginComponent,
-    NavComponent,
-    PersonalDetailsComponent,
-    ConfirmComponent,
-    PublisherComponent,
-    PublisherCreateComponent,
-    PublisherUpdateComponent,
-    PublisherDeleteComponent,
-    PublisherDetailComponent,
-    CategoriasComponent,
-    CategoriaCreateComponent,
-    CategoriaDeleteComponent,
-    CategoriaDetailComponent,
-    CategoriaUpdateComponent,
-    DesarrolladoresComponent,
-    DesarrolladoresCreateComponent,
-    DesarrolladoresDetailComponent,
-    DesarrolladoresUpdateComponent,
-    DesarrolladoresDeleteComponent,
-    HostingComponent,
-    HostingCreateComponent,
-    HostingDeleteComponent,
-    HostingDetailComponent,
-    HostingUpdateComponent,
-    SupportTicketComponent,
-    SupportTicketCreateComponent,
-    SupportTicketDeleteComponent,
-    SupportTicketDetailComponent,
-    SupportTicketUpdateComponent,
-    RegisterComponent,
-    HomeComponent,
-    JuegosComponent,
-    JuegoDetailComponent,
-    ResultadosBusquedaComponent,
-    JuegoListComponent,
-    JuegosCrudComponent,
-    JuegoCreateComponent,
-    JuegoDeleteComponent,
-    JuegoUpdateComponent,
-    JuegoDetailDialogComponent,
-    NotAuthorizedComponent,
-    WishlistComponent,
-    SoporteComponent,
-    UsuariosComponent,
-    UpdateRolComponent,
-    SweItemMenuComponent,
-    CartComponent,
-    LibraryComponent,
-    JuegosPorCategoriaComponent,
-    LoadingOverlayComponent,
-    ForgotPassComponent,
-    ResetPassComponent
-  ],
-  imports: [
-    CommonModule,
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatToolbarModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatIconModule,
-    MatCardModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatSelectModule,
-    MatExpansionModule,
-    MatDividerModule,
-    MatSnackBarModule,
-    MatListModule,
-    MatSidenavModule,
-    MatMenuModule,
-    MatProgressSpinnerModule,
-    HttpClientModule
-  ],
 
-  providers: [
+@NgModule({ declarations: [
+        AppComponent,
+        ErrorDialogComponent,
+        DashboardComponent,
+        FooterComponent,
+        HeaderComponent,
+        LoginComponent,
+        NavComponent,
+        PersonalDetailsComponent,
+        ConfirmComponent,
+        PublisherComponent,
+        PublisherCreateComponent,
+        PublisherUpdateComponent,
+        PublisherDeleteComponent,
+        PublisherDetailComponent,
+        CategoriasComponent,
+        CategoriaCreateComponent,
+        CategoriaDeleteComponent,
+        CategoriaDetailComponent,
+        CategoriaUpdateComponent,
+        DesarrolladoresComponent,
+        DesarrolladoresCreateComponent,
+        DesarrolladoresDetailComponent,
+        DesarrolladoresUpdateComponent,
+        DesarrolladoresDeleteComponent,
+        HostingComponent,
+        HostingCreateComponent,
+        HostingDeleteComponent,
+        HostingDetailComponent,
+        HostingUpdateComponent,
+        SupportTicketComponent,
+        SupportTicketCreateComponent,
+        SupportTicketDeleteComponent,
+        SupportTicketDetailComponent,
+        SupportTicketUpdateComponent,
+        RegisterComponent,
+        HomeComponent,
+        JuegosComponent,
+        JuegoDetailComponent,
+        ResultadosBusquedaComponent,
+        JuegoListComponent,
+        JuegosCrudComponent,
+        JuegoCreateComponent,
+        JuegoDeleteComponent,
+        JuegoUpdateComponent,
+        JuegoDetailDialogComponent,
+        NotAuthorizedComponent,
+        WishlistComponent,
+        SoporteComponent,
+        UsuariosComponent,
+        UpdateRolComponent,
+        SweItemMenuComponent,
+        CartComponent,
+        LibraryComponent,
+        JuegosPorCategoriaComponent,
+        LoadingOverlayComponent,
+        HelpDialogComponent,
+        ThemeToggleComponent,
+        DropdownSelectComponent,
+    ],
+    bootstrap: [AppComponent], imports: [CommonModule,
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatDialogModule,
+        MatToolbarModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatIconModule,
+        MatCardModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatSelectModule,
+        MatExpansionModule,
+        MatDividerModule,
+        MatSnackBarModule,
+        MatListModule,
+        MatSidenavModule,
+        MatMenuModule,
+        MatProgressSpinnerModule,
+        CarouselModule,
+        MatChipsModule,
+        MatTooltipModule], providers: [
         WishlistService,
         CartService,
         RegisterService,
@@ -205,12 +204,6 @@ import { ResetPasswordService } from './services/auth/resetpass.service';
         DesarrolladoresService,
         RegisterService,
         SweItemMenuService,
-        ForgotPasswordService,
-        ResetPasswordService,
-        {
-            provide: DateAdapter,
-            useClass: NativeDateAdapter
-        },
         {
             provide: HTTP_INTERCEPTORS,
             useClass: JwtInterceptorService,
@@ -221,9 +214,11 @@ import { ResetPasswordService } from './services/auth/resetpass.service';
             useClass: ErrorInterceptorService,
             multi: true,
         },
-        provideHttpClient(withInterceptorsFromDi()),
-    ] ,
-
-  bootstrap: [AppComponent],
-})
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: LoadingInterceptor,
+            multi: true
+        },
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule { }

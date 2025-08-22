@@ -1,40 +1,50 @@
-<div class="update-container">
-  <form #hostingForm="ngForm">
-    <mat-form-field class="form-field">
-      <mat-label>Nombre del hosting</mat-label>
-      <input
-        matInput
-        type="text"
-        [(ngModel)]="hosting.name"
-        name="name"
-        #name="ngModel"
-        minlength="1"
-        required
-      />
+<mat-card class="update-card">
+  <mat-card-header>
+    <mat-card-title>Editar Hosting</mat-card-title>
+    <mat-card-subtitle>Modifica los datos del servicio de hosting</mat-card-subtitle>
+  </mat-card-header>
 
-      <button
-        *ngIf="hosting.name"
-        matSuffix
-        mat-icon-button
-        aria-label="Clear"
-        (click)="hosting.name = ''"
-      >
-        <mat-icon>close</mat-icon>
-      </button>
+  <mat-card-content>
+    <form #hostingForm="ngForm" class="form-grid">
 
-      <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
-        El nombre del hosting no puede estar vacío.
-      </mat-error>
-    </mat-form-field>
+      <!-- Nombre del Hosting -->
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre del hosting</mat-label>
+        <input
+          matInput
+          type="text"
+          [(ngModel)]="hosting.name"
+          name="name"
+          #name="ngModel"
+          minlength="1"
+          required
+        />
+        <button
+          *ngIf="hosting.name"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="hosting.name = ''"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
+          El nombre no puede estar vacío.
+        </mat-error>
+      </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Estado</mat-label>
-      <mat-select [(ngModel)]="hosting.status" name="status">
-        <mat-option [value]="true">Activo</mat-option>
-        <mat-option [value]="false">Inactivo</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <br />
+      <!-- Estado -->
+      <mat-form-field appearance="outline">
+        <mat-label>Estado</mat-label>
+        <mat-select [(ngModel)]="hosting.status" name="status" required>
+          <mat-option [value]="true">Activo</mat-option>
+          <mat-option [value]="false">Inactivo</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+
+  <mat-card-actions class="action-buttons">
     <button
       mat-raised-button
       color="primary"
@@ -45,8 +55,13 @@
       Actualizar
     </button>
 
-    <button mat-flat-button type="button" color="secondary" (click)="cancel()">
+    <button
+      mat-stroked-button
+      color="warn"
+      type="button"
+      (click)="cancel()"
+    >
       Cancelar
     </button>
-  </form>
-</div>
+  </mat-card-actions>
+</mat-card>

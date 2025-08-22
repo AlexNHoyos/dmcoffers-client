@@ -6,6 +6,7 @@ import { LoginRequest } from '../../models/loginRequest';
 import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { EncryptionService } from 'src/app/services/auth/encryption.service';
+import { ProximamenteService } from 'src/app/services/proximamente.service';
 
 @Component({
     selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private dialog: MatDialog,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private proximamenteService: ProximamenteService,
   ) {
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required]], //Validadores requeridos
@@ -57,6 +59,10 @@ export class LoginComponent implements OnInit {
       this.loginForm.markAllAsTouched();
       this.showErrorDialog('Error al ingresar los datos.');
     }
+  }
+
+  showProximamente(): void {
+    this.proximamenteService.mostrarMensaje();
   }
 
   private showErrorDialog(errorMessage: string): void {

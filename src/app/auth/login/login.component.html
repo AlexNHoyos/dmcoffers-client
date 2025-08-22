@@ -1,42 +1,43 @@
 <form [formGroup]="loginForm" (ngSubmit)="login()">
-  <mat-card class="login-card">
+  <mat-card class="login-card elevation-3">
     <mat-card-header class="login-card-header">
-      <mat-card-title class="login-card-title">INICIAR SESION</mat-card-title>
+      <mat-card-title class="login-card-title">
+        <mat-icon class="login-icon">login</mat-icon>
+        INICIAR SESIÓN
+      </mat-card-title>
     </mat-card-header>
 
     <mat-card-content>
-      <mat-form-field appearance="fill" class="full-width">
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Usuario</mat-label>
+        <mat-icon matPrefix>person</mat-icon>
         <input
           matInput
           formControlName="username"
           placeholder="Ingrese su usuario"
         />
-        <mat-error
-          *ngIf="username.invalid && (username.dirty || username.touched)"
-        >
-          <div *ngIf="username.hasError('required')">
-            El usuario es requerido.
-          </div>
+        <mat-error *ngIf="username.invalid && (username.dirty || username.touched)">
+          <div *ngIf="username.hasError('required')">El usuario es requerido.</div>
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="fill" class="full-width">
+      <mat-form-field appearance="outline" class="full-width">
         <mat-label>Contraseña</mat-label>
+        <mat-icon matPrefix>lock</mat-icon>
         <input
           matInput
           formControlName="password"
           type="password"
           placeholder="Ingrese su contraseña"
         />
-        <mat-error
-          *ngIf="password.invalid && (password.dirty || password.touched)"
-        >
-          <div *ngIf="password.hasError('required')">
-            La contraseña es requerida.
-          </div>
+        <mat-error *ngIf="password.invalid && (password.dirty || password.touched)">
+          <div *ngIf="password.hasError('required')">La contraseña es requerida.</div>
         </mat-error>
       </mat-form-field>
+
+      <div class="forgot-password">
+        <a (click)="showProximamente()">¿Olvidaste tu contraseña?</a>
+      </div>
     </mat-card-content>
 
     <a routerLink="/forgotPass">¿Olvidaste tu contraseña?</a>

@@ -13,6 +13,7 @@ import { UserService } from 'src/app/services/user/user.service';
 export class UpdateRolComponent {
   roles: string[] = ['admin', 'moderador', 'usuarioForo', 'usuarioTienda'];
   user: User;
+  selectedRoles: string[] = []; 
 
   constructor(
     private userService: UserService,
@@ -26,8 +27,10 @@ export class UpdateRolComponent {
       id: data.user.idUser,
     };
 
-    if (this.data.user.rolDesc) {
-      this.user.rolDescription = this.data.user.rolDesc;
+    if (this.user.rolDescription) {
+      this.selectedRoles = [this.user.rolDescription]; // inicializa si venís de uno solo
+    } else if (this.user.roles) {
+      this.selectedRoles = this.user.roles; // si ya viniera con varios
     }
   }
 
@@ -37,23 +40,32 @@ export class UpdateRolComponent {
         this.user.modificationuser = username;
         this.user.modificationtimestamp = new Date().toISOString();
 
-        // Actualiza el objeto del usuario con el rol actualizado
-        const userRequest = {
-          ...this.user,
-          rolDesc: this.user.rolDescription, // Cambia solo el campo de rol
-        };
+        // Convertir los roles seleccionados a IDs si es necesario
+        const roleIds = this.selectedRoles.map(r => this.mapRolNameToId(r));
+        console.log('roles seleccionados:', this.selectedRoles);
+        console.log('IDs a enviar:', roleIds);
 
-        this.userService.updateUser(this.user.idUser, userRequest).subscribe(
+        this.userService.updateUserRoles(this.user.idUser, roleIds).subscribe(
           (response) => {
-            console.log('Usuario actualizado:', response);
+            console.log('Roles actualizados', response);
             this.dialogRef.close(true);
           },
           (error) => {
-            console.error('Error al actualizar usuario:', error);
+            console.error('Error al actualizar roles de usuario:', error);
           }
         );
       }
     });
+  }
+
+  mapRolNameToId(roleName: string): number {
+    const rolesMap: { [key: string]: number } = {
+      admin: 1,
+      moderador: 2,
+      usuarioForo: 3,
+      usuarioTienda: 4,
+    };
+    return rolesMap[roleName] || 0;
   }
 
   cancel(): void {
