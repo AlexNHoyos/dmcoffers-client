@@ -79,7 +79,15 @@ export class SweItemMenuComponent implements OnInit {
         }
       });
 
+      // ordeno padres e hijos (si es necesario usar ordernumber)
+      menuItems.sort((a, b) => a.ordernumber - b.ordernumber);
+      menuItems.forEach(item => {
+        item.subMenus.sort((a, b) => a.ordernumber - b.ordernumber);
+      });
+
       this.menuItems = menuItems;
+
+      console.log(this.menuItems)
 
     });
   }
