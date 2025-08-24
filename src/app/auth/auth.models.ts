@@ -4,6 +4,7 @@ export class User {
   realname: undefined | string = '';
   surname: undefined | string = '';
   username: string = '';
+  email: string = '';
   birth_date?: Date;
   delete_date?: Date;
   creationuser?: string;

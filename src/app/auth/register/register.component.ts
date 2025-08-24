@@ -48,6 +48,7 @@ export class RegisterComponent implements OnInit {
             this.passwordHasUpperCase(),
           ],
         ],
+        email: ['', [Validators.required, this.emailValidator]],
         password2: ['', [Validators.required, Validators.minLength(8)]],
         birth_date: ['', [Validators.required]],
       },
@@ -56,7 +57,7 @@ export class RegisterComponent implements OnInit {
     this.user = new User();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   register() {
     this.user.surname = this.registerForm.controls['surname'].value;
@@ -71,10 +72,9 @@ export class RegisterComponent implements OnInit {
       this.registerForm.controls['password'].value
     );
     this.user.birth_date = this.registerForm.controls['birth_date'].value;
-
+    this.user.email = this.registerForm.controls['email'].value;
     this.registerService.register(this.user).subscribe(
       (data) => {
-        console.log('Registrado con éxito: ', data);
         this.showSuccessDialog();
         setTimeout(() => {
           this.router.navigate(['/login']);
@@ -130,7 +130,22 @@ export class RegisterComponent implements OnInit {
     };
   }
 
-  goToLogin(){
+  emailValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const email = control.value;
+
+      if (!email) {
+        return null; // No validamos si está vacío, se usa Validators.required aparte
+      }
+
+      // Expresión regular simple para validar emails
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      return emailRegex.test(email) ? null : { invalidEmail: true };
+    };
+  }
+
+  goToLogin() {
     this.router.navigate(['/login']);
   }
 }

@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   get username() {
     return this.loginForm.controls['username'];
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
   login() {
     if (this.loginForm.valid) {
       this.loginService.login(this.loginForm.value as LoginRequest).subscribe({
-        next: (userData) => {},
+        next: (userData) => { },
         error: (errorData) => {
           console.log(errorData);
           this.showErrorDialog(errorData);
