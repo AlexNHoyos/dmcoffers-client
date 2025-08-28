@@ -3,9 +3,10 @@ import { Router } from '@angular/router';
 import { LibraryService } from 'src/app/aplicacion/juegos/library.service';
 
 @Component({
-  selector: 'app-library',
-  templateUrl: './library.component.html',
-  styleUrls: ['./library.component.scss']
+    selector: 'app-library',
+    templateUrl: './library.component.html',
+    styleUrls: ['./library.component.scss'],
+    standalone: false
 })
 export class LibraryComponent {
   library: any[] = [];

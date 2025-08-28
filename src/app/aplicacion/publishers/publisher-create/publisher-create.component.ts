@@ -7,9 +7,10 @@ import { UserUtilsService } from 'src/app/services/user/user-util-service.servic
 import { PublisherService } from '../publisher.service';
 
 @Component({
-  selector: 'app-publisher-create',
-  templateUrl: './publisher-create.component.html',
-  styleUrls: ['./publisher-create.component.scss'],
+    selector: 'app-publisher-create',
+    templateUrl: './publisher-create.component.html',
+    styleUrls: ['./publisher-create.component.scss'],
+    standalone: false
 })
 export class PublisherCreateComponent {
   today: Date = new Date();

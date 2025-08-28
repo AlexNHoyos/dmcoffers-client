@@ -1,6 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+import { FormsModule } from '@angular/forms';
+
 import { HeaderComponent } from './header.component';
+import { NavComponent } from '../nav/nav.component';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -8,7 +22,19 @@ describe('HeaderComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [HeaderComponent]
+      declarations: [HeaderComponent, NavComponent],
+      imports: [
+        MatIconModule,
+        MatFormFieldModule,
+        MatToolbarModule,
+        FormsModule,
+        MatMenuModule,
+        MatSnackBarModule
+      ],
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting()
+      ]
     });
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;

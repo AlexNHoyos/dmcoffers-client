@@ -7,9 +7,10 @@ import { UserUtilsService } from 'src/app/services/user/user-util-service.servic
 import { DesarrolladoresService } from '../desarrolladores.service';
 
 @Component({
-  selector: 'app-desarrolladores-create',
-  templateUrl: './desarrolladores-create.component.html',
-  styleUrls: ['./desarrolladores-create.component.scss'],
+    selector: 'app-desarrolladores-create',
+    templateUrl: './desarrolladores-create.component.html',
+    styleUrls: ['./desarrolladores-create.component.scss'],
+    standalone: false
 })
 export class DesarrolladoresCreateComponent {
   today: Date = new Date();

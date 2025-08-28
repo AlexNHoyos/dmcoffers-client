@@ -5,9 +5,10 @@ import { SupportTicketCreateComponent } from 'src/app/aplicacion/support-ticket/
 import { LoginService } from 'src/app/services/auth/login.service';
 
 @Component({
-  selector: 'app-soporte',
-  templateUrl: './soporte.component.html',
-  styleUrls: ['./soporte.component.scss'],
+    selector: 'app-soporte',
+    templateUrl: './soporte.component.html',
+    styleUrls: ['./soporte.component.scss'],
+    standalone: false
 })
 export class SoporteComponent implements OnInit {
   isLoggedIn: boolean = false;
