@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
     private dialog: MatDialog,
     private loginService: LoginService,
     private proximamenteService: ProximamenteService,
+    private encryptionService: EncryptionService,
   ) {
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required]], //Validadores requeridos
@@ -38,7 +39,7 @@ export class LoginComponent implements OnInit {
   }
 
   get password() {
-    return this.loginForm.controls['password'];
+    return this.encryptionService.encrypt(this.loginForm.controls['password'].value);
   }
 
   login() {

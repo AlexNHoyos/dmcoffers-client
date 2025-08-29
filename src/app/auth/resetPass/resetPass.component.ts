@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { EncryptionService } from 'src/app/services/auth/encryption.service';
 import { ResetPasswordService } from 'src/app/services/auth/resetpass.service';
 
+
 @Component({
   selector: 'app-reset-pass',
   templateUrl: './resetPass.component.html',
@@ -45,7 +46,7 @@ export class ResetPassComponent implements OnInit {
 
   resetPass(){
     this.token = this.tokenControl?.value;
-    this.password = this.newPasswordControl?.value;
+    this.password = this.encryptionService.encrypt(this.newPasswordControl?.value);
 
     if (this.ResetPassForm.valid) {
       this.resetPasswordService.resetPassword(this.token, this.password).subscribe({
