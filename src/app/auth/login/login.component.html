@@ -12,19 +12,19 @@
         <mat-label>Usuario</mat-label>
         <mat-icon matPrefix>person</mat-icon>
         <input matInput formControlName="username" placeholder="Ingrese su usuario" />
-        <mat-error *ngIf="username.invalid && (username.dirty || username.touched)">
-          <div *ngIf="username.hasError('required')">El usuario es requerido.</div>
+        <mat-error *ngIf="username?.invalid && (username?.dirty || username?.touched)">
+          <div *ngIf="username?.hasError('required')">El usuario es requerido.</div>
         </mat-error>
-      </mat-form-field>
+    </mat-form-field>
 
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Contraseña</mat-label>
-        <mat-icon matPrefix>lock</mat-icon>
-        <input matInput formControlName="password" type="password" placeholder="Ingrese su contraseña" />
-        <mat-error *ngIf="password.invalid && (password.dirty || password.touched)">
-          <div *ngIf="password.hasError('required')">La contraseña es requerida.</div>
-        </mat-error>
-      </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Contraseña</mat-label>
+      <mat-icon matPrefix>lock</mat-icon>
+      <input matInput formControlName="password" type="password" placeholder="Ingrese su contraseña" />
+      <mat-error *ngIf="passwordControl?.invalid && (passwordControl?.dirty || passwordControl?.touched)">
+        <div *ngIf="passwordControl?.hasError('required')">La contraseña es requerida.</div>
+      </mat-error>
+    </mat-form-field>
 
       <div class="link-register-forgotpassword">
         <a routerLink="/forgotPass">¿Olvidaste tu contraseña?</a>
