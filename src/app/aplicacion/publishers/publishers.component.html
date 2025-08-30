@@ -3,9 +3,7 @@
   <div *ngIf="showTable">
     <div class="title-crud">
       <h3>Publicadores</h3>
-      <button mat-icon-button class="add-btn" color="primary" aria-label="Añadir" (click)="openCreateDialog()">
-        <mat-icon>add</mat-icon>
-      </button>
+
     </div>
 
     <div class="tabla-crud normal-table">
@@ -43,6 +41,11 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
+
+      <button mat-icon-button class="add-btn" color="primary" aria-label="Añadir" (click)="openCreateDialog()"
+        style="background-color: #bc71fe; margin-top: 1vh;">
+        <mat-icon>add</mat-icon>
+      </button>
     </div>
   </div>
 </div>

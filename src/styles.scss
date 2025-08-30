@@ -81,8 +81,6 @@ mat-mdc-button {
   padding: 0;
 }
 
-
-
 mat-mdc-card-actions,
 mdc-card-actions {
   gap: 20px;
@@ -285,6 +283,7 @@ mat-divider {
   text-align: center;
   background-color: #bc71fe !important;
   text-transform: uppercase;
+  font-style: normal;
 }
 
 .tabla-crud {
