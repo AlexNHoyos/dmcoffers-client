@@ -1,91 +1,63 @@
-<mat-card class="update-card">
+<mat-card class="dialog-card">
   <mat-card-header>
-    <mat-card-title>Editar Publicador</mat-card-title>
-    <mat-card-subtitle>Modifica los datos del publicador</mat-card-subtitle>
+    <mat-card-title>Editar publicador</mat-card-title>
   </mat-card-header>
 
   <mat-card-content>
     <form #publisherForm="ngForm" class="form-grid">
+      <div class="row">
+        <!-- Nombre del Publisher -->
+        <mat-form-field appearance="outline" class="col-12">
+          <mat-label>Nombre</mat-label>
+          <input matInput type="text" [(ngModel)]="publisher.publishername" name="publishername" #name="ngModel"
+            required minlength="1" />
 
-      <!-- Nombre del Publisher -->
-      <mat-form-field appearance="outline">
-        <mat-label>Nombre del publisher</mat-label>
-        <input
-          matInput
-          type="text"
-          [(ngModel)]="publisher.publishername"
-          name="publishername"
-          #name="ngModel"
-          required
-          minlength="1"
-        />
+          <button *ngIf="publisher.publishername" matSuffix mat-icon-button aria-label="Clear"
+            (click)="publisher.publishername = ''">
+            <mat-icon>close</mat-icon>
+          </button>
 
-        <button
-          *ngIf="publisher.publishername"
-          matSuffix
-          mat-icon-button
-          aria-label="Clear"
-          (click)="publisher.publishername = ''"
-        >
-          <mat-icon>close</mat-icon>
-        </button>
+          <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
+            El nombre no puede estar vacío.
+          </mat-error>
+        </mat-form-field>
+      </div>
 
-        <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
-          El nombre no puede estar vacío.
-        </mat-error>
-      </mat-form-field>
+      <div class="row">
+        <!-- Fundación -->
+        <mat-form-field appearance="outline" class="col-6">
+          <mat-label>Fundación</mat-label>
+          <input matInput [matDatepicker]="picker1" [(ngModel)]="publisher.foundation_date" name="foundation_date"
+            [max]="today" required />
+          <mat-hint>DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
 
-      <!-- Fundación -->
-      <mat-form-field appearance="outline">
-        <mat-label>Fecha de Fundación</mat-label>
-        <input
-          matInput
-          [matDatepicker]="picker1"
-          [(ngModel)]="publisher.foundation_date"
-          name="foundation_date"
-          [max]="today"
-          required
-        />
-        <mat-hint>DD/MM/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
-        <mat-datepicker #picker1></mat-datepicker>
-      </mat-form-field>
+        <!-- Disolución -->
+        <mat-form-field appearance="outline" class="col-6">
+          <mat-label>Disolución</mat-label>
+          <input matInput [matDatepicker]="picker2" [(ngModel)]="publisher.dissolution_date" name="dissolution_date" />
+          <mat-hint>DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+      </div>
 
-      <!-- Disolución -->
-      <mat-form-field appearance="outline">
-        <mat-label>Fecha de Disolución</mat-label>
-        <input
-          matInput
-          [matDatepicker]="picker2"
-          [(ngModel)]="publisher.dissolution_date"
-          name="dissolution_date"
-        />
-        <mat-hint>DD/MM/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
-        <mat-datepicker #picker2></mat-datepicker>
-      </mat-form-field>
+
+
 
     </form>
   </mat-card-content>
 
   <mat-card-actions class="action-buttons">
-    <button
-      mat-raised-button
-      color="primary"
-      type="submit"
-      (click)="onUpdatePublisher()"
-      [disabled]="publisherForm.invalid"
-    >
-      Actualizar
+    <button mat-stroked-button color="warn" type="button" (click)="cancel()">
+      Cancelar
     </button>
 
-    <button
-      mat-stroked-button
-      color="warn"
-      type="button"
-      (click)="cancel()"
-    >
-      Cancelar
+    <button mat-raised-button color="primary" type="submit" (click)="onUpdatePublisher()"
+      [disabled]="publisherForm.invalid">
+      Actualizar
     </button>
   </mat-card-actions>
 </mat-card>

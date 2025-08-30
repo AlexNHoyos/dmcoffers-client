@@ -1,53 +1,37 @@
-<mat-card class="card">
-  <mat-card-header>
-    <mat-card-title>Crear Categoria</mat-card-title>
-    <mat-card-subtitle>Ingrese los siguientes datos:</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <form (ngSubmit)="createCategoria()" #categoriasForm="ngForm">
-      <mat-form-field class="form-field">
-        <mat-label>Descripcion</mat-label>
-        <input
-          matInput
-          type="text"
-          [(ngModel)]="categoria.description"
-          name="descripcion"
-          #name="ngModel"
-          required
-          minlength="1"
-        />
+<div class="dialog-card">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Crear categoría</mat-card-title>
+    </mat-card-header>
 
-        <button
-          *ngIf="categoria.description"
-          matSuffix
-          mat-icon-button
-          aria-label="Clear"
-          (click)="categoria.description = ''"
-        >
-          <mat-icon>close</mat-icon>
-        </button>
+    <mat-card-content>
+      <form (ngSubmit)="createCategoria()" #categoriasForm="ngForm">
+        <mat-form-field appearance="outline" class="col-12">
+          <mat-label>Descripción</mat-label>
+          <input matInput type="text" [(ngModel)]="categoria.description" name="descripcion" #name="ngModel" required
+            minlength="1" />
 
-        <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
-          La descripcion no puede estar vacía.
-        </mat-error>
-      </mat-form-field>
+          <button *ngIf="categoria.description" matSuffix mat-icon-button aria-label="Clear" type="button"
+            (click)="categoria.description = ''">
+            <mat-icon>close</mat-icon>
+          </button>
 
-      <button
-        mat-flat-button
-        type="submit"
-        color="primary"
-        [disabled]="categoriasForm.invalid"
-      >
-        Crear
-      </button>
-      <button
-        mat-flat-button
-        type="button"
-        color="secondary"
-        (click)="cancel()"
-      >
+          <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
+            La descripción no puede estar vacía.
+          </mat-error>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+
+    <mat-card-actions class="action-buttons">
+      <button mat-stroked-button type="button" color="warn" (click)="cancel()">
         Cancelar
       </button>
-    </form>
-  </mat-card-content>
-</mat-card>
+
+      <button mat-flat-button type="submit" color="primary" [disabled]="categoriasForm.invalid"
+        (click)="createCategoria()">
+        Crear
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

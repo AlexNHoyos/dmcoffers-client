@@ -9,10 +9,10 @@ import { CategoriaDeleteComponent } from './categoria-delete/categoria-delete.co
 import { CategoriaDetailComponent } from './categoria-detail/categoria-detail.component';
 
 @Component({
-    selector: 'app-categorias',
-    templateUrl: './categorias.component.html',
-    styleUrls: ['./categorias.component.scss'],
-    standalone: false
+  selector: 'app-categorias',
+  templateUrl: './categorias.component.html',
+  styleUrls: ['./categorias.component.scss'],
+  standalone: false
 })
 export class CategoriasComponent extends CrudComponent<Categoria> {
   categorias: Categoria[] = [];
@@ -41,6 +41,7 @@ export class CategoriasComponent extends CrudComponent<Categoria> {
   openCreateDialog(): void {
     const dialogRef = this.dialog.open(CategoriaCreateComponent, {
       width: '400px',
+      disableClose: true,
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -55,6 +56,7 @@ export class CategoriasComponent extends CrudComponent<Categoria> {
     this.categoriaService.getCategoria(id).subscribe((categoria) => {
       const dialogRef = this.dialog.open(CategoriaDetailComponent, {
         width: '400px',
+        disableClose: true,
         data: { categoria },
       });
       /*  No es necesario porque no edito los datos adentro del dialog, pero podria implementarse a futuro
@@ -70,6 +72,7 @@ export class CategoriasComponent extends CrudComponent<Categoria> {
     this.categoriaService.getCategoria(id).subscribe((categoria) => {
       const dialogRef = this.dialog.open(CategoriaUpdateComponent, {
         width: '400px',
+        disableClose: true,
         data: { categoria },
       });
 
@@ -85,6 +88,7 @@ export class CategoriasComponent extends CrudComponent<Categoria> {
   openDeleteDialog(id: number): void {
     const dialogRef = this.dialog.open(CategoriaDeleteComponent, {
       width: '400px',
+      disableClose: true,
       data: { id },
     });
 

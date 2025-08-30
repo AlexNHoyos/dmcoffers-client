@@ -1,62 +1,48 @@
-<mat-card class="card">
+<mat-card class="dialog-card">
   <mat-card-header>
     <mat-card-title>Crear Hosting</mat-card-title>
-    <mat-card-subtitle>Ingrese los siguientes datos:</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <form (ngSubmit)="createHosting()" #hostingForm="ngForm">
-      <mat-form-field class="form-field">
-        <mat-label>Nombre del hosting</mat-label>
-        <input
-          matInput
-          type="text"
-          [(ngModel)]="hosting.name"
-          name="name"
-          #name="ngModel"
-          required
-          minlength="1"
-        />
 
-        <button
-          *ngIf="hosting.name"
-          matSuffix
-          mat-icon-button
-          aria-label="Clear"
-          (click)="hosting.name = ''"
-        >
-          <mat-icon>close</mat-icon>
-        </button>
+      <div class="row">
+        <mat-form-field class="col-12" appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input matInput type="text" [(ngModel)]="hosting.name" name="name" #name="ngModel" required minlength="1" />
 
-        <!-- Mensaje de error si el campo está vacío -->
-        <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
-          El nombre del hosting no puede estar vacío.
-        </mat-error>
-      </mat-form-field>
+          <button *ngIf="hosting.name" matSuffix mat-icon-button aria-label="Clear" (click)="hosting.name = ''">
+            <mat-icon>close</mat-icon>
+          </button>
 
-      <mat-form-field>
-        <mat-label>Status</mat-label>
-        <mat-select [(ngModel)]="hosting.status" name="status">
-          <mat-option [value]="true">Activo</mat-option>
-          <mat-option [value]="false">Inactivo</mat-option>
-        </mat-select>
-      </mat-form-field>
+          <!-- Mensaje de error si el campo está vacío -->
+          <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
+            El nombre del hosting no puede estar vacío.
+          </mat-error>
+        </mat-form-field>
+      </div>
 
-      <button
-        mat-flat-button
-        type="submit"
-        color="primary"
-        [disabled]="hostingForm.invalid"
-      >
-        Crear
-      </button>
-      <button
-        mat-flat-button
-        type="button"
-        color="secondary"
-        (click)="cancel()"
-      >
-        Cancelar
-      </button>
+      <div class="row">
+        <mat-form-field class="col-12" appearance="outline">
+          <mat-label>Status</mat-label>
+          <mat-select [(ngModel)]="hosting.status" name="status">
+            <mat-option [value]="true">Activo</mat-option>
+            <mat-option [value]="false">Inactivo</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+
+
+
     </form>
   </mat-card-content>
+  <mat-card-actions class="action-buttons">
+    <button mat-stroked-button type="button" color="secondary" (click)="cancel()">
+      Cancelar
+    </button>
+
+    <button mat-flat-button type="submit" color="primary" [disabled]="hostingForm.invalid">
+      Crear
+    </button>
+  </mat-card-actions>
 </mat-card>
