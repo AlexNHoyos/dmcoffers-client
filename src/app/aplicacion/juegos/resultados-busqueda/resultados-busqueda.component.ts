@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
   selector: 'app-resultados-busqueda',
   templateUrl: './resultados-busqueda.component.html',
   styleUrls: ['./resultados-busqueda.component.scss'],
+  standalone: false
 })
 export class ResultadosBusquedaComponent implements OnInit {
   juegos: any[] = [];
@@ -23,7 +24,7 @@ export class ResultadosBusquedaComponent implements OnInit {
     private router: Router,
     private wishlistService: WishlistService,
     private loginService: LoginService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     // Verificar si el usuario está logueado
@@ -79,7 +80,6 @@ export class ResultadosBusquedaComponent implements OnInit {
     if (this.isLoggedIn) {
       this.wishlistService.addToWishlist(juego.id).subscribe(() => {
         juego.isInWishlist = true;
-        console.log('Juego agregado a la wishlist');
       });
     }
   }
@@ -88,7 +88,6 @@ export class ResultadosBusquedaComponent implements OnInit {
     if (this.isLoggedIn) {
       this.wishlistService.removeFromWishlist(juego.id).subscribe(() => {
         juego.isInWishlist = false;
-        console.log('Juego eliminado de la wishlist');
       });
     }
   }

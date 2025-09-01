@@ -12,6 +12,7 @@ import { SupportTicketDeleteComponent } from './support-ticket-delete/support-ti
   selector: 'app-support-ticket',
   templateUrl: './support-ticket.component.html',
   styleUrls: ['./support-ticket.component.scss'],
+  standalone: false
 })
 export class SupportTicketComponent extends CrudComponent<SupportTicket> {
   supportTickets: SupportTicket[] = [];
@@ -33,11 +34,11 @@ export class SupportTicketComponent extends CrudComponent<SupportTicket> {
   openCreateDialog(): void {
     const dialogRef = this.dialog.open(SupportTicketCreateComponent, {
       width: '400px',
+      disableClose: true,
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('SupportTicket creado');
         this.loadSupportTickets(); // Carga o actualiza la lista de SupportTickets
       }
     });
@@ -49,6 +50,7 @@ export class SupportTicketComponent extends CrudComponent<SupportTicket> {
       .subscribe((supportTicket) => {
         const dialogRef = this.dialog.open(SupportTicketDetailComponent, {
           width: '400px',
+          disableClose: true,
           data: { supportTicket },
         });
       });
@@ -60,12 +62,12 @@ export class SupportTicketComponent extends CrudComponent<SupportTicket> {
       .subscribe((supportTicket) => {
         const dialogRef = this.dialog.open(SupportTicketUpdateComponent, {
           width: '400px',
+          disableClose: true,
           data: { supportTicket },
         });
 
         dialogRef.afterClosed().subscribe((result) => {
           if (result) {
-            console.log('SupportTicket actualizado');
             this.loadSupportTickets(); // Carga o actualiza la lista de SupportTickets
           }
         });
@@ -75,12 +77,12 @@ export class SupportTicketComponent extends CrudComponent<SupportTicket> {
   openDeleteDialog(id: number): void {
     const dialogRef = this.dialog.open(SupportTicketDeleteComponent, {
       width: '400px',
+      disableClose: true,
       data: { id },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('SupportTicket eliminado');
         this.loadSupportTickets(); // Carga o actualiza la lista de SupportTickets
       }
     });

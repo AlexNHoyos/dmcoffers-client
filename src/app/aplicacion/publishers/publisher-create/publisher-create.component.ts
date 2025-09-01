@@ -10,6 +10,7 @@ import { PublisherService } from '../publisher.service';
   selector: 'app-publisher-create',
   templateUrl: './publisher-create.component.html',
   styleUrls: ['./publisher-create.component.scss'],
+  standalone: false
 })
 export class PublisherCreateComponent {
   today: Date = new Date();
@@ -28,13 +29,11 @@ export class PublisherCreateComponent {
     private publisherService: PublisherService,
     private dialogRef: MatDialogRef<PublisherCreateComponent>,
     private userUtilsService: UserUtilsService
-  ) {}
+  ) { }
   ngOnInit(): void {
     this.userUtilsService.setLoggedInUser().subscribe((username) => {
       if (username) {
         this.publisher.creationuser = username;
-      } else {
-        console.log('No userId found');
       }
     });
   }
@@ -57,10 +56,8 @@ export class PublisherCreateComponent {
         : null,
     };
 
-    console.log(publisherToSend);
     this.publisherService.createPublisher(publisherToSend).subscribe({
       next: (response) => {
-        console.log('Publisher creado exitosamente', response);
         this.dialogRef.close(true); // Cierra el diálogo y indica que se guardaron los cambios
       },
       error: (error) => {

@@ -17,8 +17,7 @@ import {
 import { ITEMS_PER_PAGE } from '../constants/constants';
 @Directive()
 export abstract class CrudComponent<T>
-  implements ICRUDComponent, OnInit, OnDestroy
-{
+  implements ICRUDComponent, OnInit, OnDestroy {
   displayedColumns: any;
   filter: FilterDTO = new FilterDTO();
   // alertService: AlertService;
@@ -49,7 +48,7 @@ export abstract class CrudComponent<T>
     );
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void { }
 
   onView(row: any) {
     let dialogRef = this.dialog.open(this.getEditComponent(), {
@@ -111,7 +110,6 @@ export abstract class CrudComponent<T>
   }
 
   search() {
-    console.log('llega hasta aca');
     this.dataSource = new CrudDataSource(
       this.service!,
       this.paginator,

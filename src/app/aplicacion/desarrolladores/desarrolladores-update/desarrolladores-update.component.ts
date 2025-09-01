@@ -13,6 +13,7 @@ import { DesarrolladoresService } from '../desarrolladores.service';
 @Component({
   selector: 'app-desarrolladores-update',
   templateUrl: './desarrolladores-update.component.html',
+  standalone: false
 })
 export class DesarrolladoresUpdateComponent {
   today = new Date();
@@ -34,8 +35,6 @@ export class DesarrolladoresUpdateComponent {
       if (username) {
         this.desarrollador.modificationuser = username;
         this.desarrollador.modificationtimestamp = new Date().toISOString();
-      } else {
-        console.log('No userId found');
       }
     });
   }
@@ -57,8 +56,6 @@ export class DesarrolladoresUpdateComponent {
         : null,
     };
 
-    console.log(desarrolladorToSend);
-
     this.desarrolladorService
       .updateDesarrollador(this.desarrollador.id, desarrolladorToSend)
       .subscribe({
@@ -66,7 +63,6 @@ export class DesarrolladoresUpdateComponent {
           this.dialogRef.close(true);
         },
         error: (error) => {
-          console.log('Error:', error.error.errors);
           const errorMessage = error?.error?.msg || 'Ocurrió un error';
           this.showErrorDialog(errorMessage);
         },

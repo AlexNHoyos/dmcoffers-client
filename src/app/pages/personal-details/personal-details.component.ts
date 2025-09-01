@@ -13,6 +13,7 @@ import { ProximamenteService } from 'src/app/services/proximamente.service';
   templateUrl: './personal-details.component.html',
   styleUrls: ['./personal-details.component.scss'],
   providers: [DatePipe],
+  standalone: false
 })
 export class PersonalDetailsComponent implements OnInit {
   errorMessage: String = '';
@@ -35,7 +36,7 @@ export class PersonalDetailsComponent implements OnInit {
     private loginService: LoginService,
     private proximamenteService: ProximamenteService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     // Obtener el userId desde UserService
@@ -61,7 +62,6 @@ export class PersonalDetailsComponent implements OnInit {
     // Reemplaza environment.userId con this.userId
     this.userService.getUser(userId).subscribe({
       next: (userData) => {
-        console.log(userData);
         this.user = userData;
         this.registerForm.controls.id.setValue(
           userData.idUser.toString() ?? ''

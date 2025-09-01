@@ -10,9 +10,10 @@ import { LibraryService } from './library.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-juegos',
-  templateUrl: './juegos.component.html',
-  styleUrls: ['./juegos.component.scss'],
+    selector: 'app-juegos',
+    templateUrl: './juegos.component.html',
+    styleUrls: ['./juegos.component.scss'],
+    standalone: false
 })
 
 //Idealmente mostrar los primeros 10 para "Nuevos lanzamientos"

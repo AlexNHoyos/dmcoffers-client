@@ -1,12 +1,11 @@
 @use 'sass:math';
-@import 'assets/styles/mixins';
+@import 'assets/styles/_mixins';
 
 @import '../src/assets/styles/variables';
 @import "../node_modules/bootstrap/scss/bootstrap";
-@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
 @import "./app/shared/header/header.component.scss";
 @import "./app/shared/nav/nav.component.scss";
-@import './assets/styles/dialog-crud.scss';
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Protest+Guerrilla&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
@@ -44,21 +43,20 @@ textarea,
 html,
 body {
   height: 100%;
+  width: 100%;
   margin: 0;
   font-family: "SUSE", sans-serif;
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
-  overflow-y: auto;
   padding-bottom: 50px;
+  padding: 0;
+  background-color: var(--body-background-color); // opcional, para controlar bien todo
 }
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  background-color: var(--body-background-color); // opcional, para controlar bien todo
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 mat-mdc-typography,
@@ -69,9 +67,9 @@ mat-mdc-table {
   font-family: 'Roboto Mono', monospace !important;
 }
 
-add-btn,
-mdc-icon-button {
-  border: 2px solid #3700b3;
+mat-mdc-button {
+  padding-left: 80%;
+  size: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -91,48 +89,210 @@ mat-mdc-button-touch-target {
   height: 0 !important;
 }
 
-mat-label{
-color: #686868 !important;
+mat-label {
+  color: #686868 !important;
 }
 
-mat-select{
+mat-select {
   color: #686868 !important;
 }
 
 $icon-size: 25px;
 
+//linea que divide
+mat-divider {
+  background-color: var(--line-divider);
+}
+
+.crud-delete-dialog {
+  max-width: 500px;
+  padding: 1.5rem;
+  border-radius: 12px;
+
+  mat-card-title {
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #d32f2f;
+  }
+
+  mat-icon {
+    margin-right: .6em;
+  }
+
+  .content {
+    padding-top: 1rem;
+
+    .confirmation-text {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #444;
+    }
+  }
+
+  .actions {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+
+    button {
+      min-width: 100px;
+    }
+  }
+}
+
+.title-crud h3 {
+  color: var(--title-crud-h3)
+}
+
+.dialog-card {
+  max-width: 600px;
+  border-radius: 12px;
+  max-height: 90vh;
+  overflow: hidden;
+
+  .mat-mdc-card-content {
+    padding: 1em;
+    overflow-y: auto;
+    max-height: 70vh;
+  }
+
+  mat-card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .image-upload {
+    margin-top: 1rem;
+
+    label {
+      font-weight: 500;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    input[type='file'] {
+      margin-top: 0.25rem;
+    }
+
+    .game-thumbnail {
+      margin-top: 1em;
+      width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+  }
+
+  .action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+}
+
+.detail-view-card {
+  max-width: 640px;
+  border-radius: 16px;
+  max-height: 90vh;
+  overflow: hidden;
+
+  .mat-mdc-card-content {
+    overflow-y: auto;
+    max-height: 70vh;
+  }
+
+  mat-card-header {
+    align-items: center;
+
+    .header-icon {
+      background-color: #3f51b5;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    mat-card-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+    }
+
+    mat-card-subtitle {
+      font-size: 0.9rem;
+      color: #888;
+    }
+  }
+
+  mat-card-content {
+    margin-top: 1rem;
+  }
+
+  .detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    font-size: 0.95rem;
+    padding: 0.5rem 0;
+
+    .detail-item {
+      display: flex;
+      flex-direction: column;
+
+      .label {
+        font-weight: 600;
+        color: #555;
+        margin-bottom: 0.25rem;
+      }
+
+      span {
+        color: #333;
+      }
+    }
+  }
+
+  mat-card-actions {
+    margin-top: 1rem;
+    padding-right: 1rem;
+  }
+}
+
 .title-crud {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 10px 10px;
+  padding-left: 10%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-transform: uppercase;
 
   h3 {
     margin: 0;
-    text-decoration: underline;
     font-weight: bold;
     font-size: 1.2em;
   }
 }
 
-.tabla-crud {
-  margin: 10px;
+.mat-mdc-table .mat-mdc-header-cell {
+  text-align: center;
+  background-color: #bc71fe !important;
+  text-transform: uppercase;
+  font-style: normal;
+}
 
-  .mat-column-id {
-    width: 15%;
-    border-right: 1px solid currentColor;
-    padding-left: 10px;
-    padding-right: 0;
-    text-align: center;
-  }
+.tabla-crud {
+  padding-left: 10%;
+  padding-right: 10%;
 
   .normal-table {
+
     width: 100%;
     table-layout: fixed;
   }
 
   .mat-column-actions {
-    font-style: italic;
+    font-style: normal;
     padding: 0;
     padding-right: 10px;
     gap: 10px;
@@ -146,7 +306,7 @@ $icon-size: 25px;
     }
   }
 
-  
+
 
   .container {
     width: 100%;
@@ -195,6 +355,45 @@ $icon-size: 25px;
           max-width: math.div(100%, $grid-columns) * $i;
         }
       }
+    }
+  }
+
+  .dialog-sm {
+    width: 90% !important;
+    max-width: 350px !important;
+
+    @media (min-width: 768px) {
+      max-width: 400px !important;
+    }
+
+    @media (min-width: 1200px) {
+      max-width: 500px !important;
+    }
+  }
+
+  .dialog-md {
+    width: 90% !important;
+    max-width: 600px !important;
+
+    @media (min-width: 768px) {
+      max-width: 700px !important;
+    }
+
+    @media (min-width: 1200px) {
+      max-width: 800px !important;
+    }
+  }
+
+  .dialog-lg {
+    width: 95% !important;
+    max-width: 800px !important;
+
+    @media (min-width: 768px) {
+      max-width: 1000px !important;
+    }
+
+    @media (min-width: 1200px) {
+      max-width: 1200px !important;
     }
   }
 }

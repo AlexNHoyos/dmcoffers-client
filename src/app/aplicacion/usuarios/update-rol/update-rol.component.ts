@@ -10,13 +10,18 @@ import { UserService } from 'src/app/services/user/user.service';
   selector: 'app-update-rol',
   templateUrl: './update-rol.component.html',
   styleUrls: ['./update-rol.component.scss'],
+  standalone: false
 })
 
 export class UpdateRolComponent {
   user: User;
+<<<<<<< HEAD
   userRoles: number[] = [];
   allRoles: RolApl[] | undefined;
   selectedRoles: SelectedRoles[] = [];
+=======
+  selectedRoles: string[] = [];
+>>>>>>> develop
 
   constructor(
     private userService: UserService,
@@ -75,6 +80,7 @@ export class UpdateRolComponent {
 
   onUpdateUser() {
     this.userUtilsService.setLoggedInUser().subscribe((username) => {
+<<<<<<< HEAD
       /*       if (username) {
               this.user.modificationuser = username;
               this.user.modificationtimestamp = new Date().toISOString();
@@ -94,6 +100,24 @@ export class UpdateRolComponent {
                 }
               );
             } */
+=======
+      if (username) {
+        this.user.modificationuser = username;
+        this.user.modificationtimestamp = new Date().toISOString();
+
+        // Convertir los roles seleccionados a IDs si es necesario
+        const roleIds = this.selectedRoles.map(r => this.mapRolNameToId(r));
+
+        this.userService.updateUserRoles(this.user.idUser, roleIds).subscribe(
+          (response) => {
+            this.dialogRef.close(true);
+          },
+          (error) => {
+            console.error('Error al actualizar roles de usuario:', error);
+          }
+        );
+      }
+>>>>>>> develop
     });
   }
 

@@ -12,6 +12,7 @@ import { CategoriaService } from '../categoria.service';
   selector: 'app-categoria-delete',
   templateUrl: './categoria-delete.component.html',
   styleUrls: ['./categoria-delete.component.scss'],
+  standalone: false
 })
 export class CategoriaDeleteComponent implements OnInit {
   categoriaId: number = 0;
@@ -23,7 +24,7 @@ export class CategoriaDeleteComponent implements OnInit {
     private dialog: MatDialog,
     private dialogRef: MatDialogRef<CategoriaDeleteComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { id: number }
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.categoriaService.getCategoria(this.data.id).subscribe({
@@ -32,7 +33,6 @@ export class CategoriaDeleteComponent implements OnInit {
         this.categoriaNombre = categoria.description;
       },
       error: () => {
-        console.log('Error!!!');
       },
     });
   }

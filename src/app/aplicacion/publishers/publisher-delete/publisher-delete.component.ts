@@ -9,8 +9,9 @@ import { ErrorDialogComponent } from '../../../components/error-dialog/error-dia
 import { PublisherService } from '../publisher.service';
 
 @Component({
-  selector: 'app-publisher-delete',
-  templateUrl: './publisher-delete.component.html',
+    selector: 'app-publisher-delete',
+    templateUrl: './publisher-delete.component.html',
+    standalone: false
 })
 export class PublisherDeleteComponent implements OnInit {
   publisherName: string = '';

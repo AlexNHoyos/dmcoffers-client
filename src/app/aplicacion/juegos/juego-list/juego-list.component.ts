@@ -3,9 +3,10 @@ import { Juego } from '../juegos.model';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-juego-list',
-  templateUrl: './juego-list.component.html',
-  styleUrls: ['./juego-list.component.scss'],
+    selector: 'app-juego-list',
+    templateUrl: './juego-list.component.html',
+    styleUrls: ['./juego-list.component.scss'],
+    standalone: false
 })
 export class JuegoListComponent implements OnInit {
   environmentImg: string="";

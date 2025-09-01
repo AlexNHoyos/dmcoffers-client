@@ -19,7 +19,6 @@ export class UserService extends CrudService<UserPage> {
   private userId: BehaviorSubject<number | null> = new BehaviorSubject<number | null>(null);
 
   setUserId(id: number | null): void {
-    console.log('📌 setUserId llamado con:', id);
     this.userId.next(id);
   }
 

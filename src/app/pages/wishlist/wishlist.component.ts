@@ -5,9 +5,10 @@ import { WishlistService } from 'src/app/aplicacion/juegos/wishlist.service';
 import { ConfirmComponent } from 'src/app/components/confirm/confirm.component';
 
 @Component({
-  selector: 'app-wishlist',
-  templateUrl: './wishlist.component.html',
-  styleUrls: ['./wishlist.component.scss'],
+    selector: 'app-wishlist',
+    templateUrl: './wishlist.component.html',
+    styleUrls: ['./wishlist.component.scss'],
+    standalone: false
 })
 export class WishlistComponent implements OnInit {
   wishlist: any[] = [];

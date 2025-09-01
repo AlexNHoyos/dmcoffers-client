@@ -12,9 +12,10 @@ import { LibraryService } from '../library.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-juego-detail',
-  templateUrl: './juego-detail.component.html',
-  styleUrls: ['./juego-detail.component.scss'],
+    selector: 'app-juego-detail',
+    templateUrl: './juego-detail.component.html',
+    styleUrls: ['./juego-detail.component.scss'],
+    standalone: false
 })
 export class JuegoDetailComponent implements OnInit {
   juego?: Juego;

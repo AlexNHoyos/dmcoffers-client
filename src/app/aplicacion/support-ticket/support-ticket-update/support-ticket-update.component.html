@@ -19,23 +19,13 @@
   </mat-card-content>
 
   <mat-card-actions class="action-buttons">
-    <button
-      mat-raised-button
-      color="primary"
-      type="submit"
-      (click)="onUpdateSupportTicket()"
-      [disabled]="supportForm.invalid"
-    >
-      Actualizar
+    <button mat-stroked-button color="warn" type="button" (click)="cancel()">
+      Cancelar
     </button>
 
-    <button
-      mat-stroked-button
-      color="warn"
-      type="button"
-      (click)="cancel()"
-    >
-      Cancelar
+    <button mat-raised-button color="primary" type="submit" (click)="onUpdateSupportTicket()"
+      [disabled]="supportForm.invalid">
+      Actualizar
     </button>
   </mat-card-actions>
 </mat-card>

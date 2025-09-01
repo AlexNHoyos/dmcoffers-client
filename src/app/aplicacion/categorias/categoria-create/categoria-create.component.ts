@@ -10,6 +10,7 @@ import { CategoriaService } from '../categoria.service';
   selector: 'app-categoria-create',
   templateUrl: './categoria-create.component.html',
   styleUrls: ['./categoria-create.component.scss'],
+  standalone: false
 })
 export class CategoriaCreateComponent {
   categoria: Categoria = {
@@ -24,14 +25,12 @@ export class CategoriaCreateComponent {
     private categoriaService: CategoriaService,
     private dialogRef: MatDialogRef<CategoriaCreateComponent>,
     private userUtilsService: UserUtilsService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.userUtilsService.setLoggedInUser().subscribe((username) => {
       if (username) {
         this.categoria.creationuser = username;
-      } else {
-        console.log('No userId found');
       }
     });
   }
@@ -50,11 +49,9 @@ export class CategoriaCreateComponent {
 
     this.categoriaService.createCategoria(categoriaToSend).subscribe({
       next: (response) => {
-        console.log('Categoria creado exitosamente', response);
         this.dialogRef.close(true); // Cierra el diálogo y indica que se guardaron los cambios
       },
       error: (error) => {
-        console.log(categoriaToSend);
         console.error('Error creando categoria', error);
       },
     });

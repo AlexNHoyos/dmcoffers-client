@@ -3,9 +3,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Categoria } from '../categoria.model';
 
 @Component({
-  selector: 'app-categoria-detail',
-  templateUrl: './categoria-detail.component.html',
-  styleUrls: ['./categoria-detail.component.scss'],
+    selector: 'app-categoria-detail',
+    templateUrl: './categoria-detail.component.html',
+    styleUrls: ['./categoria-detail.component.scss'],
+    standalone: false
 })
 export class CategoriaDetailComponent {
   constructor(

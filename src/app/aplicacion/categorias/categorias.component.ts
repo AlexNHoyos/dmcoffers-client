@@ -12,6 +12,7 @@ import { CategoriaDetailComponent } from './categoria-detail/categoria-detail.co
   selector: 'app-categorias',
   templateUrl: './categorias.component.html',
   styleUrls: ['./categorias.component.scss'],
+  standalone: false
 })
 export class CategoriasComponent extends CrudComponent<Categoria> {
   categorias: Categoria[] = [];
@@ -40,11 +41,11 @@ export class CategoriasComponent extends CrudComponent<Categoria> {
   openCreateDialog(): void {
     const dialogRef = this.dialog.open(CategoriaCreateComponent, {
       width: '400px',
+      disableClose: true,
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Categoria creado');
         this.loadCategorias(); // Carga o actualiza la lista de categorias
       }
     });
@@ -54,14 +55,9 @@ export class CategoriasComponent extends CrudComponent<Categoria> {
     this.categoriaService.getCategoria(id).subscribe((categoria) => {
       const dialogRef = this.dialog.open(CategoriaDetailComponent, {
         width: '400px',
+        disableClose: true,
         data: { categoria },
       });
-      /*  No es necesario porque no edito los datos adentro del dialog, pero podria implementarse a futuro
-      dialogRef.afterClosed().subscribe((result) => {
-        if (result) {
-          this.loadcategorias(); // Carga o actualiza la lista de categorias
-        }
-      });*/
     });
   }
 
@@ -69,12 +65,12 @@ export class CategoriasComponent extends CrudComponent<Categoria> {
     this.categoriaService.getCategoria(id).subscribe((categoria) => {
       const dialogRef = this.dialog.open(CategoriaUpdateComponent, {
         width: '400px',
+        disableClose: true,
         data: { categoria },
       });
 
       dialogRef.afterClosed().subscribe((result) => {
         if (result) {
-          console.log('Categoria actualizado');
           this.loadCategorias(); // Carga o actualiza la lista de categorias
         }
       });
@@ -84,12 +80,12 @@ export class CategoriasComponent extends CrudComponent<Categoria> {
   openDeleteDialog(id: number): void {
     const dialogRef = this.dialog.open(CategoriaDeleteComponent, {
       width: '400px',
+      disableClose: true,
       data: { id },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('categoria eliminada');
         this.loadCategorias(); // Carga o actualiza la lista de categorias
       }
     });
@@ -102,7 +98,6 @@ export class CategoriasComponent extends CrudComponent<Categoria> {
 
   override ngOnInit(): void {
     // Con esta funcion se puede cargar los categorias al inicio
-    // this.loadcategorias();
     super.ngOnInit();
   }
 

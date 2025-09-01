@@ -10,6 +10,7 @@ import { HostingService } from '../hosting.service';
   selector: 'app-hosting-create',
   templateUrl: './hosting-create.component.html',
   styleUrls: ['./hosting-create.component.scss'],
+  standalone: false
 })
 export class HostingCreateComponent {
   hosting: Hosting = {
@@ -23,13 +24,11 @@ export class HostingCreateComponent {
     private HostingService: HostingService,
     private dialogRef: MatDialogRef<HostingCreateComponent>,
     private userUtilsService: UserUtilsService
-  ) {}
+  ) { }
   ngOnInit(): void {
     this.userUtilsService.setLoggedInUser().subscribe((username) => {
       if (username) {
         this.hosting.creationuser = username;
-      } else {
-        console.log('No userId found');
       }
     });
   }
@@ -45,7 +44,6 @@ export class HostingCreateComponent {
         ? new Date(this.hosting.modificationtimestamp).toISOString()
         : null,
     };
-    console.log(HostingToSend);
 
     if (!this.hosting.name || this.hosting.name.trim() === '') {
       console.error('El nombre del hosting no puede estar vacío');
@@ -54,7 +52,6 @@ export class HostingCreateComponent {
 
     this.HostingService.createHosting(HostingToSend).subscribe({
       next: (response) => {
-        console.log('Hosting creado exitosamente', response);
         this.dialogRef.close(true); // Cierra el diálogo y indica que se guardaron los cambios
       },
       error: (error) => {

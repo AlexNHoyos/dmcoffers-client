@@ -11,6 +11,7 @@ import { RegisterComponent } from 'src/app/auth/register/register.component';
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
   styleUrls: ['./usuarios.component.scss'],
+  standalone: false
 })
 export class UsuariosComponent extends CrudComponent<User> {
   usuarios: User[] = [];
@@ -31,12 +32,12 @@ export class UsuariosComponent extends CrudComponent<User> {
     this.userService.getUser(id).subscribe((user) => {
       const dialogRef = this.dialog.open(UpdateRolComponent, {
         width: '400px',
+        disableClose: true,
         data: { user },
       });
 
       dialogRef.afterClosed().subscribe((result) => {
         if (result) {
-          console.log('user actualizado');
           this.loadUsuarios(); // Carga o actualiza la lista de Usuarios
         }
       });
