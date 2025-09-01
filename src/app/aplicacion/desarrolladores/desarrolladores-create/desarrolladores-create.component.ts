@@ -7,10 +7,10 @@ import { UserUtilsService } from 'src/app/services/user/user-util-service.servic
 import { DesarrolladoresService } from '../desarrolladores.service';
 
 @Component({
-    selector: 'app-desarrolladores-create',
-    templateUrl: './desarrolladores-create.component.html',
-    styleUrls: ['./desarrolladores-create.component.scss'],
-    standalone: false
+  selector: 'app-desarrolladores-create',
+  templateUrl: './desarrolladores-create.component.html',
+  styleUrls: ['./desarrolladores-create.component.scss'],
+  standalone: false
 })
 export class DesarrolladoresCreateComponent {
   today: Date = new Date();
@@ -29,13 +29,11 @@ export class DesarrolladoresCreateComponent {
     private desarrolladoresService: DesarrolladoresService,
     private dialogRef: MatDialogRef<DesarrolladoresCreateComponent>,
     private userUtilsService: UserUtilsService
-  ) {}
+  ) { }
   ngOnInit(): void {
     this.userUtilsService.setLoggedInUser().subscribe((username) => {
       if (username) {
         this.desarrollador.creationuser = username;
-      } else {
-        console.log('No userId found');
       }
     });
   }
@@ -62,7 +60,6 @@ export class DesarrolladoresCreateComponent {
       .createDesarrollador(desarrolladorToSend)
       .subscribe({
         next: (response) => {
-          console.log('Desarrollador creado exitosamente', response);
           this.dialogRef.close(true); // Cierra el diálogo y indica que se guardaron los cambios
         },
         error: (error) => {

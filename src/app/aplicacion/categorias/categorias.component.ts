@@ -46,7 +46,6 @@ export class CategoriasComponent extends CrudComponent<Categoria> {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Categoria creado');
         this.loadCategorias(); // Carga o actualiza la lista de categorias
       }
     });
@@ -59,12 +58,6 @@ export class CategoriasComponent extends CrudComponent<Categoria> {
         disableClose: true,
         data: { categoria },
       });
-      /*  No es necesario porque no edito los datos adentro del dialog, pero podria implementarse a futuro
-      dialogRef.afterClosed().subscribe((result) => {
-        if (result) {
-          this.loadcategorias(); // Carga o actualiza la lista de categorias
-        }
-      });*/
     });
   }
 
@@ -78,7 +71,6 @@ export class CategoriasComponent extends CrudComponent<Categoria> {
 
       dialogRef.afterClosed().subscribe((result) => {
         if (result) {
-          console.log('Categoria actualizado');
           this.loadCategorias(); // Carga o actualiza la lista de categorias
         }
       });
@@ -94,7 +86,6 @@ export class CategoriasComponent extends CrudComponent<Categoria> {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('categoria eliminada');
         this.loadCategorias(); // Carga o actualiza la lista de categorias
       }
     });
@@ -107,7 +98,6 @@ export class CategoriasComponent extends CrudComponent<Categoria> {
 
   override ngOnInit(): void {
     // Con esta funcion se puede cargar los categorias al inicio
-    // this.loadcategorias();
     super.ngOnInit();
   }
 

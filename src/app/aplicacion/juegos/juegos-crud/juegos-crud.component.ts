@@ -35,7 +35,6 @@ export class JuegosCrudComponent extends CrudComponent<Juego> {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Juego creado');
         this.loadJuegos(); // Carga o actualiza la lista de juegos
       }
     });
@@ -61,7 +60,6 @@ export class JuegosCrudComponent extends CrudComponent<Juego> {
 
       dialogRef.afterClosed().subscribe((result) => {
         if (result) {
-          console.log('Juego actualizado');
           this.loadJuegos(); // Carga o actualiza la lista de juegos
         }
       });
@@ -77,7 +75,6 @@ export class JuegosCrudComponent extends CrudComponent<Juego> {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Juego eliminado');
         this.loadJuegos(); // Carga o actualiza la lista de juegos
       }
     });

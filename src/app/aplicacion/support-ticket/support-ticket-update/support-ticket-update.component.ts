@@ -11,10 +11,10 @@ import { UserUtilsService } from 'src/app/services/user/user-util-service.servic
 import { SupportTicketService } from '../support-ticket.service';
 
 @Component({
-    selector: 'app-support-ticket-update',
-    templateUrl: './support-ticket-update.component.html',
-    styleUrls: ['./support-ticket-update.component.scss'],
-    standalone: false
+  selector: 'app-support-ticket-update',
+  templateUrl: './support-ticket-update.component.html',
+  styleUrls: ['./support-ticket-update.component.scss'],
+  standalone: false
 })
 export class SupportTicketUpdateComponent {
   supportTicket: SupportTicket;
@@ -35,8 +35,6 @@ export class SupportTicketUpdateComponent {
       if (username) {
         this.supportTicket.modificationuser = username;
         this.supportTicket.modificationtimestamp = new Date().toISOString();
-      } else {
-        console.log('No userId found');
       }
     });
   }
@@ -52,8 +50,6 @@ export class SupportTicketUpdateComponent {
         : null,
     };
 
-    console.log(supportTicketToSend);
-
     this.supportTicketService
       .updateSupportTicket(this.supportTicket.id, supportTicketToSend)
       .subscribe({
@@ -61,7 +57,6 @@ export class SupportTicketUpdateComponent {
           this.dialogRef.close(true);
         },
         error: (error) => {
-          console.log('Error:', error.error.errors);
           const errorMessage = error?.error?.msg || 'Ocurrió un error';
           this.showErrorDialog(errorMessage);
         },

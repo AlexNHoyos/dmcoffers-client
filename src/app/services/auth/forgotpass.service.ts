@@ -10,13 +10,12 @@ import { ErrorHandler } from '@angular/core';
 })
 export class ForgotPasswordService {
 
-  constructor(private http: HttpClient, private errorHandler: ErrorHandler) {}
+  constructor(private http: HttpClient, private errorHandler: ErrorHandler) { }
 
   forgotPassword(email: string): Observable<any> {
     return this.http.post<any>(`${environment.urlHost}users/forgot-password`, { email })
       .pipe(
         tap(() => {
-          console.log('Contraseña enviada correctamente');
         }),
         catchError((error: HttpErrorResponse) => {
           this.errorHandler.handleError(error);

@@ -9,10 +9,10 @@ import { ProximamenteService } from 'src/app/services/proximamente.service';
 import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
 
 @Component({
-    selector: 'app-support-ticket-create',
-    templateUrl: './support-ticket-create.component.html',
-    styleUrls: ['./support-ticket-create.component.scss'],
-    standalone: false
+  selector: 'app-support-ticket-create',
+  templateUrl: './support-ticket-create.component.html',
+  styleUrls: ['./support-ticket-create.component.scss'],
+  standalone: false
 })
 export class SupportTicketCreateComponent {
   supportTicket: SupportTicket = {
@@ -30,13 +30,12 @@ export class SupportTicketCreateComponent {
     private userUtilsService: UserUtilsService,
     private proximamenteService: ProximamenteService,
     private dialog: MatDialog
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.userUtilsService.setLoggedInUser().subscribe({
       next: (username) => {
         this.supportTicket.creationuser = username || 'Usuario Anonimo';
-        console.log('Usuario asignado:', this.supportTicket.creationuser);
       },
       error: (err) => {
         console.error('Error obteniendo usuario logueado:', err);
@@ -64,10 +63,9 @@ export class SupportTicketCreateComponent {
       .createSupportTicket(
         supportTicketToSend,
       )
-      
+
       .subscribe({
         next: (response) => {
-          console.log('supportTicket creado exitosamente', response);
           this.dialogRef.close(true); // Cierra el diálogo y indica que se guardaron los cambios
           this.showSuccessDialog();
         },

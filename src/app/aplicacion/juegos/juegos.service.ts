@@ -21,7 +21,6 @@ export class JuegoService extends CrudService<JuegoPage> {
   }
 
   updateJuego(id: number, juegoData: FormData): Observable<any> {
-    console.log(id, juegoData);
     return this.http.patch<Juego>(`${this.endpoint}/${id}`, juegoData);
   }
 

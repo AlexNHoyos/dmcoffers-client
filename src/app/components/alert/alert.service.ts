@@ -34,7 +34,6 @@ export class AlertService {
   }
 
   error(message: string, keepAfterRouteChange = false) {
-    //console.log("calling alert(), type: "+AlertType.Error + " message: "+message);
     this.alert(AlertType.Error, message, keepAfterRouteChange);
   }
 
@@ -49,7 +48,6 @@ export class AlertService {
   alert(type: AlertType, message: string, keepAfterRouteChange = false) {
     this.keepAfterRouteChange = keepAfterRouteChange;
     this.subject.next(<Alert>{ type: type, message: message });
-    //console.log("alert pushed");
   }
 
   clear() {

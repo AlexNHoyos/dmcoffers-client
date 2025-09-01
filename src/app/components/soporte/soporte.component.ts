@@ -26,10 +26,5 @@ export class SoporteComponent implements OnInit {
       disableClose: true,
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        console.log('SupportTicket creado');
-      }
-    });
   }
 }

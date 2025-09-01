@@ -39,7 +39,6 @@ export class HostingComponent extends CrudComponent<Hosting> {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Hosting creado');
         this.loadHostings(); // Carga o actualiza la lista de Hostings
       }
     });
@@ -65,7 +64,6 @@ export class HostingComponent extends CrudComponent<Hosting> {
 
       dialogRef.afterClosed().subscribe((result) => {
         if (result) {
-          console.log('Hosting actualizado');
           this.loadHostings(); // Carga o actualiza la lista de Hostings
         }
       });
@@ -81,7 +79,6 @@ export class HostingComponent extends CrudComponent<Hosting> {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Hosting eliminado');
         this.loadHostings(); // Carga o actualiza la lista de Hostings
       }
     });

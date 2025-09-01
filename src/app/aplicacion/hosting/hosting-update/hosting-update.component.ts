@@ -11,10 +11,10 @@ import { UserUtilsService } from 'src/app/services/user/user-util-service.servic
 import { HostingService } from '../hosting.service';
 
 @Component({
-    selector: 'app-hosting-update',
-    templateUrl: './hosting-update.component.html',
-    styleUrls: ['./hosting-update.component.scss'],
-    standalone: false
+  selector: 'app-hosting-update',
+  templateUrl: './hosting-update.component.html',
+  styleUrls: ['./hosting-update.component.scss'],
+  standalone: false
 })
 export class HostingUpdateComponent {
   hosting: Hosting;
@@ -35,8 +35,6 @@ export class HostingUpdateComponent {
       if (username) {
         this.hosting.modificationuser = username;
         this.hosting.modificationtimestamp = new Date().toISOString();
-      } else {
-        console.log('No userId found');
       }
     });
   }
@@ -52,8 +50,6 @@ export class HostingUpdateComponent {
         : null,
     };
 
-    console.log(hostingToSend);
-
     this.hostingService
       .updateHosting(this.hosting.id, hostingToSend)
       .subscribe({
@@ -61,7 +57,6 @@ export class HostingUpdateComponent {
           this.dialogRef.close(true);
         },
         error: (error) => {
-          console.log('Error:', error.error.errors);
           const errorMessage = error?.error?.msg || 'Ocurrió un error';
           this.showErrorDialog(errorMessage);
         },

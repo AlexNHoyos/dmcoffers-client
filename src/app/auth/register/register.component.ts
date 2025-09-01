@@ -17,10 +17,10 @@ import { EncryptionService } from 'src/app/services/auth/encryption.service';
 import { Router } from '@angular/router';
 
 @Component({
-    selector: 'app-register',
-    templateUrl: './register.component.html',
-    styleUrls: ['./register.component.scss'],
-    standalone: false
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss'],
+  standalone: false
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
@@ -58,7 +58,7 @@ export class RegisterComponent implements OnInit {
     this.user = new User();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   register() {
     this.user.surname = this.registerForm.controls['surname'].value;
@@ -77,7 +77,6 @@ export class RegisterComponent implements OnInit {
 
     this.registerService.register(this.user).subscribe(
       (data) => {
-        console.log('Registrado con éxito: ', data);
         this.showSuccessDialog();
         setTimeout(() => {
           this.router.navigate(['/login']);
@@ -133,7 +132,7 @@ export class RegisterComponent implements OnInit {
     };
   }
 
-  goToLogin(){
+  goToLogin() {
     this.router.navigate(['/login']);
   }
 }

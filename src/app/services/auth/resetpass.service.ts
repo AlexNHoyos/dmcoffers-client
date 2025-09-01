@@ -10,14 +10,13 @@ import { ErrorHandler } from '@angular/core';
 })
 export class ResetPasswordService {
 
-  constructor(private http: HttpClient, private errorHandler: ErrorHandler) {}
+  constructor(private http: HttpClient, private errorHandler: ErrorHandler) { }
 
-  
-resetPassword(token: string, newPassword: string): Observable<any> {
+
+  resetPassword(token: string, newPassword: string): Observable<any> {
     return this.http.post(`${environment.urlHost}users/reset-password`, { token, newPassword })
       .pipe(
         tap(() => {
-          console.log('Contraseña restablecida correctamente');
         }),
         catchError((error: HttpErrorResponse) => {
           this.errorHandler.handleError(error);

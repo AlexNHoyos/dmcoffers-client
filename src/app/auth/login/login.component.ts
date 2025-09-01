@@ -9,10 +9,10 @@ import { EncryptionService } from 'src/app/services/auth/encryption.service';
 import { ProximamenteService } from 'src/app/services/proximamente.service';
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss'],
-    standalone: false
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
+  standalone: false
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   get username() {
     return this.loginForm.get('username');
@@ -47,29 +47,28 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-  if (this.loginForm.valid) {
-    const loginRequest: LoginRequest = {
-      username: this.username?.value,
-      password: this.encryptedPassword
-    };
+    if (this.loginForm.valid) {
+      const loginRequest: LoginRequest = {
+        username: this.username?.value,
+        password: this.encryptedPassword
+      };
 
-    this.loginService.login(loginRequest).subscribe({
-      next: (userData) => {},
-      error: (errorData) => {
-        console.log(errorData);
-        this.showErrorDialog(errorData);
-        this.loginError = errorData;
-      },
-      complete: () => {
-        this.router.navigateByUrl('/inicio');
-        this.loginForm.reset();
-      },
-    });
-  } else {
-    this.loginForm.markAllAsTouched();
-    this.showErrorDialog('Error al ingresar los datos.');
+      this.loginService.login(loginRequest).subscribe({
+        next: (userData) => { },
+        error: (errorData) => {
+          this.showErrorDialog(errorData);
+          this.loginError = errorData;
+        },
+        complete: () => {
+          this.router.navigateByUrl('/inicio');
+          this.loginForm.reset();
+        },
+      });
+    } else {
+      this.loginForm.markAllAsTouched();
+      this.showErrorDialog('Error al ingresar los datos.');
+    }
   }
-}
 
   showProximamente(): void {
     this.proximamenteService.mostrarMensaje();
