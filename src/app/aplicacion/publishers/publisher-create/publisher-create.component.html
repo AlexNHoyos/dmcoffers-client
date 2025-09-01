@@ -39,16 +39,17 @@
           <mat-datepicker #picker2></mat-datepicker>
         </mat-form-field>
       </div>
+        <mat-card-actions class="action-buttons">
+        <button mat-stroked-button type="button" color="secondary" (click)="cancel()">
+          Cancelar
+        </button>
+
+        <button mat-flat-button type="submit" color="primary" [disabled]="publisherForm.invalid">
+          Crear
+        </button>
+      </mat-card-actions>
     </form>
   </mat-card-content>
 
-  <mat-card-actions class="action-buttons">
-    <button mat-stroked-button type="button" color="secondary" (click)="cancel()">
-      Cancelar
-    </button>
 
-    <button mat-flat-button type="submit" color="primary" [disabled]="publisherForm.invalid">
-      Crear
-    </button>
-  </mat-card-actions>
 </mat-card>
