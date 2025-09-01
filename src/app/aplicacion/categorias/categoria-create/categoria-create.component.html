@@ -5,7 +5,7 @@
     </mat-card-header>
 
     <mat-card-content>
-      <form (ngSubmit)="createCategoria()" #categoriasForm="ngForm">
+      <form #categoriasForm="ngForm">
         <mat-form-field appearance="outline" class="col-12">
           <mat-label>Descripción</mat-label>
           <input matInput type="text" [(ngModel)]="categoria.description" name="descripcion" #name="ngModel" required

@@ -3,7 +3,7 @@
     <mat-card-title>Crear ticket</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <form (ngSubmit)="createSupportTicket($event)">
+    <form>
 
       <div class="row">
         <mat-form-field class="col-12">
@@ -21,10 +21,11 @@
         <mat-icon>attach_file</mat-icon>
         <span>Adjuntar Documentación</span>
       </button> -->
-      <mat-card-actions class="action-buttons">
-        <button mat-stroked-button color="secondary" (click)="cancel()"> Cancelar</button>
-        <button mat-flat-button type="submit" color="primary">Crear</button>
-      </mat-card-actions>
+
     </form>
   </mat-card-content>
+  <mat-card-actions class="action-buttons">
+    <button mat-stroked-button color="secondary" (click)="cancel()"> Cancelar</button>
+    <button mat-flat-button type="submit" color="primary" (click)="createSupportTicket($event)">Crear</button>
+  </mat-card-actions>
 </mat-card>
