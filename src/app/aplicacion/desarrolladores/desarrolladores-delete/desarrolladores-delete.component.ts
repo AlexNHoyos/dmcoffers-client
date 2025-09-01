@@ -8,8 +8,9 @@ import {
 import { ErrorDialogComponent } from '../../../components/error-dialog/error-dialog.component';
 import { DesarrolladoresService } from '../desarrolladores.service';
 @Component({
-  selector: 'app-desarrolladores-delete',
-  templateUrl: './desarrolladores-delete.component.html',
+    selector: 'app-desarrolladores-delete',
+    templateUrl: './desarrolladores-delete.component.html',
+    standalone: false
 })
 export class DesarrolladoresDeleteComponent implements OnInit {
   desarrolladorName: string = '';

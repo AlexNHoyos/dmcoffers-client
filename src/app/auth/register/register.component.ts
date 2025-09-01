@@ -17,9 +17,10 @@ import { EncryptionService } from 'src/app/services/auth/encryption.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
+    selector: 'app-register',
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.scss'],
+    standalone: false
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
@@ -40,6 +41,7 @@ export class RegisterComponent implements OnInit {
         username: ['', [Validators.required]],
         realname: [,],
         surname: [,],
+        email: ['', [Validators.required, Validators.email]],
         password: [
           '',
           [
@@ -62,6 +64,7 @@ export class RegisterComponent implements OnInit {
     this.user.surname = this.registerForm.controls['surname'].value;
     this.user.realname = this.registerForm.controls['realname'].value;
     this.user.username = this.registerForm.controls['username'].value;
+    this.user.email = this.registerForm.controls['email'].value;
     this.user.creationuser = 'admin';
     this.user.creationtimestamp = new Date();
     this.user.modificationuser = 'admin';

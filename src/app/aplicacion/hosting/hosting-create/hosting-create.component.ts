@@ -7,9 +7,10 @@ import { UserUtilsService } from 'src/app/services/user/user-util-service.servic
 import { HostingService } from '../hosting.service';
 
 @Component({
-  selector: 'app-hosting-create',
-  templateUrl: './hosting-create.component.html',
-  styleUrls: ['./hosting-create.component.scss'],
+    selector: 'app-hosting-create',
+    templateUrl: './hosting-create.component.html',
+    styleUrls: ['./hosting-create.component.scss'],
+    standalone: false
 })
 export class HostingCreateComponent {
   hosting: Hosting = {

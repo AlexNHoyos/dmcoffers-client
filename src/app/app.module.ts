@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+import { HttpClientModule } from '@angular/common/http';
 
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -17,16 +19,16 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { MatCardModule } from '@angular/material/card';
+import { MatCardActions, MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, NativeDateAdapter } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatListModule } from '@angular/material/list';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -102,129 +104,130 @@ import { CarouselModule } from './components/carousel/carousel.module';
 import { HelpDialogComponent } from './components/help-dialog/help-dialog.component';
 import { ThemeToggleComponent } from './components/theme-toggle/theme-toggle.component';
 import { DropdownSelectComponent } from './components/dropdown-selector/dropdown-selector.component';
+import { ResetPassComponent } from './auth/resetPass/resetPass.component';
+import { ForgotPassComponent } from './auth/forgotPass/forgotPass.component';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ErrorDialogComponent,
-    DashboardComponent,
-    FooterComponent,
-    HeaderComponent,
-    LoginComponent,
-    NavComponent,
-    PersonalDetailsComponent,
-    ConfirmComponent,
-    PublisherComponent,
-    PublisherCreateComponent,
-    PublisherUpdateComponent,
-    PublisherDeleteComponent,
-    PublisherDetailComponent,
-    CategoriasComponent,
-    CategoriaCreateComponent,
-    CategoriaDeleteComponent,
-    CategoriaDetailComponent,
-    CategoriaUpdateComponent,
-    DesarrolladoresComponent,
-    DesarrolladoresCreateComponent,
-    DesarrolladoresDetailComponent,
-    DesarrolladoresUpdateComponent,
-    DesarrolladoresDeleteComponent,
-    HostingComponent,
-    HostingCreateComponent,
-    HostingDeleteComponent,
-    HostingDetailComponent,
-    HostingUpdateComponent,
-    SupportTicketComponent,
-    SupportTicketCreateComponent,
-    SupportTicketDeleteComponent,
-    SupportTicketDetailComponent,
-    SupportTicketUpdateComponent,
-    RegisterComponent,
-    HomeComponent,
-    JuegosComponent,
-    JuegoDetailComponent,
-    ResultadosBusquedaComponent,
-    JuegoListComponent,
-    JuegosCrudComponent,
-    JuegoCreateComponent,
-    JuegoDeleteComponent,
-    JuegoUpdateComponent,
-    JuegoDetailDialogComponent,
-    NotAuthorizedComponent,
-    WishlistComponent,
-    SoporteComponent,
-    UsuariosComponent,
-    UpdateRolComponent,
-    SweItemMenuComponent,
-    CartComponent,
-    LibraryComponent,
-    JuegosPorCategoriaComponent,
-    LoadingOverlayComponent,
-    HelpDialogComponent,
-    ThemeToggleComponent,
-    DropdownSelectComponent,
-  ],
-  imports: [
-    CommonModule,
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatToolbarModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatIconModule,
-    MatCardModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatSelectModule,
-    MatExpansionModule,
-    MatDividerModule,
-    MatSnackBarModule,
-    MatListModule,
-    MatSidenavModule,
-    MatMenuModule,
-    MatProgressSpinnerModule,
-    CarouselModule,
-    MatChipsModule,
-    MatTooltipModule,
-  ],
-
-  providers: [
-    WishlistService,
-    CartService,
-    RegisterService,
-    PublisherService,
-    CategoriaService,
-    AlertService,
-    DesarrolladoresService,
-    RegisterService,
-    SweItemMenuService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptorService,
-      multi: true,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ErrorInterceptorService,
-      multi: true,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: LoadingInterceptor,
-      multi: true
-    }
-  ],
-
-  bootstrap: [AppComponent],
+    declarations: [
+        AppComponent,
+        ErrorDialogComponent,
+        DashboardComponent,
+        FooterComponent,
+        HeaderComponent,
+        LoginComponent,
+        NavComponent,
+        PersonalDetailsComponent,
+        ConfirmComponent,
+        PublisherComponent,
+        PublisherCreateComponent,
+        PublisherUpdateComponent,
+        PublisherDeleteComponent,
+        PublisherDetailComponent,
+        CategoriasComponent,
+        CategoriaCreateComponent,
+        CategoriaDeleteComponent,
+        CategoriaDetailComponent,
+        CategoriaUpdateComponent,
+        DesarrolladoresComponent,
+        DesarrolladoresCreateComponent,
+        DesarrolladoresDetailComponent,
+        DesarrolladoresUpdateComponent,
+        DesarrolladoresDeleteComponent,
+        HostingComponent,
+        HostingCreateComponent,
+        HostingDeleteComponent,
+        HostingDetailComponent,
+        HostingUpdateComponent,
+        SupportTicketComponent,
+        SupportTicketCreateComponent,
+        SupportTicketDeleteComponent,
+        SupportTicketDetailComponent,
+        SupportTicketUpdateComponent,
+        RegisterComponent,
+        HomeComponent,
+        JuegosComponent,
+        JuegoDetailComponent,
+        ResultadosBusquedaComponent,
+        JuegoListComponent,
+        JuegosCrudComponent,
+        JuegoCreateComponent,
+        JuegoDeleteComponent,
+        JuegoUpdateComponent,
+        JuegoDetailDialogComponent,
+        NotAuthorizedComponent,
+        WishlistComponent,
+        SoporteComponent,
+        UsuariosComponent,
+        UpdateRolComponent,
+        SweItemMenuComponent,
+        CartComponent,
+        LibraryComponent,
+        JuegosPorCategoriaComponent,
+        LoadingOverlayComponent,
+        HelpDialogComponent,
+        ThemeToggleComponent,
+        DropdownSelectComponent,
+        ResetPassComponent,
+        ForgotPassComponent
+    ],
+    bootstrap: [AppComponent], imports: [CommonModule,
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatDialogModule,
+        MatToolbarModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatIconModule,
+        MatCardModule,
+        MatCardActions,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatSelectModule,
+        MatExpansionModule,
+        MatDividerModule,
+        MatSnackBarModule,
+        MatListModule,
+        MatSidenavModule,
+        MatMenuModule,
+        MatProgressSpinnerModule,
+        CarouselModule,
+        MatChipsModule,
+        MatTooltipModule,
+    ]
+    , providers: [
+        WishlistService,
+        CartService,
+        RegisterService,
+        PublisherService,
+        CategoriaService,
+        AlertService,
+        DesarrolladoresService,
+        RegisterService,
+        SweItemMenuService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: JwtInterceptorService,
+            multi: true,
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: ErrorInterceptorService,
+            multi: true,
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: LoadingInterceptor,
+            multi: true
+        },
+        provideHttpClient(withInterceptorsFromDi())
+    ]
 })
 export class AppModule { }

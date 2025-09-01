@@ -12,6 +12,7 @@ import { JuegoDetailDialogComponent } from './juego-detail-dialog/juego-detail-d
   selector: 'app-juegos-crud',
   templateUrl: './juegos-crud.component.html',
   styleUrls: ['./juegos-crud.component.scss'],
+  standalone: false
 })
 export class JuegosCrudComponent extends CrudComponent<Juego> {
   juegos: Juego[] = [];
@@ -29,6 +30,7 @@ export class JuegosCrudComponent extends CrudComponent<Juego> {
   openCreateDialog(): void {
     const dialogRef = this.dialog.open(JuegoCreateComponent, {
       width: '400px',
+      disableClose: true,
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -43,6 +45,7 @@ export class JuegosCrudComponent extends CrudComponent<Juego> {
     this.juegoService.getJuego(id).subscribe((juego) => {
       const dialogRef = this.dialog.open(JuegoDetailDialogComponent, {
         width: '400px',
+        disableClose: true,
         data: { juego },
       });
     });
@@ -52,6 +55,7 @@ export class JuegosCrudComponent extends CrudComponent<Juego> {
     this.juegoService.getJuego(id).subscribe((juego) => {
       const dialogRef = this.dialog.open(JuegoUpdateComponent, {
         width: '400px',
+        disableClose: true,
         data: { juego },
       });
 
@@ -67,6 +71,7 @@ export class JuegosCrudComponent extends CrudComponent<Juego> {
   openDeleteDialog(id: number): void {
     const dialogRef = this.dialog.open(JuegoDeleteComponent, {
       width: '400px',
+      disableClose: true,
       data: { id },
     });
 

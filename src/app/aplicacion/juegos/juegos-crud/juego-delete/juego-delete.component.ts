@@ -7,11 +7,13 @@ import {
 
 import { JuegoService } from '../../juegos.service';
 import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
-  selector: 'app-juego-delete',
-  templateUrl: './juego-delete.component.html',
-  styleUrls: ['./juego-delete.component.scss'],
+    selector: 'app-juego-delete',
+    templateUrl: './juego-delete.component.html',
+    styleUrls: ['./juego-delete.component.scss'],
+    standalone: false
 })
 export class JuegoDeleteComponent implements OnInit {
   gamename: string = '';

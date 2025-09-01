@@ -1,4 +1,4 @@
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
 @import "src/assets/styles/_variables.scss";
 
 
@@ -21,6 +21,7 @@
 .main-container {
   display: flex;
   flex: 1; // ✅ Hace que esta parte crezca para empujar el footer abajo
+  background-color: var(--body-background-color);
 }
 
 .content-container {

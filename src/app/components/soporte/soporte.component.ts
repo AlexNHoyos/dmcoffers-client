@@ -8,6 +8,7 @@ import { LoginService } from 'src/app/services/auth/login.service';
   selector: 'app-soporte',
   templateUrl: './soporte.component.html',
   styleUrls: ['./soporte.component.scss'],
+  standalone: false
 })
 export class SoporteComponent implements OnInit {
   isLoggedIn: boolean = false;
@@ -15,13 +16,14 @@ export class SoporteComponent implements OnInit {
     private dialog: MatDialog,
     private loginService: LoginService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
   }
   openCreateDialog(): void {
     const dialogRef = this.dialog.open(SupportTicketCreateComponent, {
       width: '400px',
+      disableClose: true,
     });
 
     dialogRef.afterClosed().subscribe((result) => {

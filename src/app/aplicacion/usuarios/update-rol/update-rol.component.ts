@@ -5,9 +5,10 @@ import { UserUtilsService } from 'src/app/services/user/user-util-service.servic
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
-  selector: 'app-update-rol',
-  templateUrl: './update-rol.component.html',
-  styleUrls: ['./update-rol.component.scss'],
+    selector: 'app-update-rol',
+    templateUrl: './update-rol.component.html',
+    styleUrls: ['./update-rol.component.scss'],
+    standalone: false
 })
 export class UpdateRolComponent {
   roles: string[] = ['admin', 'moderador', 'usuarioForo', 'usuarioTienda'];

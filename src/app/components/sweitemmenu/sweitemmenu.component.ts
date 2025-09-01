@@ -8,9 +8,10 @@ import { filter, firstValueFrom, forkJoin, map, Observable, of, switchMap } from
 
 
 @Component({
-  selector: 'app-sweitemmenu',
-  templateUrl: './sweitemmenu.component.html',
-  styleUrls: ['./sweitemmenu.component.scss']
+    selector: 'app-sweitemmenu',
+    templateUrl: './sweitemmenu.component.html',
+    styleUrls: ['./sweitemmenu.component.scss'],
+    standalone: false
 })
 
 export class SweItemMenuComponent implements OnInit {

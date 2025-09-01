@@ -12,6 +12,7 @@ import { DesarrolladoresDetailComponent } from './desarrolladores-detail/desarro
   selector: 'app-desarrolladores',
   templateUrl: './desarrolladores.component.html',
   styleUrls: ['./desarrolladores.component.scss'],
+  standalone: false
 })
 export class DesarrolladoresComponent extends CrudComponent<Desarrollador> {
   desarrolladores: Desarrollador[] = [];
@@ -39,6 +40,7 @@ export class DesarrolladoresComponent extends CrudComponent<Desarrollador> {
   openCreateDialog(): void {
     const dialogRef = this.dialog.open(DesarrolladoresCreateComponent, {
       width: '400px',
+      disableClose: true,
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -55,6 +57,7 @@ export class DesarrolladoresComponent extends CrudComponent<Desarrollador> {
       .subscribe((desarrollador) => {
         const dialogRef = this.dialog.open(DesarrolladoresDetailComponent, {
           width: '400px',
+          disableClose: true,
           data: { desarrollador },
         });
         /*  No es necesario porque no edito los datos adentro del dialog, pero podria implementarse a futuro
@@ -72,6 +75,7 @@ export class DesarrolladoresComponent extends CrudComponent<Desarrollador> {
       .subscribe((desarrollador) => {
         const dialogRef = this.dialog.open(DesarrolladoresUpdateComponent, {
           width: '400px',
+          disableClose: true,
           data: { desarrollador },
         });
 
@@ -87,6 +91,7 @@ export class DesarrolladoresComponent extends CrudComponent<Desarrollador> {
   openDeleteDialog(id: number): void {
     const dialogRef = this.dialog.open(DesarrolladoresDeleteComponent, {
       width: '400px',
+      disableClose: true,
       data: { id },
     });
 

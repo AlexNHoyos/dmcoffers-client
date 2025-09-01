@@ -4,9 +4,10 @@ import { Juego } from 'src/app/aplicacion/juegos/juegos.model';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-carousel',
-  templateUrl: './carousel.component.html',
-  styleUrls: ['./carousel.component.scss']
+    selector: 'app-carousel',
+    templateUrl: './carousel.component.html',
+    styleUrls: ['./carousel.component.scss'],
+    standalone: false
 })
 export class CarouselComponent implements OnInit{
   constructor(private router: Router) {}
