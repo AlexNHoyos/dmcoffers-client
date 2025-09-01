@@ -1,5 +1,5 @@
 @use 'sass:math';
-@import 'assets/styles/mixins';
+@import 'assets/styles/_mixins';
 
 @import '../src/assets/styles/variables';
 @import "../node_modules/bootstrap/scss/bootstrap";
@@ -50,15 +50,10 @@ body {
   font-weight: 700;
   font-style: normal;
   padding-bottom: 50px;
-}
-
-html,
-body {
-  margin: 0;
   padding: 0;
-  height: 100%;
   background-color: var(--body-background-color); // opcional, para controlar bien todo
 }
+
 
 ::-webkit-scrollbar {
   display: none;
