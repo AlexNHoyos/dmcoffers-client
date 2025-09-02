@@ -110,7 +110,6 @@ export abstract class CrudComponent<T>
   }
 
   search() {
-    console.log('llega hasta aca');
     this.dataSource = new CrudDataSource(
       this.service!,
       this.paginator,

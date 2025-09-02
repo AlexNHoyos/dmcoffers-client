@@ -3,7 +3,7 @@
     <mat-card-title>Crear Hosting</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <form (ngSubmit)="createHosting()" #hostingForm="ngForm">
+    <form #hostingForm="ngForm">
 
       <div class="row">
         <mat-form-field class="col-12" appearance="outline">
@@ -30,14 +30,16 @@
           </mat-select>
         </mat-form-field>
       </div>
-      <mat-card-actions class="action-buttons">
-          <button mat-stroked-button type="button" color="secondary" (click)="cancel()">
-            Cancelar
-          </button>
-          <button mat-flat-button type="submit" color="primary" [disabled]="hostingForm.invalid">
-            Crear
-          </button>
-      </mat-card-actions>
+
     </form>
   </mat-card-content>
+
+  <mat-card-actions class="action-buttons">
+    <button mat-stroked-button type="button" color="secondary" (click)="cancel()">
+      Cancelar
+    </button>
+    <button mat-flat-button type="submit" color="primary" [disabled]="hostingForm.invalid" (click)="createHosting()">
+      Crear
+    </button>
+  </mat-card-actions>
 </mat-card>

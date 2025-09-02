@@ -39,7 +39,6 @@ export class SupportTicketComponent extends CrudComponent<SupportTicket> {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('SupportTicket creado');
         this.loadSupportTickets(); // Carga o actualiza la lista de SupportTickets
       }
     });
@@ -69,7 +68,6 @@ export class SupportTicketComponent extends CrudComponent<SupportTicket> {
 
         dialogRef.afterClosed().subscribe((result) => {
           if (result) {
-            console.log('SupportTicket actualizado');
             this.loadSupportTickets(); // Carga o actualiza la lista de SupportTickets
           }
         });
@@ -85,7 +83,6 @@ export class SupportTicketComponent extends CrudComponent<SupportTicket> {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('SupportTicket eliminado');
         this.loadSupportTickets(); // Carga o actualiza la lista de SupportTickets
       }
     });

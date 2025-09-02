@@ -44,7 +44,6 @@ export class PublisherComponent extends CrudComponent<Publisher> {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Publisher creado');
         this.loadPublishers(); // Carga o actualiza la lista de publishers
       }
     });
@@ -76,7 +75,6 @@ export class PublisherComponent extends CrudComponent<Publisher> {
 
       dialogRef.afterClosed().subscribe((result) => {
         if (result) {
-          console.log('Publisher actualizado');
           this.loadPublishers(); // Carga o actualiza la lista de publishers
         }
       });
@@ -92,7 +90,6 @@ export class PublisherComponent extends CrudComponent<Publisher> {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Publisher eliminado');
         this.loadPublishers(); // Carga o actualiza la lista de publishers
       }
     });

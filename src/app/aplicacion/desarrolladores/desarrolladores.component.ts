@@ -45,7 +45,6 @@ export class DesarrolladoresComponent extends CrudComponent<Desarrollador> {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Desarrollador creado');
         this.loadDesarrolladores(); // Carga o actualiza la lista de publishers
       }
     });
@@ -81,7 +80,6 @@ export class DesarrolladoresComponent extends CrudComponent<Desarrollador> {
 
         dialogRef.afterClosed().subscribe((result) => {
           if (result) {
-            console.log('Desarrollador actualizado');
             this.loadDesarrolladores(); // Carga o actualiza la lista de publishers
           }
         });
@@ -97,7 +95,6 @@ export class DesarrolladoresComponent extends CrudComponent<Desarrollador> {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Desarrollador eliminado');
         this.loadDesarrolladores(); // Carga o actualiza la lista de publishers
       }
     });

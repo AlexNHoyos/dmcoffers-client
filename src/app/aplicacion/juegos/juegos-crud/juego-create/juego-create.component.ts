@@ -9,10 +9,10 @@ import { UserUtilsService } from 'src/app/services/user/user-util-service.servic
 import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
 
 @Component({
-    selector: 'app-juego-create',
-    templateUrl: './juego-create.component.html',
-    styleUrls: ['./juego-create.component.scss'],
-    standalone: false
+  selector: 'app-juego-create',
+  templateUrl: './juego-create.component.html',
+  styleUrls: ['./juego-create.component.scss'],
+  standalone: false
 })
 export class JuegoCreateComponent implements OnInit {
 
@@ -54,8 +54,6 @@ export class JuegoCreateComponent implements OnInit {
     this.userUtilsService.setLoggedInUser().subscribe((username) => {
       if (username) {
         this.juego.creationuser = username;
-      } else {
-        console.log('No se encontró el usuario');
       }
     });
     // Cargar las listas de relaciones
@@ -137,10 +135,8 @@ export class JuegoCreateComponent implements OnInit {
       return;
     }
 
-    console.log('Juego enviado', formData);
     this.juegoService.createJuego(formData).subscribe({
       next: (response) => {
-        console.log('Juego creado exitosamente', response);
         this.dialogRef.close(true);
       },
       error: (error) => {

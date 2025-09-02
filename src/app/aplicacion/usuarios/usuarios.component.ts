@@ -38,7 +38,6 @@ export class UsuariosComponent extends CrudComponent<User> {
 
       dialogRef.afterClosed().subscribe((result) => {
         if (result) {
-          console.log('user actualizado');
           this.loadUsuarios(); // Carga o actualiza la lista de Usuarios
         }
       });

@@ -5,15 +5,15 @@ import { UserUtilsService } from 'src/app/services/user/user-util-service.servic
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
-    selector: 'app-update-rol',
-    templateUrl: './update-rol.component.html',
-    styleUrls: ['./update-rol.component.scss'],
-    standalone: false
+  selector: 'app-update-rol',
+  templateUrl: './update-rol.component.html',
+  styleUrls: ['./update-rol.component.scss'],
+  standalone: false
 })
 export class UpdateRolComponent {
   roles: string[] = ['admin', 'moderador', 'usuarioForo', 'usuarioTienda'];
   user: User;
-  selectedRoles: string[] = []; 
+  selectedRoles: string[] = [];
 
   constructor(
     private userService: UserService,
@@ -42,12 +42,9 @@ export class UpdateRolComponent {
 
         // Convertir los roles seleccionados a IDs si es necesario
         const roleIds = this.selectedRoles.map(r => this.mapRolNameToId(r));
-        console.log('roles seleccionados:', this.selectedRoles);
-        console.log('IDs a enviar:', roleIds);
 
         this.userService.updateUserRoles(this.user.idUser, roleIds).subscribe(
           (response) => {
-            console.log('Roles actualizados', response);
             this.dialogRef.close(true);
           },
           (error) => {
