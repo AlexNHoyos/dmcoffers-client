@@ -4,9 +4,11 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 import { ErrorDialogComponent } from './error-dialog.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('ErrorDialogComponent', () => {
   let component: ErrorDialogComponent;
@@ -15,6 +17,11 @@ describe('ErrorDialogComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ErrorDialogComponent],
+      imports: [
+        MatDialogModule,   
+        MatButtonModule,
+        MatIconModule  
+      ],
       providers:[
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
