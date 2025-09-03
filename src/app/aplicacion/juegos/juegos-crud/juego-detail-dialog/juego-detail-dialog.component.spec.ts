@@ -17,6 +17,7 @@ import { JuegoDetailDialogComponent } from './juego-detail-dialog.component';
 import { ActivatedRoute } from '@angular/router';
 
 import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('JuegoDetailDialogComponent', () => {
   let component: JuegoDetailDialogComponent;
@@ -31,7 +32,8 @@ describe('JuegoDetailDialogComponent', () => {
         MatSelectModule,
         MatDialogModule,
         MatInputModule,
-        MatDatepickerModule
+        MatDatepickerModule,
+        MatIconModule
       ],
       providers: [
         {provide: ActivatedRoute, useValue: { snapshot: { paramMap: { get: () => '1' } } }},

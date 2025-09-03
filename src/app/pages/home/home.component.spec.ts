@@ -10,6 +10,7 @@ import { JuegosComponent } from 'src/app/aplicacion/juegos/juegos.component';
 import { HomeComponent } from './home.component';
 import { Juego } from 'src/app/aplicacion/juegos/juegos.model';
 import { JuegosPorCategoriaComponent } from 'src/app/aplicacion/juegos/juegos-por-categoria/juegos-por-categoria.component';
+import { CarouselComponent } from 'src/app/components/carousel/carousel.component';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -17,7 +18,7 @@ describe('HomeComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [HomeComponent, JuegosComponent, JuegoListComponent, JuegosPorCategoriaComponent],
+      declarations: [HomeComponent, JuegosComponent, JuegoListComponent, JuegosPorCategoriaComponent, CarouselComponent],
       providers: [
         provideHttpClient(),
         provideHttpClientTesting()

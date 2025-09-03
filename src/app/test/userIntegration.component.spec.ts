@@ -44,12 +44,16 @@ describe("UsuariosComponent", () => {
       ],
     }).compileComponents();
 
+    authServiceSpy = TestBed.inject(UserService) as jasmine.SpyObj<UserService>;
+    authServiceSpy.getAllUsers.and.returnValue(of(mockUsers)); 
+
     fixture = TestBed.createComponent(UsuariosComponent);
     component = fixture.componentInstance;
-    authServiceSpy = TestBed.inject(UserService) as jasmine.SpyObj<UserService>;
     dialogSpy = TestBed.inject(MatDialog) as jasmine.SpyObj<MatDialog>;
     fixture.detectChanges();
   });
+
+  /* Boton eliminado
 
   it("Debería mostrar la tabla de usuarios al hacer click en el botón", fakeAsync(() => {
     authServiceSpy.getAllUsers.and.returnValue(of(mockUsers));
@@ -75,7 +79,7 @@ describe("UsuariosComponent", () => {
 
     const rows = compiled.querySelectorAll("tr[mat-row]");
     expect(rows.length).toBe(mockUsers.length);
-  }));
+  }));*/
 
   it("Debería abrir el dialog de editar con ID correcto", fakeAsync(() => {
     const mockDialogRef = {

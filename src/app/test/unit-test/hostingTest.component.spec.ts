@@ -5,52 +5,61 @@ import { ComponentFixture } from "@angular/core/testing";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
-import { provideHttpClientTesting } from "@angular/common/http/testing";
 
-import { of } from "rxjs";
+import { MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardModule, MatCardSubtitle, MatCardTitle } from "@angular/material/card";
+import { MatIcon, MatIconModule } from "@angular/material/icon";
+
 
 describe("HostingDetailComponent", () => {
   let component: HostingDetailComponent;
   let fixture: ComponentFixture<HostingDetailComponent>;
   let mockDialogRef: jasmine.SpyObj<MatDialogRef<HostingDetailComponent>> = jasmine.createSpyObj('MatDialogRef', ['close', 'afterClosed']);
-  const mockDialogData = { hostingName: "Detalles del hosting" };
+  const mockDialogData = {
+    hosting: {
+      id: 1,
+      name: 'Servidor Test',
+      status: true,
+      creationtimestamp: new Date().toISOString(),
+      modificationtimestamp: null,
+      creationuser: 'admin',
+      modificationuser: null
+    }
+  };
 
-  beforeEach(fakeAsync(async () => {
+  beforeEach(async () => {
+    mockDialogRef = jasmine.createSpyObj('MatDialogRef', ['close']);
+
     await TestBed.configureTestingModule({
       declarations: [HostingDetailComponent],
+      imports: [NoopAnimationsModule, MatCardModule, MatIconModule],
       providers: [
         { provide: MatDialogRef, useValue: mockDialogRef },
-        { provide: MAT_DIALOG_DATA, useValue: mockDialogData },
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting()
-      ],
-      imports: [NoopAnimationsModule]
+        { provide: MAT_DIALOG_DATA, useValue: mockDialogData }
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(HostingDetailComponent);
     component = fixture.componentInstance;
-  }));
+    fixture.detectChanges(); // importantísimo para renderizar con data
+  });
 
-  it("Debería crear el componente", () => {
+  it('Debería crear el componente', () => {
     expect(component).toBeTruthy();
   });
 
-  it("Debería mostrar el nombre del hosting en el título", () => {
-    const titleElement = fixture.nativeElement.querySelector("h1");
-    expect(titleElement.textContent).toContain(mockDialogData.hostingName);
+  it('Debería mostrar el nombre del hosting en el título', () => {
+    const titleElement = fixture.nativeElement.querySelector('mat-card-title');
+    expect(titleElement.textContent).toContain(mockDialogData.hosting.name);
   });
 
   it("Debería llamar a onClose cuando el diálogo se cierra sin confirmación", fakeAsync(() => {
-    spyOn(component, "onClose");
+  spyOn(component, 'onClose');
 
-    const button = fixture.nativeElement.querySelectorAll("button");
-    const cancelButton = Array.from(button).find((btn) => (btn as HTMLButtonElement).textContent?.trim() === "Close") as HTMLButtonElement | undefined;
+      const button = fixture.nativeElement.querySelector('button');
+      expect(button).toBeTruthy();
+      button.click();
+      tick();
 
-    expect(cancelButton).toBeTruthy();
-    cancelButton!.click();
-    tick();
-
-    expect(component.onClose).toHaveBeenCalled();
+      expect(component.onClose).toHaveBeenCalled();
   }));
 });
