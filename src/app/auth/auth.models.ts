@@ -14,5 +14,4 @@ export class User {
   status?: boolean;
   modificationuser?: string;
   modificationtimestamp?: Date;
-  email: string = '';
 }

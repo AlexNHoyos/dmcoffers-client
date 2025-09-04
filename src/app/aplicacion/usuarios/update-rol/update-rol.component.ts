@@ -15,13 +15,10 @@ import { UserService } from 'src/app/services/user/user.service';
 
 export class UpdateRolComponent {
   user: User;
-<<<<<<< HEAD
   userRoles: number[] = [];
   allRoles: RolApl[] | undefined;
   selectedRoles: SelectedRoles[] = [];
-=======
-  selectedRoles: string[] = [];
->>>>>>> develop
+  rolesSeleccionados: SelectedRoles[] = [];
 
   constructor(
     private userService: UserService,
@@ -36,11 +33,8 @@ export class UpdateRolComponent {
 
     await this.getAllRoles();
     await this.loadUserRols();
+    this.rolesSeleccionados = this.selectedRoles.filter(r => r.rolSelected);
 
-
-    console.log(this.userRoles);
-    console.log(this.allRoles);
-    console.log(this.selectedRoles);
   }
 
   async loadUserRols() {
@@ -80,33 +74,18 @@ export class UpdateRolComponent {
 
   onUpdateUser() {
     this.userUtilsService.setLoggedInUser().subscribe((username) => {
-<<<<<<< HEAD
-      /*       if (username) {
-              this.user.modificationuser = username;
-              this.user.modificationtimestamp = new Date().toISOString();
-      
-              // Convertir los roles seleccionados a IDs si es necesario
-              const roleIds = this.selectedRoles.map(r => this.mapRolNameToId(r));
-              console.log('roles seleccionados:', this.selectedRoles);
-              console.log('IDs a enviar:', roleIds);
-      
-              this.userService.updateUserRoles(this.user.idUser, roleIds).subscribe(
-                (response) => {
-                  console.log('Roles actualizados', response);
-                  this.dialogRef.close(true);
-                },
-                (error) => {
-                  console.error('Error al actualizar roles de usuario:', error);
-                }
-              );
-            } */
-=======
       if (username) {
         this.user.modificationuser = username;
         this.user.modificationtimestamp = new Date().toISOString();
 
         // Convertir los roles seleccionados a IDs si es necesario
-        const roleIds = this.selectedRoles.map(r => this.mapRolNameToId(r));
+        let roleIds: number[] = [];
+
+        this.rolesSeleccionados.forEach(rs => {
+          if (rs.rol?.id != undefined) {
+            roleIds.push(rs.rol.id);
+          }
+        })
 
         this.userService.updateUserRoles(this.user.idUser, roleIds).subscribe(
           (response) => {
@@ -116,24 +95,15 @@ export class UpdateRolComponent {
             console.error('Error al actualizar roles de usuario:', error);
           }
         );
-      }
->>>>>>> develop
-    });
-  }
 
-  mapRolNameToId(roleName: string): number {
-    const rolesMap: { [key: string]: number } = {
-      admin: 1,
-      moderador: 2,
-      usuarioForo: 3,
-      usuarioTienda: 4,
-    };
-    return rolesMap[roleName] || 0;
+      }
+    });
   }
 
   cancel(): void {
     this.dialogRef.close();
   }
+
 }
 
 class SelectedRoles {

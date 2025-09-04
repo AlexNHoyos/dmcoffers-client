@@ -50,7 +50,6 @@ export class RegisterComponent implements OnInit {
             this.passwordHasUpperCase(),
           ],
         ],
-        email: ['', [Validators.required, this.emailValidator]],
         password2: ['', [Validators.required, Validators.minLength(8)]],
         birth_date: ['', [Validators.required]],
       },
@@ -133,7 +132,6 @@ export class RegisterComponent implements OnInit {
     };
   }
 
-<<<<<<< HEAD
   emailValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const email = control.value;
@@ -149,8 +147,6 @@ export class RegisterComponent implements OnInit {
     };
   }
 
-=======
->>>>>>> develop
   goToLogin() {
     this.router.navigate(['/login']);
   }

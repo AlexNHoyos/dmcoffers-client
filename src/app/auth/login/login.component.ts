@@ -48,16 +48,12 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.loginForm.valid) {
-<<<<<<< HEAD
-      this.loginService.login(this.loginForm.value as LoginRequest).subscribe({
-=======
       const loginRequest: LoginRequest = {
         username: this.username?.value,
         password: this.encryptedPassword
       };
 
       this.loginService.login(loginRequest).subscribe({
->>>>>>> develop
         next: (userData) => { },
         error: (errorData) => {
           this.showErrorDialog(errorData);
