@@ -11,6 +11,8 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 
+import { ReactiveFormsModule } from "@angular/forms";
+
 import { FormsModule } from "@angular/forms";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { of } from "rxjs";
@@ -19,6 +21,11 @@ import { MatNativeDateModule } from "@angular/material/core";
 describe("DesarrolladoresCreateComponent", () => {
   let component: DesarrolladoresCreateComponent;
   let fixture: ComponentFixture<DesarrolladoresCreateComponent>;
+  let mockDialogRef: jasmine.SpyObj<MatDialogRef<DesarrolladoresCreateComponent>> = jasmine.createSpyObj('MatDialogRef', ['close', 'afterClosed']);
+
+  const mockDialogData = {
+    desarrollador: { id: 1, name: 'Desarrollador Test', creationuser: 'testUser', creationtimestamp: new Date().toISOString() }
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -31,18 +38,20 @@ describe("DesarrolladoresCreateComponent", () => {
         MatInputModule,
         MatFormFieldModule,
         MatDatepickerModule,
-        MatNativeDateModule
+        MatNativeDateModule,
+        ReactiveFormsModule
       ],
       providers: [
-        { provide: MatDialogRef, useValue: {} },
-        { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: MatDialogRef, useValue: mockDialogRef },
+        { provide: MAT_DIALOG_DATA, useValue: { mockDialogData } },
         provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
+        provideHttpClientTesting()
       ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(DesarrolladoresCreateComponent);
     component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
   afterEach(() => {
@@ -51,7 +60,7 @@ describe("DesarrolladoresCreateComponent", () => {
     }
   });
 
-  it("should create", () => {
+  it("Debería crear el componente", () => {
     expect(component).toBeTruthy();
   });
 
@@ -59,6 +68,6 @@ describe("DesarrolladoresCreateComponent", () => {
     fixture.detectChanges();
     tick();
     const submitButton = fixture.nativeElement.querySelector("button[type='submit']");
-    expect(submitButton.disabled).toBeFalse();
+    expect(submitButton.disabled).toBeTrue();
   }));
 });

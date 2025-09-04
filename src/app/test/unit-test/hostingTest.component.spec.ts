@@ -43,6 +43,12 @@ describe("HostingDetailComponent", () => {
     fixture.detectChanges(); // importantísimo para renderizar con data
   });
 
+  afterEach(() => {
+    if (fixture) {
+      fixture.destroy();
+    }
+  });
+
   it('Debería crear el componente', () => {
     expect(component).toBeTruthy();
   });
