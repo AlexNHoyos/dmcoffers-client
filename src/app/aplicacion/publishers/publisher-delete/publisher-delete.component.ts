@@ -36,7 +36,7 @@ export class PublisherDeleteComponent implements OnInit {
   }
 
   deletePublisher(): void {
-    this.publisherService.delete(this.data.id).subscribe({
+    this.publisherService.deletePublisher(this.data.id).subscribe({
       next: () => {
         this.successMessage = 'Publisher eliminado satisfactoriamente';
         this.dialogRef.close(true);

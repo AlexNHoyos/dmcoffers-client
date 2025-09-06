@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { SupportTicket } from './support-ticket.model';
 import { SupportTicketService } from './support-ticket.service';
-import { CrudComponent } from '../../components/crud/crud.component';
 import { MatDialog } from '@angular/material/dialog';
 import { SupportTicketUpdateComponent } from './support-ticket-update/support-ticket-update.component';
 import { SupportTicketCreateComponent } from './support-ticket-create/support-ticket-create.component';
@@ -14,14 +13,18 @@ import { SupportTicketDeleteComponent } from './support-ticket-delete/support-ti
   styleUrls: ['./support-ticket.component.scss'],
   standalone: false
 })
-export class SupportTicketComponent extends CrudComponent<SupportTicket> {
+export class SupportTicketComponent {
   supportTickets: SupportTicket[] = [];
 
   constructor(
     private supportTicketService: SupportTicketService,
-    override dialog: MatDialog
-  ) {
-    super(supportTicketService, dialog);
+    private dialog: MatDialog
+  ) {}
+
+  displayedColumns: string[] = ['id', 'user', 'actions'];
+
+  ngOnInit(): void {
+    this.loadSupportTickets();
   }
 
   getCreateComponent() {
@@ -86,13 +89,6 @@ export class SupportTicketComponent extends CrudComponent<SupportTicket> {
         this.loadSupportTickets(); // Carga o actualiza la lista de SupportTickets
       }
     });
-  }
-
-  override displayedColumns: string[] = ['id', 'user', 'actions'];
-
-  override ngOnInit(): void {
-    this.loadSupportTickets();
-    super.ngOnInit();
   }
 
   loadSupportTickets(): void {

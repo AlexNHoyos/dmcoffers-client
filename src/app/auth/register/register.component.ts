@@ -8,8 +8,6 @@ import {
 } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { RegisterService } from 'src/app/services/auth/register.service';
-import { ErrorHandlerService } from 'src/app/services/error-handler.service';
-import { UserService } from 'src/app/services/user/user.service';
 import { Validators } from '@angular/forms';
 import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
 import { User } from '../auth.models';
@@ -30,8 +28,6 @@ export class RegisterComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private registerService: RegisterService,
-    private userService: UserService,
-    private errorHandler: ErrorHandlerService,
     private dialog: MatDialog,
     private encryptionService: EncryptionService,
     private router: Router
@@ -85,7 +81,7 @@ export class RegisterComponent implements OnInit {
       },
       (error) => {
         console.error('Error al registrar: ', error);
-        this.showErrorDialog(error.error.message || 'Error desconocido');
+        this.showErrorDialog(error.error.error.message || 'Error desconocido');
       }
     );
   }

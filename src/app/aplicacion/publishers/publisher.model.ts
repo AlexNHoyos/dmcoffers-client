@@ -1,5 +1,3 @@
-import { Page } from 'src/app/models/pagination.js';
-
 export class Publisher {
   id: number = 0;
   publishername: string = '';
@@ -12,6 +10,4 @@ export class Publisher {
   modificationuser?: string | null = null;
 }
 
-export interface PublisherPage extends Page<Publisher> {
-  content: Publisher[];
-}
+

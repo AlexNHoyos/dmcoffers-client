@@ -37,7 +37,7 @@ export class HostingDeleteComponent implements OnInit {
   }
 
   deleteHosting(): void {
-    this.hostingService.delete(this.data.id).subscribe({
+    this.hostingService.deleteHosting(this.data.id).subscribe({
       next: () => {
         this.successMessage = 'Hosting eliminado satisfactoriamente';
         this.dialogRef.close(true);

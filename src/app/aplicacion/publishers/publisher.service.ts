@@ -1,22 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-
-import { CrudService } from 'src/app/components/crud/crud.service';
 import { environment } from 'src/environments/environment';
-import {
-  Publisher,
-  PublisherPage,
-} from '../../aplicacion/publishers/publisher.model';
+import { Publisher } from '../../aplicacion/publishers/publisher.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class PublisherService extends CrudService<PublisherPage> {
-  override endpoint = `${environment.urlApi}publishers`;
+export class PublisherService {
+  private endpoint = `${environment.urlApi}publishers`;
 
-  constructor(protected override http: HttpClient) {
-    super(http);
+  constructor(private http: HttpClient) {
   }
 
   createPublisher(publisher: Publisher): Observable<Publisher> {
@@ -33,5 +27,9 @@ export class PublisherService extends CrudService<PublisherPage> {
 
   getPublisher(id: number): Observable<Publisher> {
     return this.http.get<Publisher>(`${this.endpoint}/${id}`);
+  }
+
+  deletePublisher(id: number): Observable<any> {
+    return this.http.delete<Publisher>(`${this.endpoint}/${id}`);
   }
 }
