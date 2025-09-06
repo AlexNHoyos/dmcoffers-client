@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -21,7 +21,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardActions, MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule, NativeDateAdapter } from '@angular/material/core';
+import { MAT_DATE_LOCALE, MatNativeDateModule, NativeDateAdapter } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -106,7 +106,10 @@ import { ThemeToggleComponent } from './components/theme-toggle/theme-toggle.com
 import { DropdownSelectComponent } from './components/dropdown-selector/dropdown-selector.component';
 import { ResetPassComponent } from './auth/resetPass/resetPass.component';
 import { ForgotPassComponent } from './auth/forgotPass/forgotPass.component';
+import { registerLocaleData } from '@angular/common';
+import localeEsAr from '@angular/common/locales/es-AR';
 
+registerLocaleData(localeEsAr); // 👈 Esto registra el locale
 
 @NgModule({
     declarations: [
@@ -227,7 +230,8 @@ import { ForgotPassComponent } from './auth/forgotPass/forgotPass.component';
             useClass: LoadingInterceptor,
             multi: true
         },
-        provideHttpClient(withInterceptorsFromDi())
+        provideHttpClient(withInterceptorsFromDi()),
+        { provide: LOCALE_ID, useValue: 'es-AR' },
     ]
 })
 export class AppModule { }

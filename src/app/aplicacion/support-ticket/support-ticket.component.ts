@@ -16,6 +16,11 @@ import { SupportTicketDeleteComponent } from './support-ticket-delete/support-ti
 })
 export class SupportTicketComponent extends CrudComponent<SupportTicket> {
   supportTickets: SupportTicket[] = [];
+  filteredTickets: SupportTicket[] = [];
+
+  filterFechaCarga: Date | null = null;
+  filterUsuario: string | null = null
+  filterEstadoTicket: boolean | null = null;
 
   constructor(
     private supportTicketService: SupportTicketService,
@@ -88,7 +93,7 @@ export class SupportTicketComponent extends CrudComponent<SupportTicket> {
     });
   }
 
-  override displayedColumns: string[] = ['id', 'user', 'actions'];
+  override displayedColumns: string[] = ['id', 'fechaCarga', 'user', 'status', 'actions'];
 
   override ngOnInit(): void {
     this.loadSupportTickets();
@@ -98,6 +103,43 @@ export class SupportTicketComponent extends CrudComponent<SupportTicket> {
   loadSupportTickets(): void {
     this.supportTicketService.getAllSupportTickets().subscribe((data) => {
       this.supportTickets = data;
+      this.filteredTickets = data;
     });
+  }
+
+  aplicarFiltro(): void {
+    let fecha: Date | null = null;
+    let fechaFiltro: Date | null = null;
+    let d1: string | null;
+    let d2: string | null;
+
+    this.filteredTickets = this.supportTickets.filter(ticket => {
+      if (ticket.creationtimestamp && this.filterFechaCarga) {
+        fecha = new Date(ticket.creationtimestamp);
+        fechaFiltro = this.filterFechaCarga;
+        d1 = fecha.toISOString().split('T')[0];
+        d2 = fechaFiltro!.toISOString().split('T')[0];
+      }
+
+
+
+      const coincideUsuario =
+        !this.filterUsuario || ticket.creationuser.toLowerCase().includes(this.filterUsuario.toLowerCase());
+
+      const coincideFecha =
+        !this.filterFechaCarga || d1 === d2;
+
+      const coincideEstado =
+        !this.filterEstadoTicket || ticket.status === this.filterEstadoTicket;
+
+      return coincideUsuario && coincideFecha && coincideEstado;
+    });
+  }
+
+  resetFiltro(): void {
+    this.filterUsuario = '';
+    this.filterFechaCarga = null;
+    this.filterEstadoTicket = null;
+    this.filteredTickets = [...this.supportTickets];
   }
 }
