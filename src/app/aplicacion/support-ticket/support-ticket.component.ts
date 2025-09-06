@@ -121,8 +121,6 @@ export class SupportTicketComponent extends CrudComponent<SupportTicket> {
         d2 = fechaFiltro!.toISOString().split('T')[0];
       }
 
-
-
       const coincideUsuario =
         !this.filterUsuario || ticket.creationuser.toLowerCase().includes(this.filterUsuario.toLowerCase());
 
