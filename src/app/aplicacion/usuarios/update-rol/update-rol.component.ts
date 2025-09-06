@@ -1,9 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { firstValueFrom } from 'rxjs';
 import { RolApl } from 'src/app/models/rol.models.js';
 import { User } from 'src/app/models/user.model';
-import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -22,7 +20,6 @@ export class UpdateRolComponent {
 
   constructor(
     private userService: UserService,
-    private userUtilsService: UserUtilsService,
     public dialogRef: MatDialogRef<UpdateRolComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { user: User; rolDesc: string }
   ) {
@@ -73,7 +70,7 @@ export class UpdateRolComponent {
   }
 
   onUpdateUser() {
-    this.userUtilsService.setLoggedInUser().subscribe((username) => {
+    this.userService.getLoggedInUsername().subscribe((username) => {
       if (username) {
         this.user.modificationuser = username;
         this.user.modificationtimestamp = new Date().toISOString();

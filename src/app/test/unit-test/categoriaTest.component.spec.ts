@@ -6,20 +6,20 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CategoriaService } from 'src/app/aplicacion/categorias/categoria.service';
-import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
-import { provideHttpClientTesting } from '@angular/common/http/testing'; // solo esto
+
 import { of } from 'rxjs';
 import { MatInputModule } from '@angular/material/input';
+import { UserService } from 'src/app/services/user/user.service';
 
 describe('CategoriaCreateComponent', () => {
   let component: CategoriaCreateComponent;
   let fixture: ComponentFixture<CategoriaCreateComponent>;
   let categoriaServiceSpy: jasmine.SpyObj<CategoriaService>;
-  let userUtilsServiceSpy: jasmine.SpyObj<UserUtilsService>;
+  let userServiceSpy: jasmine.SpyObj<UserService>;
 
   beforeEach(async () => {
     categoriaServiceSpy = jasmine.createSpyObj('CategoriaService', ['createCategoria']);
-    userUtilsServiceSpy = jasmine.createSpyObj('UserUtilsService', ['setLoggedInUser']);
+    userServiceSpy = jasmine.createSpyObj('UserService', ['getLoggedInUser']);
 
     await TestBed.configureTestingModule({
       declarations: [CategoriaCreateComponent],
@@ -33,7 +33,7 @@ describe('CategoriaCreateComponent', () => {
       ],
       providers: [
         { provide: CategoriaService, useValue: categoriaServiceSpy },
-        { provide: UserUtilsService, useValue: userUtilsServiceSpy },
+        { provide: UserService, useValue: userServiceSpy },
         { provide: MatDialogRef, useValue: { close: jasmine.createSpy('close') } },
         { provide: MAT_DIALOG_DATA, useValue: {} },
       ]
@@ -50,23 +50,23 @@ describe('CategoriaCreateComponent', () => {
   });
 
   it('Debería inicializar creationuser con el usuario logueado en ngOnInit', fakeAsync(() => {
-    userUtilsServiceSpy.setLoggedInUser.and.returnValue(of('testUser'));
+    userServiceSpy.getLoggedInUsername.and.returnValue(of('testUser'));
 
     fixture.detectChanges();
     tick();
 
-    expect(userUtilsServiceSpy.setLoggedInUser).toHaveBeenCalled();
+    expect(userServiceSpy.getLoggedInUsername).toHaveBeenCalled();
     expect(component.categoria.creationuser).toBe('testUser');
   }));
 
   it('Debería registrar un error si no se encuentra el usuario logueado', fakeAsync(() => {
     spyOn(console, 'log');
 
-    userUtilsServiceSpy.setLoggedInUser.and.returnValue(of(null));
+    userServiceSpy.getLoggedInUsername.and.returnValue(of(null));
 
     fixture.detectChanges();
     tick();
 
-    expect(userUtilsServiceSpy.setLoggedInUser).toHaveBeenCalled();
+    expect(userServiceSpy.getLoggedInUsername).toHaveBeenCalled();
   }));
 });

@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../../models/user.model';
-import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, of, switchMap, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { RolApl } from 'src/app/models/rol.models.js';
 
@@ -22,6 +22,18 @@ export class UserService {
 
   getUserId(): Observable<number | null> {
     return this.userId.asObservable();
+  }
+
+  // Metodo para obtener el username del usuario logueado
+  getLoggedInUsername(): Observable<string | null> {
+    return this.getUserId().pipe(
+      switchMap((userId) => {
+        if (userId != null) {
+          return this.getUser(userId).pipe(map(user => user.username));
+        }
+        return of(null);
+      })
+    );
   }
 
   getUser(id: number): Observable<User> {

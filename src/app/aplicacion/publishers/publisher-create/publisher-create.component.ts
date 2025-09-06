@@ -3,8 +3,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 
 import { Publisher } from '../publisher.model';
 
-import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
 import { PublisherService } from '../publisher.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-publisher-create',
@@ -28,10 +28,10 @@ export class PublisherCreateComponent {
   constructor(
     private publisherService: PublisherService,
     private dialogRef: MatDialogRef<PublisherCreateComponent>,
-    private userUtilsService: UserUtilsService
+    private userService: UserService
   ) { }
   ngOnInit(): void {
-    this.userUtilsService.setLoggedInUser().subscribe((username) => {
+    this.userService.getLoggedInUsername().subscribe((username) => {
       if (username) {
         this.publisher.creationuser = username;
       }

@@ -7,8 +7,8 @@ import {
 
 import { Publisher } from '../publisher.model';
 import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
-import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
 import { PublisherService } from '../publisher.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-publisher-update',
@@ -21,7 +21,7 @@ export class PublisherUpdateComponent {
 
   constructor(
     private publisherService: PublisherService,
-    private userUtilsService: UserUtilsService,
+    private userService: UserService,
     private dialog: MatDialog,
     public dialogRef: MatDialogRef<PublisherUpdateComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { publisher: Publisher }
@@ -31,7 +31,7 @@ export class PublisherUpdateComponent {
   }
 
   ngOnInit(): void {
-    this.userUtilsService.setLoggedInUser().subscribe((username) => {
+    this.userService.getLoggedInUsername().subscribe((username) => {
       if (username) {
         this.publisher.modificationuser = username;
         this.publisher.modificationtimestamp = new Date().toISOString();

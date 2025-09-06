@@ -3,8 +3,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 
 import { Hosting } from '../hosting.model';
 
-import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
 import { HostingService } from '../hosting.service';
+import { UserService } from 'src/app/services/user/user.service.js';
 
 @Component({
   selector: 'app-hosting-create',
@@ -23,10 +23,10 @@ export class HostingCreateComponent {
   constructor(
     private HostingService: HostingService,
     private dialogRef: MatDialogRef<HostingCreateComponent>,
-    private userUtilsService: UserUtilsService
+    private userService: UserService
   ) { }
   ngOnInit(): void {
-    this.userUtilsService.setLoggedInUser().subscribe((username) => {
+    this.userService.getLoggedInUsername().subscribe((username) => {
       if (username) {
         this.hosting.creationuser = username;
       }

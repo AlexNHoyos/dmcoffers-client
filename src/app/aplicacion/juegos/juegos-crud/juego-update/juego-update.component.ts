@@ -6,7 +6,6 @@ import {
 } from '@angular/material/dialog';
 
 import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
-import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
 import { JuegoService } from '../../juegos.service';
 import { Juego } from '../../juegos.model';
 import { DesarrolladoresService } from 'src/app/aplicacion/desarrolladores/desarrolladores.service';
@@ -14,6 +13,7 @@ import { PublisherService } from 'src/app/aplicacion/publishers/publisher.servic
 import { CategoriaService } from 'src/app/aplicacion/categorias/categoria.service';
 import { FormsModule } from '@angular/forms';
 import { environment } from 'src/environments/environment';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
     selector: 'app-juego-update',
@@ -34,7 +34,7 @@ export class JuegoUpdateComponent {
     private publisherService: PublisherService,
     private categoriaService: CategoriaService,
     private dialogRef: MatDialogRef<JuegoUpdateComponent>,
-    private userUtilsService: UserUtilsService,
+    private userService: UserService,
     private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: { juego: Juego }
   ) {
@@ -48,7 +48,7 @@ export class JuegoUpdateComponent {
     this.loadDropdownData();
 
     // Asignar el usuario actual al campo modificationuser y timestamp de modificación
-    this.userUtilsService.setLoggedInUser().subscribe((username) => {
+    this.userService.getLoggedInUsername().subscribe((username) => {
       if (username) {
         this.juego.modificationuser = username;
         this.juego.modificationtimestamp = new Date().toISOString();
