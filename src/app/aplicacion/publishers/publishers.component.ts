@@ -21,13 +21,11 @@ export class PublisherComponent extends CrudComponent<Publisher> {
     override dialog: MatDialog
   ) {
     super(publisherService, dialog);
-
-    // Carga y muestra la tabla
     this.loadPublishers();
-    // Muestra la tabla
-    this.showTable = true;
-    this.buttonText = 'Ocultar publishers'; // Cambia el texto del botón
   }
+
+  override displayedColumns: string[] = ['id', 'publishername', 'actions'];
+
 
   getCreateComponent() {
     return PublisherCreateComponent;
@@ -95,10 +93,6 @@ export class PublisherComponent extends CrudComponent<Publisher> {
     });
   }
 
-  override displayedColumns: string[] = ['id', 'publishername', 'actions'];
-
-  showTable: boolean = false;
-  buttonText: string = 'Mostrar Publishers';
 
   override ngOnInit(): void {
     // Con esta funcion se puede cargar los publishers al inicio
@@ -107,7 +101,6 @@ export class PublisherComponent extends CrudComponent<Publisher> {
   }
 
   loadPublishers(): void {
-    this.showTable = true;
     this.publisherService.getAllPublishers().subscribe((data) => {
       this.publishers = data;
     });

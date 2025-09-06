@@ -5,8 +5,7 @@ import { Page } from 'src/app/models/pagination';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmComponent } from '../confirm/confirm.component';
 import { CrudService } from './crud.service';
-import { AlertService } from '../alert/alert.service';
-import { LocatorService } from 'src/app/services/locator.service';
+
 import {
   CrudDataSource,
   DataSourceExtended,
@@ -20,7 +19,6 @@ export abstract class CrudComponent<T>
   implements ICRUDComponent, OnInit, OnDestroy {
   displayedColumns: any;
   filter: FilterDTO = new FilterDTO();
-  // alertService: AlertService;
   dataSource: DataSourceExtended<DTO> | null = null;
   itemsPerPage: number = ITEMS_PER_PAGE;
 
@@ -35,7 +33,6 @@ export abstract class CrudComponent<T>
     protected service: CrudService<Page<DTO>>,
     protected dialog: MatDialog
   ) {
-    // this.alertService = LocatorService.getInstance(AlertService);
   }
 
   ngOnInit() {
@@ -50,6 +47,7 @@ export abstract class CrudComponent<T>
 
   ngOnDestroy(): void { }
 
+  // Abre un diálogo en modo solo lectura para ver un registro.
   onView(row: any) {
     let dialogRef = this.dialog.open(this.getEditComponent(), {
       width: '400px',
@@ -63,6 +61,7 @@ export abstract class CrudComponent<T>
     });
   }
 
+  // Abre un diálogo en modo edición para modificar un registro.
   onEdit(row: any) {
     const dialogRef = this.dialog.open(this.getEditComponent(), {
       width: '400px',
@@ -72,11 +71,11 @@ export abstract class CrudComponent<T>
     dialogRef.afterClosed().subscribe((isSaved) => {
       if (isSaved) {
         this.reloadTable();
-        //this.alertService.success('Actualizado exitosamente.');
       }
     });
   }
 
+  // Abre un diálogo en modo creación para registrar un nuevo elemento.
   onCreate() {
     const dialogRef = this.dialog.open(this.getCreateComponent(), {
       width: '400px',
@@ -85,11 +84,11 @@ export abstract class CrudComponent<T>
     dialogRef.afterClosed().subscribe((isSaved) => {
       if (isSaved) {
         this.reloadTable();
-        //this.alertService.success('Creado exitosamente.');
       }
     });
   }
 
+  // Abre un diálogo de confirmación antes de eliminar un registro.
   onDelete(row: any) {
     const dialogRef = this.dialog.open(ConfirmComponent, {
       width: '300px',
@@ -103,7 +102,6 @@ export abstract class CrudComponent<T>
       if (isConfirmed) {
         this.service.delete(row.id).subscribe(() => {
           this.reloadTable();
-          //this.alertService.success('Eliminado exitosamente.');
         });
       }
     });

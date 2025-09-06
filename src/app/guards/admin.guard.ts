@@ -10,6 +10,7 @@ export const adminGuard: CanActivateFn = () => {
   // Verifico si el usuario es 'admin' mapeando el observable
   return loginService.userRol.pipe(
     map((rol) => {
+      console.log(rol)
       if (rol === 'Administrador') {
         return true; // Autorizo acceso
       } else {

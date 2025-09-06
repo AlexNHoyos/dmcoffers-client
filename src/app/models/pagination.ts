@@ -7,6 +7,5 @@ export interface Page<T> {
   sort: string;
   size: number;
   number: number;
-
   content: T[];
 }
