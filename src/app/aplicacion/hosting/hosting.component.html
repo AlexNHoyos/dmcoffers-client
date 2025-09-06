@@ -3,26 +3,6 @@
     <h3>Hostings</h3>
   </div>
 
-  <div class="row filtroCrud">
-
-    <mat-accordion class="">
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title> FILTROS </mat-panel-title>
-        </mat-expansion-panel-header>
-
-        <form #categoriasForm="ngForm">
-          <mat-form-field appearance="outline" class="col-4">
-            <mat-label>Usuario</mat-label>
-            <input matInput type="text" name="usuarioTicket" required minlength="1" />
-          </mat-form-field>
-        </form>
-
-      </mat-expansion-panel>
-    </mat-accordion>
-  </div>
-
-
   <div class="tabla-crud normal-table row">
     <table mat-table [dataSource]="hostings" class="mat-elevation-z8 ">
       <!-- ID  -->
