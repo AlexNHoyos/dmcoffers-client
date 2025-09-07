@@ -53,7 +53,8 @@ export class ResetPassComponent implements OnInit {
         next: () => {
           this.dialog.open(ErrorDialogComponent, {
             data: {
-              message: 'Contraseña actualizada correctamente. Puedes iniciar sesión con tu nueva contraseña.'
+              message: 'Contraseña actualizada correctamente. Puedes iniciar sesión con tu nueva contraseña.', 
+              type: 'success'
             }
           });
           this.router.navigateByUrl('/login');
@@ -61,7 +62,8 @@ export class ResetPassComponent implements OnInit {
         error: () => {
           this.dialog.open(ErrorDialogComponent, {
             data: {
-              message: 'Error al actualizar la contraseña. Por favor, verifica el token y vuelve a intentarlo.'
+              message: 'Error al actualizar la contraseña. Por favor, verifica el token y vuelve a intentarlo.',
+              type: 'error'
             }
           });
         }
