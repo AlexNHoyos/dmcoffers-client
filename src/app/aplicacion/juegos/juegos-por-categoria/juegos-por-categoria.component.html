@@ -1,4 +1,5 @@
-<div class="row filtroCrud">
+<div class="game-list-container">
+  <div class="row filtroCrud">
   <mat-accordion>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
@@ -87,19 +88,22 @@
       </form>
     </mat-expansion-panel>
   </mat-accordion>
+  </div>
+
+  <!-- Lista de juegos filtrados -->
+  <div class="game-list-component">
+    <mat-list *ngIf="juegosFiltrados.length > 0">
+      <mat-list-item class="game-item" *ngFor="let juego of juegosFiltrados" (click)="verDetalle(juego.id)">
+        <img matListItemIcon [src]="environmentImg + juego.image_path" alt="{{ juego.gamename }}" />
+        <div matListItemTitle class="gameListItemTitle">{{ juego.gamename }}</div>
+        <div matListItemLine class="gameListItemPrice">{{ juego.price | currency:'USD' }}</div>
+      </mat-list-item>
+    </mat-list>
+
+    <h3 *ngIf="juegosFiltrados.length === 0" class="no-results">
+      <mat-icon>sentiment_dissatisfied</mat-icon>
+      No hay juegos con esos filtros
+    </h3>
+  </div>
 </div>
-
-<!-- Lista de juegos filtrados -->
-<mat-list *ngIf="juegosFiltrados.length > 0">
-  <mat-list-item class="game-item" *ngFor="let juego of juegosFiltrados" (click)="verDetalle(juego.id)">
-    <img matListItemIcon [src]="environmentImg + juego.image_path" alt="{{ juego.gamename }}" />
-    <div matListItemTitle class="gameListItemTitle">{{ juego.gamename }}</div>
-    <div matListItemLine class="gameListItemPrice">{{ juego.price | currency:'USD' }}</div>
-  </mat-list-item>
-</mat-list>
-
-<h3 *ngIf="juegosFiltrados.length === 0" class="no-results">
-  <mat-icon>sentiment_dissatisfied</mat-icon>
-  No hay juegos con esos filtros
-</h3>
 
