@@ -37,7 +37,7 @@ describe('JuegoCreateComponent', () => {
       creationuser: 'testUser'
     }]));
 
-    userServiceSpy = jasmine.createSpyObj('UserService', ['setLoggedInUser']);
+    userServiceSpy = jasmine.createSpyObj('UserService', ['getLoggedInUsername']);
     userServiceSpy.getLoggedInUsername.and.returnValue(of('testUser'));
 
     juegoServiceSpy = jasmine.createSpyObj('JuegoService', ['createJuego']);

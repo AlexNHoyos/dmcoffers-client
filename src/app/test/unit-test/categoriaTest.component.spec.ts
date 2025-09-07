@@ -19,7 +19,7 @@ describe('CategoriaCreateComponent', () => {
 
   beforeEach(async () => {
     categoriaServiceSpy = jasmine.createSpyObj('CategoriaService', ['createCategoria']);
-    userServiceSpy = jasmine.createSpyObj('UserService', ['getLoggedInUser']);
+    userServiceSpy = jasmine.createSpyObj('UserService', ['getLoggedInUsername']);
 
     await TestBed.configureTestingModule({
       declarations: [CategoriaCreateComponent],
