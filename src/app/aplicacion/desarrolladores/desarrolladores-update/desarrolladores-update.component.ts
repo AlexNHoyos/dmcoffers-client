@@ -7,8 +7,8 @@ import {
 
 import { Desarrollador } from '../desarrolladores.models.js';
 import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
-import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
 import { DesarrolladoresService } from '../desarrolladores.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-desarrolladores-update',
@@ -21,7 +21,7 @@ export class DesarrolladoresUpdateComponent {
 
   constructor(
     private desarrolladorService: DesarrolladoresService,
-    private userUtilsService: UserUtilsService,
+    private userService: UserService,
     private dialog: MatDialog,
     public dialogRef: MatDialogRef<DesarrolladoresUpdateComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { desarrollador: Desarrollador }
@@ -31,7 +31,7 @@ export class DesarrolladoresUpdateComponent {
   }
 
   ngOnInit(): void {
-    this.userUtilsService.setLoggedInUser().subscribe((username) => {
+    this.userService.getLoggedInUsername().subscribe((username) => {
       if (username) {
         this.desarrollador.modificationuser = username;
         this.desarrollador.modificationtimestamp = new Date().toISOString();

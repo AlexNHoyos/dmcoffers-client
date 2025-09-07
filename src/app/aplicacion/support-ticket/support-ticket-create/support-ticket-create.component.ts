@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
-import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
-
 import { SupportTicket } from '../support-ticket.model';
 import { SupportTicketService } from '../support-ticket.service';
 import { ProximamenteService } from 'src/app/services/proximamente.service';
 import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-support-ticket-create',
@@ -27,13 +26,13 @@ export class SupportTicketCreateComponent {
   constructor(
     private supportTicketService: SupportTicketService,
     private dialogRef: MatDialogRef<SupportTicketCreateComponent>,
-    private userUtilsService: UserUtilsService,
+    private userService: UserService,
     private proximamenteService: ProximamenteService,
     private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
-    this.userUtilsService.setLoggedInUser().subscribe({
+    this.userService.getLoggedInUsername().subscribe({
       next: (username) => {
         this.supportTicket.creationuser = username || 'Usuario Anonimo';
       },

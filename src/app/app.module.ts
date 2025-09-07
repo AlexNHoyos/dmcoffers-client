@@ -38,7 +38,6 @@ import { LoginComponent } from './auth/login/login.component';
 import { NavComponent } from './shared/nav/nav.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
-import { AlertService } from './components/alert/alert.service';
 
 import { JwtInterceptorService } from './services/auth/jwt-interceptor.service';
 import { ErrorInterceptorService } from './services/auth/error-interceptor.service';
@@ -211,7 +210,6 @@ registerLocaleData(localeEsAr); // 👈 Esto registra el locale
         RegisterService,
         PublisherService,
         CategoriaService,
-        AlertService,
         DesarrolladoresService,
         RegisterService,
         SweItemMenuService,

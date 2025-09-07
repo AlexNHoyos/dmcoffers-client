@@ -38,7 +38,7 @@ export class JuegoDeleteComponent implements OnInit {
   }
 
   deleteJuego(): void {
-    this.juegoService.delete(this.data.id).subscribe({
+    this.juegoService.deleteJuego(this.data.id).subscribe({
       next: () => {
         this.successMessage = 'Juego eliminado satisfactoriamente';
         this.dialogRef.close(true);

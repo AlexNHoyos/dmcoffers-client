@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Hosting } from './hosting.model';
 import { HostingService } from './hosting.service';
-import { CrudComponent } from '../../components/crud/crud.component';
 import { HostingCreateComponent } from './hosting-create/hosting-create.component';
 import { HostingUpdateComponent } from './hosting-update/hosting-update.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -14,14 +13,18 @@ import { HostingDetailComponent } from './hosting-detail/hosting-detail.componen
   styleUrls: ['./hosting.component.scss'],
   standalone: false
 })
-export class HostingComponent extends CrudComponent<Hosting> {
+export class HostingComponent implements OnInit {
   hostings: Hosting[] = [];
 
   constructor(
     private hostingService: HostingService,
-    override dialog: MatDialog
-  ) {
-    super(hostingService, dialog);
+    private dialog: MatDialog
+  ) {}
+
+  displayedColumns: string[] = ['id', 'name', 'actions'];
+
+  ngOnInit(): void {
+    this.loadHostings();
   }
 
   getCreateComponent() {
@@ -82,13 +85,6 @@ export class HostingComponent extends CrudComponent<Hosting> {
         this.loadHostings(); // Carga o actualiza la lista de Hostings
       }
     });
-  }
-
-  override displayedColumns: string[] = ['id', 'name', 'actions'];
-
-  override ngOnInit(): void {
-    this.loadHostings();
-    super.ngOnInit();
   }
 
   loadHostings(): void {

@@ -25,8 +25,8 @@ class MockLoginService {
   userRol = of(null);
   logout = jasmine.createSpy('logout');
 }
-class MockUserUtilsService {
-  setLoggedInUser = () => of('UsuarioTest');
+class MockUserService {
+  getLoggedInUsername = () => of('UsuarioTest');
 }
 class MockProximamenteService {
   mostrarMensaje = jasmine.createSpy('mostrarMensaje');
@@ -52,7 +52,7 @@ describe('NavComponent', () => {
       ],
       providers: [
         { provide: 'LoginService', useClass: MockLoginService },
-        { provide: 'UserUtilsService', useClass: MockUserUtilsService },
+        { provide: 'UserService', useClass: MockUserService },
         { provide: 'ProximamenteService', useClass: MockProximamenteService },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting()

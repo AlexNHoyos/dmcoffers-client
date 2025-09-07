@@ -1,7 +1,6 @@
-import { Component, Type } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Publisher } from './publisher.model';
 import { PublisherService } from './publisher.service';
-import { CrudComponent } from '../../components/crud/crud.component';
 import { PublisherCreateComponent } from './publisher-create/publisher-create.component';
 import { PublisherUpdateComponent } from './publisher-update/publisher-update.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,21 +12,20 @@ import { PublisherDetailComponent } from './publisher-detail/publisher-detail.co
   styleUrls: ['./publishers.component.scss'],
   standalone: false
 })
-export class PublisherComponent extends CrudComponent<Publisher> {
+export class PublisherComponent implements OnInit {
   publishers: Publisher[] = [];
 
   constructor(
     private publisherService: PublisherService,
-    override dialog: MatDialog
-  ) {
-    super(publisherService, dialog);
-
-    // Carga y muestra la tabla
+    private dialog: MatDialog
+  ) {}
+  
+  ngOnInit(): void {
     this.loadPublishers();
-    // Muestra la tabla
-    this.showTable = true;
-    this.buttonText = 'Ocultar publishers'; // Cambia el texto del botón
   }
+
+  displayedColumns: string[] = ['id', 'publishername', 'actions'];
+
 
   getCreateComponent() {
     return PublisherCreateComponent;
@@ -56,12 +54,6 @@ export class PublisherComponent extends CrudComponent<Publisher> {
         disableClose: true,
         data: { publisher },
       });
-      /*  No es necesario porque no edito los datos adentro del dialog, pero podria implementarse a futuro
-      dialogRef.afterClosed().subscribe((result) => {
-        if (result) {
-          this.loadPublishers(); // Carga o actualiza la lista de publishers
-        }
-      });*/
     });
   }
 
@@ -95,19 +87,7 @@ export class PublisherComponent extends CrudComponent<Publisher> {
     });
   }
 
-  override displayedColumns: string[] = ['id', 'publishername', 'actions'];
-
-  showTable: boolean = false;
-  buttonText: string = 'Mostrar Publishers';
-
-  override ngOnInit(): void {
-    // Con esta funcion se puede cargar los publishers al inicio
-    // this.loadPublishers();
-    super.ngOnInit();
-  }
-
   loadPublishers(): void {
-    this.showTable = true;
     this.publisherService.getAllPublishers().subscribe((data) => {
       this.publishers = data;
     });

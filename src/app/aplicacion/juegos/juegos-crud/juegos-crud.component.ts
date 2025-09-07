@@ -1,7 +1,6 @@
-import { Component, Type } from '@angular/core';
+import { Component, OnInit, Type } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Juego } from '../juegos.model';
-import { CrudComponent } from 'src/app/components/crud/crud.component';
 import { JuegoService } from '../juegos.service';
 import { JuegoCreateComponent } from './juego-create/juego-create.component';
 import { JuegoUpdateComponent } from './juego-update/juego-update.component';
@@ -14,10 +13,15 @@ import { JuegoDetailDialogComponent } from './juego-detail-dialog/juego-detail-d
   styleUrls: ['./juegos-crud.component.scss'],
   standalone: false
 })
-export class JuegosCrudComponent extends CrudComponent<Juego> {
+export class JuegosCrudComponent implements OnInit{
   juegos: Juego[] = [];
-  constructor(private juegoService: JuegoService, override dialog: MatDialog) {
-    super(juegoService, dialog);
+  constructor(private juegoService: JuegoService, private dialog: MatDialog) {
+  }
+
+  displayedColumns: string[] = ['id', 'gamename', 'actions'];
+
+  ngOnInit(): void {
+    this.loadJuegos();
   }
 
   getCreateComponent() {
@@ -80,33 +84,7 @@ export class JuegosCrudComponent extends CrudComponent<Juego> {
     });
   }
 
-  override displayedColumns: string[] = ['id', 'gamename', 'actions'];
-
-  showTable: boolean = false;
-  buttonText: string = 'Mostrar Juegos';
-
-  toggleJuegos() {
-    if (this.showTable) {
-      // Oculta la tabla
-      this.showTable = false;
-      this.buttonText = 'Mostrar Juegos'; // Cambia el texto del botón
-    } else {
-      // Carga y muestra la tabla
-      this.loadJuegos();
-      // Muestra la tabla
-      this.showTable = true;
-      this.buttonText = 'Ocultar juegos'; // Cambia el texto del botón
-    }
-  }
-  override ngOnInit(): void {
-    // Carga y muestra la tabla
-    this.loadJuegos();
-    // Muestra la tabla
-    this.showTable = true;
-  }
-
   loadJuegos(): void {
-    this.showTable = true;
     this.juegoService.getJuegos().subscribe((data) => {
       this.juegos = data;
     });

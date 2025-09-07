@@ -1,22 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-
-import { CrudService } from 'src/app/components/crud/crud.service';
 import { environment } from 'src/environments/environment';
-import {
-  Categoria,
-  CategoriaPage,
-} from '../../aplicacion/categorias/categoria.model';
+import {Categoria} from '../../aplicacion/categorias/categoria.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CategoriaService extends CrudService<CategoriaPage> {
-  override endpoint = `${environment.urlApi}categories`;
+export class CategoriaService {
+  private endpoint = `${environment.urlApi}categories`;
 
-  constructor(protected override http: HttpClient) {
-    super(http);
+  constructor(private http: HttpClient) {
   }
 
   createCategoria(categoria: Categoria): Observable<Categoria> {
@@ -33,5 +27,9 @@ export class CategoriaService extends CrudService<CategoriaPage> {
 
   getCategoria(id: number): Observable<Categoria> {
     return this.http.get<Categoria>(`${this.endpoint}/${id}`);
+  }
+
+  deleteCategoria(id: number): Observable<Categoria> {
+    return this.http.delete<Categoria>(`${this.endpoint}/${id}`);
   }
 }

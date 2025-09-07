@@ -20,13 +20,6 @@ private apiUrl = `${environment.urlApi}juegos`;
     });
   }
 
-  // Quitar un juego de la biblioteca
-  removeFromLibrary(juegoId: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/biblioteca/${juegoId}`, {
-      headers: { Authorization: `Bearer ${this.token}` },
-    });
-  }
-
   // Método para verificar si un juego está en la biblioteca
   isInLibrary(juegoId: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/biblioteca/${juegoId}`, {

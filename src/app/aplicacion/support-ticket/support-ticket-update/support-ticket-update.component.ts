@@ -7,8 +7,9 @@ import {
 
 import { SupportTicket } from '../support-ticket.model';
 import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
-import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
+
 import { SupportTicketService } from '../support-ticket.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-support-ticket-update',
@@ -21,7 +22,7 @@ export class SupportTicketUpdateComponent {
 
   constructor(
     private supportTicketService: SupportTicketService,
-    private userUtilsService: UserUtilsService,
+    private userService: UserService,
     private dialog: MatDialog,
     public dialogRef: MatDialogRef<SupportTicketUpdateComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { supportTicket: SupportTicket }
@@ -31,7 +32,7 @@ export class SupportTicketUpdateComponent {
   }
 
   ngOnInit(): void {
-    this.userUtilsService.setLoggedInUser().subscribe((username) => {
+    this.userService.getLoggedInUsername().subscribe((username) => {
       if (username) {
         this.supportTicket.modificationuser = username;
         this.supportTicket.modificationtimestamp = new Date().toISOString();
