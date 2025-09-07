@@ -10,7 +10,7 @@ export class Juego {
   publisherName: string = '';
   developerName: string = '';
   categoriasNames: string[] = [];
-  price?: number;
+  price?: number ;
   image_path?:string | null = null;
   isInWishlist?: boolean;
   isInLibrary?: boolean;

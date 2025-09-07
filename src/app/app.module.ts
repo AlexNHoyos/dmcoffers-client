@@ -30,6 +30,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSliderModule } from '@angular/material/slider';
 
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FooterComponent } from './shared/footer/footer.component';
@@ -203,6 +204,7 @@ registerLocaleData(localeEsAr); // 👈 Esto registra el locale
         CarouselModule,
         MatChipsModule,
         MatTooltipModule,
+        MatSliderModule
     ]
     , providers: [
         WishlistService,
