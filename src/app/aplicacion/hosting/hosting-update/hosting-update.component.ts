@@ -5,10 +5,13 @@ import {
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 
-import { Hosting } from '../hosting.model';
+import { Hosting, HostingPublisher } from '../hosting.model';
 import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
 import { HostingService } from '../hosting.service';
 import { UserService } from 'src/app/services/user/user.service';
+import { Publisher } from '../../publishers/publisher.model.js';
+import { firstValueFrom } from 'rxjs';
+import { PublisherService } from '../../publishers/publisher.service.js';
 
 @Component({
   selector: 'app-hosting-update',
@@ -17,41 +20,40 @@ import { UserService } from 'src/app/services/user/user.service';
   standalone: false
 })
 export class HostingUpdateComponent {
-  hosting: Hosting;
+
+  publicadores: Publisher[] = [];
+  storageTypes: string[] = ['SSD', 'HDD', 'SSHD', 'SSD + HHD'];
+  storageAmmount: number[] = [128, 256, 500, 1000, 2000];
+  ramAmmount: number[] = [2, 4, 8, 12, 16, 32, 64];
+
+  hostingPublisher: HostingPublisher;
 
   constructor(
     private hostingService: HostingService,
     private userService: UserService,
     private dialog: MatDialog,
     public dialogRef: MatDialogRef<HostingUpdateComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { hosting: Hosting }
+    private publisherService: PublisherService,
+    @Inject(MAT_DIALOG_DATA) public dataHostingPublisher: { hostingPublisher: HostingPublisher }
   ) {
     // Inicializo el hosting con data del dialog
-    this.hosting = { ...data.hosting };
+    this.hostingPublisher = { ...dataHostingPublisher.hostingPublisher };
+
+    this.loadService();
   }
 
   ngOnInit(): void {
-    this.userService.getLoggedInUsername().subscribe((username) => {
-      if (username) {
-        this.hosting.modificationuser = username;
-        this.hosting.modificationtimestamp = new Date().toISOString();
-      }
-    });
+  }
+  async loadService() {
+    const username = await firstValueFrom(this.userService.getLoggedInUsername());
+
+    this.publicadores = await firstValueFrom(this.publisherService.getAllPublishers());
   }
 
   onUpdatehosting() {
-    const hostingToSend = {
-      ...this.hosting,
-      creationtimestamp: this.hosting.creationtimestamp
-        ? new Date(this.hosting.creationtimestamp).toISOString()
-        : null,
-      modificationtimestamp: this.hosting.modificationtimestamp
-        ? new Date(this.hosting.modificationtimestamp).toISOString()
-        : null,
-    };
 
     this.hostingService
-      .updateHosting(this.hosting.id, hostingToSend)
+      .updateHostingPublisher(this.hostingPublisher.id, this.hostingPublisher)
       .subscribe({
         next: () => {
           this.dialogRef.close(true);

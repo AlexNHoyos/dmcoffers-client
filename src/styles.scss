@@ -337,6 +337,7 @@ mat-divider {
   .row {
     display: flex;
     flex-wrap: wrap;
+    margin-top: 20px;
     margin-right: -(math.div($gutter-width, 2));
     margin-left: -(math.div($gutter-width, 2));
   }

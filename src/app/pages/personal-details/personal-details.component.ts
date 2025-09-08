@@ -72,10 +72,7 @@ export class PersonalDetailsComponent implements OnInit {
       },
       error: (errorData) => {
         this.errorMessage = errorData;
-      },
-      complete: () => {
-        console.info('User Data ok');
-      },
+      }
     });
   }
 
