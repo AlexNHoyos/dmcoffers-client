@@ -6,7 +6,7 @@ import { SupportTicketUpdateComponent } from './support-ticket-update/support-ti
 import { SupportTicketCreateComponent } from './support-ticket-create/support-ticket-create.component';
 import { SupportTicketDetailComponent } from './support-ticket-detail/support-ticket-detail.component';
 import { SupportTicketDeleteComponent } from './support-ticket-delete/support-ticket-delete.component';
-
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 @Component({
   selector: 'app-support-ticket',
   templateUrl: './support-ticket.component.html',
@@ -23,13 +23,27 @@ export class SupportTicketComponent {
 
   constructor(
     private supportTicketService: SupportTicketService,
-    private dialog: MatDialog
-  ) { }
+    private dialog: MatDialog,
+    private breakpointObserver: BreakpointObserver
+  ) {}
 
   displayedColumns: string[] = ['id', 'fechaCarga', 'user', 'status', 'actions'];
 
   ngOnInit(): void {
     this.loadSupportTickets();
+    this.setupResponsiveColumns();
+  }
+
+   private setupResponsiveColumns(): void {
+    this.breakpointObserver.observe([Breakpoints.Handset]).subscribe(result => {
+      if (result.matches) {
+        // pantalla pequeña: oculto la columna 'user'
+        this.displayedColumns = ['id', 'fechaCarga', 'status', 'actions'];
+      } else {
+        // pantalla grande: muestro todas
+        this.displayedColumns = ['id', 'fechaCarga', 'user', 'status', 'actions'];
+      }
+    });
   }
 
   getCreateComponent() {

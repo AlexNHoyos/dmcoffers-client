@@ -16,7 +16,7 @@ describe("PublisherDeleteComponent", () => {
   let component: PublisherDeleteComponent;
   let fixture: ComponentFixture<PublisherDeleteComponent>;
   let mockDialogRef: jasmine.SpyObj<MatDialogRef<PublisherDeleteComponent>> = jasmine.createSpyObj('MatDialogRef', ['close', 'afterClosed']);
-  const mockDialogData = { publisherName: "Test Publisher" };
+  const mockDialogData = { publisherName: "Test Publisher"  };
 
   beforeEach(fakeAsync(async () => {
     await TestBed.configureTestingModule({

@@ -1,19 +1,35 @@
 @import '../../../../assets/styles/mixins';
 
-.game-list-component{
-  padding: 0 1%;
+.game-list-container {
+  margin: 0 2%;
 
-     @include respond-to(md) {
-      padding: 0 1%;
-    }
+  @include respond-to(md) {
+    margin: 0 3%;
+  }
 
-    @include respond-to(lg) {
-      padding: 0 2%;
-    }
+  @include respond-to(lg) {
+    margin: 0 4%;
+  }
 
-    @include respond-to(xl) {
-      padding: 0 3%;
-    }
+  @include respond-to(xl) {
+    margin: 0 5%;
+  }
+}
+
+.game-list-component {
+  padding: 0 2%;
+
+  @include respond-to(md) {
+    padding: 0 3%;
+  }
+
+  @include respond-to(lg) {
+    padding: 0 4%;
+  }
+
+  @include respond-to(xl) {
+    padding: 0 5%;
+  }
 }
 
 
@@ -36,8 +52,8 @@
   cursor: pointer;
 }
 
-.dropdown-selector{
-    margin-top: 20px;
+.dropdown-selector {
+  margin-top: 20px;
 }
 
 
@@ -54,13 +70,40 @@ img {
   margin: 0 1em !important;
 }
 
-.gameListItemTitle{
-  color:var(--game-list-item-titulo);
+.gameListItemTitle {
+  color: var(--game-list-item-titulo);
 }
 
-.gameListItemPrice{
-  color:var(--game-list-item-price);
+.gameListItemPrice {
+  color: var(--game-list-item-price);
 }
 
+.no-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 
+  padding: 2rem 1rem;
+  border-radius: 12px;
+  background-color: #fafafa;
+  color: #444;
+  font-size: 1.1rem;
+  font-weight: 500;
 
+  margin: 2rem auto;
+  max-width: 90%;
+  width: 100%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+
+  @media (min-width: 768px) {
+    padding: 3rem 2rem;
+    max-width: 600px;
+  }
+}
+
+.no-results mat-icon {
+  margin-bottom: 0.5rem;
+  color: #888;
+}

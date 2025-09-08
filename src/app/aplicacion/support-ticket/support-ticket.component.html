@@ -14,19 +14,19 @@
 
         <form #filterForm="ngForm">
           <div class="row">
-            <mat-form-field appearance="outline" class="col-4">
+            <mat-form-field appearance="outline" class="col-12 col-md-4">
               <mat-label>Usuario</mat-label>
               <input [(ngModel)]="filterUsuario" matInput type="text" name="usuarioTicket" minlength="1" />
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="col-4">
+            <mat-form-field appearance="outline" class="col-12 col-md-4">
               <mat-label>Fecha carga</mat-label>
               <input [(ngModel)]="filterFechaCarga" matInput [matDatepicker]="picker1" name="fecha_carga" />
               <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
               <mat-datepicker #picker1></mat-datepicker>
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="col-4">
+            <mat-form-field appearance="outline" class="col-12 col-md-4">
               <mat-label>Estado</mat-label>
               <mat-select [(ngModel)]="filterEstadoTicket" name="status">
                 <mat-option [value]="'true'">Resuelto</mat-option>
@@ -35,11 +35,12 @@
             </mat-form-field>
           </div>
 
-          <div class="row">
-            <span class="col-9" style="margin-right: 6.5%;"></span>
+          <div class="row justify-content-end mb-2">
+            <div col-12 col-md-3 d-flex justify-content-between>
             <button class="col-1" mat-button type="button" (click)="resetFiltro()"
               style="margin-right: 1%;">Limpiar</button>
             <button class="col-1" mat-raised-button color="primary" (click)="aplicarFiltro()">Buscar</button>
+          </div>
           </div>
         </form>
 
@@ -59,14 +60,14 @@
 
       <!--Fecha de carga-->
       <ng-container matColumnDef="fechaCarga">
-        <th mat-header-cell *matHeaderCellDef style="width: 20%; padding-left: 10%;">Fecha Carga</th>
-        <td mat-cell *matCellDef="let row" style="width: 20%; padding-left: 10% ; text-align: center;">{{
+        <th mat-header-cell *matHeaderCellDef style="width: 20%;">Fecha Carga</th>
+        <td mat-cell *matCellDef="let row" style="width: 20%; text-align: center;">{{
           row.creationtimestamp | date:
           'dd/MM/yyyy HH:mm' }}</td>
       </ng-container>
 
       <!-- User -->
-      <ng-container matColumnDef="user">
+      <ng-container matColumnDef="user" >
         <th mat-header-cell *matHeaderCellDef style="width: 30%;">Usuario</th>
         <td mat-cell *matCellDef="let row" style="width: 30%; text-align: center;">{{ row.creationuser }}</td>
       </ng-container>
