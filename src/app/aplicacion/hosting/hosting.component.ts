@@ -17,10 +17,18 @@ import { PublisherService } from '../publishers/publisher.service.js';
 })
 export class HostingComponent implements OnInit {
   hostingPublisher: HostingPublisher[] = [];
+  filteredHostings: HostingPublisher[] = [];
   hostings: Hosting[] = [];
   publishers: Publisher[] = [];
   hostingsMap: { [key: number]: any } = {};
   publishersMap: { [key: number]: any } = {};
+
+  filterPublicador: string = '';
+  filterHosting: string = '';
+  filterRam: number | null = null;
+  filterTipoDisco: string = '';
+  filterCapacidadDisco: number | null = null;
+  filterCpu: string = '';
 
   constructor(
     private hostingService: HostingService,
@@ -97,6 +105,7 @@ export class HostingComponent implements OnInit {
   loadHostings(): void {
     this.hostingService.getAllHostingPublishers().subscribe((data) => {
       this.hostingPublisher = data;
+      this.filteredHostings = data;
     });
     this.hostingService.getAllHostings().subscribe((data) => {
       this.hostings = data;
@@ -106,6 +115,41 @@ export class HostingComponent implements OnInit {
       this.publishers = data;
       this.publishersMap = Object.fromEntries(this.publishers.map(p => [p.id, p]));
     });
+  }
 
+  aplicarFiltro(): void {
+
+
+    this.filteredHostings = this.hostingPublisher.filter(hostings => {
+
+      const coincidePublicador =
+        !this.filterPublicador || this.publishersMap[hostings.publisher].toLowerCase().includes(this.filterPublicador.toLowerCase());
+
+      const coincideHosting =
+        !this.filterHosting || this.hostingsMap[hostings.hosting].toLowerCase().includes(this.filterHosting.toLowerCase());
+
+      const coincideRam =
+        !this.filterRam || this.filterRam == hostings.ramAmmount;
+
+      const coincideTipoDisco =
+        !this.filterTipoDisco || this.filterTipoDisco == hostings.storageType;
+
+      const coincideAlmacenamiento =
+        !this.filterCapacidadDisco || this.filterCapacidadDisco == hostings.storageAmmount;
+
+      const coincideCpu =
+        !this.filterCpu || hostings.cpuSpecs.toLowerCase().includes(this.filterCpu.toLowerCase());
+
+      return coincidePublicador && coincideHosting;
+    });
+  }
+
+  resetFiltro(): void {
+    this.filterPublicador = '';
+    this.filterHosting = '';
+    this.filterTipoDisco = '';
+    this.filterCapacidadDisco = null;
+    this.filterRam = null;
+    this.filteredHostings = [...this.hostingPublisher];
   }
 }

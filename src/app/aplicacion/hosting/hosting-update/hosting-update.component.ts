@@ -39,6 +39,7 @@ export class HostingUpdateComponent {
     // Inicializo el hosting con data del dialog
     this.hostingPublisher = { ...dataHostingPublisher.hostingPublisher };
 
+    console.log(this.hostingPublisher);
     this.loadService();
   }
 
