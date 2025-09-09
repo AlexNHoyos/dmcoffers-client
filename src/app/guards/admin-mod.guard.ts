@@ -3,14 +3,14 @@ import { LoginService } from '../services/auth/login.service';
 import { inject } from '@angular/core';
 import { map } from 'rxjs';
 
-export const adminGuard: CanActivateFn = () => {
+export const adminModGuard: CanActivateFn = () => {
   const loginService = inject(LoginService);
   const router = inject(Router);
 
-  // Verifico si el usuario es 'admin' mapeando el observable
+  // Verifico si el usuario es 'moderador' mapeando el observable
   return loginService.userRol.pipe(
     map((rol) => {
-      if (rol === 'Administrador') {
+      if (rol === 'Moderador' || rol === 'Moderador' ) {
         return true; // Autorizo acceso
       } else {
         router.navigate(['/not-authorized']);

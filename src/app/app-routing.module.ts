@@ -31,6 +31,7 @@ import { ResetPassComponent } from './auth/resetPass/resetPass.component';
 import { UsuariosComponent } from './aplicacion/usuarios/usuarios.component';
 import { HostingComponent } from './aplicacion/hosting/hosting.component';
 import { JuegosPorCategoriaComponent } from './aplicacion/juegos/juegos-por-categoria/juegos-por-categoria.component.js';
+import { adminModGuard } from './guards/admin-mod.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -53,13 +54,13 @@ const routes: Routes = [
   { path: 'wishlist', component: WishlistComponent, canActivate: [authGuard], },
   { path: 'biblioteca', component: LibraryComponent, canActivate: [authGuard], },
   { path: 'cart', component: CartComponent },
-  { path: 'hostings', component: HostingComponent, canActivate: [adminGuard], },
+  { path: 'hostings', component: HostingComponent, canActivate: [adminModGuard] , },
   { path: 'categorias', component: CategoriasComponent, canActivate: [adminGuard], },
   { path: 'publicadores', component: PublisherComponent, canActivate: [adminGuard], },
   { path: 'juegos', component: JuegosCrudComponent, canActivate: [adminGuard], },
   { path: 'desarrolladores', component: DesarrolladoresComponent, canActivate: [adminGuard], },
   { path: 'listado-juegos', component: JuegosPorCategoriaComponent },
-  { path: 'support-ticket', component: SupportTicketComponent },
+  { path: 'support-ticket', component: SupportTicketComponent,canActivate: [adminModGuard]  },
   { path: '**', redirectTo: '/inicio', pathMatch: 'full' }, //redireccionar a inicio si no hay match
 ];
 

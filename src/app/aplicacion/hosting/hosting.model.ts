@@ -1,3 +1,5 @@
+import { Publisher } from "../publishers/publisher.model.js";
+
 export class Hosting {
   id: number = 0;
   name: string = '';
@@ -8,3 +10,13 @@ export class Hosting {
   status: boolean = false;
 }
 
+export class HostingPublisher {
+  id: number = 0;
+  publisher: Publisher = new Publisher();
+  hosting: Hosting = new Hosting();
+  storageType: string = '';
+  storageAmmount: number = 0;
+  ramAmmount: number = 0;
+  cpuSpecs: string = '';
+  uptimePercentage: number = 0;
+}

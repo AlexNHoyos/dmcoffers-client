@@ -1,11 +1,11 @@
 <mat-card class="dialog-card">
   <mat-card-header>
-    <mat-card-title>Crear Hosting</mat-card-title>
+    <mat-card-title>Solicitar servicio de hosting</mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <form #hostingForm="ngForm">
 
-      <div class="row">
+      <div class="row" style="padding-bottom: 2vh;">
         <mat-form-field class="col-12" appearance="outline">
           <mat-label>Nombre</mat-label>
           <input matInput type="text" [(ngModel)]="hosting.name" name="name" #name="ngModel" required minlength="1" />
@@ -21,13 +21,62 @@
         </mat-form-field>
       </div>
 
-      <div class="row">
-        <mat-form-field class="col-12" appearance="outline">
-          <mat-label>Status</mat-label>
-          <mat-select [(ngModel)]="hosting.status" name="status">
-            <mat-option [value]="true">Activo</mat-option>
-            <mat-option [value]="false">Inactivo</mat-option>
+      <div class="row" style="padding-bottom: 1vh;">
+        <mat-form-field appearance="outline" class="col-12">
+          <mat-label>Publicador</mat-label>
+          <mat-select [(ngModel)]="hostingPublisher.publisher" name="publisher" required>
+            <mat-option *ngFor="let publisher of publicadores" [value]="publisher">
+              {{ publisher.publishername }}
+            </mat-option>
           </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="row" style="padding-bottom: 2vh;">
+        <mat-label>Almacenamiento</mat-label>
+        <mat-form-field appearance="outline" class="col-6">
+          <mat-label>Tipo</mat-label>
+          <mat-select [(ngModel)]="hostingPublisher.storageType" name="storageType" required>
+            <mat-option *ngFor="let st of storageTypes" [value]="st">
+              {{ st }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-6">
+          <mat-label>Tamaño</mat-label>
+          <mat-select [(ngModel)]="hostingPublisher.storageAmmount" name="storageAmmount" required>
+            <mat-option *ngFor="let sa of storageAmmount" [value]="sa">
+              {{ sa }} Gb
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="row" style="padding-bottom: 2vh;">
+        <mat-form-field class="col-12" appearance="outline">
+          <mat-label>Especificaciones del CPU</mat-label>
+          <input matInput type="text" [(ngModel)]="hostingPublisher.cpuSpecs" name="cpuSpecs" #name="ngModel" required
+            minlength="1" />
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="col-6">
+          <mat-label>Uptime</mat-label>
+          <input matInput type="number" [(ngModel)]="hostingPublisher.uptimePercentage" name="uptimePercentage"
+            #name="ngModel" required minlength="1" />
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-6">
+          <mat-label>Cant. RAM</mat-label>
+          <mat-select [(ngModel)]="hostingPublisher.ramAmmount" name="ramAmmount" required>
+            <mat-option *ngFor="let ra of ramAmmount" [value]="ra">
+              {{ ra }} Gb
+            </mat-option>
+          </mat-select>
+
         </mat-form-field>
       </div>
 
