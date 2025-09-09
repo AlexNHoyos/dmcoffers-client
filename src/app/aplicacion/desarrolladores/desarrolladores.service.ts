@@ -1,33 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { provideHttpClientTesting } from '@angular/common/http/testing/index.js';
 import { HttpClient } from '@angular/common/http';
-import { CrudService } from 'src/app/components/crud/crud.service';
 import { environment } from 'src/environments/environment';
-import { Desarrollador, DesarrolladorPage } from './desarrolladores.models.js';
+import { Desarrollador} from './desarrolladores.models';
 
 @Injectable({
   providedIn: 'root',
 })
-export class DesarrolladoresService extends CrudService<DesarrolladorPage> {
-  override endpoint = `${environment.urlApi}developers`;
+export class DesarrolladoresService {
+  private endpoint = `${environment.urlApi}developers`;
 
-  constructor(protected override http: HttpClient) {
-    super(http);
+  constructor(private http: HttpClient) {
   }
 
   createDesarrollador(desarrollador: Desarrollador): Observable<Desarrollador> {
     return this.http.post<Desarrollador>(`${this.endpoint}/`, desarrollador);
   }
 
-  updateDesarrollador(
-    id: number,
-    desarrollador: Desarrollador
-  ): Observable<Desarrollador> {
-    return this.http.put<Desarrollador>(
-      `${this.endpoint}/${id}`,
-      desarrollador
-    );
+  updateDesarrollador(id: number, desarrollador: Desarrollador): Observable<Desarrollador> {
+    return this.http.put<Desarrollador>(`${this.endpoint}/${id}`,desarrollador);
   }
 
   getAllDesarrolladores(): Observable<Desarrollador[]> {
@@ -36,5 +27,9 @@ export class DesarrolladoresService extends CrudService<DesarrolladorPage> {
 
   getDesarrollador(id: number): Observable<Desarrollador> {
     return this.http.get<Desarrollador>(`${this.endpoint}/${id}`);
+  }
+
+  deleteDesarrollador(id: number): Observable<Desarrollador> {
+    return this.http.delete<Desarrollador>(`${this.endpoint}/${id}`);
   }
 }

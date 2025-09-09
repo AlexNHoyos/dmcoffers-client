@@ -1,7 +1,5 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user/user.service';
-import { CrudComponent } from '../../components/crud/crud.component';
 import { MatDialog } from '@angular/material/dialog';
 import { UpdateRolComponent } from './update-rol/update-rol.component';
 import { User } from 'src/app/models/user.model';
@@ -13,15 +11,16 @@ import { RegisterComponent } from 'src/app/auth/register/register.component';
   styleUrls: ['./usuarios.component.scss'],
   standalone: false
 })
-export class UsuariosComponent extends CrudComponent<User> {
+export class UsuariosComponent implements OnInit {
   usuarios: User[] = [];
 
-  constructor(private userService: UserService, override dialog: MatDialog) {
-    super(userService, dialog);
+  constructor(private userService: UserService, private dialog: MatDialog) {
   }
 
-  getCreateComponent() {
-    return RegisterComponent; //Eliminar esto
+  displayedColumns: string[] = ['id', 'user', 'actions'];
+
+  ngOnInit(): void {
+    this.loadUsuarios();
   }
 
   getEditComponent() {
@@ -42,12 +41,6 @@ export class UsuariosComponent extends CrudComponent<User> {
         }
       });
     });
-  }
-
-  override displayedColumns: string[] = ['id', 'user', 'actions'];
-
-  override ngOnInit(): void {
-    this.loadUsuarios();
   }
 
   loadUsuarios(): void {

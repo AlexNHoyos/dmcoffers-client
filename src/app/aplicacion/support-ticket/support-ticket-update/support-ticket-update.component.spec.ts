@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { SupportTicketUpdateComponent } from './support-ticket-update.component';
+import { MatCardModule } from '@angular/material/card';
 
 describe('SupportTicketUpdateComponent', () => {
   let component: SupportTicketUpdateComponent;
@@ -21,7 +22,7 @@ describe('SupportTicketUpdateComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [SupportTicketUpdateComponent],
-      imports: [MatDialogModule, MatFormFieldModule, MatInputModule, NoopAnimationsModule, MatSelectModule, FormsModule],
+      imports: [MatDialogModule, MatFormFieldModule, MatInputModule, NoopAnimationsModule, MatSelectModule, FormsModule, MatCardModule],
       providers: [
         { provide: MatDialogRef, useValue: {} },
         { provide: MAT_DIALOG_DATA, useValue: {} },

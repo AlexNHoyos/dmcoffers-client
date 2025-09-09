@@ -1,9 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 import { ErrorDialogComponent } from '../../../components/error-dialog/error-dialog.component';
 import { DesarrolladoresService } from '../desarrolladores.service';
@@ -35,7 +31,7 @@ export class DesarrolladoresDeleteComponent implements OnInit {
   }
 
   deleteDesarrollador(): void {
-    this.desarrolladoresService.delete(this.data.id).subscribe({
+    this.desarrolladoresService.deleteDesarrollador(this.data.id).subscribe({
       next: () => {
         this.successMessage = 'Desarrollador eliminado satisfactoriamente';
         this.dialogRef.close(true);

@@ -80,6 +80,11 @@ export class SweItemMenuComponent implements OnInit {
         }
       });
 
+      menuItems.sort((a, b) => a.ordernumber - b.ordernumber);
+      menuItems.forEach(item => {
+        item.subMenus.sort((a, b) => a.ordernumber - b.ordernumber);
+      });
+
       this.menuItems = menuItems;
 
     });

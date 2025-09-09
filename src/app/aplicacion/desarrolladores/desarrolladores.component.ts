@@ -1,7 +1,6 @@
-import { Component, Type } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Desarrollador } from './desarrolladores.models';
 import { DesarrolladoresService } from './desarrolladores.service';
-import { CrudComponent } from '../../components/crud/crud.component';
 import { DesarrolladoresCreateComponent } from './desarrolladores-create/desarrolladores-create.component';
 import { DesarrolladoresUpdateComponent } from './desarrolladores-update/desarrolladores-update.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -14,20 +13,18 @@ import { DesarrolladoresDetailComponent } from './desarrolladores-detail/desarro
   styleUrls: ['./desarrolladores.component.scss'],
   standalone: false
 })
-export class DesarrolladoresComponent extends CrudComponent<Desarrollador> {
+export class DesarrolladoresComponent implements OnInit {
   desarrolladores: Desarrollador[] = [];
 
   constructor(
     private desarrolladoresService: DesarrolladoresService,
-    override dialog: MatDialog
-  ) {
-    super(desarrolladoresService, dialog);
+    private dialog: MatDialog
+  ) {}
 
-    // Carga y muestra la tabla
+  displayedColumns: string[] = ['id', 'developername', 'actions'];
+
+  ngOnInit(): void {
     this.loadDesarrolladores();
-    // Muestra la tabla
-    this.showTable = true;
-    this.buttonText = 'Ocultar desarrollador'; // Cambia el texto del botón
   }
 
   getCreateComponent() {
@@ -59,12 +56,6 @@ export class DesarrolladoresComponent extends CrudComponent<Desarrollador> {
           disableClose: true,
           data: { desarrollador },
         });
-        /*  No es necesario porque no edito los datos adentro del dialog, pero podria implementarse a futuro
-      dialogRef.afterClosed().subscribe((result) => {
-        if (result) {
-          this.loadPublishers(); // Carga o actualiza la lista de publishers
-        }
-      });*/
       });
   }
 
@@ -100,19 +91,7 @@ export class DesarrolladoresComponent extends CrudComponent<Desarrollador> {
     });
   }
 
-  override displayedColumns: string[] = ['id', 'developername', 'actions'];
-
-  showTable: boolean = false;
-  buttonText: string = 'Mostrar Desarrolladores';
-
-  override ngOnInit(): void {
-    // Con esta funcion se puede cargar los publishers al inicio
-    // this.loadPublishers();
-    super.ngOnInit();
-  }
-
   loadDesarrolladores(): void {
-    this.showTable = true;
     this.desarrolladoresService.getAllDesarrolladores().subscribe((data) => {
       this.desarrolladores = data;
     });

@@ -36,7 +36,7 @@ export class SupportTicketDeleteComponent implements OnInit {
   }
 
   deleteSupportTicket(): void {
-    this.supportTicketService.delete(this.data.id).subscribe({
+    this.supportTicketService.deleteSupportTicket(this.data.id).subscribe({
       next: () => {
         this.successMessage = 'supportTicket eliminado satisfactoriamente';
         this.dialogRef.close(true);

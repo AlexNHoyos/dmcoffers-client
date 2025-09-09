@@ -3,8 +3,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 
 import { Desarrollador } from '../desarrolladores.models';
 
-import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
 import { DesarrolladoresService } from '../desarrolladores.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-desarrolladores-create',
@@ -28,10 +28,10 @@ export class DesarrolladoresCreateComponent {
   constructor(
     private desarrolladoresService: DesarrolladoresService,
     private dialogRef: MatDialogRef<DesarrolladoresCreateComponent>,
-    private userUtilsService: UserUtilsService
+    private userService: UserService
   ) { }
   ngOnInit(): void {
-    this.userUtilsService.setLoggedInUser().subscribe((username) => {
+    this.userService.getLoggedInUsername().subscribe((username) => {
       if (username) {
         this.desarrollador.creationuser = username;
       }

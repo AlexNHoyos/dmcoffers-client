@@ -7,8 +7,8 @@ import {
 
 import { Hosting } from '../hosting.model';
 import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
-import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
 import { HostingService } from '../hosting.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-hosting-update',
@@ -21,7 +21,7 @@ export class HostingUpdateComponent {
 
   constructor(
     private hostingService: HostingService,
-    private userUtilsService: UserUtilsService,
+    private userService: UserService,
     private dialog: MatDialog,
     public dialogRef: MatDialogRef<HostingUpdateComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { hosting: Hosting }
@@ -31,7 +31,7 @@ export class HostingUpdateComponent {
   }
 
   ngOnInit(): void {
-    this.userUtilsService.setLoggedInUser().subscribe((username) => {
+    this.userService.getLoggedInUsername().subscribe((username) => {
       if (username) {
         this.hosting.modificationuser = username;
         this.hosting.modificationtimestamp = new Date().toISOString();

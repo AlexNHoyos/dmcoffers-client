@@ -8,8 +8,6 @@ import {
 } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { RegisterService } from 'src/app/services/auth/register.service';
-import { ErrorHandlerService } from 'src/app/services/error-handler.service';
-import { UserService } from 'src/app/services/user/user.service';
 import { Validators } from '@angular/forms';
 import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
 import { User } from '../auth.models';
@@ -30,8 +28,6 @@ export class RegisterComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private registerService: RegisterService,
-    private userService: UserService,
-    private errorHandler: ErrorHandlerService,
     private dialog: MatDialog,
     private encryptionService: EncryptionService,
     private router: Router
@@ -74,7 +70,7 @@ export class RegisterComponent implements OnInit {
       this.registerForm.controls['password'].value
     );
     this.user.birth_date = this.registerForm.controls['birth_date'].value;
-
+    this.user.email = this.registerForm.controls['email'].value;
     this.registerService.register(this.user).subscribe(
       (data) => {
         this.showSuccessDialog();
@@ -85,7 +81,7 @@ export class RegisterComponent implements OnInit {
       },
       (error) => {
         console.error('Error al registrar: ', error);
-        this.showErrorDialog(error.error.message || 'Error desconocido');
+        this.showErrorDialog(error.error.error.message || 'Error desconocido');
       }
     );
   }
@@ -129,6 +125,21 @@ export class RegisterComponent implements OnInit {
       }
 
       return null;
+    };
+  }
+
+  emailValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const email = control.value;
+
+      if (!email) {
+        return null; // No validamos si está vacío, se usa Validators.required aparte
+      }
+
+      // Expresión regular simple para validar emails
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      return emailRegex.test(email) ? null : { invalidEmail: true };
     };
   }
 

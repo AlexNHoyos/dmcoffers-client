@@ -5,9 +5,7 @@ import { Juego } from './juegos.model';
 import { WishlistService } from './wishlist.service';
 import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/services/auth/login.service';
-import { UserService } from 'src/app/services/user/user.service';
 import { LibraryService } from './library.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'app-juegos',
@@ -16,7 +14,7 @@ import { environment } from 'src/environments/environment';
     standalone: false
 })
 
-//Idealmente mostrar los primeros 10 para "Nuevos lanzamientos"
+
 export class JuegosComponent implements OnInit {
   juegos: Juego[] = [];
   userId: string = '';
@@ -44,14 +42,14 @@ export class JuegosComponent implements OnInit {
           return new Date(b.release_date!).getTime() - new Date(a.release_date!).getTime();
         });
   
-        this.ultimosLanzamientos = juegosOrdenados.slice(0, 5); //ultimos 5
+        this.ultimosLanzamientos = juegosOrdenados.slice(0, 5); //Mostrar los ultimos 5 para "Nuevos lanzamientos"
         this.juegos = data.map(juego => ({
           ...juego,
           isInWishlist: false,
           isInLibrary: false
         }));
   
-        // Solo si el usuario está logueado se consultan estas relaciones
+        // Solo si el usuario está logueado se consultan estas relaciones (en biblioteca o wishlist)
         if (this.isLoggedIn) {
           this.juegos.forEach(j => this.checkIfInWishlist(j));
           this.juegos.forEach(j => this.checkIfInLibrary(j));

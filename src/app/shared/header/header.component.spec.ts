@@ -15,6 +15,8 @@ import { FormsModule } from '@angular/forms';
 
 import { HeaderComponent } from './header.component';
 import { NavComponent } from '../nav/nav.component';
+import { ThemeToggleComponent } from 'src/app/components/theme-toggle/theme-toggle.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -22,14 +24,15 @@ describe('HeaderComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [HeaderComponent, NavComponent],
+      declarations: [HeaderComponent, NavComponent, ThemeToggleComponent],
       imports: [
         MatIconModule,
         MatFormFieldModule,
         MatToolbarModule,
         FormsModule,
         MatMenuModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        NoopAnimationsModule
       ],
       providers: [
         provideHttpClient(),

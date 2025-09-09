@@ -1,5 +1,3 @@
-import { Page } from 'src/app/models/pagination.js';
-
 export class Desarrollador {
   id: number = 0;
   developername: string = '';
@@ -10,8 +8,4 @@ export class Desarrollador {
   creationuser: string = '';
   modificationtimestamp?: string | null = null;
   modificationuser?: string | null = null;
-}
-
-export interface DesarrolladorPage extends Page<Desarrollador> {
-  content: Desarrollador[];
 }

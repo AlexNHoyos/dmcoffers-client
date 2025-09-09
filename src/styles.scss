@@ -274,6 +274,23 @@ mat-divider {
   }
 }
 
+.filtroCrud {
+  padding: 0 4.5%;
+  margin-bottom: 4vh;
+
+  @include respond-to(md) {
+    padding: 0 6%;
+  }
+
+  @include respond-to(lg) {
+    padding: 0 7.5%;
+  }
+
+  @include respond-to(xl) {
+    padding: 0 9.5%;
+  }
+}
+
 .mat-mdc-table .mat-mdc-header-cell {
   text-align: center;
   background-color: #bc71fe !important;

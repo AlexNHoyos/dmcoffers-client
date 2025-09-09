@@ -7,8 +7,8 @@ import {
 
 import { Categoria } from '../categoria.model';
 import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
-import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
 import { CategoriaService } from '../categoria.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-categoria-update',
@@ -21,7 +21,7 @@ export class CategoriaUpdateComponent {
 
   constructor(
     private categoriaService: CategoriaService,
-    private userUtilsService: UserUtilsService,
+    private userService: UserService,
     private dialog: MatDialog,
     public dialogRef: MatDialogRef<CategoriaUpdateComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { categoria: Categoria }
@@ -31,7 +31,7 @@ export class CategoriaUpdateComponent {
   }
 
   ngOnInit(): void {
-    this.userUtilsService.setLoggedInUser().subscribe((username) => {
+    this.userService.getLoggedInUsername().subscribe((username) => {
       if (username) {
         this.categoria.modificationuser = username;
         this.categoria.modificationtimestamp = new Date().toISOString();

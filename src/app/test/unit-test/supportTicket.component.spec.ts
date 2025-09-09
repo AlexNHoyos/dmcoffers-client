@@ -11,12 +11,18 @@ import { MatCardModule } from "@angular/material/card";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatDialogModule } from "@angular/material/dialog";
+import { MatSelectModule } from "@angular/material/select";
 
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MatTableModule } from "@angular/material/table";
+import { MatExpansionModule } from "@angular/material/expansion";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatOptionModule } from "@angular/material/core";
+
 
 import { of } from "rxjs";
+import { provideNativeDateAdapter } from "@angular/material/core";
 
 describe("SupportTicketComponent", () => {
   let component: SupportTicketComponent;
@@ -36,19 +42,24 @@ describe("SupportTicketComponent", () => {
         MatTableModule,
         MatButtonModule,
         MatIconModule,
-        MatDialogModule
+        MatDialogModule,
+        MatExpansionModule,
+        MatDatepickerModule,
+        MatOptionModule,
+        MatSelectModule
       ],
       providers: [
         { provide: MatDialogRef, useValue: mockDialogRef },
         { provide: MAT_DIALOG_DATA, useValue: mockDialogData },
         provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting()
+        provideHttpClientTesting(),
+        provideNativeDateAdapter()
       ]
     }).compileComponents();
     fixture = TestBed.createComponent(SupportTicketComponent);
     component = fixture.componentInstance;
 
-    // Simular que la tabla está visible y tiene datos
+    // Simulate that the table is visible and has data
     component.supportTickets = [
       {
         id: 1, creationuser: 'Usuario1',
@@ -57,19 +68,32 @@ describe("SupportTicketComponent", () => {
         description: ""
       }
     ];
-    component.showTable = true;
+
 
     fixture.detectChanges();
   }));
 
-  it("should create", () => {
+  it("Debería crear el componente", () => {
     expect(component).toBeTruthy();
   });
 
   it("Debería mostrar los detalles del ticket cuando se hace click en showDetails", fakeAsync(() => {
     spyOn(component, "showDetails");
+    
+    // Set data and trigger change detection to render the table and button
+    component.supportTickets = [
+      {
+        id: 1, creationuser: 'Usuario1',
+        status: false,
+        creationtimestamp: null,
+        description: ""
+      }
+    ];
+    
+    component.filteredTickets = component.supportTickets;
 
-    fixture.detectChanges(); // Asegura que el DOM esté actualizado
+    fixture.detectChanges();
+    tick();
 
     const button = fixture.nativeElement.querySelector('button.showDetails');
     expect(button).toBeTruthy();

@@ -5,22 +5,25 @@
 
   <mat-card-content>
     <form #userForm="ngForm" class="form-grid">
+      <!-- Roles (múltiples) -->
       <div class="row">
-        <!-- Roles (múltiples) -->
         <mat-form-field appearance="outline" class="col-12">
           <mat-label>Roles</mat-label>
-          <mat-select [(ngModel)]="selectedRoles" name="rolDescriptions" multiple required>
-            <mat-option *ngFor="let role of roles" [value]="role">
-              {{ role }}
+          <mat-select name="rolDescriptions" multiple required [(ngModel)]="rolesSeleccionados">
+
+
+            <mat-option *ngFor="let rol of selectedRoles" [value]="rol">
+              {{ rol?.rol?.description }}
             </mat-option>
+
           </mat-select>
-          <mat-error *ngIf="userForm.submitted && selectedRoles.length === 0">
-            Al menos un rol es obligatorio
-          </mat-error>
+
+
         </mat-form-field>
       </div>
     </form>
   </mat-card-content>
+
 
   <mat-card-actions class="action-buttons">
     <button mat-stroked-button color="warn" type="button" (click)="cancel()">

@@ -1,5 +1,3 @@
-import { Page } from 'src/app/models/pagination.js';
-
 export class Hosting {
   id: number = 0;
   name: string = '';
@@ -10,6 +8,3 @@ export class Hosting {
   status: boolean = false;
 }
 
-export interface HostingPage extends Page<Hosting> {
-  content: Hosting[];
-}

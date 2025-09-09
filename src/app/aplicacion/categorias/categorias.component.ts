@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Categoria } from './categoria.model';
 import { CategoriaService } from './categoria.service';
-import { CrudComponent } from '../../components/crud/crud.component';
 import { CategoriaCreateComponent } from './categoria-create/categoria-create.component';
 import { CategoriaUpdateComponent } from './categoria-update/categoria-update.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -14,20 +13,18 @@ import { CategoriaDetailComponent } from './categoria-detail/categoria-detail.co
   styleUrls: ['./categorias.component.scss'],
   standalone: false
 })
-export class CategoriasComponent extends CrudComponent<Categoria> {
+export class CategoriasComponent implements OnInit {
   categorias: Categoria[] = [];
 
   constructor(
     private categoriaService: CategoriaService,
-    override dialog: MatDialog
-  ) {
-    super(categoriaService, dialog);
+    private dialog: MatDialog
+  ) {}
+  
+  displayedColumns: string[] = ['id', 'descripcion', 'actions'];
 
-    // Carga y muestra la tabla
+  ngOnInit(): void {
     this.loadCategorias();
-    // Muestra la tabla
-    this.showTable = true;
-    this.buttonText = 'Ocultar Categorias'; // Cambia el texto del botón
   }
 
   getCreateComponent() {
@@ -91,18 +88,7 @@ export class CategoriasComponent extends CrudComponent<Categoria> {
     });
   }
 
-  override displayedColumns: string[] = ['id', 'descripcion', 'actions'];
-
-  showTable: boolean = false;
-  buttonText: string = 'Mostrar Categorias';
-
-  override ngOnInit(): void {
-    // Con esta funcion se puede cargar los categorias al inicio
-    super.ngOnInit();
-  }
-
   loadCategorias(): void {
-    this.showTable = true;
     this.categoriaService.getAllCategorias().subscribe((data) => {
       this.categorias = data;
     });

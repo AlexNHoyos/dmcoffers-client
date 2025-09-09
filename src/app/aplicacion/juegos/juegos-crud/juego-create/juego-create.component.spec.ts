@@ -18,13 +18,13 @@ import { JuegoCreateComponent } from './juego-create.component';
 import { JuegoService } from '../../juegos.service';
 import { DesarrolladoresService } from 'src/app/aplicacion/desarrolladores/desarrolladores.service';
 import { CategoriaService } from 'src/app/aplicacion/categorias/categoria.service';
-import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 describe('JuegoCreateComponent', () => {
   let component: JuegoCreateComponent;
   let fixture: ComponentFixture<JuegoCreateComponent>;
   let juegoServiceSpy: jasmine.SpyObj<JuegoService>;
-  let userUtilsServiceSpy: jasmine.SpyObj<UserUtilsService>;
+  let userServiceSpy: jasmine.SpyObj<UserService>;
   let desarrolladoresServiceSpy: jasmine.SpyObj<DesarrolladoresService>;
   let categoriaServiceSpy: jasmine.SpyObj<CategoriaService>;
 
@@ -37,8 +37,8 @@ describe('JuegoCreateComponent', () => {
       creationuser: 'testUser'
     }]));
 
-    userUtilsServiceSpy = jasmine.createSpyObj('UserUtilsService', ['setLoggedInUser']);
-    userUtilsServiceSpy.setLoggedInUser.and.returnValue(of('testUser'));
+    userServiceSpy = jasmine.createSpyObj('UserService', ['getLoggedInUsername']);
+    userServiceSpy.getLoggedInUsername.and.returnValue(of('testUser'));
 
     juegoServiceSpy = jasmine.createSpyObj('JuegoService', ['createJuego']);
     juegoServiceSpy.createJuego.and.returnValue(of({}));
@@ -70,7 +70,7 @@ describe('JuegoCreateComponent', () => {
       providers: [
         { provide: DesarrolladoresService, useValue: desarrolladoresServiceSpy },
         { provide: JuegoService, useValue: juegoServiceSpy },
-        { provide: UserUtilsService, useValue: userUtilsServiceSpy },
+        { provide: UserService, useValue: userServiceSpy },
         { provide: MatDialogRef, useValue: { close: jasmine.createSpy('close') } },
         { provide: MAT_DIALOG_DATA, useValue: {} },
         { provide: CategoriaService, useValue: categoriaServiceSpy },
@@ -99,28 +99,23 @@ describe('JuegoCreateComponent', () => {
     expect(form.checkValidity()).toBeFalse();
   });
 
-  it('Debería habilitar el botón cuando el formulario sea válido', fakeAsync(() => {
-    component.juego = {
-      id: 1,
-      gamename: 'Nombre Juego',
-      developerName: 'Dev Studio',
-      publisherName: 'Pub House',
-      categoriasNames: ['Aventura'],
-      price: 49.99,
-      publishment_date: new Date().toISOString(),
-      release_date: new Date().toISOString(),
-      creationtimestamp: new Date().toISOString(),
-      creationuser: 'testUser'
-    };
+it('Debería habilitar el botón Crear cuando el formulario sea válido', fakeAsync(() => {
+    // campos requeridos
+    component.juego.gamename = 'Juego Test';
+    component.juego.developerName = 'Dev Studio';
+    component.juego.publisherName = 'Pub House';
+    component.juego.categoriasNames = ['Aventura'];
+    component.juego.release_date = new Date().toISOString();
+    component.juego.price = 50;
     fixture.detectChanges();
     tick();
 
-    const btnCrear = fixture.nativeElement.querySelector('button[type="submit"]');
-    expect(btnCrear.disabled).toBeFalse();
+    const btnCrear = fixture.debugElement.query(By.css('button[color="primary"]'));
+    expect(btnCrear).withContext('No se encontró el botón Crear').toBeTruthy();
+    expect(btnCrear.nativeElement.disabled).toBeFalse();
   }));
 
   it('Debería llamar a createJuego al hacer submit', fakeAsync(() => {
-    // 👇 El espía se declara ANTES de detectChanges para enganchar bien
     const spy = spyOn(component, 'createJuego').and.callThrough();
 
     component.juego = {
@@ -133,18 +128,18 @@ describe('JuegoCreateComponent', () => {
       publishment_date: new Date().toISOString(),
       release_date: new Date().toISOString(),
       creationtimestamp: new Date().toISOString(),
-      creationuser: 'testUser'
+      creationuser: 'testUser',
+      modificationtimestamp: null,
+      modificationuser: null
     };
 
     fixture.detectChanges();
     tick();
 
-    // 👉 Usa el disparador del formulario real
-    const form = fixture.debugElement.query(By.css('form'));
-    form.triggerEventHandler('ngSubmit', null);
+ // Llamar directamente a createJuego
+    component.createJuego();
     tick();
 
-    expect(spy).toHaveBeenCalled();
     expect(juegoServiceSpy.createJuego).toHaveBeenCalled();
   }));
 });

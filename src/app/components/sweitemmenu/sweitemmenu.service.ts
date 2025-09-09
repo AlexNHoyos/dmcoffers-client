@@ -2,18 +2,16 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
-import { MenuItem, SweItemMenuPage } from "./sweitemmenu.models";
-import { CrudService } from "../crud/crud.service";
+import { MenuItem } from "./sweitemmenu.models";
 
 
 @Injectable({
     providedIn: 'root',
 })
-export class SweItemMenuService extends CrudService<SweItemMenuPage> {
-    override endpoint = `${environment.urlApi}sweItemMenu`;
+export class SweItemMenuService {
+    private endpoint = `${environment.urlApi}sweItemMenu`;
 
-    constructor(protected override http: HttpClient) {
-        super(http);
+    constructor(private http: HttpClient) {
     }
 
     getMenuItem(): Observable<MenuItem[]> {

@@ -1,19 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-
-import { CrudService } from 'src/app/components/crud/crud.service';
 import { environment } from 'src/environments/environment';
-import { Hosting, HostingPage } from '../../aplicacion/hosting/hosting.model';
+import { Hosting } from '../../aplicacion/hosting/hosting.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class HostingService extends CrudService<HostingPage> {
-  override endpoint = `${environment.urlApi}hostings`;
+export class HostingService {
+  private endpoint = `${environment.urlApi}hostings`;
 
-  constructor(protected override http: HttpClient) {
-    super(http);
+  constructor(private http: HttpClient) {
   }
 
   createHosting(hosting: Hosting): Observable<Hosting> {
@@ -30,5 +27,9 @@ export class HostingService extends CrudService<HostingPage> {
 
   getHosting(id: number): Observable<Hosting> {
     return this.http.get<Hosting>(`${this.endpoint}/${id}`);
+  }
+
+  deleteHosting(id: number): Observable<Hosting> {
+    return this.http.delete<Hosting>(`${this.endpoint}/${id}`);
   }
 }

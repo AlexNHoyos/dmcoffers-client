@@ -10,12 +10,13 @@ import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule } from "@angular/forms";
 import { MatCardModule } from "@angular/material/card";
 import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatIconModule } from "@angular/material/icon";
 
 describe("PublisherDeleteComponent", () => {
   let component: PublisherDeleteComponent;
   let fixture: ComponentFixture<PublisherDeleteComponent>;
   let mockDialogRef: jasmine.SpyObj<MatDialogRef<PublisherDeleteComponent>> = jasmine.createSpyObj('MatDialogRef', ['close', 'afterClosed']);
-  const mockDialogData = { publisherName: "Test Publisher" };
+  const mockDialogData = { publisherName: "Test Publisher"  };
 
   beforeEach(fakeAsync(async () => {
     await TestBed.configureTestingModule({
@@ -25,7 +26,8 @@ describe("PublisherDeleteComponent", () => {
         NoopAnimationsModule,
         MatCardModule,
         MatFormFieldModule,
-        MatDialogModule
+        MatDialogModule,
+        MatIconModule
       ],
       providers: [
         { provide: MatDialogRef, useValue: mockDialogRef },
