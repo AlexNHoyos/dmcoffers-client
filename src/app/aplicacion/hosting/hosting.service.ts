@@ -50,4 +50,8 @@ export class HostingService {
     return this.http.delete<Hosting>(`${this.endpoint}/${id}`);
   }
 
+  deleteHostingPublisher(id: number): Observable<HostingPublisher> {
+    return this.http.delete<HostingPublisher>(`${this.endpointHostingPublisher}/${id}`);
+  }
+
 }

@@ -23,8 +23,10 @@ export class HostingUpdateComponent {
 
   publicadores: Publisher[] = [];
   storageTypes: string[] = ['SSD', 'HDD', 'SSHD', 'SSD + HHD'];
-  storageAmmount: number[] = [128, 256, 500, 1000, 2000];
-  ramAmmount: number[] = [2, 4, 8, 12, 16, 32, 64];
+  storageAmmount: number[] = [2000, 1000, 500, 256, 128];
+  ramAmmount: number[] = [64, 32, 16, 12, 8, 4, 2];
+
+  username: string | null = ''
 
   hostingPublisher: HostingPublisher;
 
@@ -39,24 +41,41 @@ export class HostingUpdateComponent {
     // Inicializo el hosting con data del dialog
     this.hostingPublisher = { ...dataHostingPublisher.hostingPublisher };
 
-    console.log(this.hostingPublisher);
     this.loadService();
   }
 
   ngOnInit(): void {
   }
   async loadService() {
-    const username = await firstValueFrom(this.userService.getLoggedInUsername());
+    this.username = await firstValueFrom(this.userService.getLoggedInUsername());
 
     this.publicadores = await firstValueFrom(this.publisherService.getAllPublishers());
   }
 
   onUpdatehosting() {
 
+    this.hostingPublisher.hosting.modificationtimestamp = new Date().toISOString()
+    this.hostingPublisher.hosting.modificationuser = this.username!;
+
     this.hostingService
-      .updateHostingPublisher(this.hostingPublisher.id, this.hostingPublisher)
+      .updateHosting(this.hostingPublisher.hosting.id, this.hostingPublisher.hosting)
       .subscribe({
         next: () => {
+
+          this.hostingPublisher.publisher = { id: this.hostingPublisher.publisher.id } as Publisher;
+          this.hostingPublisher.hosting = { id: this.hostingPublisher.hosting.id } as Hosting;
+
+          this.hostingService
+            .updateHostingPublisher(this.hostingPublisher.id, this.hostingPublisher)
+            .subscribe({
+              next: () => {
+              },
+              error: (error) => {
+                const errorMessage = error?.error?.msg || 'Ocurrió un error';
+                this.showErrorDialog(errorMessage);
+              },
+            });
+
           this.dialogRef.close(true);
         },
         error: (error) => {
@@ -64,6 +83,7 @@ export class HostingUpdateComponent {
           this.showErrorDialog(errorMessage);
         },
       });
+
   }
 
   private showErrorDialog(message: string): void {

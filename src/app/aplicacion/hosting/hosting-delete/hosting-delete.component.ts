@@ -9,10 +9,10 @@ import { ErrorDialogComponent } from '../../../components/error-dialog/error-dia
 import { HostingService } from '../hosting.service';
 
 @Component({
-    selector: 'app-hosting-delete',
-    templateUrl: './hosting-delete.component.html',
-    styleUrls: ['./hosting-delete.component.scss'],
-    standalone: false
+  selector: 'app-hosting-delete',
+  templateUrl: './hosting-delete.component.html',
+  styleUrls: ['./hosting-delete.component.scss'],
+  standalone: false
 })
 export class HostingDeleteComponent implements OnInit {
   hostingName: string = '';
@@ -22,13 +22,13 @@ export class HostingDeleteComponent implements OnInit {
     private hostingService: HostingService,
     private dialog: MatDialog,
     private dialogRef: MatDialogRef<HostingDeleteComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { id: number }
-  ) {}
+    @Inject(MAT_DIALOG_DATA) public data: { id: number, idHosting: number }
+  ) { }
 
   ngOnInit(): void {
-    this.hostingService.getHosting(this.data.id).subscribe({
-      next: (hosting) => {
-        this.hostingName = hosting.name;
+    this.hostingService.getHostingPublisher(this.data.id).subscribe({
+      next: (hostingpublisher) => {
+        this.hostingName = hostingpublisher.hosting.name;
       },
       error: () => {
         this.hostingName = 'Desconocido';
@@ -37,7 +37,17 @@ export class HostingDeleteComponent implements OnInit {
   }
 
   deleteHosting(): void {
-    this.hostingService.deleteHosting(this.data.id).subscribe({
+    this.hostingService.deleteHostingPublisher(this.data.id).subscribe({
+      next: () => {
+        this.successMessage = 'Hosting publisher eliminado satisfactoriamente';
+      },
+      error: (error) => {
+        const errorMessage = error?.error?.msg || 'Ocurrió un error';
+        this.showErrorDialog(errorMessage);
+      },
+    });
+
+    this.hostingService.deleteHosting(this.data.idHosting).subscribe({
       next: () => {
         this.successMessage = 'Hosting eliminado satisfactoriamente';
         this.dialogRef.close(true);

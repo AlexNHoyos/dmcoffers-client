@@ -12,8 +12,8 @@ export class Hosting {
 
 export class HostingPublisher {
   id: number = 0;
-  publisher: number = 0;
-  hosting: number = 0;
+  publisher: Publisher = new Publisher();
+  hosting: Hosting = new Hosting();
   storageType: string = '';
   storageAmmount: number = 0;
   ramAmmount: number = 0;

@@ -78,8 +78,6 @@ export class UpdateRolComponent {
         // Convertir los roles seleccionados a IDs si es necesario
         let roleIds: number[] = [];
 
-        console.log(this.rolesSeleccionados);
-
         this.rolesSeleccionados.forEach(rs => {
           if (rs.rol?.id != undefined && !rs.rolSelected) {
             roleIds.push(rs.rol.id);

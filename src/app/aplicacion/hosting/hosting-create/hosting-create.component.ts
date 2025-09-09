@@ -26,8 +26,8 @@ export class HostingCreateComponent {
 
   hostingPublisher: HostingPublisher = {
     id: 0,
-    publisher: 0,
-    hosting: 0,
+    publisher: new Publisher(),
+    hosting: new Hosting(),
     storageType: '',
     storageAmmount: 0,
     ramAmmount: 0,
@@ -36,8 +36,8 @@ export class HostingCreateComponent {
   }
   publicadores: Publisher[] = [];
   storageTypes: string[] = ['SSD', 'HDD', 'SSHD', 'SSD + HHD'];
-  storageAmmount: number[] = [128, 256, 500, 1000, 2000];
-  ramAmmount: number[] = [2, 4, 8, 12, 16, 32, 64];
+  storageAmmount: number[] = [2000, 1000, 500, 256, 128];
+  ramAmmount: number[] = [64, 32, 16, 12, 8, 4, 2];
 
   constructor(
     private HostingService: HostingService,
@@ -74,7 +74,10 @@ export class HostingCreateComponent {
 
     this.HostingService.createHosting(HostingToSend).subscribe({
       next: (response) => {
-        this.hostingPublisher.hosting = response.id
+        this.hostingPublisher.hosting = response
+
+        this.hostingPublisher.publisher = { id: this.hostingPublisher.publisher.id } as Publisher;
+        this.hostingPublisher.hosting = { id: this.hostingPublisher.hosting.id } as Hosting;
 
         this.HostingService.createHostingPublisher(this.hostingPublisher).subscribe({
           next: (response) => {

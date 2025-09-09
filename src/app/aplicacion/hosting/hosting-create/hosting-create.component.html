@@ -25,7 +25,7 @@
         <mat-form-field appearance="outline" class="col-12">
           <mat-label>Publicador</mat-label>
           <mat-select [(ngModel)]="hostingPublisher.publisher" name="publisher" required>
-            <mat-option *ngFor="let publisher of publicadores" [value]="publisher.id">
+            <mat-option *ngFor="let publisher of publicadores" [value]="publisher">
               {{ publisher.publishername }}
             </mat-option>
           </mat-select>
