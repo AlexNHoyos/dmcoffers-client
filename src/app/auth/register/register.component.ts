@@ -44,12 +44,13 @@ export class RegisterComponent implements OnInit {
             Validators.required,
             Validators.minLength(8),
             this.passwordHasUpperCase(),
+            this.passwordMatchValidator()
           ],
         ],
-        password2: ['', [Validators.required, Validators.minLength(8)]],
+        password2: ['', [Validators.required, Validators.minLength(8), this.passwordMatchValidator()]],
         birth_date: ['', [Validators.required]],
       },
-      { validators: this.passwordMatchValidator() }
+      { validators: this.passwordMatchValidator(), }
     );
     this.user = new User();
   }
@@ -101,10 +102,10 @@ export class RegisterComponent implements OnInit {
   passwordMatchValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const formGroup = control as FormGroup;
-      const password = formGroup.controls['password']?.value;
-      const confirmPassword = formGroup.controls['password2']?.value;
+      const password: string = formGroup.controls['password']?.value;
+      const confirmPassword: string = formGroup.controls['password2']?.value;
 
-      if (password && confirmPassword && password !== confirmPassword) {
+      if (password && confirmPassword && password.match(confirmPassword) || !password || !confirmPassword) {
         return { passwordsMismatch: true };
       }
 
