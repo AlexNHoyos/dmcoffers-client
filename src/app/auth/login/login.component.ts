@@ -17,6 +17,7 @@ import { ProximamenteService } from 'src/app/services/proximamente.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loginError: string = '';
+  hide = true; 
 
   constructor(
     private formBuilder: FormBuilder,
