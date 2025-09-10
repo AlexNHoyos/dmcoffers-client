@@ -19,6 +19,7 @@ export class ResetPassComponent implements OnInit {
   ResetPassForm: FormGroup;
   password: string = '';
   token: string = '';
+  hide = true; 
 
   constructor(
     private fb: FormBuilder,
