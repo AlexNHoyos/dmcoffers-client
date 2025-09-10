@@ -81,7 +81,7 @@
 - **Base de datos:** Postgres
 - **ORM:** TypeORM  
 - **Autenticación:** JWT con diferentes roles  
-- **Encriptación:** bcrypt   
+- **Encriptación:** Crypto y Argon2 para DB  
 
 ### Frontend  
 - **Framework:** Angular 19 
@@ -98,10 +98,9 @@
 - Tests de frontend con Jasmine y testbed
 - Tests de backend Jest
 - Deploy de la app:
-           - Front: <proximamente>  
-           - Back: <proximamente>
-           - DB: <proximamente>    
-
+- **Frontend:** CloudFlare ☁️ [Link DMC-Offers](https://dmcoffers-client.pages.dev/inicio)
+- **Backend y DB:** Render.com 🗄️[Link Render](https://render.com/)  [Juegos Cargados BD](https://dmcoffers-server-main.onrender.com/api/juegos) 
+ 
 ---
 
 ## Instalación y Ejecución   
@@ -153,24 +152,24 @@ git clone https://github.com/AlexNHoyos/dmcoffers-server-main
    ```sh
    npm run start
    ```
-
----
-
-## Endpoints del Backend 
-
-<Cargar capturas de Swagger o Postman>
-
+   
 ---
 
 ## Modelo de Datos   
 
-![Modelo DER en Draw.io](https://drive.google.com/file/d/1tck3RD6nlFP1pz9xcckBYNq8MNagbDFf/view)  
+<img width="838" height="473" alt="DER-GameOffers" src="https://github.com/user-attachments/assets/b2c20d1c-9e50-4a32-9662-d6158b989ee4" />
 
 ---
 
 ## Capturas de Funcionalidades
+### Barra Lateral
+![barra-lateral](https://github.com/user-attachments/assets/cb18cc2b-bcb6-4ed0-9c9a-85da53657602)
 
-<Cargar GIFS con funcionalidades>
+### Lista de Deseos
+![lista-deseos](https://github.com/user-attachments/assets/8c4a1b2d-706c-41fb-ba4f-231167c7b3b6)
+
+### Cargar Juego
+![carga-juego](https://github.com/user-attachments/assets/cc221fcb-669d-4ca2-bd9c-b137c8cd32c0)
 
 ---
 
