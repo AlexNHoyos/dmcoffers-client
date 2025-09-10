@@ -10,7 +10,7 @@ export const adminModGuard: CanActivateFn = () => {
   // Verifico si el usuario es 'moderador' mapeando el observable
   return loginService.userRol.pipe(
     map((rol) => {
-      if (rol === 'Moderador' || rol === 'Moderador' ) {
+      if (rol === 'Moderador' || rol === 'Administrador' ) {
         return true; // Autorizo acceso
       } else {
         router.navigate(['/not-authorized']);

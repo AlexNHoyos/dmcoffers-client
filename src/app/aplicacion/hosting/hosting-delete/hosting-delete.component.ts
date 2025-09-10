@@ -40,6 +40,7 @@ export class HostingDeleteComponent implements OnInit {
     this.hostingService.deleteHostingPublisher(this.data.id).subscribe({
       next: () => {
         this.successMessage = 'Hosting publisher eliminado satisfactoriamente';
+        this.dialogRef.close(true);
       },
       error: (error) => {
         const errorMessage = error?.error?.msg || 'Ocurrió un error';
