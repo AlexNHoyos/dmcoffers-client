@@ -43,11 +43,10 @@ export class RegisterComponent implements OnInit {
           [
             Validators.required,
             Validators.minLength(8),
-            this.passwordHasUpperCase(),
-            this.passwordMatchValidator()
+            this.passwordHasUpperCase()
           ],
         ],
-        password2: ['', [Validators.required, Validators.minLength(8), this.passwordMatchValidator()]],
+        password2: ['', [Validators.required, Validators.minLength(8)]],
         birth_date: ['', [Validators.required]],
       },
       { validators: this.passwordMatchValidator(), }
