@@ -94,7 +94,8 @@
   <div class="game-list-component">
     <mat-list *ngIf="juegosFiltrados.length > 0">
       <mat-list-item class="game-item" *ngFor="let juego of juegosFiltrados" (click)="verDetalle(juego.id)">
-        <img matListItemIcon [src]="environmentImg + juego.image_path" alt="{{ juego.gamename }}" />
+        <!--<img matListItemIcon [src]="environmentImg + juego.image_path" alt="{{ juego.gamename }}" /> -->
+        <img matListItemIcon [src]="juego.imageBase64 ? 'data:' + juego.imageContentType + ';base64,' + juego.imageBase64 : 'https://picsum.photos/350/120'" alt="Imagen del juego"/>
         <div matListItemTitle class="gameListItemTitle">{{ juego.gamename }}</div>
         <div matListItemLine class="gameListItemPrice">{{ juego.price | currency:'USD' }}</div>
       </mat-list-item>
