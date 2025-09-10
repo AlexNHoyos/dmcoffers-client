@@ -29,6 +29,7 @@ export class HostingUpdateComponent {
   username: string | null = ''
 
   hostingPublisher: HostingPublisher;
+  publisherToUpdate: Publisher = new Publisher();
 
   constructor(
     private hostingService: HostingService,
@@ -40,7 +41,6 @@ export class HostingUpdateComponent {
   ) {
     // Inicializo el hosting con data del dialog
     this.hostingPublisher = { ...dataHostingPublisher.hostingPublisher };
-
     this.loadService();
   }
 
@@ -48,8 +48,10 @@ export class HostingUpdateComponent {
   }
   async loadService() {
     this.username = await firstValueFrom(this.userService.getLoggedInUsername());
-
     this.publicadores = await firstValueFrom(this.publisherService.getAllPublishers());
+
+    let indexPublicador = this.publicadores.indexOf(this.hostingPublisher.publisher);
+    this.publisherToUpdate = this.publicadores[indexPublicador];
   }
 
   onUpdatehosting() {
