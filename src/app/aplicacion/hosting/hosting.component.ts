@@ -8,6 +8,7 @@ import { HostingDeleteComponent } from './hosting-delete/hosting-delete.componen
 import { HostingDetailComponent } from './hosting-detail/hosting-detail.component';
 import { Publisher } from '../publishers/publisher.model.js';
 import { PublisherService } from '../publishers/publisher.service.js';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-hosting',
@@ -39,12 +40,26 @@ export class HostingComponent implements OnInit {
     private hostingService: HostingService,
     private dialog: MatDialog,
     private publisherService: PublisherService,
+    private breakpointObserver: BreakpointObserver
   ) { }
 
   displayedColumns: string[] = ['id', 'publisher', 'hosting', 'espacioDisco', 'cantidadRam', 'cpuSpecs', 'actions'];
 
   ngOnInit(): void {
     this.loadHostings();
+    this.setupResponsiveColumns();
+  }
+
+   private setupResponsiveColumns(): void {
+    this.breakpointObserver.observe([Breakpoints.Handset]).subscribe(result => {
+      if (result.matches) {
+        // pantalla pequeña: oculto la columna 'user'
+        this.displayedColumns = ['id', 'hosting' , 'actions'];
+      } else {
+        // pantalla grande: muestro todas
+        this.displayedColumns = ['id', 'publisher', 'hosting', 'espacioDisco', 'cantidadRam', 'cpuSpecs', 'actions'];
+      }
+    });
   }
 
   getCreateComponent() {
@@ -102,6 +117,7 @@ export class HostingComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
+        console.log(this.filteredHostings)
         this.loadHostings(); // Carga o actualiza la lista de Hostings
       }
     });

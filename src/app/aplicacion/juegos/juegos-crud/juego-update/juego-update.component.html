@@ -74,8 +74,11 @@
         <div class="image-upload">
           <label>Portada</label><br />
           <input type="file" (change)="onFileSelected($event)" accept="image/*" />
-          <img *ngIf="data.juego.image_path" [src]="environmentImg + data.juego.image_path" alt="Imagen del Juego"
-            class="game-thumbnail" />
+          <!--<img *ngIf="data.juego.image_path" [src]="environmentImg + data.juego.image_path" alt="Imagen del Juego" class="game-thumbnail" />-->
+          <img [src]="juego.imageBase64 ? 'data:' + juego.imageContentType + ';base64,' + juego.imageBase64 : 'https://picsum.photos/350/120'"
+              alt="Imagen del Juego" 
+              class="game-thumbnail" />
+
         </div>
       </div>
     </form>

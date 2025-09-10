@@ -13,7 +13,7 @@
         <form #filterForm="ngForm">
           <div class="row">
 
-            <mat-form-field appearance="outline" class="col-4">
+            <mat-form-field appearance="outline" class="col-12 col-md-4">
               <mat-label>Publicador</mat-label>
               <mat-select [(ngModel)]="filterPublicador" name="publisher">
                 <mat-option *ngFor="let publisher of publishers" [value]="publisher.id">
@@ -22,12 +22,12 @@
               </mat-select>
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="col-4">
+            <mat-form-field appearance="outline" class="col-12 col-md-4">
               <mat-label>Producto</mat-label>
               <input [(ngModel)]="filterHosting" matInput type="text" name="productoHosteado" minlength="1" />
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="col-4">
+            <mat-form-field appearance="outline" class="col-12 col-md-4">
               <mat-label>Especificaciones CPU</mat-label>
               <input [(ngModel)]="filterCpu" matInput type="text" name="especificacionesCpu" minlength="1" />
             </mat-form-field>
@@ -35,7 +35,7 @@
           </div>
 
           <div class="row">
-            <mat-form-field appearance="outline" class="col-4">
+            <mat-form-field appearance="outline" class="col-12 col-md-4">
               <mat-label>Memoria RAM</mat-label>
               <mat-select [(ngModel)]="filterRam" name="memoriaRam">
                 <mat-option *ngFor="let mr of ramAmmount" [value]="mr">
@@ -44,7 +44,7 @@
               </mat-select>
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="col-4">
+            <mat-form-field appearance="outline" class="col-12 col-md-4">
               <mat-label>Tipo disco</mat-label>
               <mat-select [(ngModel)]="filterTipoDisco" name="tipoAlmacenamiento">
                 <mat-option *ngFor="let st of storageTypes" [value]="st">
@@ -53,7 +53,7 @@
               </mat-select>
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="col-4">
+            <mat-form-field appearance="outline" class="col-12 col-md-4">
               <mat-label>Tipo disco</mat-label>
               <mat-select [(ngModel)]="filterCapacidadDisco" name="capacidadAlmacenamiento">
                 <mat-option *ngFor="let sa of storageAmmount" [value]="sa">
@@ -63,12 +63,14 @@
             </mat-form-field>
           </div>
 
-          <div class="row">
-            <span class="col-9" style="margin-right: 6.5%;"></span>
+          <div class="row justify-content-end mb-2">
+            <div col-12 col-md-3 d-flex justify-content-between>
             <button class="col-1" mat-button type="button" (click)="resetFiltro()"
               style="margin-right: 1%;">Limpiar</button>
             <button class="col-1" mat-raised-button color="primary" (click)="aplicarFiltro()">Buscar</button>
           </div>
+          </div>
+
         </form>
 
 
