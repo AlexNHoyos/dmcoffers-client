@@ -24,6 +24,8 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   user: User = new User();
   today: Date = new Date();
+  hide = true;
+   
 
   constructor(
     private formBuilder: FormBuilder,
@@ -35,8 +37,8 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group(
       {
         username: ['', [Validators.required]],
-        realname: [,],
-        surname: [,],
+        realname: ['',],
+        surname: ['',],
         email: ['', [Validators.required, Validators.email]],
         password: [
           '',
@@ -98,19 +100,19 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  passwordMatchValidator(): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const formGroup = control as FormGroup;
-      const password: string = formGroup.controls['password']?.value;
-      const confirmPassword: string = formGroup.controls['password2']?.value;
+passwordMatchValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const formGroup = control as FormGroup;
+    const password = formGroup.controls['password']?.value;
+    const confirmPassword = formGroup.controls['password2']?.value;
 
-      if (password && confirmPassword && password.match(confirmPassword) || !password || !confirmPassword) {
-        return { passwordsMismatch: true };
-      }
+    if (password && confirmPassword && password !== confirmPassword) {
+      return { passwordsMismatch: true }; 
+    }
 
-      return null;
-    };
-  }
+    return null; 
+  };
+}
 
   passwordHasUpperCase(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {

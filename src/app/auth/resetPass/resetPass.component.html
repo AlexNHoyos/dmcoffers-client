@@ -19,13 +19,17 @@
 
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Nueva Contraseña</mat-label>
-        <input
-          matInput
-          type="password"
-          formControlName="newPassword"
-          placeholder="Ingrese su nueva contraseña"
-          required
-        />
+        <input matInput formControlName="newPassword" [type]="hide ? 'password' : 'text'"  placeholder="Ingrese su nueva contraseña"  required/>
+          <button
+            mat-icon-button
+            matSuffix
+            type="button"
+            (click)="hide = !hide"
+            [attr.aria-label]="'Mostrar/ocultar contraseña'"
+            [attr.aria-pressed]="!hide">
+
+            <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+         </button>
         <mat-error *ngIf="ResetPassForm.get('newPassword')?.invalid && (ResetPassForm.get('newPassword')?.dirty || ResetPassForm.get('newPassword')?.touched)">
           <div *ngIf="ResetPassForm.get('newPassword')?.hasError('required')">La nueva contraseña es requerida.</div>
           <div *ngIf="ResetPassForm.get('newPassword')?.hasError('minlength')">La contraseña debe tener al menos 6 caracteres.</div>
