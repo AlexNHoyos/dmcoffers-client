@@ -33,7 +33,10 @@
           Mínimo 8 caracteres.
         </mat-error>
         <mat-error *ngIf="registerForm.controls['password'].hasError('noUpperCase')">
-          {{ registerForm.controls['password'].getError('noUpperCase') }}
+          La contraseña debe contener al menos una letra mayuscula
+        </mat-error>
+        <mat-error *ngIf="registerForm.hasError('passwordsMismatch')">
+          Las contraseñas deben coincidir.
         </mat-error>
       </mat-form-field>
 
@@ -42,11 +45,17 @@
         <mat-label>Confirma tu contraseña</mat-label>
         <input matInput formControlName="password2" type="password" placeholder="Repita su contraseña" />
 
-          <!-- Validaciones de confirmación -->
+        <!-- Validaciones de confirmación -->
         <mat-error *ngIf="registerForm.get('password2')?.hasError('required')">
           Debe repetir la contraseña.
         </mat-error>
-        <mat-error *ngIf="registerForm.hasError('passwordsMismatch') && registerForm.get('password2')?.dirty">
+        <mat-error *ngIf="registerForm.controls['password'].value.length < 8">
+          Mínimo 8 caracteres.
+        </mat-error>
+        <mat-error *ngIf="registerForm.controls['password'].hasError('noUpperCase')">
+          La contraseña debe contener al menos una letra mayuscula
+        </mat-error>
+        <mat-error *ngIf="registerForm.hasError('passwordsMismatch')">
           Las contraseñas deben coincidir.
         </mat-error>
 

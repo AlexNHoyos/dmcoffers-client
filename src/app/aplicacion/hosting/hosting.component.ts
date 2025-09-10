@@ -68,11 +68,11 @@ export class HostingComponent implements OnInit {
   }
 
   showDetails(id: number): void {
-    this.hostingService.getHosting(id).subscribe((hosting) => {
+    this.hostingService.getHostingPublisher(id).subscribe((hostingpublisher) => {
       const dialogRef = this.dialog.open(HostingDetailComponent, {
         width: '400px',
         disableClose: true,
-        data: { hosting },
+        data: { hostingpublisher },
       });
     });
   }

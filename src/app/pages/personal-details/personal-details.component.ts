@@ -89,14 +89,6 @@ export class PersonalDetailsComponent implements OnInit {
     );
   }
 
-  goToWishlist(): void {
-    this.router.navigate(['/wishlist']);
-  }
-
-  showProximamente(): void {
-    this.proximamenteService.mostrarMensaje();
-  }
-
   get realname() {
     return this.registerForm.controls.realname;
   }
