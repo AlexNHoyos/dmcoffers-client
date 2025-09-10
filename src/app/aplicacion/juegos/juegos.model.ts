@@ -12,6 +12,8 @@ export class Juego {
   categoriasNames: string[] = [];
   price?: number ;
   image_path?:string | null = null;
+  imageBase64?: string;
+  imageContentType?: string;
   isInWishlist?: boolean;
   isInLibrary?: boolean;
 }
