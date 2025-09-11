@@ -8,10 +8,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
-    selector: 'app-nav',
-    templateUrl: './nav.component.html',
-    styleUrls: ['./nav.component.scss'],
-    standalone: false
+  selector: 'app-nav',
+  templateUrl: './nav.component.html',
+  styleUrls: ['./nav.component.scss'],
+  standalone: false
 })
 export class NavComponent implements OnInit, OnDestroy {
   searchTerm: string = '';
@@ -68,7 +68,9 @@ export class NavComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.userService.getLoggedInUsername().subscribe({
         next: (username) => {
-          this.username = username;
+          if (username != undefined) {
+            this.username = username
+          };
         },
         error: (err) => {
           console.error('Error al obtener el nombre de usuario', err);

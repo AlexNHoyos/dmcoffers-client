@@ -6,7 +6,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ProximamenteService } from 'src/app/services/proximamente.service';
+
 
 @Component({
   selector: 'app-personal-details',
@@ -22,19 +22,22 @@ export class PersonalDetailsComponent implements OnInit {
   userLoginOn: boolean = false;
   editMode: boolean = false;
   userRol: string | null = null;
+  today: Date = new Date();
   private subscriptions: Subscription = new Subscription();
 
   registerForm = this.formBuilder.group({
     id: [''],
     surname: ['', Validators.required],
     realname: ['', Validators.required],
+    username: ['', Validators.required],
+    email: ['', Validators.required],
+    birth_date: ['', Validators.required]
   });
 
   constructor(
     private userService: UserService,
     private formBuilder: FormBuilder,
     private loginService: LoginService,
-    private proximamenteService: ProximamenteService,
     private router: Router
   ) { }
 
@@ -66,14 +69,20 @@ export class PersonalDetailsComponent implements OnInit {
         this.registerForm.controls.id.setValue(
           userData.idUser.toString() ?? ''
         );
-        this.registerForm.controls.realname.setValue(userData.realname ?? '');
-        this.registerForm.controls.surname.setValue(userData.surname ?? '');
+
+        this.registerForm.controls.realname.setValue(this.user.realname ?? '');
+        this.registerForm.controls.surname.setValue(this.user.surname ?? '');
+        this.registerForm.controls.birth_date.setValue(this.user.birth_date!.toDateString());
+        this.registerForm.controls.username.setValue(this.user.username!);
+        this.registerForm.controls.email.setValue(this.user.email!);
+
         this.loadUserRol();
       },
       error: (errorData) => {
         this.errorMessage = errorData;
       }
     });
+
   }
 
   loadUserRol(): void {
@@ -97,6 +106,17 @@ export class PersonalDetailsComponent implements OnInit {
     return this.registerForm.controls.surname;
   }
 
+  get email() {
+    return this.registerForm.controls.email;
+  }
+
+  get birth_date() {
+    return this.registerForm.controls.birth_date;
+  }
+
+  get username() {
+    return this.registerForm.controls.username;
+  }
   savePersonalDetailsData() {
     if (this.registerForm.valid && this.userId) {
       this.userService
