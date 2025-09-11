@@ -41,7 +41,6 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
 import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
 
 import { JwtInterceptorService } from './services/auth/jwt-interceptor.service';
-import { ErrorInterceptorService } from './services/auth/error-interceptor.service';
 import { LoadingInterceptor } from './components/loading.interceptor';
 
 import { PublisherService } from './aplicacion/publishers/publisher.service';
@@ -218,11 +217,6 @@ registerLocaleData(localeEsAr); // 👈 Esto registra el locale
         {
             provide: HTTP_INTERCEPTORS,
             useClass: JwtInterceptorService,
-            multi: true,
-        },
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: ErrorInterceptorService,
             multi: true,
         },
         {
