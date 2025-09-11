@@ -26,12 +26,12 @@ export class PersonalDetailsComponent implements OnInit {
   private subscriptions: Subscription = new Subscription();
 
   registerForm = this.formBuilder.group({
-    id: [''],
-    surname: ['', Validators.required],
-    realname: ['', Validators.required],
-    username: ['', Validators.required],
-    email: ['', Validators.required],
-    birth_date: ['', Validators.required]
+    id: this.formBuilder.control<string | null>(null),
+    surname: this.formBuilder.control<string | null>(null, Validators.required),
+    realname: this.formBuilder.control<string | null>(null, Validators.required),
+    username: this.formBuilder.control<string | null>(null, Validators.required),
+    email: this.formBuilder.control<string | null>(null, Validators.required),
+    birth_date: this.formBuilder.control<Date | null>(null, Validators.required)
   });
 
   constructor(
@@ -66,13 +66,16 @@ export class PersonalDetailsComponent implements OnInit {
     this.userService.getUser(userId).subscribe({
       next: (userData) => {
         this.user = userData;
+
         this.registerForm.controls.id.setValue(
           userData.idUser.toString() ?? ''
         );
 
         this.registerForm.controls.realname.setValue(this.user.realname ?? '');
         this.registerForm.controls.surname.setValue(this.user.surname ?? '');
-        this.registerForm.controls.birth_date.setValue(this.user.birth_date!.toDateString());
+        this.registerForm.controls.birth_date.setValue(
+          this.user.birth_date ? new Date(this.user.birth_date) : null
+        );
         this.registerForm.controls.username.setValue(this.user.username!);
         this.registerForm.controls.email.setValue(this.user.email!);
 
@@ -117,6 +120,7 @@ export class PersonalDetailsComponent implements OnInit {
   get username() {
     return this.registerForm.controls.username;
   }
+
   savePersonalDetailsData() {
     if (this.registerForm.valid && this.userId) {
       this.userService

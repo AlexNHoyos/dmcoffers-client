@@ -9,7 +9,7 @@ export class User {
   rolDesc: string | undefined;
   realname?: string;
   surname?: string;
-  username?: string;
+  username: string = '';
   email?: string;
   birth_date?: Date;
   delete_date?: Date;
