@@ -29,11 +29,12 @@ export class HostingCreateComponent {
     publisher: new Publisher(),
     hosting: new Hosting(),
     storageType: '',
-    storageAmmount: 0,
-    ramAmmount: 0,
+    storageAmmount: null,
+    ramAmmount: null,
     cpuSpecs: '',
-    uptimePercentage: 0
+    uptimePercentage: null
   }
+
   publicadores: Publisher[] = [];
   storageTypes: string[] = ['SSD', 'HDD', 'SSHD', 'SSD + HHD'];
   storageAmmount: number[] = [2000, 1000, 500, 256, 128];

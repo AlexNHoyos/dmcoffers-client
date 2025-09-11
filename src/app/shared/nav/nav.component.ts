@@ -139,6 +139,11 @@ export class NavComponent implements OnInit, OnDestroy {
     }
   }
 
+  clearSearch(): void {
+    this.searchTerm = '';
+    this.router.navigate(['/']); // vuelve al inicio
+  }
+
   openHelp(): void {
     this.dialog.open(HelpDialogComponent, {
       width: '500px'

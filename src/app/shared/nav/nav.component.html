@@ -12,12 +12,19 @@
       <div class="center-section">
         <div class="col-12 col-lg-5 col-md-8 col-sm-8">
           <div class="search-bar">
-            <input type="text" [(ngModel)]="searchTerm" (keydown.enter)="onSearch()" />
+            <!-- Botón buscar -->
             <button (click)="onSearch()">
               <mat-icon class="search-icon">search</mat-icon>
             </button>
-          </div>
 
+            <!-- Input -->
+            <input type="text" [(ngModel)]="searchTerm" (keydown.enter)="onSearch()" />
+
+            <!-- Botón limpiar (se muestra solo si hay texto) -->
+            <button *ngIf="searchTerm" (click)="clearSearch()">
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
         </div>
       </div>
 
