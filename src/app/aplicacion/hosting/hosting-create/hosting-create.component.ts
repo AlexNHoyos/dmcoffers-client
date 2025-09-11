@@ -98,6 +98,18 @@ export class HostingCreateComponent {
 
   }
 
+  keyDownValoresNumericos(event: any) {
+    const key = event.keyCode;
+    const inputValue = event.target.value;
+    if (key >= 48 && key <= 57) {
+      if (inputValue.length === 0 && key === 48) {
+        event.preventDefault();
+      }
+    } else {
+      event.preventDefault();
+    }
+  }
+
   cancel(): void {
     this.dialogRef.close(false); // Cierra el diálogo sin guardar cambios
   }
