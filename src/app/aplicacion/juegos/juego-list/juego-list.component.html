@@ -4,12 +4,14 @@
     <div class="library-badge" *ngIf="juego.isInLibrary">🎮 En biblioteca</div>
 
     <div class="game-image" (click)="onGameClick(juego.id)">
-      <img
+      
+       <img [src]="juego.image_path ? juego.image_path : 'https://picsum.photos/350/120'" alt="Imagen de {{ juego.gamename }}"/>
+      <!--<img
         [src]="juego.imageBase64 
          ? 'data:' + juego.imageContentType + ';base64,' + juego.imageBase64 
          : 'https://picsum.photos/350/120'"
         alt="Imagen de {{ juego.gamename }}"
-      />
+      />-->
 
     <div class="game-details" (click)="onGameClick(juego.id)">
       <h3>{{ juego.gamename }}</h3>
