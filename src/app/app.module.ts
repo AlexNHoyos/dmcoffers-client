@@ -107,6 +107,7 @@ import { ResetPassComponent } from './auth/resetPass/resetPass.component';
 import { ForgotPassComponent } from './auth/forgotPass/forgotPass.component';
 import { registerLocaleData } from '@angular/common';
 import localeEsAr from '@angular/common/locales/es-AR';
+import { HttpErrorInterceptor } from './services/auth/http-error.interceptor';
 
 registerLocaleData(localeEsAr); // 👈 Esto registra el locale
 
@@ -226,6 +227,7 @@ registerLocaleData(localeEsAr); // 👈 Esto registra el locale
         },
         provideHttpClient(withInterceptorsFromDi()),
         { provide: LOCALE_ID, useValue: 'es-AR' },
+        { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
     ]
 })
 export class AppModule { }
