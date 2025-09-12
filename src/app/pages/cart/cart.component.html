@@ -13,11 +13,12 @@
 
         <!-- Imagen + nombre juego -->
         <div class="d-flex align-items-center flex-grow-1">
-          <img
+          <img [src]="juego.image_path ? juego.image_path : 'https://picsum.photos/350/120'" alt="{{ juego.gamename }}"  class="juego-img me-3"/>
+          <!--<img
             [src]="juego.imageBase64 ? 'data:' + juego.imageContentType + ';base64,' + juego.imageBase64 : 'https://picsum.photos/350/120'"
             alt="{{ juego.gamename }}"
             class="juego-img me-3"
-          />
+          />-->
           <h5 class="juego-nombre mb-0">{{ juego.gamename }}</h5>
         </div>
   

@@ -8,16 +8,16 @@
   </div>
 </div>
 
-        <!--<img *ngFor="let juego of juegos; let i=index"
-              [src]="juego.image_path ? environmentImg + juego.image_path : 'https://picsum.photos/250/140'" alt="{{ juego.gamename }}"
+        <img *ngFor="let juego of juegos; let i=index"
+              [src]="juego.image_path ? juego.image_path : 'https://picsum.photos/250/140'" alt="{{ juego.gamename }}"
               [ngClass]="{'image-active': selectedIndex === i}"
-              (click)="verDetalle(juego.id)"
-              >-->
-        <img *ngFor="let juego of juegos; let i = index"
+              (click)="verDetalle(juego.id)">
+              
+        <!--<img *ngFor="let juego of juegos; let i = index"
                 [src]="juego.imageBase64 ? 'data:' + juego.imageContentType + ';base64,' + juego.imageBase64 : 'https://picsum.photos/250/140'" 
             alt="{{ juego.gamename }}"
             [ngClass]="{'image-active': selectedIndex === i}"
-            (click)="verDetalle(juego.id)">      
+            (click)="verDetalle(juego.id)">-->      
 
         <div *ngIf="indicators" class="carousel-dot-container">
         <span *ngFor="let dot of juegos; let i=index"
