@@ -62,8 +62,9 @@
       <div class="row">
         <mat-form-field appearance="outline" class="col-6">
           <mat-label>Uptime</mat-label>
-          <input matInput type="number" [(ngModel)]="hostingPublisher.uptimePercentage" name="uptimePercentage"
-            #name="ngModel" required minlength="1" />
+          <input matInput type="text" (keypress)="keyDownValoresNumericos($event)"
+            [(ngModel)]="hostingPublisher.uptimePercentage" name="uptimePercentage" #name="ngModel" required
+            minlength="1" />
 
         </mat-form-field>
 

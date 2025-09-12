@@ -15,8 +15,9 @@ export class HostingPublisher {
   publisher: Publisher = new Publisher();
   hosting: Hosting = new Hosting();
   storageType: string = '';
-  storageAmmount: number = 0;
-  ramAmmount: number = 0;
+  storageAmmount: number | null = null;
+  ramAmmount: number | null = null;
   cpuSpecs: string = '';
-  uptimePercentage: number = 0;
+  uptimePercentage: number | null = null;
+
 }

@@ -54,13 +54,13 @@ const routes: Routes = [
   { path: 'wishlist', component: WishlistComponent, canActivate: [authGuard], },
   { path: 'biblioteca', component: LibraryComponent, canActivate: [authGuard], },
   { path: 'cart', component: CartComponent },
-  { path: 'hostings', component: HostingComponent, canActivate: [adminModGuard] , },
+  { path: 'hostings', component: HostingComponent, canActivate: [adminModGuard], },
   { path: 'categorias', component: CategoriasComponent, canActivate: [adminGuard], },
   { path: 'publicadores', component: PublisherComponent, canActivate: [adminGuard], },
   { path: 'juegos', component: JuegosCrudComponent, canActivate: [adminGuard], },
   { path: 'desarrolladores', component: DesarrolladoresComponent, canActivate: [adminGuard], },
   { path: 'listado-juegos', component: JuegosPorCategoriaComponent },
-  { path: 'support-ticket', component: SupportTicketComponent,canActivate: [adminModGuard]  },
+  { path: 'support-ticket', component: SupportTicketComponent, canActivate: [adminModGuard] },
   { path: '**', redirectTo: '/inicio', pathMatch: 'full' }, //redireccionar a inicio si no hay match
 ];
 

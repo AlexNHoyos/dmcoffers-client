@@ -4,8 +4,97 @@
 
     </div>
 
+    <div class="row filtroCrud">
+
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> FILTROS </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <form #filterForm="ngForm" (ngSubmit)="aplicarFiltro()">
+        <!-- Filtro por Estado -->
+        <div class="row mb-3">
+          <mat-form-field appearance="outline" class="col-6">
+            <mat-label>Estado</mat-label>
+            <mat-select [(ngModel)]="filterEstado" name="estado">
+              <mat-option [value]="'true'">Activo</mat-option>
+              <mat-option [value]="'false'">Inactivo</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <!-- Filtro por Nombre -->
+          <mat-form-field appearance="outline" class="col-6">
+            <mat-label>Nombre</mat-label>
+            <input matInput [(ngModel)]="filterPublisherName" name="publisherName" placeholder="Buscar por nombre">
+          </mat-form-field>
+        </div>
+
+       <!-- Fecha de Fundación -->
+        <div class="row mb-3">
+          <h4 class="col-12 mb-2">Fecha de Fundacion</h4>
+          <mat-form-field appearance="outline" class="col-6">
+            <mat-label class="d-none d-md-block">Fundación desde</mat-label>
+            <mat-label class="d-block d-md-none">Desde</mat-label>
+            <input matInput [matDatepickerFilter]="filterDesde" [matDatepicker]="pickerFundDesde"
+                   [(ngModel)]="filterFundacionDesde" name="fundacionDesde" [max]="today"/>
+            <mat-datepicker-toggle matIconSuffix [for]="pickerFundDesde"></mat-datepicker-toggle>
+            <mat-datepicker #pickerFundDesde></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="col-6">
+            <mat-label class="d-none d-md-block">Fundación hasta</mat-label>
+            <mat-label class="d-block d-md-none">Hasta</mat-label>
+            <input matInput [matDatepickerFilter]="filterHasta" [max]="today" [matDatepicker]="pickerFundHasta"
+                   [(ngModel)]="filterFundacionHasta" name="fundacionHasta"/>
+            <mat-datepicker-toggle matIconSuffix [for]="pickerFundHasta"></mat-datepicker-toggle>
+            <mat-datepicker #pickerFundHasta></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <!-- Fecha de Disolución -->
+        <div class="row mb-3">
+          <h4 class="col-12 mb-2">Fecha de Disolucion</h4>
+          <mat-form-field appearance="outline" class="col-6">
+            <mat-label class="d-none d-md-block">Disolución desde</mat-label>
+            <mat-label class="d-block d-md-none">Desde</mat-label>
+            <input matInput [matDatepickerFilter]="filterDisolucionDesdeFn" [max]="today" [matDatepicker]="pickerDisolDesde"
+                   [(ngModel)]="filterDisolucionDesde" name="disolucionDesde"/>
+            <mat-datepicker-toggle matIconSuffix [for]="pickerDisolDesde"></mat-datepicker-toggle>
+            <mat-datepicker #pickerDisolDesde></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="col-6">
+            <mat-label class="d-none d-md-block">Disolución hasta</mat-label>
+            <mat-label class="d-block d-md-none">Hasta</mat-label>
+            <input matInput [matDatepickerFilter]="filterDisolucionHastaFn" [max]="today" [matDatepicker]="pickerDisolHasta"
+                   [(ngModel)]="filterDisolucionHasta" name="disolucionHasta"/>
+            <mat-datepicker-toggle matIconSuffix [for]="pickerDisolHasta"></mat-datepicker-toggle>
+            <mat-datepicker #pickerDisolHasta></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+
+        <!-- Botones -->
+        <div class="row justify-content-end mb-2">
+            <div col-12 col-md-3 d-flex justify-content-between>
+            <button class="col-1" mat-button type="button" (click)="resetFiltro()"
+              style="margin-right: 1%;">Limpiar</button>
+            <button class="col-1" mat-raised-button color="primary" (click)="aplicarFiltro()">Buscar</button>
+          </div>
+          </div>
+      </form>
+
+
+
+        
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+
+
     <div class="tabla-crud normal-table">
-      <table mat-table [dataSource]="publishers" class="mat-elevation-z8 ">
+      <table mat-table [dataSource]="filteredPublishers" class="mat-elevation-z8 ">
         <!-- ID  -->
         <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef style="width: 10%;">ID</th>
