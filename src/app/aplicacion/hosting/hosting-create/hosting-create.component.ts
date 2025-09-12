@@ -29,11 +29,12 @@ export class HostingCreateComponent {
     publisher: new Publisher(),
     hosting: new Hosting(),
     storageType: '',
-    storageAmmount: 0,
-    ramAmmount: 0,
+    storageAmmount: null,
+    ramAmmount: null,
     cpuSpecs: '',
-    uptimePercentage: 0
+    uptimePercentage: null
   }
+
   publicadores: Publisher[] = [];
   storageTypes: string[] = ['SSD', 'HDD', 'SSHD', 'SSD + HHD'];
   storageAmmount: number[] = [2000, 1000, 500, 256, 128];
@@ -96,6 +97,18 @@ export class HostingCreateComponent {
     });
 
 
+  }
+
+  keyDownValoresNumericos(event: any) {
+    const key = event.keyCode;
+    const inputValue = event.target.value;
+    if (key >= 48 && key <= 57) {
+      if (inputValue.length === 0 && key === 48) {
+        event.preventDefault();
+      }
+    } else {
+      event.preventDefault();
+    }
   }
 
   cancel(): void {

@@ -13,14 +13,34 @@ import { RegisterComponent } from 'src/app/auth/register/register.component';
 })
 export class UsuariosComponent implements OnInit {
   usuarios: User[] = [];
+  filteredUsuarios: User[] = [];
+  today: Date = new Date();
 
   constructor(private userService: UserService, private dialog: MatDialog) {
   }
 
   displayedColumns: string[] = ['id', 'user', 'actions'];
 
+  // Filtros
+  filterRolDesc: string = '';
+  filterUsername: string = '';
+  filterEmail: string = '';
+  filterFechaNacDesde: Date | null = null;
+  filterFechaNacHasta: Date | null = null;
+
+  filterDesde = (d: Date | null): boolean => {
+      if (!d) return false;
+      return !this.filterFechaNacHasta || d <= this.filterFechaNacHasta!; 
+    };
+
+    filterHasta = (d: Date | null): boolean => {
+      if (!d) return false;
+      return !this.filterFechaNacDesde || d >= this.filterFechaNacDesde!;
+    };
+
   ngOnInit(): void {
     this.loadUsuarios();
+
   }
 
   getEditComponent() {
@@ -43,9 +63,45 @@ export class UsuariosComponent implements OnInit {
     });
   }
 
+  aplicarFiltro(): void {
+    if (this.filterFechaNacDesde && this.filterFechaNacHasta && this.filterFechaNacDesde > this.filterFechaNacHasta) {
+      alert('La fecha "desde" no puede ser mayor que la fecha "hasta".');
+      return;
+    }
+
+  this.filteredUsuarios = this.usuarios.filter((usuario: User) => {
+      const coincideRol =
+        !this.filterRolDesc || usuario.rolDesc?.toLowerCase() === this.filterRolDesc.toLowerCase();
+
+      const coincideNombre =
+        !this.filterUsername || usuario.username?.toLowerCase().includes(this.filterUsername.toLowerCase());
+
+      const coincideEmail =
+        !this.filterEmail || usuario.email?.toLowerCase().includes(this.filterEmail.toLowerCase());
+
+      const fechaNacimiento = usuario.birth_date ? new Date(usuario.birth_date) : null;
+      const coincideFecha =
+        (!this.filterFechaNacDesde || (fechaNacimiento && fechaNacimiento >= this.filterFechaNacDesde)) &&
+        (!this.filterFechaNacHasta || (fechaNacimiento && fechaNacimiento <= this.filterFechaNacHasta));
+
+      return coincideRol && coincideNombre && coincideEmail && coincideFecha;
+    });
+    }
+  
+    resetFiltro(): void {
+    this.filterRolDesc = '';
+    this.filterUsername = '';
+    this.filterEmail = '';
+    this.filterFechaNacDesde = null;
+    this.filterFechaNacHasta = null;
+    this.filteredUsuarios = [...this.usuarios];
+    }
+
+
   loadUsuarios(): void {
     this.userService.getAllUsers().subscribe((data) => {
       this.usuarios = data;
+      this.filteredUsuarios= [...data];
     });
   }
 }

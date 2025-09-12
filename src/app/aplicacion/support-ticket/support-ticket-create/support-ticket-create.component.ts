@@ -3,7 +3,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 import { SupportTicket } from '../support-ticket.model';
 import { SupportTicketService } from '../support-ticket.service';
-import { ProximamenteService } from 'src/app/services/proximamente.service';
+
 import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -21,13 +21,12 @@ export class SupportTicketCreateComponent {
     creationtimestamp: new Date().toISOString(),
     modificationuser: '',
     modificationtimestamp: '',
-    description: '',
+    description: null,
   };
   constructor(
     private supportTicketService: SupportTicketService,
     private dialogRef: MatDialogRef<SupportTicketCreateComponent>,
     private userService: UserService,
-    private proximamenteService: ProximamenteService,
     private dialog: MatDialog
   ) { }
 
@@ -75,10 +74,6 @@ export class SupportTicketCreateComponent {
   }
   cancel(): void {
     this.dialogRef.close(false); // Cierra el diálogo sin guardar cambios
-  }
-
-  showProximamente(): void {
-    this.proximamenteService.mostrarMensaje();
   }
 
   private showSuccessDialog(): void {

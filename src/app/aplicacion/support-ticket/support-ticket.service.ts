@@ -30,7 +30,7 @@ export class SupportTicketService {
   }
 
   deleteSupportTicket(id: number): Observable<SupportTicket> {
-    return this.http.get<SupportTicket>(`${this.endpoint}/${id}`);
+    return this.http.delete<SupportTicket>(`${this.endpoint}/${id}`);
   }
 
 }

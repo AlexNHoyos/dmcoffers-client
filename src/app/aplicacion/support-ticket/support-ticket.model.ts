@@ -5,5 +5,5 @@ export class SupportTicket {
   creationtimestamp: string | null = null;
   modificationuser?: string;
   modificationtimestamp?: string | null = null;
-  description: string = '';
+  description: string | null = null;
 }

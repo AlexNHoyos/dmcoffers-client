@@ -41,7 +41,6 @@ import { ConfirmComponent } from './components/confirm/confirm.component';
 import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
 
 import { JwtInterceptorService } from './services/auth/jwt-interceptor.service';
-import { ErrorInterceptorService } from './services/auth/error-interceptor.service';
 import { LoadingInterceptor } from './components/loading.interceptor';
 
 import { PublisherService } from './aplicacion/publishers/publisher.service';
@@ -108,6 +107,7 @@ import { ResetPassComponent } from './auth/resetPass/resetPass.component';
 import { ForgotPassComponent } from './auth/forgotPass/forgotPass.component';
 import { registerLocaleData } from '@angular/common';
 import localeEsAr from '@angular/common/locales/es-AR';
+import { HttpErrorInterceptor } from './services/auth/http-error.interceptor';
 
 registerLocaleData(localeEsAr); // 👈 Esto registra el locale
 
@@ -222,16 +222,12 @@ registerLocaleData(localeEsAr); // 👈 Esto registra el locale
         },
         {
             provide: HTTP_INTERCEPTORS,
-            useClass: ErrorInterceptorService,
-            multi: true,
-        },
-        {
-            provide: HTTP_INTERCEPTORS,
             useClass: LoadingInterceptor,
             multi: true
         },
         provideHttpClient(withInterceptorsFromDi()),
         { provide: LOCALE_ID, useValue: 'es-AR' },
+        { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
     ]
 })
 export class AppModule { }
