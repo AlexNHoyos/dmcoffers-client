@@ -3,7 +3,7 @@ export class Desarrollador {
   developername: string = '';
   foundation_date: string | null = null;
   dissolution_date?: string | null;
-  status: Boolean = true;
+  status: boolean = true;
   creationtimestamp: string | null = null;
   creationuser: string = '';
   modificationtimestamp?: string | null = null;
