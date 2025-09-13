@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
   user: User = new User();
   today: Date = new Date();
   hide = true;
-   
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -100,19 +100,19 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-passwordMatchValidator(): ValidatorFn {
-  return (control: AbstractControl): ValidationErrors | null => {
-    const formGroup = control as FormGroup;
-    const password = formGroup.controls['password']?.value;
-    const confirmPassword = formGroup.controls['password2']?.value;
+  passwordMatchValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const formGroup = control as FormGroup;
+      const password = formGroup.controls['password']?.value;
+      const confirmPassword = formGroup.controls['password2']?.value;
 
-    if (password && confirmPassword && password !== confirmPassword) {
-      return { passwordsMismatch: true }; 
-    }
+      if (password && confirmPassword && password !== confirmPassword) {
+        return { passwordsMismatch: true };
+      }
 
-    return null; 
-  };
-}
+      return null;
+    };
+  }
 
   passwordHasUpperCase(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
@@ -147,5 +147,16 @@ passwordMatchValidator(): ValidatorFn {
 
   goToLogin() {
     this.router.navigate(['/login']);
+  }
+
+  onDateInput(event: any) {
+    let value: string = event.target.value.replace(/\D/g, ''); // solo números
+    if (value.length >= 2) {
+      value = value.slice(0, 2) + '/' + value.slice(2);
+    }
+    if (value.length >= 5) {
+      value = value.slice(0, 5) + '/' + value.slice(5, 9);
+    }
+    event.target.value = value;
   }
 }

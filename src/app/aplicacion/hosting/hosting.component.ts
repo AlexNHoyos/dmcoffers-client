@@ -50,11 +50,11 @@ export class HostingComponent implements OnInit {
     this.setupResponsiveColumns();
   }
 
-   private setupResponsiveColumns(): void {
+  private setupResponsiveColumns(): void {
     this.breakpointObserver.observe([Breakpoints.Handset]).subscribe(result => {
       if (result.matches) {
         // pantalla pequeña: oculto la columna 'user'
-        this.displayedColumns = ['id', 'hosting' , 'actions'];
+        this.displayedColumns = ['id', 'hosting', 'actions'];
       } else {
         // pantalla grande: muestro todas
         this.displayedColumns = ['id', 'publisher', 'hosting', 'espacioDisco', 'cantidadRam', 'cpuSpecs', 'actions'];
@@ -117,7 +117,6 @@ export class HostingComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log(this.filteredHostings)
         this.loadHostings(); // Carga o actualiza la lista de Hostings
       }
     });

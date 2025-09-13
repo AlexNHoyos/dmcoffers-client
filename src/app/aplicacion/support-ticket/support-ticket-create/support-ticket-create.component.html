@@ -20,6 +20,6 @@
   <mat-card-actions class="action-buttons">
     <button mat-stroked-button color="secondary" (click)="cancel()"> Cancelar</button>
     <button mat-flat-button type="submit" color="primary" (click)="createSupportTicket($event)"
-      [disabled]="ticketForm.invalid">Crear</button>
+      [disabled]="ticketForm.invalid || validaDescripcion()">Crear</button>
   </mat-card-actions>
 </mat-card>
