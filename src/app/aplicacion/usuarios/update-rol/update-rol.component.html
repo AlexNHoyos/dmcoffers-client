@@ -9,11 +9,11 @@
       <div class="row">
         <mat-form-field appearance="outline" class="col-12">
           <mat-label>Roles</mat-label>
-          <mat-select name="rolDescriptions" multiple required [(ngModel)]="rolesSeleccionados">
+          <mat-select name="rolDescriptions" multiple required [(ngModel)]="userRoles">
 
 
-            <mat-option *ngFor="let rol of selectedRoles" [value]="rol">
-              {{ rol?.rol?.description }}
+            <mat-option *ngFor="let rol of allRoles" [value]="rol.id">
+              {{ rol.description }}
             </mat-option>
 
           </mat-select>
