@@ -12,9 +12,9 @@
         </mat-expansion-panel-header>
 
         <form #filterForm="ngForm" (ngSubmit)="aplicarFiltro()">
-          
+
           <div class="row mb-3">
-          <!-- Filtro por Rol -->
+            <!-- Filtro por Rol -->
             <mat-form-field appearance="outline" class="col-6">
               <mat-label>Rol</mat-label>
               <mat-select [(ngModel)]="filterRolDesc" name="rol">
@@ -31,44 +31,48 @@
           </div>
           <div class="row mb-3">
 
-          <!-- Filtro por Email -->
-          <mat-form-field appearance="outline">
-            <mat-label>Email</mat-label>
-            <input matInput [(ngModel)]="filterEmail" name="email" placeholder="Buscar por email">
-          </mat-form-field>
+            <!-- Filtro por Email -->
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput [(ngModel)]="filterEmail" name="email" placeholder="Buscar por email">
+            </mat-form-field>
           </div>
-          
-        <!-- Filtro por fecha de nacimiento-->
-        <div class="row mb-3">
-          <h4 class="col-12 mb-2">Fecha de nacimiento</h4>
 
-          <mat-form-field appearance="outline" class="col-6">
-            <!-- Label para pantallas grandes -->
-            <mat-label class="d-none d-md-block">Fecha desde</mat-label>
-            <!-- Label para pantallas chicas -->
-            <mat-label class="d-block d-md-none">Desde</mat-label>
-            <input matInput [matDatepickerFilter]="filterDesde" [matDatepicker]="pickerDesde" [max]="today" [(ngModel)]="filterFechaNacDesde" name="fechaDesde" />
-            <mat-datepicker-toggle matIconSuffix [for]="pickerDesde"></mat-datepicker-toggle>
-            <mat-datepicker #pickerDesde></mat-datepicker>
+          <!-- Filtro por fecha de nacimiento-->
+          <div class="row mb-3">
+            <h4 class="col-12 mb-2">Fecha de nacimiento</h4>
 
-          </mat-form-field>
+            <mat-form-field appearance="outline" class="col-6">
+              <!-- Label para pantallas grandes -->
+              <mat-label class="d-none d-md-block">Fecha desde</mat-label>
+              <!-- Label para pantallas chicas -->
+              <mat-label class="d-block d-md-none">Desde</mat-label>
+              <input matInput [matDatepickerFilter]="filterDesde" [matDatepicker]="pickerDesde" [max]="today"
+                [(ngModel)]="filterFechaNacDesde" name="fechaDesde" (input)="onDateInput($event)"
+                placeholder="dd/mm/yyyy" />
+              <mat-datepicker-toggle matIconSuffix [for]="pickerDesde"></mat-datepicker-toggle>
+              <mat-datepicker #pickerDesde></mat-datepicker>
 
-          <mat-form-field appearance="outline" class="col-6">
-            <mat-label class="d-none d-md-block">Fecha hasta</mat-label>
-            <mat-label class="d-block d-md-none">Hasta</mat-label>
-            <input matInput [matDatepickerFilter]="filterHasta" [matDatepicker]="pickerHasta" [max]="today" [(ngModel)]="filterFechaNacHasta" name="fechaHasta"/>
-            <mat-datepicker-toggle matIconSuffix [for]="pickerHasta"></mat-datepicker-toggle>
-            <mat-datepicker #pickerHasta></mat-datepicker>
+            </mat-form-field>
 
-          </mat-form-field>
-        </div>  
+            <mat-form-field appearance="outline" class="col-6">
+              <mat-label class="d-none d-md-block">Fecha hasta</mat-label>
+              <mat-label class="d-block d-md-none">Hasta</mat-label>
+              <input matInput [matDatepickerFilter]="filterHasta" [matDatepicker]="pickerHasta" [max]="today"
+                [(ngModel)]="filterFechaNacHasta" name="fechaHasta" (input)="onDateInput($event)"
+                placeholder="dd/mm/yyyy" />
+              <mat-datepicker-toggle matIconSuffix [for]="pickerHasta"></mat-datepicker-toggle>
+              <mat-datepicker #pickerHasta></mat-datepicker>
+
+            </mat-form-field>
+          </div>
 
           <div class="row justify-content-end mb-2">
             <div col-12 col-md-3 d-flex justify-content-between>
-            <button class="col-1" mat-button type="button" (click)="resetFiltro()"
-              style="margin-right: 1%;">Limpiar</button>
-            <button class="col-1" mat-raised-button color="primary" (click)="aplicarFiltro()">Buscar</button>
-          </div>
+              <button class="col-1" mat-button type="button" (click)="resetFiltro()"
+                style="margin-right: 1%;">Limpiar</button>
+              <button class="col-1" mat-raised-button color="primary" (click)="aplicarFiltro()">Buscar</button>
+            </div>
           </div>
 
         </form>

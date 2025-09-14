@@ -27,8 +27,8 @@ export class PersonalDetailsComponent implements OnInit {
 
   registerForm = this.formBuilder.group({
     id: this.formBuilder.control<string | null>(null),
-    surname: this.formBuilder.control<string | null>(null, Validators.required),
-    realname: this.formBuilder.control<string | null>(null, Validators.required),
+    surname: this.formBuilder.control<string | null>(null,),
+    realname: this.formBuilder.control<string | null>(null,),
     username: this.formBuilder.control<string | null>(null, Validators.required),
     email: this.formBuilder.control<string | null>(null, Validators.required),
     birth_date: this.formBuilder.control<Date | null>(null, Validators.required)
@@ -134,5 +134,16 @@ export class PersonalDetailsComponent implements OnInit {
           error: (errorData) => console.error(errorData),
         });
     }
+  }
+
+  onDateInput(event: any) {
+    let value: string = event.target.value.replace(/\D/g, ''); // solo números
+    if (value.length >= 2) {
+      value = value.slice(0, 2) + '/' + value.slice(2);
+    }
+    if (value.length >= 5) {
+      value = value.slice(0, 5) + '/' + value.slice(5, 9);
+    }
+    event.target.value = value;
   }
 }

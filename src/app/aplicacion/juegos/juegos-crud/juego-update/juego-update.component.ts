@@ -16,12 +16,12 @@ import { environment } from 'src/environments/environment';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
-    selector: 'app-juego-update',
-    templateUrl: './juego-update.component.html',
-    standalone: false
+  selector: 'app-juego-update',
+  templateUrl: './juego-update.component.html',
+  standalone: false
 })
 export class JuegoUpdateComponent {
-  environmentImg: string="";
+  environmentImg: string = "";
   juego: Juego;
   desarrolladores: any[] = []; // Lista de desarrolladores
   publishers: any[] = []; // Lista de publishers
@@ -99,13 +99,13 @@ export class JuegoUpdateComponent {
         : null,
       id_developer: this.juego.developerName
         ? this.desarrolladores.find(
-            (dev) => dev.developername === this.juego.developerName
-          ).id
+          (dev) => dev.developername === this.juego.developerName
+        ).id
         : null,
       id_publisher: this.juego.publisherName
         ? this.publishers.find(
-            (pub) => pub.publishername === this.juego.publisherName
-          ).id
+          (pub) => pub.publishername === this.juego.publisherName
+        ).id
         : null,
       categorias: this.juego.categoriasNames.map(
         (catName) =>
@@ -113,11 +113,11 @@ export class JuegoUpdateComponent {
       ),
     };
 
-  formData.append('juego', JSON.stringify(juegoToSend));
-  
-  if (this.selectedFile) {
-    formData.append('image', this.selectedFile);
-  }
+    formData.append('juego', JSON.stringify(juegoToSend));
+
+    if (this.selectedFile) {
+      formData.append('image', this.selectedFile);
+    }
 
     this.juegoService.updateJuego(this.juego.id, formData).subscribe({
       next: () => {
@@ -133,10 +133,10 @@ export class JuegoUpdateComponent {
 
   onFileSelected(event: any): void {
     const file: File = event.target.files[0];
-      if (file) {
-        this.selectedFile = file;
-      }
-}
+    if (file) {
+      this.selectedFile = file;
+    }
+  }
 
   private showErrorDialog(message: string): void {
     this.dialog.open(ErrorDialogComponent, {
@@ -147,5 +147,16 @@ export class JuegoUpdateComponent {
 
   cancel(): void {
     this.dialogRef.close(false); // Cierra el diálogo sin guardar cambios
+  }
+
+  onDateInput(event: any) {
+    let value: string = event.target.value.replace(/\D/g, ''); // solo números
+    if (value.length >= 2) {
+      value = value.slice(0, 2) + '/' + value.slice(2);
+    }
+    if (value.length >= 5) {
+      value = value.slice(0, 5) + '/' + value.slice(5, 9);
+    }
+    event.target.value = value;
   }
 }

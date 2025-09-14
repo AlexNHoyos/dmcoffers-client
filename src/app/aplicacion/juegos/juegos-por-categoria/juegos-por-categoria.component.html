@@ -1,100 +1,107 @@
 <div class="game-list-container">
   <div class="row filtroCrud">
-  <mat-accordion>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title> FILTROS </mat-panel-title>
-      </mat-expansion-panel-header>
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> FILTROS </mat-panel-title>
+        </mat-expansion-panel-header>
 
-      <form #filterForm="ngForm" (ngSubmit)="aplicarFiltro()">
+        <form #filterForm="ngForm" (ngSubmit)="aplicarFiltro()">
 
-        <!-- Fechas -->
-        <div class="row mb-3">
-          <mat-form-field appearance="outline" class="col-6">
-            <!-- Label para pantallas grandes -->
-            <mat-label class="d-none d-md-block">Fecha desde</mat-label>
-            <!-- Label para pantallas chicas -->
-            <mat-label class="d-block d-md-none">Desde</mat-label>
-            <input matInput [matDatepickerFilter]="filterDesde" [matDatepicker]="pickerDesde" [(ngModel)]="filterFechaDesde" name="fechaDesde" />
-            <mat-datepicker-toggle matIconSuffix [for]="pickerDesde"></mat-datepicker-toggle>
-            <mat-datepicker #pickerDesde></mat-datepicker>
+          <!-- Fechas -->
+          <div class="row mb-3">
+            <mat-form-field appearance="outline" class="col-6">
+              <!-- Label para pantallas grandes -->
+              <mat-label class="d-none d-md-block">Fecha desde</mat-label>
+              <!-- Label para pantallas chicas -->
+              <mat-label class="d-block d-md-none">Desde</mat-label>
+              <input matInput [matDatepickerFilter]="filterDesde" [matDatepicker]="pickerDesde"
+                [(ngModel)]="filterFechaDesde" name="fechaDesde" (input)="onDateInput($event)"
+                placeholder="dd/mm/yyyy" />
+              <mat-datepicker-toggle matIconSuffix [for]="pickerDesde"></mat-datepicker-toggle>
+              <mat-datepicker #pickerDesde></mat-datepicker>
 
-          </mat-form-field>
+            </mat-form-field>
 
-          <mat-form-field appearance="outline" class="col-6">
-            <mat-label class="d-none d-md-block">Fecha hasta</mat-label>
-            <mat-label class="d-block d-md-none">Hasta</mat-label>
-            <input matInput [matDatepickerFilter]="filterHasta" [matDatepicker]="pickerHasta" [(ngModel)]="filterFechaHasta" name="fechaHasta"/>
-            <mat-datepicker-toggle matIconSuffix [for]="pickerHasta"></mat-datepicker-toggle>
-            <mat-datepicker #pickerHasta></mat-datepicker>
+            <mat-form-field appearance="outline" class="col-6">
+              <mat-label class="d-none d-md-block">Fecha hasta</mat-label>
+              <mat-label class="d-block d-md-none">Hasta</mat-label>
+              <input matInput [matDatepickerFilter]="filterHasta" [matDatepicker]="pickerHasta"
+                [(ngModel)]="filterFechaHasta" name="fechaHasta" (input)="onDateInput($event)"
+                placeholder="dd/mm/yyyy" />
+              <mat-datepicker-toggle matIconSuffix [for]="pickerHasta"></mat-datepicker-toggle>
+              <mat-datepicker #pickerHasta></mat-datepicker>
 
-          </mat-form-field>
-        </div>
+            </mat-form-field>
+          </div>
 
-        <!-- Desarrollador y Publicador -->
-        <div class="row mb-3">
-          <mat-form-field appearance="outline" class="col-12 col-md-4">
-            <mat-label>Desarrollador</mat-label>
-            <mat-select [(ngModel)]="filterDesarrollador" name="developername">
-              <mat-option [value]="''">Todos</mat-option>
-              <mat-option *ngFor="let dev of desarrolladores" [value]="dev.developername">
-                {{ dev.developername }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
+          <!-- Desarrollador y Publicador -->
+          <div class="row mb-3">
+            <mat-form-field appearance="outline" class="col-12 col-md-4">
+              <mat-label>Desarrollador</mat-label>
+              <mat-select [(ngModel)]="filterDesarrollador" name="developername">
+                <mat-option [value]="''">Todos</mat-option>
+                <mat-option *ngFor="let dev of desarrolladores" [value]="dev.developername">
+                  {{ dev.developername }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
 
-          <mat-form-field appearance="outline" class="col-12 col-md-4">
-            <mat-label>Publicador</mat-label>
-            <mat-select [(ngModel)]="filterPublicador" name="publishername">
-              <mat-option [value]="''">Todos</mat-option>
-              <mat-option *ngFor="let pub of publicadores" [value]="pub.publishername">
-                {{ pub.publishername }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
+            <mat-form-field appearance="outline" class="col-12 col-md-4">
+              <mat-label>Publicador</mat-label>
+              <mat-select [(ngModel)]="filterPublicador" name="publishername">
+                <mat-option [value]="''">Todos</mat-option>
+                <mat-option *ngFor="let pub of publicadores" [value]="pub.publishername">
+                  {{ pub.publishername }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
 
-          <!-- Categorías -->
-          <mat-form-field appearance="outline" class="col-12 col-md-4">
-            <mat-label>Categoría</mat-label>
-            <mat-select [(ngModel)]="filterCategorias" name="categorias" multiple>
-              <mat-option *ngFor="let cat of categorias" [value]="cat">
-                {{ cat }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        
-        <!-- Rango de precio -->
-        <div class="row col-12 mb-3">
-          <mat-label>Rango de precio</mat-label>
+            <!-- Categorías -->
+            <mat-form-field appearance="outline" class="col-12 col-md-4">
+              <mat-label>Categoría</mat-label>
+              <mat-select [(ngModel)]="filterCategorias" name="categorias" multiple>
+                <mat-option *ngFor="let cat of categorias" [value]="cat">
+                  {{ cat }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <!-- Rango de precio -->
+          <div class="row col-12 mb-3">
+            <mat-label>Rango de precio</mat-label>
             <mat-slider style="width: 100%;  " min="0" max="100" step="1" thumbLabel>
-              <input matSliderStartThumb [(ngModel)]="filterPrecio.start" name="precioStart" [ngModelOptions]="{standalone: true}">
-              <input matSliderEndThumb [(ngModel)]="filterPrecio.end" name="precioEnd" [ngModelOptions]="{standalone: true}">
+              <input matSliderStartThumb [(ngModel)]="filterPrecio.start" name="precioStart"
+                [ngModelOptions]="{standalone: true}">
+              <input matSliderEndThumb [(ngModel)]="filterPrecio.end" name="precioEnd"
+                [ngModelOptions]="{standalone: true}">
             </mat-slider>
             <p>
               Precio desde: {{ filterPrecio.start | currency:'USD' }} -
               hasta: {{ filterPrecio.end | currency:'USD' }}
             </p>
-        </div>
+          </div>
 
-        <!-- Botones -->
-        <div class="row justify-content-end mb-2">
+          <!-- Botones -->
+          <div class="row justify-content-end mb-2">
             <div col-12 col-md-3 d-flex justify-content-between>
-            <button class="col-1" mat-button type="button" (click)="resetFiltro()"
-              style="margin-right: 1%;">Limpiar</button>
-            <button class="col-1" mat-raised-button color="primary" (click)="aplicarFiltro()">Buscar</button>
+              <button class="col-1" mat-button type="button" (click)="resetFiltro()"
+                style="margin-right: 1%;">Limpiar</button>
+              <button class="col-1" mat-raised-button color="primary" (click)="aplicarFiltro()">Buscar</button>
+            </div>
           </div>
-          </div>
-      </form>
-    </mat-expansion-panel>
-  </mat-accordion>
+        </form>
+      </mat-expansion-panel>
+    </mat-accordion>
   </div>
 
   <!-- Lista de juegos filtrados -->
   <div class="game-list-component">
     <mat-list *ngIf="juegosFiltrados.length > 0">
       <mat-list-item class="game-item" *ngFor="let juego of juegosFiltrados" (click)="verDetalle(juego.id)">
-        <img matListItemIcon [src]="juego.image_path ? juego.image_path : 'https://picsum.photos/350/120'" alt="{{ juego.gamename }}" /> 
+        <img matListItemIcon [src]="juego.image_path ? juego.image_path : 'https://picsum.photos/350/120'"
+          alt="{{ juego.gamename }}" />
         <!--<img matListItemIcon [src]="juego.imageBase64 ? 'data:' + juego.imageContentType + ';base64,' + juego.imageBase64 : 'https://picsum.photos/350/120'" alt="Imagen del juego"/>-->
         <div matListItemTitle class="gameListItemTitle">{{ juego.gamename }}</div>
         <div matListItemLine class="gameListItemPrice">{{ juego.price | currency:'USD' }}</div>
@@ -107,4 +114,3 @@
     </h3>
   </div>
 </div>
-

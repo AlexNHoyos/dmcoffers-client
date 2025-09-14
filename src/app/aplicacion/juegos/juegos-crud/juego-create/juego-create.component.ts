@@ -192,4 +192,15 @@ export class JuegoCreateComponent implements OnInit {
     this.fileValid = true;
     this.fileInput.nativeElement.value = '';
   }
+
+  onDateInput(event: any) {
+    let value: string = event.target.value.replace(/\D/g, ''); // solo números
+    if (value.length >= 2) {
+      value = value.slice(0, 2) + '/' + value.slice(2);
+    }
+    if (value.length >= 5) {
+      value = value.slice(0, 5) + '/' + value.slice(5, 9);
+    }
+    event.target.value = value;
+  }
 }

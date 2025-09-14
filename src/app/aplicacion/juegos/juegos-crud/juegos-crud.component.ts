@@ -17,7 +17,7 @@ import { DesarrolladoresService } from '../../desarrolladores/desarrolladores.se
   styleUrls: ['./juegos-crud.component.scss'],
   standalone: false
 })
-export class JuegosCrudComponent implements OnInit{
+export class JuegosCrudComponent implements OnInit {
   juegos: Juego[] = [];
   juegosFiltrados: Juego[] = [];
   categorias: string[] = [];
@@ -34,16 +34,16 @@ export class JuegosCrudComponent implements OnInit{
   filterPrecio = { start: 0, end: 100 };
 
   filterDesde = (d: Date | null): boolean => {
-      if (!d) return false;
-      return !this.filterFechaHasta || d <= this.filterFechaHasta!; 
-    };
+    if (!d) return false;
+    return !this.filterFechaHasta || d <= this.filterFechaHasta!;
+  };
 
   filterHasta = (d: Date | null): boolean => {
-      if (!d) return false;
-      return !this.filterFechaDesde || d >= this.filterFechaDesde!;
-    };
+    if (!d) return false;
+    return !this.filterFechaDesde || d >= this.filterFechaDesde!;
+  };
 
-  constructor(private juegoService: JuegoService, private dialog: MatDialog, 
+  constructor(private juegoService: JuegoService, private dialog: MatDialog,
     private desarrolladoresService: DesarrolladoresService,
     private publisherService: PublisherService) {
   }
@@ -151,8 +151,8 @@ export class JuegosCrudComponent implements OnInit{
         this.filterCategorias.some(cat => juego.categoriasNames.includes(cat));
 
       const coincidePrecio =
-      (!this.filterPrecio.start || juego.price! >= this.filterPrecio.start) &&
-      (!this.filterPrecio.end || juego.price! <= this.filterPrecio.end);
+        (!this.filterPrecio.start || juego.price! >= this.filterPrecio.start) &&
+        (!this.filterPrecio.end || juego.price! <= this.filterPrecio.end);
 
       const coincideFecha =
         (!this.filterFechaDesde || new Date(juego.release_date!) >= this.filterFechaDesde) &&
@@ -178,4 +178,14 @@ export class JuegosCrudComponent implements OnInit{
     this.filterPrecio = { start: 0, end: 100 };
   }
 
+  onDateInput(event: any) {
+    let value: string = event.target.value.replace(/\D/g, ''); // solo números
+    if (value.length >= 2) {
+      value = value.slice(0, 2) + '/' + value.slice(2);
+    }
+    if (value.length >= 5) {
+      value = value.slice(0, 5) + '/' + value.slice(5, 9);
+    }
+    event.target.value = value;
+  }
 }
