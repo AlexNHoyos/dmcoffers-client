@@ -1,10 +1,10 @@
 <div>
-    <div class="title-crud">
-      <h3>Publicadores</h3>
+  <div class="title-crud">
+    <h3>Publicadores</h3>
 
-    </div>
+  </div>
 
-    <div class="row filtroCrud">
+  <div class="row filtroCrud">
 
     <mat-accordion>
       <mat-expansion-panel>
@@ -23,115 +23,119 @@
             </mat-select>
           </mat-form-field>
 
-          <!-- Filtro por Nombre -->
-          <mat-form-field appearance="outline" class="col-6">
-            <mat-label>Nombre</mat-label>
-            <input matInput [(ngModel)]="filterPublisherName" name="publisherName" placeholder="Buscar por nombre">
-          </mat-form-field>
-        </div>
+            <!-- Filtro por Nombre -->
+            <mat-form-field appearance="outline" class="col-6">
+              <mat-label>Nombre</mat-label>
+              <input matInput [(ngModel)]="filterPublisherName" name="publisherName" placeholder="Buscar por nombre">
+            </mat-form-field>
+          </div>
 
-       <!-- Fecha de Fundación -->
-        <div class="row mb-3">
-          <h4 class="col-12 mb-2">Fecha de Fundacion</h4>
-          <mat-form-field appearance="outline" class="col-6">
-            <mat-label class="d-none d-md-block">Fundación desde</mat-label>
-            <mat-label class="d-block d-md-none">Desde</mat-label>
-            <input matInput [matDatepickerFilter]="filterDesde" [matDatepicker]="pickerFundDesde"
-                   [(ngModel)]="filterFundacionDesde" name="fundacionDesde" [max]="today"/>
-            <mat-datepicker-toggle matIconSuffix [for]="pickerFundDesde"></mat-datepicker-toggle>
-            <mat-datepicker #pickerFundDesde></mat-datepicker>
-          </mat-form-field>
+          <!-- Fecha de Fundación -->
+          <div class="row mb-3">
+            <h4 class="col-12 mb-2">Fecha de Fundacion</h4>
+            <mat-form-field appearance="outline" class="col-6">
+              <mat-label class="d-none d-md-block">Fundación desde</mat-label>
+              <mat-label class="d-block d-md-none">Desde</mat-label>
+              <input matInput [matDatepickerFilter]="filterDesde" [matDatepicker]="pickerFundDesde"
+                [(ngModel)]="filterFundacionDesde" name="fundacionDesde" [max]="today" (input)="onDateInput($event)"
+                placeholder="dd/mm/yyyy" />
+              <mat-datepicker-toggle matIconSuffix [for]="pickerFundDesde"></mat-datepicker-toggle>
+              <mat-datepicker #pickerFundDesde></mat-datepicker>
+            </mat-form-field>
 
-          <mat-form-field appearance="outline" class="col-6">
-            <mat-label class="d-none d-md-block">Fundación hasta</mat-label>
-            <mat-label class="d-block d-md-none">Hasta</mat-label>
-            <input matInput [matDatepickerFilter]="filterHasta" [max]="today" [matDatepicker]="pickerFundHasta"
-                   [(ngModel)]="filterFundacionHasta" name="fundacionHasta"/>
-            <mat-datepicker-toggle matIconSuffix [for]="pickerFundHasta"></mat-datepicker-toggle>
-            <mat-datepicker #pickerFundHasta></mat-datepicker>
-          </mat-form-field>
-        </div>
+            <mat-form-field appearance="outline" class="col-6">
+              <mat-label class="d-none d-md-block">Fundación hasta</mat-label>
+              <mat-label class="d-block d-md-none">Hasta</mat-label>
+              <input matInput [matDatepickerFilter]="filterHasta" [max]="today" [matDatepicker]="pickerFundHasta"
+                [(ngModel)]="filterFundacionHasta" name="fundacionHasta" (input)="onDateInput($event)"
+                placeholder="dd/mm/yyyy" />
+              <mat-datepicker-toggle matIconSuffix [for]="pickerFundHasta"></mat-datepicker-toggle>
+              <mat-datepicker #pickerFundHasta></mat-datepicker>
+            </mat-form-field>
+          </div>
 
-        <!-- Fecha de Disolución -->
-        <div class="row mb-3">
-          <h4 class="col-12 mb-2">Fecha de Disolucion</h4>
-          <mat-form-field appearance="outline" class="col-6">
-            <mat-label class="d-none d-md-block">Disolución desde</mat-label>
-            <mat-label class="d-block d-md-none">Desde</mat-label>
-            <input matInput [matDatepickerFilter]="filterDisolucionDesdeFn" [max]="today" [matDatepicker]="pickerDisolDesde"
-                   [(ngModel)]="filterDisolucionDesde" name="disolucionDesde"/>
-            <mat-datepicker-toggle matIconSuffix [for]="pickerDisolDesde"></mat-datepicker-toggle>
-            <mat-datepicker #pickerDisolDesde></mat-datepicker>
-          </mat-form-field>
+          <!-- Fecha de Disolución -->
+          <div class="row mb-3">
+            <h4 class="col-12 mb-2">Fecha de Disolucion</h4>
+            <mat-form-field appearance="outline" class="col-6">
+              <mat-label class="d-none d-md-block">Disolución desde</mat-label>
+              <mat-label class="d-block d-md-none">Desde</mat-label>
+              <input matInput [matDatepickerFilter]="filterDisolucionDesdeFn" [max]="today"
+                [matDatepicker]="pickerDisolDesde" [(ngModel)]="filterDisolucionDesde" name="disolucionDesde"
+                (input)="onDateInput($event)" placeholder="dd/mm/yyyy" />
+              <mat-datepicker-toggle matIconSuffix [for]="pickerDisolDesde"></mat-datepicker-toggle>
+              <mat-datepicker #pickerDisolDesde></mat-datepicker>
+            </mat-form-field>
 
-          <mat-form-field appearance="outline" class="col-6">
-            <mat-label class="d-none d-md-block">Disolución hasta</mat-label>
-            <mat-label class="d-block d-md-none">Hasta</mat-label>
-            <input matInput [matDatepickerFilter]="filterDisolucionHastaFn" [max]="today" [matDatepicker]="pickerDisolHasta"
-                   [(ngModel)]="filterDisolucionHasta" name="disolucionHasta"/>
-            <mat-datepicker-toggle matIconSuffix [for]="pickerDisolHasta"></mat-datepicker-toggle>
-            <mat-datepicker #pickerDisolHasta></mat-datepicker>
-          </mat-form-field>
-        </div>
+            <mat-form-field appearance="outline" class="col-6">
+              <mat-label class="d-none d-md-block">Disolución hasta</mat-label>
+              <mat-label class="d-block d-md-none">Hasta</mat-label>
+              <input matInput [matDatepickerFilter]="filterDisolucionHastaFn" [max]="today"
+                [matDatepicker]="pickerDisolHasta" [(ngModel)]="filterDisolucionHasta" name="disolucionHasta"
+                (input)="onDateInput($event)" placeholder="dd/mm/yyyy" />
+              <mat-datepicker-toggle matIconSuffix [for]="pickerDisolHasta"></mat-datepicker-toggle>
+              <mat-datepicker #pickerDisolHasta></mat-datepicker>
+            </mat-form-field>
+          </div>
 
 
-        <!-- Botones -->
-        <div class="row justify-content-end mb-2">
+          <!-- Botones -->
+          <div class="row justify-content-end mb-2">
             <div col-12 col-md-3 d-flex justify-content-between>
-            <button class="col-1" mat-button type="button" (click)="resetFiltro()"
-              style="margin-right: 1%;">Limpiar</button>
-            <button class="col-1" mat-raised-button color="primary" (click)="aplicarFiltro()">Buscar</button>
+              <button class="col-1" mat-button type="button" (click)="resetFiltro()"
+                style="margin-right: 1%;">Limpiar</button>
+              <button class="col-1" mat-raised-button color="primary" (click)="aplicarFiltro()">Buscar</button>
+            </div>
           </div>
-          </div>
-      </form>
+        </form>
 
 
 
-        
+
       </mat-expansion-panel>
     </mat-accordion>
   </div>
 
 
-    <div class="tabla-crud normal-table">
-      <table mat-table [dataSource]="filteredPublishers" class="mat-elevation-z8 ">
-        <!-- ID  -->
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef style="width: 10%;">ID</th>
-          <td mat-cell *matCellDef="let row" style="width: 10%; text-align: center;">{{ row.id }}</td>
-        </ng-container>
+  <div class="tabla-crud normal-table">
+    <table mat-table [dataSource]="filteredPublishers" class="mat-elevation-z8 ">
+      <!-- ID  -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef style="width: 10%;">ID</th>
+        <td mat-cell *matCellDef="let row" style="width: 10%; text-align: center;">{{ row.id }}</td>
+      </ng-container>
 
-        <!-- Nombre -->
-        <ng-container matColumnDef="publishername">
-          <th mat-header-cell *matHeaderCellDef style="width: 80%;">Nombre</th>
-          <td mat-cell *matCellDef="let row" style="width: 80%; text-align: center;">
-            {{ row.publishername }}
-          </td>
-        </ng-container>
+      <!-- Nombre -->
+      <ng-container matColumnDef="publishername">
+        <th mat-header-cell *matHeaderCellDef style="width: 80%;">Nombre</th>
+        <td mat-cell *matCellDef="let row" style="width: 80%; text-align: center;">
+          {{ row.publishername }}
+        </td>
+      </ng-container>
 
-        <!--  Acciones -->
-        <ng-container matColumnDef="actions">
-          <th mat-header-cell *matHeaderCellDef style="width: 10%;">Acciones</th>
-          <td mat-cell *matCellDef="let row" style="width: 10%; text-align: center;">
-            <button mat-icon-button color="primary" (click)="showDetails(row.id)">
-              <mat-icon>visibility</mat-icon>
-            </button>
-            <button mat-icon-button color="primary" (click)="openEditDialog(row.id)">
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-icon-button color="warn" (click)="openDeleteDialog(row.id)">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </td>
-        </ng-container>
+      <!--  Acciones -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef style="width: 10%;">Acciones</th>
+        <td mat-cell *matCellDef="let row" style="width: 10%; text-align: center;">
+          <button mat-icon-button color="primary" (click)="showDetails(row.id)">
+            <mat-icon>visibility</mat-icon>
+          </button>
+          <button mat-icon-button color="primary" (click)="openEditDialog(row.id)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="openDeleteDialog(row.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
 
-      <button mat-icon-button class="add-btn" color="primary" aria-label="Añadir" (click)="openCreateDialog()"
-        style="background-color: #bc71fe; margin-top: 1vh;">
-        <mat-icon>add</mat-icon>
-      </button>
-    </div>
+    <button mat-icon-button class="add-btn" color="primary" aria-label="Añadir" (click)="openCreateDialog()"
+      style="background-color: #bc71fe; margin-top: 1vh;">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
 </div>

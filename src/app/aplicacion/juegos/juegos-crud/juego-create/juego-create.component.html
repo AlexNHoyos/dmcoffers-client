@@ -55,7 +55,8 @@
         <!-- Fecha de salida -->
         <mat-form-field appearance="outline" class="col-6">
           <mat-label>Fecha salida</mat-label>
-          <input matInput [matDatepicker]="picker1" [(ngModel)]="juego.release_date" name="release_date" required />
+          <input matInput [matDatepicker]="picker1" [(ngModel)]="juego.release_date" name="release_date"
+            (input)="onDateInput($event)" placeholder="dd/mm/yyyy" required />
           <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1></mat-datepicker>
         </mat-form-field>

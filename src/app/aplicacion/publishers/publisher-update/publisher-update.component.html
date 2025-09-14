@@ -28,8 +28,7 @@
         <mat-form-field appearance="outline" class="col-6">
           <mat-label>Fundación</mat-label>
           <input matInput [matDatepicker]="picker1" [(ngModel)]="publisher.foundation_date" name="foundation_date"
-            [max]="today" required />
-          <mat-hint>DD/MM/YYYY</mat-hint>
+            [max]="today" required (input)="onDateInput($event)" placeholder="dd/mm/yyyy" />
           <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1></mat-datepicker>
         </mat-form-field>
@@ -37,8 +36,8 @@
         <!-- Disolución -->
         <mat-form-field appearance="outline" class="col-6">
           <mat-label>Disolución</mat-label>
-          <input matInput [matDatepicker]="picker2" [(ngModel)]="publisher.dissolution_date" name="dissolution_date" />
-          <mat-hint>DD/MM/YYYY</mat-hint>
+          <input matInput [matDatepicker]="picker2" [(ngModel)]="publisher.dissolution_date" name="dissolution_date"
+            (input)="onDateInput($event)" placeholder="dd/mm/yyyy" />
           <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
           <mat-datepicker #picker2></mat-datepicker>
         </mat-form-field>

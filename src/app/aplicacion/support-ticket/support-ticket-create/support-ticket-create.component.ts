@@ -6,6 +6,7 @@ import { SupportTicketService } from '../support-ticket.service';
 
 import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
 import { UserService } from 'src/app/services/user/user.service';
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 @Component({
   selector: 'app-support-ticket-create',
@@ -80,5 +81,15 @@ export class SupportTicketCreateComponent {
     this.dialog.open(ErrorDialogComponent, {
       data: { message: 'Ticket creado exitosamente', type: 'success' },
     });
+  }
+
+  validaDescripcion(): boolean {
+
+    const value = this.supportTicket.description as string;
+    if (value && value.trim().length === 0) {
+      return true; // error
+    } else {
+      return false; // válido
+    }
   }
 }

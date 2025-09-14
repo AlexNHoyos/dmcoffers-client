@@ -29,14 +29,14 @@ export class UsuariosComponent implements OnInit {
   filterFechaNacHasta: Date | null = null;
 
   filterDesde = (d: Date | null): boolean => {
-      if (!d) return false;
-      return !this.filterFechaNacHasta || d <= this.filterFechaNacHasta!; 
-    };
+    if (!d) return false;
+    return !this.filterFechaNacHasta || d <= this.filterFechaNacHasta!;
+  };
 
-    filterHasta = (d: Date | null): boolean => {
-      if (!d) return false;
-      return !this.filterFechaNacDesde || d >= this.filterFechaNacDesde!;
-    };
+  filterHasta = (d: Date | null): boolean => {
+    if (!d) return false;
+    return !this.filterFechaNacDesde || d >= this.filterFechaNacDesde!;
+  };
 
   ngOnInit(): void {
     this.loadUsuarios();
@@ -69,7 +69,7 @@ export class UsuariosComponent implements OnInit {
       return;
     }
 
-  this.filteredUsuarios = this.usuarios.filter((usuario: User) => {
+    this.filteredUsuarios = this.usuarios.filter((usuario: User) => {
       const coincideRol =
         !this.filterRolDesc || usuario.rolDesc?.toLowerCase() === this.filterRolDesc.toLowerCase();
 
@@ -86,22 +86,33 @@ export class UsuariosComponent implements OnInit {
 
       return coincideRol && coincideNombre && coincideEmail && coincideFecha;
     });
-    }
-  
-    resetFiltro(): void {
+  }
+
+  resetFiltro(): void {
     this.filterRolDesc = '';
     this.filterUsername = '';
     this.filterEmail = '';
     this.filterFechaNacDesde = null;
     this.filterFechaNacHasta = null;
     this.filteredUsuarios = [...this.usuarios];
-    }
+  }
 
 
   loadUsuarios(): void {
     this.userService.getAllUsers().subscribe((data) => {
       this.usuarios = data;
-      this.filteredUsuarios= [...data];
+      this.filteredUsuarios = [...data];
     });
+  }
+
+  onDateInput(event: any) {
+    let value: string = event.target.value.replace(/\D/g, ''); // solo números
+    if (value.length >= 2) {
+      value = value.slice(0, 2) + '/' + value.slice(2);
+    }
+    if (value.length >= 5) {
+      value = value.slice(0, 5) + '/' + value.slice(5, 9);
+    }
+    event.target.value = value;
   }
 }

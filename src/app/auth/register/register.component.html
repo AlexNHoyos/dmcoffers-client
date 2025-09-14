@@ -18,7 +18,8 @@
         <!-- Fecha de nacimiento -->
         <mat-form-field appearance="outline" class="col-6">
           <mat-label>Nacimiento</mat-label>
-          <input matInput [matDatepicker]="picker" formControlName="birth_date" [max]="today" />
+          <input matInput [matDatepicker]="picker" formControlName="birth_date" [max]="today"
+            (input)="onDateInput($event)" placeholder="dd/mm/yyyy" />
           <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>

@@ -25,7 +25,7 @@ export class SupportTicketComponent {
     private supportTicketService: SupportTicketService,
     private dialog: MatDialog,
     private breakpointObserver: BreakpointObserver
-  ) {}
+  ) { }
 
   displayedColumns: string[] = ['id', 'fechaCarga', 'user', 'status', 'actions'];
 
@@ -34,7 +34,7 @@ export class SupportTicketComponent {
     this.setupResponsiveColumns();
   }
 
-   private setupResponsiveColumns(): void {
+  private setupResponsiveColumns(): void {
     this.breakpointObserver.observe([Breakpoints.Handset]).subscribe(result => {
       if (result.matches) {
         // pantalla pequeña: oculto la columna 'user'
@@ -150,4 +150,16 @@ export class SupportTicketComponent {
     this.filterEstadoTicket = null;
     this.filteredTickets = [...this.supportTickets];
   }
+
+  onDateInput(event: any) {
+    let value: string = event.target.value.replace(/\D/g, ''); // solo números
+    if (value.length >= 2) {
+      value = value.slice(0, 2) + '/' + value.slice(2);
+    }
+    if (value.length >= 5) {
+      value = value.slice(0, 5) + '/' + value.slice(5, 9);
+    }
+    event.target.value = value;
+  }
+
 }
