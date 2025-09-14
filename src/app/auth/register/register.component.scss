@@ -90,3 +90,12 @@ input[type="password"]::-webkit-credentials-auto-fill-button {
 input[type="password"]::-webkit-textfield-decoration-container {
     display: none;
 }
+
+.password-field {
+    margin-bottom: 1.5em;
+}
+
+mat-error {
+    min-height: 1.2em;
+    display: block;
+}
