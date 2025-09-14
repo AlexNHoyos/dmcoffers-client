@@ -5,6 +5,7 @@ import { ComponentFixture } from "@angular/core/testing";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { MatLabel } from "@angular/material/input";
 
 import { MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardModule, MatCardSubtitle, MatCardTitle } from "@angular/material/card";
 import { MatIcon, MatIconModule } from "@angular/material/icon";
@@ -15,6 +16,7 @@ describe("HostingDetailComponent", () => {
   let fixture: ComponentFixture<HostingDetailComponent>;
   let mockDialogRef: jasmine.SpyObj<MatDialogRef<HostingDetailComponent>> = jasmine.createSpyObj('MatDialogRef', ['close', 'afterClosed']);
   const mockDialogData = {
+  hostingpublisher: {
     hosting: {
       id: 1,
       name: 'Servidor Test',
@@ -23,15 +25,25 @@ describe("HostingDetailComponent", () => {
       modificationtimestamp: null,
       creationuser: 'admin',
       modificationuser: null
-    }
-  };
+    },
+    publisher: {
+      publishername: 'Publisher Test'
+    },
+    storageType: 'SSD',
+    storageAmmount: '500GB',
+    ramAmmount: '16GB',
+    cpuSpecs: '4 vCPUs',
+    uptimePercentage: '99.9%'
+  }
+};
+
 
   beforeEach(async () => {
     mockDialogRef = jasmine.createSpyObj('MatDialogRef', ['close']);
 
     await TestBed.configureTestingModule({
       declarations: [HostingDetailComponent],
-      imports: [NoopAnimationsModule, MatCardModule, MatIconModule],
+      imports: [NoopAnimationsModule, MatCardModule, MatIconModule, MatLabel],
       providers: [
         { provide: MatDialogRef, useValue: mockDialogRef },
         { provide: MAT_DIALOG_DATA, useValue: mockDialogData }
@@ -55,7 +67,7 @@ describe("HostingDetailComponent", () => {
 
   it('Debería mostrar el nombre del hosting en el título', () => {
     const titleElement = fixture.nativeElement.querySelector('mat-card-title');
-    expect(titleElement.textContent).toContain(mockDialogData.hosting.name);
+    expect(titleElement.textContent).toContain(mockDialogData.hostingpublisher.hosting.name);
   });
 
   it("Debería llamar a onClose cuando el diálogo se cierra sin confirmación", fakeAsync(() => {
