@@ -126,7 +126,6 @@ export class DesarrolladoresComponent implements OnInit {
     this.desarrolladoresService.getAllDesarrolladores().subscribe((data) => {
       this.desarrolladores = data;
       this.filteredDesarrolladores = [...data];
-      console.log(data)
     });
   }
 
@@ -149,7 +148,7 @@ export class DesarrolladoresComponent implements OnInit {
       !this.filterDesarrolladorName || dev.developername.toLowerCase().includes(this.filterDesarrolladorName.toLowerCase());
 
     const coincideEstado =
-      !this.filterEstado || dev.status === this.filterEstado;
+      this.filterEstado == null || dev.status === this.filterEstado;
 
     const coincideFundacion =
       (!this.filterFundacionDesde || new Date(dev.foundation_date!) >= this.filterFundacionDesde) &&

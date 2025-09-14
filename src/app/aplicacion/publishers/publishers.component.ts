@@ -127,6 +127,7 @@ export class PublisherComponent implements OnInit {
   }
 
   aplicarFiltro(): void {
+    console.log('Valor del filtro de estado:', this.filterEstado, typeof this.filterEstado);
   // Validar rangos de fechas de fundación
   if (this.filterFundacionDesde && this.filterFundacionHasta && this.filterFundacionDesde > this.filterFundacionHasta) {
     alert('La fecha "Fundación desde" no puede ser mayor que la "Fundación hasta".');
@@ -144,7 +145,7 @@ export class PublisherComponent implements OnInit {
       !this.filterPublisherName || pub.publishername.toLowerCase().includes(this.filterPublisherName.toLowerCase());
 
     const coincideEstado =
-      !this.filterEstado || pub.status === this.filterEstado;
+       this.filterEstado === null || pub.status === this.filterEstado;
 
     const coincideFundacion =
       (!this.filterFundacionDesde || new Date(pub.foundation_date!) >= this.filterFundacionDesde) &&
