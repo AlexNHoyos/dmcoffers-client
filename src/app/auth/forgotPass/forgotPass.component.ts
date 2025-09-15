@@ -43,6 +43,7 @@ export class ForgotPassComponent implements OnInit {
         next: () => {
           this.dialog.open(ErrorDialogComponent, {
             data: {
+              type: 'success',
               message: 'Se ha enviado un correo para recuperar la contraseña.'
             }
           });
