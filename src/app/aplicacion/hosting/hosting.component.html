@@ -54,7 +54,7 @@
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="col-12 col-md-4">
-              <mat-label>Tipo disco</mat-label>
+              <mat-label>Cant. Almacenamiento</mat-label>
               <mat-select [(ngModel)]="filterCapacidadDisco" name="capacidadAlmacenamiento">
                 <mat-option *ngFor="let sa of storageAmmount" [value]="sa">
                   {{ sa }}
@@ -65,10 +65,10 @@
 
           <div class="row justify-content-end mb-2">
             <div col-12 col-md-3 d-flex justify-content-between>
-            <button class="col-1" mat-button type="button" (click)="resetFiltro()"
-              style="margin-right: 1%;">Limpiar</button>
-            <button class="col-1" mat-raised-button color="primary" (click)="aplicarFiltro()">Buscar</button>
-          </div>
+              <button class="col-1" mat-button type="button" (click)="resetFiltro()"
+                style="margin-right: 1%;">Limpiar</button>
+              <button class="col-1" mat-raised-button color="primary" (click)="aplicarFiltro()">Buscar</button>
+            </div>
           </div>
 
         </form>
