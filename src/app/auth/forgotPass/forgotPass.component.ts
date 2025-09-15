@@ -30,7 +30,7 @@ export class ForgotPassComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   get emailControl() {
     return this.forgotPassForm.get('email');
@@ -51,6 +51,7 @@ export class ForgotPassComponent implements OnInit {
         error: () => {
           this.dialog.open(ErrorDialogComponent, {
             data: {
+              type: 'error',
               message: 'Error al enviar la solicitud de recuperación de contraseña.'
             }
           });
