@@ -30,7 +30,11 @@
       </mat-chip-listbox>
     </div>
 
-    <p><strong>Precio:</strong> {{ juego.price | currency:'USD' }}</p>
+  <p><strong>Precio:</strong>
+    <span [ngClass]="juego.price === 0 ? 'free-price' : 'paid-price'">
+      {{ juego.price === 0 ? 'FREE TO PLAY' : (juego.price | currency:'USD') }}
+    </span>
+  </p>
 
     <p *ngIf="isInLibrary" class="text-muted">
       Este juego ya está en tu biblioteca.

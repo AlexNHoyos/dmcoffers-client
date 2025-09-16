@@ -27,7 +27,11 @@
             >{{ categoria }}</span
           >
         </div>
-        <p class="game-price">{{ juego.price | currency }}</p>
+        <p class="game-price">
+          <span [ngClass]="juego.price === 0 ? 'free-price' : 'paid-price'">
+            {{ juego.price === 0 ? 'FREE TO PLAY' : (juego.price | currency:'USD') }}
+          </span>
+        </p>
       </div>
     </div>
 
