@@ -54,7 +54,8 @@
         <!-- Fecha de Salida -->
         <mat-form-field appearance="outline" class="col-6">
           <mat-label>Fecha salida</mat-label>
-          <input matInput [matDatepicker]="picker1" [(ngModel)]="juego.release_date" name="release_date" required />
+          <input matInput [matDatepicker]="picker1" [(ngModel)]="juego.release_date" name="release_date"
+            (input)="onDateInput($event)" placeholder="dd/mm/yyyy" required />
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1></mat-datepicker>
         </mat-form-field>
@@ -74,8 +75,14 @@
         <div class="image-upload">
           <label>Portada</label><br />
           <input type="file" (change)="onFileSelected($event)" accept="image/*" />
-          <img *ngIf="data.juego.image_path" [src]="environmentImg + data.juego.image_path" alt="Imagen del Juego"
+
+          <img [src]=" juego.image_path ? juego.image_path : 'https://picsum.photos/350/120'" alt="Imagen del Juego"
             class="game-thumbnail" />
+
+          <!--<img [src]="juego.imageBase64 ? 'data:' + juego.imageContentType + ';base64,' + juego.imageBase64 : 'https://picsum.photos/350/120'"
+              alt="Imagen del Juego" 
+              class="game-thumbnail" />-->
+
         </div>
       </div>
     </form>

@@ -6,7 +6,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ProximamenteService } from 'src/app/services/proximamente.service';
+
 
 @Component({
   selector: 'app-personal-details',
@@ -22,19 +22,22 @@ export class PersonalDetailsComponent implements OnInit {
   userLoginOn: boolean = false;
   editMode: boolean = false;
   userRol: string | null = null;
+  today: Date = new Date();
   private subscriptions: Subscription = new Subscription();
 
   registerForm = this.formBuilder.group({
-    id: [''],
-    surname: ['', Validators.required],
-    realname: ['', Validators.required],
+    id: this.formBuilder.control<string | null>(null),
+    surname: this.formBuilder.control<string | null>(null,),
+    realname: this.formBuilder.control<string | null>(null,),
+    username: this.formBuilder.control<string | null>(null, Validators.required),
+    email: this.formBuilder.control<string | null>(null, Validators.required),
+    birth_date: this.formBuilder.control<Date | null>(null, Validators.required)
   });
 
   constructor(
     private userService: UserService,
     private formBuilder: FormBuilder,
     private loginService: LoginService,
-    private proximamenteService: ProximamenteService,
     private router: Router
   ) { }
 
@@ -63,20 +66,26 @@ export class PersonalDetailsComponent implements OnInit {
     this.userService.getUser(userId).subscribe({
       next: (userData) => {
         this.user = userData;
+
         this.registerForm.controls.id.setValue(
           userData.idUser.toString() ?? ''
         );
-        this.registerForm.controls.realname.setValue(userData.realname ?? '');
-        this.registerForm.controls.surname.setValue(userData.surname ?? '');
+
+        this.registerForm.controls.realname.setValue(this.user.realname ?? '');
+        this.registerForm.controls.surname.setValue(this.user.surname ?? '');
+        this.registerForm.controls.birth_date.setValue(
+          this.user.birth_date ? new Date(this.user.birth_date) : null
+        );
+        this.registerForm.controls.username.setValue(this.user.username!);
+        this.registerForm.controls.email.setValue(this.user.email!);
+
         this.loadUserRol();
       },
       error: (errorData) => {
         this.errorMessage = errorData;
-      },
-      complete: () => {
-        console.info('User Data ok');
-      },
+      }
     });
+
   }
 
   loadUserRol(): void {
@@ -92,20 +101,24 @@ export class PersonalDetailsComponent implements OnInit {
     );
   }
 
-  goToWishlist(): void {
-    this.router.navigate(['/wishlist']);
-  }
-
-  showProximamente(): void {
-    this.proximamenteService.mostrarMensaje();
-  }
-
   get realname() {
     return this.registerForm.controls.realname;
   }
 
   get surname() {
     return this.registerForm.controls.surname;
+  }
+
+  get email() {
+    return this.registerForm.controls.email;
+  }
+
+  get birth_date() {
+    return this.registerForm.controls.birth_date;
+  }
+
+  get username() {
+    return this.registerForm.controls.username;
   }
 
   savePersonalDetailsData() {
@@ -121,5 +134,16 @@ export class PersonalDetailsComponent implements OnInit {
           error: (errorData) => console.error(errorData),
         });
     }
+  }
+
+  onDateInput(event: any) {
+    let value: string = event.target.value.replace(/\D/g, ''); // solo números
+    if (value.length >= 2) {
+      value = value.slice(0, 2) + '/' + value.slice(2);
+    }
+    if (value.length >= 5) {
+      value = value.slice(0, 5) + '/' + value.slice(5, 9);
+    }
+    event.target.value = value;
   }
 }

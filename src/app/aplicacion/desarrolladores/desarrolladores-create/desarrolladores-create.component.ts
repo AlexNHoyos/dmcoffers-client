@@ -3,8 +3,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 
 import { Desarrollador } from '../desarrolladores.models';
 
-import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
 import { DesarrolladoresService } from '../desarrolladores.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-desarrolladores-create',
@@ -28,10 +28,10 @@ export class DesarrolladoresCreateComponent {
   constructor(
     private desarrolladoresService: DesarrolladoresService,
     private dialogRef: MatDialogRef<DesarrolladoresCreateComponent>,
-    private userUtilsService: UserUtilsService
+    private userService: UserService
   ) { }
   ngOnInit(): void {
-    this.userUtilsService.setLoggedInUser().subscribe((username) => {
+    this.userService.getLoggedInUsername().subscribe((username) => {
       if (username) {
         this.desarrollador.creationuser = username;
       }
@@ -70,4 +70,16 @@ export class DesarrolladoresCreateComponent {
   cancel(): void {
     this.dialogRef.close(false); // Cierra el diálogo sin guardar cambios
   }
+
+  onDateInput(event: any) {
+    let value: string = event.target.value.replace(/\D/g, ''); // solo números
+    if (value.length >= 2) {
+      value = value.slice(0, 2) + '/' + value.slice(2);
+    }
+    if (value.length >= 5) {
+      value = value.slice(0, 5) + '/' + value.slice(5, 9);
+    }
+    event.target.value = value;
+  }
+
 }

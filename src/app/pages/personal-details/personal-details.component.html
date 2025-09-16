@@ -46,9 +46,6 @@
           <mat-form-field appearance="outline" class="col-12">
             <mat-label>Nombre</mat-label>
             <input matInput formControlName="realname" />
-            <mat-error *ngIf="realname.invalid && (realname.dirty || realname.touched)">
-              <span *ngIf="realname.errors?.['required']">El Nombre es requerido.</span>
-            </mat-error>
           </mat-form-field>
         </div>
 
@@ -56,11 +53,33 @@
           <mat-form-field appearance="outline" class="col-12">
             <mat-label>Apellido</mat-label>
             <input matInput formControlName="surname" />
-            <mat-error *ngIf="surname.invalid && (surname.dirty || surname.touched)">
-              <span *ngIf="surname.errors?.['required']">El Apellido es requerido.</span>
-            </mat-error>
           </mat-form-field>
         </div>
+
+        <div class="row">
+          <mat-form-field appearance="outline" class="col-12">
+            <mat-label>E-Mail</mat-label>
+            <input matInput formControlName="email" />
+          </mat-form-field>
+        </div>
+
+        <div class="row">
+          <mat-form-field appearance="outline" class="col-6">
+            <mat-label>Nombre de usuario</mat-label>
+            <input matInput formControlName="username" />
+          </mat-form-field>
+
+          <!-- Fecha de nacimiento -->
+          <mat-form-field appearance="outline" class="col-6">
+            <mat-label>Nacimiento</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="birth_date" [max]="today"
+              (input)="onDateInput($event)" placeholder="dd/mm/yyyy" />
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+        </div>
+
       </form>
     </mat-card-content>
     <mat-card-actions class="action-buttons">

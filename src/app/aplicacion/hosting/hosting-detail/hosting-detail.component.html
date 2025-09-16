@@ -3,37 +3,37 @@
     <div mat-card-avatar class="header-icon">
       <mat-icon>cloud</mat-icon>
     </div>
-    <mat-card-title>{{ data.hosting.name }}</mat-card-title>
-    <mat-card-subtitle>ID: {{ data.hosting.id }}</mat-card-subtitle>
+    <mat-card-title>{{ data.hostingpublisher.hosting.name }}</mat-card-title>
+    <mat-card-subtitle>{{ data.hostingpublisher.publisher.publishername }}</mat-card-subtitle>
   </mat-card-header>
 
   <mat-card-content>
     <div class="detail-grid">
+      <mat-label>Almacenamiento</mat-label>
+
       <div class="detail-item">
-        <span class="label">Estado:</span>
-        <span>{{ data.hosting.status ? 'Activo' : 'Inactivo' }}</span>
+        <span class="label">Tipo</span>
+        <span>{{ data.hostingpublisher.storageType }}</span>
       </div>
 
       <div class="detail-item">
-        <span class="label">Fecha de carga:</span>
-        <span>{{ data.hosting.creationtimestamp | date: 'dd/MM/yyyy HH:mm' }}</span>
+        <span class="label">Tamaño</span>
+        <span>{{ data.hostingpublisher.storageAmmount }}</span>
       </div>
 
       <div class="detail-item">
-        <span class="label">Fecha de modificación:</span>
-        <span>
-          {{ data.hosting.modificationtimestamp ? (data.hosting.modificationtimestamp | date: 'dd/MM/yyyy HH:mm') : '—' }}
-        </span>
+        <span class="label">Memoria RAM:</span>
+        <span>{{ data.hostingpublisher.ramAmmount }}</span>
       </div>
 
       <div class="detail-item">
-        <span class="label">Cargado por:</span>
-        <span>{{ data.hosting.creationuser }}</span>
+        <span class="label">Especificaciones CPU</span>
+        <span>{{ data.hostingpublisher.cpuSpecs }}</span>
       </div>
 
       <div class="detail-item">
-        <span class="label">Modificado por:</span>
-        <span>{{ data.hosting.modificationuser || '—' }}</span>
+        <span class="label">Uptime</span>
+        <span>{{ data.hostingpublisher.uptimePercentage }}</span>
       </div>
     </div>
   </mat-card-content>

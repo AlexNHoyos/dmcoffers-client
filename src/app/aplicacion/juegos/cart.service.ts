@@ -19,30 +19,22 @@ export class CartService {
 
   // Agregar un juego al carrito
   addToCart(juegoId: number): Observable<any> {
-    return this.http.post(`${this.apiUrl}/cart/${juegoId}`, null, {
-      headers: { Authorization: `Bearer ${this.token}` },
-    });
+    return this.http.post(`${this.apiUrl}/cart/${juegoId}`, null);
   }
 
   // Quitar un juego del carrito
   removeFromCart(juegoId: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/cart/${juegoId}`, {
-      headers: { Authorization: `Bearer ${this.token}` },
-    });
+    return this.http.delete(`${this.apiUrl}/cart/${juegoId}`);
   }
 
   // Verificar si un juego está en el carrito
   isInCart(juegoId: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/cart/${juegoId}`, {
-      headers: { Authorization: `Bearer ${this.token}` },
-    });
+    return this.http.get(`${this.apiUrl}/cart/${juegoId}`);
   }
 
   // Obtener todos los juegos en el carrito
   getCart(): Observable<Juego[]> {
-    return this.http.get<Juego[]>(`${this.apiUrl}/cart`, {
-      headers: { Authorization: `Bearer ${this.token}` },
-    });
+    return this.http.get<Juego[]>(`${this.apiUrl}/cart`);
   }
   
   public async getCartTotal(): Promise<number> {
@@ -51,9 +43,7 @@ export class CartService {
   }
 
   checkout(): Observable<any> {
-  return this.http.post(`${this.apiUrl}/cart/checkout`, null, {
-    headers: { Authorization: `Bearer ${this.token}` },
-  });
+  return this.http.post(`${this.apiUrl}/cart/checkout`, null);
   }
 
 

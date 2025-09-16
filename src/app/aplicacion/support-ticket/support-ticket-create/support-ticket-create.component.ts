@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
-import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
-
 import { SupportTicket } from '../support-ticket.model';
 import { SupportTicketService } from '../support-ticket.service';
-import { ProximamenteService } from 'src/app/services/proximamente.service';
+
 import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
+import { UserService } from 'src/app/services/user/user.service';
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 @Component({
   selector: 'app-support-ticket-create',
@@ -22,18 +22,17 @@ export class SupportTicketCreateComponent {
     creationtimestamp: new Date().toISOString(),
     modificationuser: '',
     modificationtimestamp: '',
-    description: '',
+    description: null,
   };
   constructor(
     private supportTicketService: SupportTicketService,
     private dialogRef: MatDialogRef<SupportTicketCreateComponent>,
-    private userUtilsService: UserUtilsService,
-    private proximamenteService: ProximamenteService,
+    private userService: UserService,
     private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
-    this.userUtilsService.setLoggedInUser().subscribe({
+    this.userService.getLoggedInUsername().subscribe({
       next: (username) => {
         this.supportTicket.creationuser = username || 'Usuario Anonimo';
       },
@@ -78,13 +77,19 @@ export class SupportTicketCreateComponent {
     this.dialogRef.close(false); // Cierra el diálogo sin guardar cambios
   }
 
-  showProximamente(): void {
-    this.proximamenteService.mostrarMensaje();
-  }
-
   private showSuccessDialog(): void {
     this.dialog.open(ErrorDialogComponent, {
       data: { message: 'Ticket creado exitosamente', type: 'success' },
     });
+  }
+
+  validaDescripcion(): boolean {
+
+    const value = this.supportTicket.description as string;
+    if (value && value.trim().length === 0) {
+      return true; // error
+    } else {
+      return false; // válido
+    }
   }
 }

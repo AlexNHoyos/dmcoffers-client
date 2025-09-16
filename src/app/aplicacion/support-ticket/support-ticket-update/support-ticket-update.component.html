@@ -1,4 +1,4 @@
-<mat-card class="update-card">
+<mat-card class="dialog-card">
   <mat-card-header>
     <mat-card-title>Editar Ticket de Soporte</mat-card-title>
     <mat-card-subtitle>Cambiar el estado del ticket</mat-card-subtitle>
@@ -6,14 +6,16 @@
 
   <mat-card-content>
     <form #supportForm="ngForm" class="form-grid">
+      <div class="row">
+        <mat-form-field class="col-12" appearance="outline">
+          <mat-label>Estado del Ticket</mat-label>
+          <mat-select [(ngModel)]="supportTicket.status" name="status" required>
+            <mat-option [value]="true">Resuelto</mat-option>
+            <mat-option [value]="false">Pendiente</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Estado del Ticket</mat-label>
-        <mat-select [(ngModel)]="supportTicket.status" name="status" required>
-          <mat-option [value]="true">Activo</mat-option>
-          <mat-option [value]="false">Inactivo</mat-option>
-        </mat-select>
-      </mat-form-field>
 
     </form>
   </mat-card-content>

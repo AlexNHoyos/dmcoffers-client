@@ -38,7 +38,7 @@ export class CategoriaDeleteComponent implements OnInit {
   }
 
   deleteCategoria(): void {
-    this.categoriaService.delete(this.data.id).subscribe({
+    this.categoriaService.deleteCategoria(this.data.id).subscribe({
       next: () => {
         this.successMessage = 'Categoria eliminada satisfactoriamente';
         this.dialogRef.close(true);

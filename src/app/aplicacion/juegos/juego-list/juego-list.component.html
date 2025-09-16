@@ -4,10 +4,14 @@
     <div class="library-badge" *ngIf="juego.isInLibrary">🎮 En biblioteca</div>
 
     <div class="game-image" (click)="onGameClick(juego.id)">
-      <img
-        [src]="juego.image_path ? environmentImg + juego.image_path : 'https://picsum.photos/350/120'"
+      
+       <img [src]="juego.image_path ? juego.image_path : 'https://picsum.photos/350/120'" alt="Imagen de {{ juego.gamename }}"/>
+      <!--<img
+        [src]="juego.imageBase64 
+         ? 'data:' + juego.imageContentType + ';base64,' + juego.imageBase64 
+         : 'https://picsum.photos/350/120'"
         alt="Imagen de {{ juego.gamename }}"
-      />
+      />-->
 
     <div class="game-details" (click)="onGameClick(juego.id)">
       <h3>{{ juego.gamename }}</h3>
@@ -23,7 +27,11 @@
             >{{ categoria }}</span
           >
         </div>
-        <p class="game-price">{{ juego.price | currency }}</p>
+        <p class="game-price">
+          <span [ngClass]="juego.price === 0 ? 'free-price' : 'paid-price'">
+            {{ juego.price === 0 ? 'FREE TO PLAY' : (juego.price | currency:'USD') }}
+          </span>
+        </p>
       </div>
     </div>
 

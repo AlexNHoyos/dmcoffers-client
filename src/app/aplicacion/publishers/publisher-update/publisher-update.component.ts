@@ -7,8 +7,8 @@ import {
 
 import { Publisher } from '../publisher.model';
 import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
-import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
 import { PublisherService } from '../publisher.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-publisher-update',
@@ -21,7 +21,7 @@ export class PublisherUpdateComponent {
 
   constructor(
     private publisherService: PublisherService,
-    private userUtilsService: UserUtilsService,
+    private userService: UserService,
     private dialog: MatDialog,
     public dialogRef: MatDialogRef<PublisherUpdateComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { publisher: Publisher }
@@ -31,7 +31,7 @@ export class PublisherUpdateComponent {
   }
 
   ngOnInit(): void {
-    this.userUtilsService.setLoggedInUser().subscribe((username) => {
+    this.userService.getLoggedInUsername().subscribe((username) => {
       if (username) {
         this.publisher.modificationuser = username;
         this.publisher.modificationtimestamp = new Date().toISOString();
@@ -78,5 +78,16 @@ export class PublisherUpdateComponent {
 
   cancel(): void {
     this.dialogRef.close(false); // Cierra el diálogo sin guardar cambios
+  }
+
+  onDateInput(event: any) {
+    let value: string = event.target.value.replace(/\D/g, ''); // solo números
+    if (value.length >= 2) {
+      value = value.slice(0, 2) + '/' + value.slice(2);
+    }
+    if (value.length >= 5) {
+      value = value.slice(0, 5) + '/' + value.slice(5, 9);
+    }
+    event.target.value = value;
   }
 }

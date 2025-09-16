@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -8,11 +8,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { HttpClientModule } from '@angular/common/http';
-
-import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { MatChipListbox, MatChipsModule } from '@angular/material/chips';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -21,7 +19,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardActions, MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule, NativeDateAdapter } from '@angular/material/core';
+import { DateAdapter, MAT_DATE_FORMATS, MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -30,6 +28,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSliderModule } from '@angular/material/slider';
 
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { FooterComponent } from './shared/footer/footer.component';
@@ -38,10 +37,8 @@ import { LoginComponent } from './auth/login/login.component';
 import { NavComponent } from './shared/nav/nav.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
-import { AlertService } from './components/alert/alert.service';
 
 import { JwtInterceptorService } from './services/auth/jwt-interceptor.service';
-import { ErrorInterceptorService } from './services/auth/error-interceptor.service';
 import { LoadingInterceptor } from './components/loading.interceptor';
 
 import { PublisherService } from './aplicacion/publishers/publisher.service';
@@ -106,7 +103,13 @@ import { ThemeToggleComponent } from './components/theme-toggle/theme-toggle.com
 import { DropdownSelectComponent } from './components/dropdown-selector/dropdown-selector.component';
 import { ResetPassComponent } from './auth/resetPass/resetPass.component';
 import { ForgotPassComponent } from './auth/forgotPass/forgotPass.component';
+import { registerLocaleData } from '@angular/common';
+import localeEsAr from '@angular/common/locales/es-AR';
+import { HttpErrorInterceptor } from './services/auth/http-error.interceptor';
+import { CUSTOM_DATE_FORMATS, CustomDateAdapter } from './components/custom-date-adapter/custom-date-adapter.js';
 
+
+registerLocaleData(localeEsAr); // 👈 Esto registra el locale
 
 @NgModule({
     declarations: [
@@ -201,6 +204,7 @@ import { ForgotPassComponent } from './auth/forgotPass/forgotPass.component';
         CarouselModule,
         MatChipsModule,
         MatTooltipModule,
+        MatSliderModule
     ]
     , providers: [
         WishlistService,
@@ -208,10 +212,11 @@ import { ForgotPassComponent } from './auth/forgotPass/forgotPass.component';
         RegisterService,
         PublisherService,
         CategoriaService,
-        AlertService,
         DesarrolladoresService,
         RegisterService,
         SweItemMenuService,
+        { provide: DateAdapter, useClass: CustomDateAdapter },
+        { provide: MAT_DATE_FORMATS, useValue: CUSTOM_DATE_FORMATS },
         {
             provide: HTTP_INTERCEPTORS,
             useClass: JwtInterceptorService,
@@ -219,15 +224,12 @@ import { ForgotPassComponent } from './auth/forgotPass/forgotPass.component';
         },
         {
             provide: HTTP_INTERCEPTORS,
-            useClass: ErrorInterceptorService,
-            multi: true,
-        },
-        {
-            provide: HTTP_INTERCEPTORS,
             useClass: LoadingInterceptor,
             multi: true
         },
-        provideHttpClient(withInterceptorsFromDi())
+        provideHttpClient(withInterceptorsFromDi()),
+        { provide: LOCALE_ID, useValue: 'es-AR' },
+        { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
     ]
 })
 export class AppModule { }

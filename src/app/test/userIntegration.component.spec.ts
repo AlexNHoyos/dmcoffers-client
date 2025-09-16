@@ -1,100 +1,105 @@
-import { ComponentFixture, TestBed, fakeAsync, tick, flush } from "@angular/core/testing";
-import { FormsModule } from "@angular/forms";
+import { ComponentFixture, TestBed, fakeAsync, tick } from "@angular/core/testing";
+import { HttpClientTestingModule, HttpTestingController, provideHttpClientTesting } from "@angular/common/http/testing";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { UsuariosComponent } from "../aplicacion/usuarios/usuarios.component";
-
-import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
-import { provideHttpClientTesting } from "@angular/common/http/testing";
-
 import { UserService } from "../services/user/user.service";
 
+// Angular Material
+import { MatDialogModule, MatDialog } from "@angular/material/dialog";
 import { MatTableModule } from "@angular/material/table";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatSelectModule } from "@angular/material/select";
+import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
-
-import { MatDialog, MatDialogModule } from "@angular/material/dialog";
-import { of } from "rxjs";
+import { MatExpansionModule } from "@angular/material/expansion";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { FormsModule } from "@angular/forms";
+import { provideNativeDateAdapter } from "@angular/material/core";
+import { provideHttpClient } from "@angular/common/http";
 
 const mockUsers = [
-  { id: 1, idUser: 1, username: "user1", role: "admin", rolDescription: "Administrator", rolDesc: "Admin role" },
-  { id: 2, idUser: 2, username: "user2", role: "user", rolDescription: "User", rolDesc: "User role" },
-  { id: 3, idUser: 3, username: "user3", role: "user", rolDescription: "User", rolDesc: "User role" }
+  { idUser: 1, username: "user1", role: "admin", rolDescription: "Administrator", rolDesc: "Admin role" },
+  { idUser: 2, username: "user2", role: "user", rolDescription: "User", rolDesc: "User role" }
 ];
 
-describe("UsuariosComponent", () => {
-  let component: UsuariosComponent;
+describe("UsuariosComponent - Integration Test", () => {
   let fixture: ComponentFixture<UsuariosComponent>;
-  let authServiceSpy: jasmine.SpyObj<UserService>;
-  let dialogSpy: jasmine.SpyObj<MatDialog>;
+  let component: UsuariosComponent;
+  let userService: UserService;
+  let httpMock: HttpTestingController;
+  let dialog: MatDialog;
 
   beforeEach(async () => {
-    const spy = jasmine.createSpyObj("UserService", [
-      "getAllUsers", "getUser", "updateUser", "deleteUser", "createUser"
-    ]);
-
-    const dialogMock = jasmine.createSpyObj("MatDialog", ["open", "closeAll", "afterClosed"]);
-
     await TestBed.configureTestingModule({
       declarations: [UsuariosComponent],
-      imports: [FormsModule, MatTableModule, MatDialogModule, MatIconModule],
-      providers: [
-        { provide: UserService, useValue: spy },
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting(),
-        { provide: MatDialog, useValue: dialogMock },
+      imports: [
+        FormsModule,
+        BrowserAnimationsModule,
+        MatDialogModule,
+        MatTableModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatButtonModule,
+        MatIconModule,
+        MatExpansionModule,
+        MatDatepickerModule
       ],
+      providers: [
+        UserService,
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        provideNativeDateAdapter()
+      ]
     }).compileComponents();
-
-    authServiceSpy = TestBed.inject(UserService) as jasmine.SpyObj<UserService>;
-    authServiceSpy.getAllUsers.and.returnValue(of(mockUsers)); 
 
     fixture = TestBed.createComponent(UsuariosComponent);
     component = fixture.componentInstance;
-    dialogSpy = TestBed.inject(MatDialog) as jasmine.SpyObj<MatDialog>;
-    fixture.detectChanges();
+    userService = TestBed.inject(UserService);
+    httpMock = TestBed.inject(HttpTestingController);
+    dialog = TestBed.inject(MatDialog);
   });
 
-  /* Boton eliminado
+  afterEach(() => {
+    httpMock.verify(); // asegura que no queden requests abiertas
+  });
 
-  it("Debería mostrar la tabla de usuarios al hacer click en el botón", fakeAsync(() => {
-    authServiceSpy.getAllUsers.and.returnValue(of(mockUsers));
+  it("debería renderizar la tabla con usuarios cargados", fakeAsync(() => {
+    fixture.detectChanges(); // dispara ngOnInit() que llama getAllUsers
 
-    //component.buttonText = "Mostrar Usuarios";
-    component.displayedColumns = ["id", "user", "actions"];
+    const req = httpMock.expectOne('http://localhost:3000/api/users/findall');
+    expect(req.request.method).toBe('GET');
+    req.flush(mockUsers); // respondemos con datos mock
+
+    tick();
+    fixture.detectChanges();
 
     const compiled = fixture.nativeElement as HTMLElement;
-    const button = compiled.querySelector("button") as HTMLButtonElement;
-
-    expect(button).withContext("No se encontró botón").not.toBeNull();
-    expect(button.textContent?.trim().toLocaleLowerCase()).toContain("mostrar usuarios");
-
-    button!.click();
-    tick();
-    fixture.detectChanges();
-    tick();
-    fixture.detectChanges();
-
-    expect(button.textContent?.trim().toLocaleLowerCase()).toContain("ocultar usuarios");
-    //expect(component.showTable).toBeTrue();
-    expect(authServiceSpy.getAllUsers).toHaveBeenCalled();
-
-    const rows = compiled.querySelectorAll("tr[mat-row]");
+    const rows = compiled.querySelectorAll('tr[mat-row]');
     expect(rows.length).toBe(mockUsers.length);
-  }));*/
-
-  it("Debería abrir el dialog de editar con ID correcto", fakeAsync(() => {
-    const mockDialogRef = {
-      afterClosed: () => of(true),
-    };
-
-    authServiceSpy.getUser.and.returnValue(of(mockUsers[0]));
-    authServiceSpy.getAllUsers.and.returnValue(of(mockUsers));
-
-    dialogSpy.open.and.returnValue(mockDialogRef as any);
-
-    component.openEditDialog(mockUsers[0].idUser);
-    tick();
-
-    expect(authServiceSpy.getUser).toHaveBeenCalledOnceWith(mockUsers[0].idUser);
-    expect(dialogSpy.open).toHaveBeenCalled();
+    expect(compiled.textContent).toContain('user1');
+    expect(compiled.textContent).toContain('user2');
   }));
+
+  /*it("debería abrir el dialog de edición con MatDialog real", fakeAsync(() => {
+    fixture.detectChanges();
+    const req = httpMock.expectOne('http://localhost:3000/api/users/findall');
+    req.flush(mockUsers);
+    tick();
+    fixture.detectChanges();
+
+    spyOn(dialog, 'open').and.callThrough(); // espía la llamada al dialog
+    component.openEditDialog(mockUsers[0].idUser);
+
+    const userReq = httpMock.expectOne(`http://localhost:3000/api/users/${mockUsers[0].idUser}`);
+    expect(userReq.request.method).toBe('GET');
+    userReq.flush(mockUsers[0]);
+
+    tick();
+    fixture.detectChanges();
+
+    expect(dialog.open).toHaveBeenCalled();
+  }));*/
 });

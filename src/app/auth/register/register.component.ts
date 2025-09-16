@@ -8,8 +8,6 @@ import {
 } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { RegisterService } from 'src/app/services/auth/register.service';
-import { ErrorHandlerService } from 'src/app/services/error-handler.service';
-import { UserService } from 'src/app/services/user/user.service';
 import { Validators } from '@angular/forms';
 import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
 import { User } from '../auth.models';
@@ -26,12 +24,12 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   user: User = new User();
   today: Date = new Date();
+  hide = true;
+
 
   constructor(
     private formBuilder: FormBuilder,
     private registerService: RegisterService,
-    private userService: UserService,
-    private errorHandler: ErrorHandlerService,
     private dialog: MatDialog,
     private encryptionService: EncryptionService,
     private router: Router
@@ -39,21 +37,21 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group(
       {
         username: ['', [Validators.required]],
-        realname: [,],
-        surname: [,],
+        realname: ['',],
+        surname: ['',],
         email: ['', [Validators.required, Validators.email]],
         password: [
           '',
           [
             Validators.required,
             Validators.minLength(8),
-            this.passwordHasUpperCase(),
+            this.passwordHasUpperCase()
           ],
         ],
         password2: ['', [Validators.required, Validators.minLength(8)]],
         birth_date: ['', [Validators.required]],
       },
-      { validators: this.passwordMatchValidator() }
+      { validators: this.passwordMatchValidator(), }
     );
     this.user = new User();
   }
@@ -85,7 +83,7 @@ export class RegisterComponent implements OnInit {
       },
       (error) => {
         console.error('Error al registrar: ', error);
-        this.showErrorDialog(error.error.message || 'Error desconocido');
+        this.showErrorDialog(error.error.error.message || 'Error desconocido');
       }
     );
   }
@@ -149,5 +147,16 @@ export class RegisterComponent implements OnInit {
 
   goToLogin() {
     this.router.navigate(['/login']);
+  }
+
+  onDateInput(event: any) {
+    let value: string = event.target.value.replace(/\D/g, ''); // solo números
+    if (value.length >= 2) {
+      value = value.slice(0, 2) + '/' + value.slice(2);
+    }
+    if (value.length >= 5) {
+      value = value.slice(0, 5) + '/' + value.slice(5, 9);
+    }
+    event.target.value = value;
   }
 }

@@ -1,9 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { firstValueFrom } from 'rxjs';
 import { RolApl } from 'src/app/models/rol.models.js';
 import { User } from 'src/app/models/user.model';
-import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -22,7 +20,6 @@ export class UpdateRolComponent {
 
   constructor(
     private userService: UserService,
-    private userUtilsService: UserUtilsService,
     public dialogRef: MatDialogRef<UpdateRolComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { user: User; rolDesc: string }
   ) {
@@ -39,26 +36,21 @@ export class UpdateRolComponent {
 
   async loadUserRols() {
     try {
-      const roles = await this.userService.getAllUserRoles(this.user.idUser).toPromise();
-      if (roles != undefined) {
-        roles.forEach(rol => {
-          this.selectedRoles.forEach(selectedRol => {
-            if (selectedRol.rol?.id === rol) {
-              this.selectedRoles[this.selectedRoles.indexOf(selectedRol)].rolSelected = true;
-            }
-          })
-        });
-      }
-    } catch (err) {
-      console.error('Error cargando roles:', err);
-      this.userRoles = [];
+   const roles = await this.userService.getAllUserRoles(this.user.idUser).toPromise();
+    if (roles != undefined) {
+      this.userRoles = roles;
     }
+  } catch (err) {
+    console.error('Error cargando roles:', err);
+    this.userRoles = [];
+  }
   }
 
   async getAllRoles() {
     try {
       const roles: RolApl[] | undefined = await this.userService.getRoles().toPromise();
       if (roles != undefined) {
+         this.allRoles = roles;
         roles.forEach(rol => {
           let newSelectedRol: SelectedRoles = new SelectedRoles();
           this.selectedRoles.push(newSelectedRol);
@@ -73,30 +65,16 @@ export class UpdateRolComponent {
   }
 
   onUpdateUser() {
-    this.userUtilsService.setLoggedInUser().subscribe((username) => {
+    this.userService.getLoggedInUsername().subscribe((username) => {
       if (username) {
         this.user.modificationuser = username;
         this.user.modificationtimestamp = new Date().toISOString();
 
         // Convertir los roles seleccionados a IDs si es necesario
-        let roleIds: number[] = [];
-
-        console.log(this.rolesSeleccionados);
-
-        this.rolesSeleccionados.forEach(rs => {
-          if (rs.rol?.id != undefined && !rs.rolSelected) {
-            roleIds.push(rs.rol.id);
-          }
-        })
-
-        this.userService.updateUserRoles(this.user.idUser, roleIds).subscribe(
-          (response) => {
-            this.dialogRef.close(true);
-          },
-          (error) => {
-            console.error('Error al actualizar roles de usuario:', error);
-          }
-        );
+        this.userService.updateUserRoles(this.user.idUser, this.userRoles).subscribe(
+        () => this.dialogRef.close(true),
+        (error) => console.error('Error al actualizar roles de usuario:', error)
+      );
 
       }
     });

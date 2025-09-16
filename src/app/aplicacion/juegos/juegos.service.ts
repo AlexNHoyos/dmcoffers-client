@@ -1,20 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-
-import { CrudService } from 'src/app/components/crud/crud.service';
 import { environment } from 'src/environments/environment';
-import { Juego, JuegoPage } from '../../aplicacion/juegos/juegos.model';
+import { Juego } from '../../aplicacion/juegos/juegos.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class JuegoService extends CrudService<JuegoPage> {
-  override endpoint = `${environment.urlApi}juegos`;
+export class JuegoService {
+  private endpoint = `${environment.urlApi}juegos`;
 
-  constructor(protected override http: HttpClient) {
-    super(http);
-  }
+  constructor(private http: HttpClient) {}
 
   createJuego(juego: FormData): Observable<any> {
     return this.http.post<any>(`${this.endpoint}/`, juego);
@@ -30,6 +26,10 @@ export class JuegoService extends CrudService<JuegoPage> {
 
   getJuego(id: number): Observable<Juego> {
     return this.http.get<Juego>(`${this.endpoint}/${id}`);
+  }
+
+  deleteJuego(id: number): Observable<Juego> {
+    return this.http.delete<Juego>(`${this.endpoint}/${id}`);
   }
 
   searchJuegosByName(gamename: string): Observable<Juego[]> {

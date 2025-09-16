@@ -1,7 +1,6 @@
-import { Component, Type } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Publisher } from './publisher.model';
 import { PublisherService } from './publisher.service';
-import { CrudComponent } from '../../components/crud/crud.component';
 import { PublisherCreateComponent } from './publisher-create/publisher-create.component';
 import { PublisherUpdateComponent } from './publisher-update/publisher-update.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,21 +12,52 @@ import { PublisherDetailComponent } from './publisher-detail/publisher-detail.co
   styleUrls: ['./publishers.component.scss'],
   standalone: false
 })
-export class PublisherComponent extends CrudComponent<Publisher> {
+export class PublisherComponent implements OnInit {
   publishers: Publisher[] = [];
+  filteredPublishers: Publisher[] = [];
+
+  today: Date = new Date();
+
+  //Filtros
+  filterEstado: boolean | null = null;
+  filterPublisherName: string = '';
+  filterFundacionDesde: Date | null = null;
+  filterFundacionHasta: Date | null = null;
+  filterDisolucionDesde: Date | null = null;
+  filterDisolucionHasta: Date | null = null;
+
+  filterDesde = (d: Date | null): boolean => {
+    if (!d) return false;
+    return !this.filterFundacionHasta || d <= this.filterFundacionHasta!;
+  };
+
+  filterHasta = (d: Date | null): boolean => {
+    if (!d) return false;
+    return !this.filterFundacionDesde || d >= this.filterFundacionDesde!;
+  };
+
+  filterDisolucionDesdeFn = (d: Date | null): boolean => {
+    if (!d) return false;
+    return !this.filterDisolucionHasta || d <= this.filterDisolucionHasta!;
+  };
+
+  filterDisolucionHastaFn = (d: Date | null): boolean => {
+    if (!d) return false;
+    return !this.filterDisolucionDesde || d >= this.filterDisolucionDesde!;
+  };
+
 
   constructor(
     private publisherService: PublisherService,
-    override dialog: MatDialog
-  ) {
-    super(publisherService, dialog);
+    private dialog: MatDialog
+  ) { }
 
-    // Carga y muestra la tabla
+  ngOnInit(): void {
     this.loadPublishers();
-    // Muestra la tabla
-    this.showTable = true;
-    this.buttonText = 'Ocultar publishers'; // Cambia el texto del botón
   }
+
+  displayedColumns: string[] = ['id', 'publishername', 'actions'];
+
 
   getCreateComponent() {
     return PublisherCreateComponent;
@@ -56,12 +86,6 @@ export class PublisherComponent extends CrudComponent<Publisher> {
         disableClose: true,
         data: { publisher },
       });
-      /*  No es necesario porque no edito los datos adentro del dialog, pero podria implementarse a futuro
-      dialogRef.afterClosed().subscribe((result) => {
-        if (result) {
-          this.loadPublishers(); // Carga o actualiza la lista de publishers
-        }
-      });*/
     });
   }
 
@@ -95,21 +119,66 @@ export class PublisherComponent extends CrudComponent<Publisher> {
     });
   }
 
-  override displayedColumns: string[] = ['id', 'publishername', 'actions'];
-
-  showTable: boolean = false;
-  buttonText: string = 'Mostrar Publishers';
-
-  override ngOnInit(): void {
-    // Con esta funcion se puede cargar los publishers al inicio
-    // this.loadPublishers();
-    super.ngOnInit();
-  }
-
   loadPublishers(): void {
-    this.showTable = true;
     this.publisherService.getAllPublishers().subscribe((data) => {
       this.publishers = data;
+      this.filteredPublishers = [...data];
     });
+  }
+
+  aplicarFiltro(): void {
+    // Validar rangos de fechas de fundación
+    if (this.filterFundacionDesde && this.filterFundacionHasta && this.filterFundacionDesde > this.filterFundacionHasta) {
+      alert('La fecha "Fundación desde" no puede ser mayor que la "Fundación hasta".');
+      return;
+    }
+
+    // Validar rangos de fechas de disolución
+    if (this.filterDisolucionDesde && this.filterDisolucionHasta && this.filterDisolucionDesde > this.filterDisolucionHasta) {
+      alert('La fecha "Disolución desde" no puede ser mayor que la "Disolución hasta".');
+      return;
+    }
+
+    this.filteredPublishers = this.publishers.filter((pub) => {
+      const coincideNombre =
+        !this.filterPublisherName || pub.publishername.toLowerCase().includes(this.filterPublisherName.toLowerCase());
+
+    const coincideEstado =
+       this.filterEstado === null || pub.status === this.filterEstado;
+
+      const coincideFundacion =
+        (!this.filterFundacionDesde || new Date(pub.foundation_date!) >= this.filterFundacionDesde) &&
+        (!this.filterFundacionHasta || new Date(pub.foundation_date!) <= this.filterFundacionHasta);
+
+      const coincideDisolucion =
+        (!this.filterDisolucionDesde || (pub.dissolution_date && new Date(pub.dissolution_date) >= this.filterDisolucionDesde)) &&
+        (!this.filterDisolucionHasta || (pub.dissolution_date && new Date(pub.dissolution_date) <= this.filterDisolucionHasta));
+
+      return coincideNombre && coincideEstado && coincideFundacion && coincideDisolucion;
+    });
+  }
+
+
+  // Resetear filtros
+  resetFiltro(): void {
+    this.filterEstado = null;
+    this.filterPublisherName = '';
+    this.filterFundacionDesde = null;
+    this.filterFundacionHasta = null;
+    this.filterDisolucionDesde = null;
+    this.filterDisolucionHasta = null;
+
+    this.filteredPublishers = [...this.publishers];
+  }
+
+  onDateInput(event: any) {
+    let value: string = event.target.value.replace(/\D/g, ''); // solo números
+    if (value.length >= 2) {
+      value = value.slice(0, 2) + '/' + value.slice(2);
+    }
+    if (value.length >= 5) {
+      value = value.slice(0, 5) + '/' + value.slice(5, 9);
+    }
+    event.target.value = value;
   }
 }

@@ -1,17 +1,20 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
-import { Hosting } from '../hosting.model';
+import { Hosting, HostingPublisher } from '../hosting.model';
 
-import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
 import { HostingService } from '../hosting.service';
+import { UserService } from 'src/app/services/user/user.service.js';
+import { Publisher } from '../../publishers/publisher.model.js';
+import { PublisherService } from '../../publishers/publisher.service.js';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-hosting-create',
   templateUrl: './hosting-create.component.html',
-  styleUrls: ['./hosting-create.component.scss'],
   standalone: false
 })
+
 export class HostingCreateComponent {
   hosting: Hosting = {
     id: 0,
@@ -20,17 +23,42 @@ export class HostingCreateComponent {
     creationtimestamp: new Date().toISOString(),
     status: true,
   };
+
+  hostingPublisher: HostingPublisher = {
+    id: 0,
+    publisher: new Publisher(),
+    hosting: new Hosting(),
+    storageType: '',
+    storageAmmount: null,
+    ramAmmount: null,
+    cpuSpecs: '',
+    uptimePercentage: null
+  }
+
+  publicadores: Publisher[] = [];
+  storageTypes: string[] = ['SSD', 'HDD', 'SSHD', 'SSD + HHD'];
+  storageAmmount: number[] = [2000, 1000, 500, 256, 128];
+  ramAmmount: number[] = [64, 32, 16, 12, 8, 4, 2];
+
   constructor(
     private HostingService: HostingService,
     private dialogRef: MatDialogRef<HostingCreateComponent>,
-    private userUtilsService: UserUtilsService
-  ) { }
+    private userService: UserService,
+    private publisherService: PublisherService
+  ) {
+    this.loadService();
+  }
   ngOnInit(): void {
-    this.userUtilsService.setLoggedInUser().subscribe((username) => {
-      if (username) {
-        this.hosting.creationuser = username;
-      }
-    });
+
+  }
+
+  async loadService() {
+    const username = await firstValueFrom(this.userService.getLoggedInUsername());
+    if (username) {
+      this.hosting.creationuser = username;
+    }
+
+    this.publicadores = await firstValueFrom(this.publisherService.getAllPublishers());
   }
 
   createHosting(): void {
@@ -45,20 +73,44 @@ export class HostingCreateComponent {
         : null,
     };
 
-    if (!this.hosting.name || this.hosting.name.trim() === '') {
-      console.error('El nombre del hosting no puede estar vacío');
-      return;
-    }
-
     this.HostingService.createHosting(HostingToSend).subscribe({
       next: (response) => {
+        this.hostingPublisher.hosting = response
+
+        this.hostingPublisher.publisher = { id: this.hostingPublisher.publisher.id } as Publisher;
+        this.hostingPublisher.hosting = { id: this.hostingPublisher.hosting.id } as Hosting;
+
+        this.HostingService.createHostingPublisher(this.hostingPublisher).subscribe({
+          next: (response) => {
+            this.dialogRef.close(true); // Cierra el diálogo y indica que se guardaron los cambios
+          },
+          error: (error) => {
+            console.error('Error creando Hosting Publisher', error);
+          },
+        });
+
         this.dialogRef.close(true); // Cierra el diálogo y indica que se guardaron los cambios
       },
       error: (error) => {
         console.error('Error creando Hosting', error);
       },
     });
+
+
   }
+
+  keyDownValoresNumericos(event: any) {
+    const key = event.keyCode;
+    const inputValue = event.target.value;
+    if (key >= 48 && key <= 57) {
+      if (inputValue.length === 0 && key === 48) {
+        event.preventDefault();
+      }
+    } else {
+      event.preventDefault();
+    }
+  }
+
   cancel(): void {
     this.dialogRef.close(false); // Cierra el diálogo sin guardar cambios
   }

@@ -1,19 +1,17 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User, UserPage } from '../../models/user.model';
-import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
+import { User } from '../../models/user.model';
+import { BehaviorSubject, catchError, map, Observable, of, switchMap, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { CrudService } from 'src/app/components/crud/crud.service';
 import { RolApl } from 'src/app/models/rol.models.js';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserService extends CrudService<UserPage> {
-  override endpoint = `${environment.urlApi}users`;
+export class UserService {
+  private endpoint = `${environment.urlApi}users`;
   endpointRoles = `${environment.urlApi}`;
-  constructor(protected override http: HttpClient) {
-    super(http);
+  constructor(private http: HttpClient) {
   }
 
   private userId: BehaviorSubject<number | null> = new BehaviorSubject<number | null>(null);
@@ -24,6 +22,18 @@ export class UserService extends CrudService<UserPage> {
 
   getUserId(): Observable<number | null> {
     return this.userId.asObservable();
+  }
+
+  // Metodo para obtener el username del usuario logueado
+  getLoggedInUsername(): Observable<string | null> {
+    return this.getUserId().pipe(
+      switchMap((userId) => {
+        if (userId != null) {
+          return this.getUser(userId).pipe(map(user => user.username));
+        }
+        return of(null);
+      })
+    );
   }
 
   getUser(id: number): Observable<User> {

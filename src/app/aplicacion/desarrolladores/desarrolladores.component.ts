@@ -1,7 +1,6 @@
-import { Component, Type } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Desarrollador } from './desarrolladores.models';
 import { DesarrolladoresService } from './desarrolladores.service';
-import { CrudComponent } from '../../components/crud/crud.component';
 import { DesarrolladoresCreateComponent } from './desarrolladores-create/desarrolladores-create.component';
 import { DesarrolladoresUpdateComponent } from './desarrolladores-update/desarrolladores-update.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -14,20 +13,49 @@ import { DesarrolladoresDetailComponent } from './desarrolladores-detail/desarro
   styleUrls: ['./desarrolladores.component.scss'],
   standalone: false
 })
-export class DesarrolladoresComponent extends CrudComponent<Desarrollador> {
+export class DesarrolladoresComponent implements OnInit {
   desarrolladores: Desarrollador[] = [];
+  filteredDesarrolladores: Desarrollador[] = [];
+
+  today: Date = new Date();
+
+  //Filtros
+  filterEstado: boolean | null = null;
+  filterDesarrolladorName: string = '';
+  filterFundacionDesde: Date | null = null;
+  filterFundacionHasta: Date | null = null;
+  filterDisolucionDesde: Date | null = null;
+  filterDisolucionHasta: Date | null = null;
+
+  filterDesde = (d: Date | null): boolean => {
+    if (!d) return false;
+    return !this.filterFundacionHasta || d <= this.filterFundacionHasta!;
+  };
+
+  filterHasta = (d: Date | null): boolean => {
+    if (!d) return false;
+    return !this.filterFundacionDesde || d >= this.filterFundacionDesde!;
+  };
+
+  filterDisolucionDesdeFn = (d: Date | null): boolean => {
+    if (!d) return false;
+    return !this.filterDisolucionHasta || d <= this.filterDisolucionHasta!;
+  };
+
+  filterDisolucionHastaFn = (d: Date | null): boolean => {
+    if (!d) return false;
+    return !this.filterDisolucionDesde || d >= this.filterDisolucionDesde!;
+  };
 
   constructor(
     private desarrolladoresService: DesarrolladoresService,
-    override dialog: MatDialog
-  ) {
-    super(desarrolladoresService, dialog);
+    private dialog: MatDialog
+  ) { }
 
-    // Carga y muestra la tabla
+  displayedColumns: string[] = ['id', 'developername', 'actions'];
+
+  ngOnInit(): void {
     this.loadDesarrolladores();
-    // Muestra la tabla
-    this.showTable = true;
-    this.buttonText = 'Ocultar desarrollador'; // Cambia el texto del botón
   }
 
   getCreateComponent() {
@@ -45,7 +73,7 @@ export class DesarrolladoresComponent extends CrudComponent<Desarrollador> {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.loadDesarrolladores(); // Carga o actualiza la lista de publishers
+        this.loadDesarrolladores(); // Carga o actualiza la lista de devlishers
       }
     });
   }
@@ -59,12 +87,6 @@ export class DesarrolladoresComponent extends CrudComponent<Desarrollador> {
           disableClose: true,
           data: { desarrollador },
         });
-        /*  No es necesario porque no edito los datos adentro del dialog, pero podria implementarse a futuro
-      dialogRef.afterClosed().subscribe((result) => {
-        if (result) {
-          this.loadPublishers(); // Carga o actualiza la lista de publishers
-        }
-      });*/
       });
   }
 
@@ -80,7 +102,7 @@ export class DesarrolladoresComponent extends CrudComponent<Desarrollador> {
 
         dialogRef.afterClosed().subscribe((result) => {
           if (result) {
-            this.loadDesarrolladores(); // Carga o actualiza la lista de publishers
+            this.loadDesarrolladores(); // Carga o actualiza la lista de devlishers
           }
         });
       });
@@ -95,26 +117,73 @@ export class DesarrolladoresComponent extends CrudComponent<Desarrollador> {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.loadDesarrolladores(); // Carga o actualiza la lista de publishers
+        this.loadDesarrolladores(); // Carga o actualiza la lista de devlishers
       }
     });
   }
 
-  override displayedColumns: string[] = ['id', 'developername', 'actions'];
-
-  showTable: boolean = false;
-  buttonText: string = 'Mostrar Desarrolladores';
-
-  override ngOnInit(): void {
-    // Con esta funcion se puede cargar los publishers al inicio
-    // this.loadPublishers();
-    super.ngOnInit();
-  }
-
   loadDesarrolladores(): void {
-    this.showTable = true;
     this.desarrolladoresService.getAllDesarrolladores().subscribe((data) => {
       this.desarrolladores = data;
+      this.filteredDesarrolladores = [...data];
     });
   }
+
+
+  aplicarFiltro(): void {
+    // Validar rangos de fechas de fundación
+    if (this.filterFundacionDesde && this.filterFundacionHasta && this.filterFundacionDesde > this.filterFundacionHasta) {
+      alert('La fecha "Fundación desde" no puede ser mayor que la "Fundación hasta".');
+      return;
+    }
+
+    // Validar rangos de fechas de disolución
+    if (this.filterDisolucionDesde && this.filterDisolucionHasta && this.filterDisolucionDesde > this.filterDisolucionHasta) {
+      alert('La fecha "Disolución desde" no puede ser mayor que la "Disolución hasta".');
+      return;
+    }
+
+    this.filteredDesarrolladores = this.desarrolladores.filter((dev) => {
+      const coincideNombre =
+        !this.filterDesarrolladorName || dev.developername.toLowerCase().includes(this.filterDesarrolladorName.toLowerCase());
+
+    const coincideEstado =
+      this.filterEstado == null || dev.status === this.filterEstado;
+
+      const coincideFundacion =
+        (!this.filterFundacionDesde || new Date(dev.foundation_date!) >= this.filterFundacionDesde) &&
+        (!this.filterFundacionHasta || new Date(dev.foundation_date!) <= this.filterFundacionHasta);
+
+      const coincideDisolucion =
+        (!this.filterDisolucionDesde || (dev.dissolution_date && new Date(dev.dissolution_date) >= this.filterDisolucionDesde)) &&
+        (!this.filterDisolucionHasta || (dev.dissolution_date && new Date(dev.dissolution_date) <= this.filterDisolucionHasta));
+
+      return coincideNombre && coincideEstado && coincideFundacion && coincideDisolucion;
+    });
+  }
+
+
+  // Resetear filtros
+  resetFiltro(): void {
+    this.filterEstado = null;
+    this.filterDesarrolladorName = '';
+    this.filterFundacionDesde = null;
+    this.filterFundacionHasta = null;
+    this.filterDisolucionDesde = null;
+    this.filterDisolucionHasta = null;
+
+    this.filteredDesarrolladores = [...this.desarrolladores];
+  }
+
+  onDateInput(event: any) {
+    let value: string = event.target.value.replace(/\D/g, ''); // solo números
+    if (value.length >= 2) {
+      value = value.slice(0, 2) + '/' + value.slice(2);
+    }
+    if (value.length >= 5) {
+      value = value.slice(0, 5) + '/' + value.slice(5, 9);
+    }
+    event.target.value = value;
+  }
+
 }

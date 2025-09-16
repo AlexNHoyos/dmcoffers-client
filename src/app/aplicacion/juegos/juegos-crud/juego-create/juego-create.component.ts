@@ -5,8 +5,8 @@ import { JuegoService } from '../../juegos.service';
 import { DesarrolladoresService } from 'src/app/aplicacion/desarrolladores/desarrolladores.service';
 import { PublisherService } from 'src/app/aplicacion/publishers/publisher.service';
 import { CategoriaService } from 'src/app/aplicacion/categorias/categoria.service';
-import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
 import { ErrorDialogComponent } from 'src/app/components/error-dialog/error-dialog.component';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-juego-create',
@@ -45,13 +45,13 @@ export class JuegoCreateComponent implements OnInit {
     private publisherService: PublisherService,
     private categoriaService: CategoriaService,
     private dialogRef: MatDialogRef<JuegoCreateComponent>,
-    private userUtilsService: UserUtilsService,
+    private userService: UserService,
     private dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
     // Obtén y asigna el usuario al crear el juego
-    this.userUtilsService.setLoggedInUser().subscribe((username) => {
+    this.userService.getLoggedInUsername().subscribe((username) => {
       if (username) {
         this.juego.creationuser = username;
       }
@@ -191,5 +191,16 @@ export class JuegoCreateComponent implements OnInit {
     this.selectedFile = null;
     this.fileValid = true;
     this.fileInput.nativeElement.value = '';
+  }
+
+  onDateInput(event: any) {
+    let value: string = event.target.value.replace(/\D/g, ''); // solo números
+    if (value.length >= 2) {
+      value = value.slice(0, 2) + '/' + value.slice(2);
+    }
+    if (value.length >= 5) {
+      value = value.slice(0, 5) + '/' + value.slice(5, 9);
+    }
+    event.target.value = value;
   }
 }

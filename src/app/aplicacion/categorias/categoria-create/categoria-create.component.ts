@@ -3,8 +3,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 
 import { Categoria } from '../categoria.model';
 
-import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
 import { CategoriaService } from '../categoria.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-categoria-create',
@@ -24,11 +24,11 @@ export class CategoriaCreateComponent {
   constructor(
     private categoriaService: CategoriaService,
     private dialogRef: MatDialogRef<CategoriaCreateComponent>,
-    private userUtilsService: UserUtilsService
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
-    this.userUtilsService.setLoggedInUser().subscribe((username) => {
+    this.userService.getLoggedInUsername().subscribe((username) => {
       if (username) {
         this.categoria.creationuser = username;
       }

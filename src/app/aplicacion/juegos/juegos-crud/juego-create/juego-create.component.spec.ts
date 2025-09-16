@@ -18,13 +18,13 @@ import { JuegoCreateComponent } from './juego-create.component';
 import { JuegoService } from '../../juegos.service';
 import { DesarrolladoresService } from 'src/app/aplicacion/desarrolladores/desarrolladores.service';
 import { CategoriaService } from 'src/app/aplicacion/categorias/categoria.service';
-import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 describe('JuegoCreateComponent', () => {
   let component: JuegoCreateComponent;
   let fixture: ComponentFixture<JuegoCreateComponent>;
   let juegoServiceSpy: jasmine.SpyObj<JuegoService>;
-  let userUtilsServiceSpy: jasmine.SpyObj<UserUtilsService>;
+  let userServiceSpy: jasmine.SpyObj<UserService>;
   let desarrolladoresServiceSpy: jasmine.SpyObj<DesarrolladoresService>;
   let categoriaServiceSpy: jasmine.SpyObj<CategoriaService>;
 
@@ -37,8 +37,8 @@ describe('JuegoCreateComponent', () => {
       creationuser: 'testUser'
     }]));
 
-    userUtilsServiceSpy = jasmine.createSpyObj('UserUtilsService', ['setLoggedInUser']);
-    userUtilsServiceSpy.setLoggedInUser.and.returnValue(of('testUser'));
+    userServiceSpy = jasmine.createSpyObj('UserService', ['getLoggedInUsername']);
+    userServiceSpy.getLoggedInUsername.and.returnValue(of('testUser'));
 
     juegoServiceSpy = jasmine.createSpyObj('JuegoService', ['createJuego']);
     juegoServiceSpy.createJuego.and.returnValue(of({}));
@@ -70,7 +70,7 @@ describe('JuegoCreateComponent', () => {
       providers: [
         { provide: DesarrolladoresService, useValue: desarrolladoresServiceSpy },
         { provide: JuegoService, useValue: juegoServiceSpy },
-        { provide: UserUtilsService, useValue: userUtilsServiceSpy },
+        { provide: UserService, useValue: userServiceSpy },
         { provide: MatDialogRef, useValue: { close: jasmine.createSpy('close') } },
         { provide: MAT_DIALOG_DATA, useValue: {} },
         { provide: CategoriaService, useValue: categoriaServiceSpy },

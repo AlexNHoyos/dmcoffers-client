@@ -2,16 +2,16 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { LoginService } from '../../services/auth/login.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { UserUtilsService } from 'src/app/services/user/user-util-service.service';
 import { ProximamenteService } from 'src/app/services/proximamente.service';
 import { HelpDialogComponent } from 'src/app/components/help-dialog/help-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
-    selector: 'app-nav',
-    templateUrl: './nav.component.html',
-    styleUrls: ['./nav.component.scss'],
-    standalone: false
+  selector: 'app-nav',
+  templateUrl: './nav.component.html',
+  styleUrls: ['./nav.component.scss'],
+  standalone: false
 })
 export class NavComponent implements OnInit, OnDestroy {
   searchTerm: string = '';
@@ -22,7 +22,7 @@ export class NavComponent implements OnInit, OnDestroy {
 
   constructor(
     private loginService: LoginService,
-    private userUtilsService: UserUtilsService,
+    private userService: UserService,
     private router: Router,
     private proximamenteService: ProximamenteService,
     private dialog: MatDialog
@@ -66,9 +66,11 @@ export class NavComponent implements OnInit, OnDestroy {
   // Método para cargar el nombre del usuario
   private loadUsername(): void {
     this.subscriptions.add(
-      this.userUtilsService.setLoggedInUser().subscribe({
+      this.userService.getLoggedInUsername().subscribe({
         next: (username) => {
-          this.username = username;
+          if (username != undefined) {
+            this.username = username
+          };
         },
         error: (err) => {
           console.error('Error al obtener el nombre de usuario', err);
@@ -135,6 +137,11 @@ export class NavComponent implements OnInit, OnDestroy {
         queryParams: { param: this.searchTerm },
       });
     }
+  }
+
+  clearSearch(): void {
+    this.searchTerm = '';
+    this.router.navigate(['/']); // vuelve al inicio
   }
 
   openHelp(): void {
