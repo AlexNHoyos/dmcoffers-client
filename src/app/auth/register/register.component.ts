@@ -45,7 +45,8 @@ export class RegisterComponent implements OnInit {
           [
             Validators.required,
             Validators.minLength(8),
-            this.passwordHasUpperCase()
+            this.passwordHasUpperCase(),
+            this.passwordHasNumber()
           ],
         ],
         password2: ['', [Validators.required, Validators.minLength(8)]],
@@ -114,6 +115,28 @@ export class RegisterComponent implements OnInit {
     };
   }
 
+  onConfirmBlur() {
+    this.password2?.markAsTouched();
+    this.password2?.updateValueAndValidity({ onlySelf: true, emitEvent: true });
+  }
+
+  passwordHasNumber(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const password = control.value;
+      const hasNumber = /\d/.test(password); // Verifica si tiene al menos un número
+
+
+      if (password && !hasNumber) {
+        return {
+          noNumber: 'La contraseña debe contener al menos un número.',
+        };
+      }
+
+
+      return null;
+    };
+  }
+
   passwordHasUpperCase(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const password = control.value;
@@ -128,6 +151,13 @@ export class RegisterComponent implements OnInit {
 
       return null;
     };
+  }
+
+  get password2() {
+    return this.registerForm.get('password2');
+  }
+  get password() {
+    return this.registerForm.get('password');
   }
 
   emailValidator(): ValidatorFn {

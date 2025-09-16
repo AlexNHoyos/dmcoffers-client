@@ -95,6 +95,12 @@ input[type="password"]::-webkit-textfield-decoration-container {
     margin-bottom: 1.5em;
 }
 
+@media (max-width: 768px) {
+    .password-field1 {
+        margin-bottom: 6vh;
+    }
+}
+
 mat-error {
     min-height: 1.2em;
     display: block;
