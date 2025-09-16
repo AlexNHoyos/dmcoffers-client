@@ -37,22 +37,23 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group(
       {
         username: ['', [Validators.required]],
-        realname: ['',],
-        surname: ['',],
+        realname: [''],
+        surname: [''],
         email: ['', [Validators.required, Validators.email]],
         password: [
           '',
           [
             Validators.required,
             Validators.minLength(8),
-            this.passwordHasUpperCase()
+            this.passwordHasUpperCase(),
+            this.passwordHasNumber()
           ],
         ],
-        password2: ['', [Validators.required, Validators.minLength(8)]],
+        password2: ['', [Validators.required, this.passwordMatchValidator()]],
         birth_date: ['', [Validators.required]],
-      },
-      { validators: this.passwordMatchValidator(), }
+      }
     );
+
     this.user = new User();
   }
 
@@ -102,13 +103,56 @@ export class RegisterComponent implements OnInit {
 
   passwordMatchValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
-      const formGroup = control as FormGroup;
-      const password = formGroup.controls['password']?.value;
-      const confirmPassword = formGroup.controls['password2']?.value;
+      if (!(control instanceof FormGroup)) return null;
 
-      if (password && confirmPassword && password !== confirmPassword) {
-        return { passwordsMismatch: true };
+      const passwordControl = control.get('password');
+      const confirmPasswordControl = control.get('password2');
+
+      if (!passwordControl || !confirmPasswordControl) return null;
+
+      const password = passwordControl.value;
+      const confirm = confirmPasswordControl.value;
+
+      const currentErrors = confirmPasswordControl.errors ? { ...confirmPasswordControl.errors } : {};
+
+      if (password && confirm && password !== confirm) {
+        currentErrors['passwordsMismatch'] = true;
+        confirmPasswordControl.setErrors(currentErrors);
+      } else {
+        if (currentErrors['passwordsMismatch']) {
+          delete currentErrors['passwordsMismatch'];
+          confirmPasswordControl.setErrors(Object.keys(currentErrors).length ? currentErrors : null);
+        }
       }
+
+      return null;
+    };
+  }
+
+  get password2() {
+    return this.registerForm.get('password2');
+  }
+  get password() {
+    return this.registerForm.get('password');
+  }
+
+  onConfirmBlur() {
+    this.password2?.markAsTouched();
+    this.password2?.updateValueAndValidity({ onlySelf: true, emitEvent: true });
+  }
+
+  passwordHasNumber(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const password = control.value;
+      const hasNumber = /\d/.test(password); // Verifica si tiene al menos un número
+
+
+      if (password && !hasNumber) {
+        return {
+          noNumber: 'La contraseña debe contener al menos un número.',
+        };
+      }
+
 
       return null;
     };
