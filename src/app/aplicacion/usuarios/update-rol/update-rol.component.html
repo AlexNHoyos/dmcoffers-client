@@ -1,42 +1,35 @@
-<mat-card class="update-user-card">
+<mat-card class="dialog-card">
   <mat-card-header>
-    <mat-card-title>Actualizar Roles del Usuario</mat-card-title>
-    <mat-card-subtitle>Seleccioná uno o más roles</mat-card-subtitle>
+    <mat-card-title>Actualizar roles</mat-card-title>
   </mat-card-header>
 
   <mat-card-content>
     <form #userForm="ngForm" class="form-grid">
       <!-- Roles (múltiples) -->
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Roles</mat-label>
-        <mat-select
-          [(ngModel)]="selectedRoles"
-          name="rolDescriptions"
-          multiple
-          required
-        >
-          <mat-option *ngFor="let role of roles" [value]="role">
-            {{ role }}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="userForm.submitted && selectedRoles.length === 0">
-          Al menos un rol es obligatorio
-        </mat-error>
-      </mat-form-field>
+      <div class="row">
+        <mat-form-field appearance="outline" class="col-12">
+          <mat-label>Roles</mat-label>
+          <mat-select name="rolDescriptions" multiple required [(ngModel)]="rolesSeleccionados">
+
+
+            <mat-option *ngFor="let rol of selectedRoles" [value]="rol">
+              {{ rol?.rol?.description }}
+            </mat-option>
+
+          </mat-select>
+
+
+        </mat-form-field>
+      </div>
     </form>
   </mat-card-content>
 
-  <mat-card-actions align="end">
-    <button mat-flat-button color="warn" type="button" (click)="cancel()">
+
+  <mat-card-actions class="action-buttons">
+    <button mat-stroked-button color="warn" type="button" (click)="cancel()">
       Cancelar
     </button>
-    <button
-      mat-raised-button
-      color="primary"
-      type="submit"
-      (click)="onUpdateUser()"
-      [disabled]="userForm.invalid"
-    >
+    <button mat-raised-button color="primary" type="submit" (click)="onUpdateUser()" [disabled]="userForm.invalid">
       Actualizar
     </button>
   </mat-card-actions>

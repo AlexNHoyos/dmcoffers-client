@@ -17,7 +17,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardActions, MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -28,7 +28,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatListModule } from '@angular/material/list';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
@@ -108,7 +108,8 @@ import { ResetPassComponent } from './auth/resetPass/resetPass.component';
 import { ForgotPassComponent } from './auth/forgotPass/forgotPass.component';
 
 
-@NgModule({ declarations: [
+@NgModule({
+    declarations: [
         AppComponent,
         ErrorDialogComponent,
         DashboardComponent,
@@ -199,7 +200,9 @@ import { ForgotPassComponent } from './auth/forgotPass/forgotPass.component';
         MatProgressSpinnerModule,
         CarouselModule,
         MatChipsModule,
-        MatTooltipModule], providers: [
+        MatTooltipModule,
+    ]
+    , providers: [
         WishlistService,
         CartService,
         RegisterService,
@@ -225,5 +228,6 @@ import { ForgotPassComponent } from './auth/forgotPass/forgotPass.component';
             multi: true
         },
         provideHttpClient(withInterceptorsFromDi())
-    ] })
+    ]
+})
 export class AppModule { }

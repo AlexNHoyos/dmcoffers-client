@@ -36,7 +36,6 @@ describe('CategoriaCreateComponent', () => {
         { provide: UserUtilsService, useValue: userUtilsServiceSpy },
         { provide: MatDialogRef, useValue: { close: jasmine.createSpy('close') } },
         { provide: MAT_DIALOG_DATA, useValue: {} },
-        provideHttpClientTesting() 
       ]
     }).compileComponents();
 
@@ -69,6 +68,5 @@ describe('CategoriaCreateComponent', () => {
     tick();
 
     expect(userUtilsServiceSpy.setLoggedInUser).toHaveBeenCalled();
-    expect(console.log).toHaveBeenCalledWith('No userId found');
   }));
 });

@@ -11,9 +11,9 @@ import { UserUtilsService } from 'src/app/services/user/user-util-service.servic
 import { PublisherService } from '../publisher.service';
 
 @Component({
-    selector: 'app-publisher-update',
-    templateUrl: './publisher-update.component.html',
-    standalone: false
+  selector: 'app-publisher-update',
+  templateUrl: './publisher-update.component.html',
+  standalone: false
 })
 export class PublisherUpdateComponent {
   today = new Date();
@@ -35,8 +35,6 @@ export class PublisherUpdateComponent {
       if (username) {
         this.publisher.modificationuser = username;
         this.publisher.modificationtimestamp = new Date().toISOString();
-      } else {
-        console.log('No userId found');
       }
     });
   }
@@ -65,7 +63,6 @@ export class PublisherUpdateComponent {
           this.dialogRef.close(true);
         },
         error: (error) => {
-          console.log('Error:', error.error.errors);
           const errorMessage = error?.error?.msg || 'Ocurrió un error';
           this.showErrorDialog(errorMessage);
         },

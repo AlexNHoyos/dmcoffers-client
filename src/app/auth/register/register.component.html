@@ -13,16 +13,10 @@
         <mat-label>Usuario</mat-label>
         <input matInput formControlName="username" placeholder="Ingrese su usuario" />
       </mat-form-field>
-      
+
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Correo Electrónico</mat-label>
-        <input
-          matInput
-          formControlName="email"
-          type="email"
-          placeholder="Ingrese su correo electrónico"
-          required
-        />
+        <input matInput formControlName="email" type="email" placeholder="Ingrese su correo electrónico" required />
         <mat-error *ngIf="registerForm.get('email')?.hasError('required')">
           El correo electrónico es requerido.
         </mat-error>

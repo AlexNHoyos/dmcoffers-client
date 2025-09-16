@@ -1,58 +1,31 @@
-<mat-card class="card">
+<mat-card class="dialog-card">
   <mat-card-header>
-    <mat-card-title>Crear Ticket de Soporte</mat-card-title>
+    <mat-card-title>Crear ticket</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <form (ngSubmit)="createSupportTicket($event)">
-      <mat-form-field class="form-field">
-        <mat-label>Describinos tu problema</mat-label>
-        <textarea
-          matInput
-          type="text"
-          [(ngModel)]="supportTicket.description"
-          name="descripcion"
-          #name="ngModel"
-          required
-          rows="4"
-          minlength="1"
-          placeholder="Escribí tu problema aquí"
-        ></textarea>
+    <form>
 
-        <button
-          *ngIf="supportTicket.description"
-          matSuffix
-          mat-icon-button
-          aria-label="Clear"
-          (click)="supportTicket.description = ''"
-          style="position: absolute; right: 10px; top: 10px"
-        >
-          <mat-icon>close</mat-icon>
-        </button>
+      <div class="row">
+        <mat-form-field class="col-12">
+          <mat-label>Describinos tu problema</mat-label>
+          <textarea matInput type="text" [(ngModel)]="supportTicket.description" name="descripcion" #name="ngModel"
+            required rows="4" minlength="1"></textarea>
+          <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
+            La descripcion no puede estar vacía.
+          </mat-error>
+        </mat-form-field>
+      </div>
 
-        <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
-          La descripcion no puede estar vacía.
-        </mat-error>
-      </mat-form-field>
-
-      <button
-        mat-raised-button
-        color="primary"
-        type="button"
-        (click)="showProximamente()"
-      >
+      <!-- No se contempla la implementacion, se deja comentado para considerar a futuro -->
+      <!--       <button mat-raised-button color="primary" type="button" (click)="showProximamente()">
         <mat-icon>attach_file</mat-icon>
         <span>Adjuntar Documentación</span>
-      </button>
+      </button> -->
 
-      <br />
-      <br />
-
-      <div class="action-buttons">
-        <button mat-flat-button type="submit" color="primary">Crear</button>
-        <button mat-flat-button color="secondary" (click)="cancel()">
-          Cancelar
-        </button>
-      </div>
     </form>
   </mat-card-content>
+  <mat-card-actions class="action-buttons">
+    <button mat-stroked-button color="secondary" (click)="cancel()"> Cancelar</button>
+    <button mat-flat-button type="submit" color="primary" (click)="createSupportTicket($event)">Crear</button>
+  </mat-card-actions>
 </mat-card>

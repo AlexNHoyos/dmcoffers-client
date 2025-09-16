@@ -10,6 +10,7 @@ import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule } from "@angular/forms";
 import { MatCardModule } from "@angular/material/card";
 import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatIconModule } from "@angular/material/icon";
 
 describe("PublisherDeleteComponent", () => {
   let component: PublisherDeleteComponent;
@@ -25,7 +26,8 @@ describe("PublisherDeleteComponent", () => {
         NoopAnimationsModule,
         MatCardModule,
         MatFormFieldModule,
-        MatDialogModule
+        MatDialogModule,
+        MatIconModule
       ],
       providers: [
         { provide: MatDialogRef, useValue: mockDialogRef },

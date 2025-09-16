@@ -9,10 +9,10 @@ import { HostingDeleteComponent } from './hosting-delete/hosting-delete.componen
 import { HostingDetailComponent } from './hosting-detail/hosting-detail.component';
 
 @Component({
-    selector: 'app-hosting',
-    templateUrl: './hosting.component.html',
-    styleUrls: ['./hosting.component.scss'],
-    standalone: false
+  selector: 'app-hosting',
+  templateUrl: './hosting.component.html',
+  styleUrls: ['./hosting.component.scss'],
+  standalone: false
 })
 export class HostingComponent extends CrudComponent<Hosting> {
   hostings: Hosting[] = [];
@@ -34,11 +34,11 @@ export class HostingComponent extends CrudComponent<Hosting> {
   openCreateDialog(): void {
     const dialogRef = this.dialog.open(HostingCreateComponent, {
       width: '400px',
+      disableClose: true
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Hosting creado');
         this.loadHostings(); // Carga o actualiza la lista de Hostings
       }
     });
@@ -48,14 +48,9 @@ export class HostingComponent extends CrudComponent<Hosting> {
     this.hostingService.getHosting(id).subscribe((hosting) => {
       const dialogRef = this.dialog.open(HostingDetailComponent, {
         width: '400px',
+        disableClose: true,
         data: { hosting },
       });
-      /*  No es necesario porque no edito los datos adentro del dialog, pero podria implementarse a futuro
-      dialogRef.afterClosed().subscribe((result) => {
-        if (result) {
-          this.loadHostings(); // Carga o actualiza la lista de Hostings
-        }
-      });*/
     });
   }
 
@@ -63,12 +58,12 @@ export class HostingComponent extends CrudComponent<Hosting> {
     this.hostingService.getHosting(id).subscribe((hosting) => {
       const dialogRef = this.dialog.open(HostingUpdateComponent, {
         width: '400px',
+        disableClose: true,
         data: { hosting },
       });
 
       dialogRef.afterClosed().subscribe((result) => {
         if (result) {
-          console.log('Hosting actualizado');
           this.loadHostings(); // Carga o actualiza la lista de Hostings
         }
       });
@@ -78,12 +73,12 @@ export class HostingComponent extends CrudComponent<Hosting> {
   openDeleteDialog(id: number): void {
     const dialogRef = this.dialog.open(HostingDeleteComponent, {
       width: '400px',
+      disableClose: true,
       data: { id },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Hosting eliminado');
         this.loadHostings(); // Carga o actualiza la lista de Hostings
       }
     });

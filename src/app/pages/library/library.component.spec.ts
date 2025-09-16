@@ -4,6 +4,7 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LibraryComponent } from './library.component';
+import { MatProgressSpinner, MatProgressSpinnerModule, MatSpinner } from '@angular/material/progress-spinner';
 
 describe('LibraryComponent', () => {
   let component: LibraryComponent;
@@ -17,7 +18,7 @@ describe('LibraryComponent', () => {
         provideHttpClientTesting()
       ],
       imports: [
-        MatDialogModule
+        MatDialogModule,MatProgressSpinner
       ]
     });
     fixture = TestBed.createComponent(LibraryComponent);

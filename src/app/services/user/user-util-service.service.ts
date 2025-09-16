@@ -8,7 +8,7 @@ import { UserService } from './user.service';
   providedIn: 'root',
 })
 export class UserUtilsService {
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService) { }
 
   setLoggedInUser(): Observable<string | null> {
     return this.userService.getUserId().pipe(

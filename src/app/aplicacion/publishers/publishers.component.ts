@@ -8,10 +8,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { PublisherDeleteComponent } from './publisher-delete/publisher-delete.component';
 import { PublisherDetailComponent } from './publisher-detail/publisher-detail.component';
 @Component({
-    selector: 'app-publisher',
-    templateUrl: './publishers.component.html',
-    styleUrls: ['./publishers.component.scss'],
-    standalone: false
+  selector: 'app-publisher',
+  templateUrl: './publishers.component.html',
+  styleUrls: ['./publishers.component.scss'],
+  standalone: false
 })
 export class PublisherComponent extends CrudComponent<Publisher> {
   publishers: Publisher[] = [];
@@ -39,11 +39,11 @@ export class PublisherComponent extends CrudComponent<Publisher> {
   openCreateDialog(): void {
     const dialogRef = this.dialog.open(PublisherCreateComponent, {
       width: '400px',
+      disableClose: true,
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Publisher creado');
         this.loadPublishers(); // Carga o actualiza la lista de publishers
       }
     });
@@ -53,6 +53,7 @@ export class PublisherComponent extends CrudComponent<Publisher> {
     this.publisherService.getPublisher(id).subscribe((publisher) => {
       const dialogRef = this.dialog.open(PublisherDetailComponent, {
         width: '400px',
+        disableClose: true,
         data: { publisher },
       });
       /*  No es necesario porque no edito los datos adentro del dialog, pero podria implementarse a futuro
@@ -68,12 +69,12 @@ export class PublisherComponent extends CrudComponent<Publisher> {
     this.publisherService.getPublisher(id).subscribe((publisher) => {
       const dialogRef = this.dialog.open(PublisherUpdateComponent, {
         width: '400px',
+        disableClose: true,
         data: { publisher },
       });
 
       dialogRef.afterClosed().subscribe((result) => {
         if (result) {
-          console.log('Publisher actualizado');
           this.loadPublishers(); // Carga o actualiza la lista de publishers
         }
       });
@@ -83,12 +84,12 @@ export class PublisherComponent extends CrudComponent<Publisher> {
   openDeleteDialog(id: number): void {
     const dialogRef = this.dialog.open(PublisherDeleteComponent, {
       width: '400px',
+      disableClose: true,
       data: { id },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('Publisher eliminado');
         this.loadPublishers(); // Carga o actualiza la lista de publishers
       }
     });

@@ -9,6 +9,7 @@ import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/materia
 import { MatCardModule } from '@angular/material/card';
 
 import { JuegoDeleteComponent } from './juego-delete.component';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('JuegoDeleteComponent', () => {
   let component: JuegoDeleteComponent;
@@ -17,7 +18,7 @@ describe('JuegoDeleteComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [JuegoDeleteComponent],
-      imports: [MatDialogModule, MatCardModule],
+      imports: [MatDialogModule, MatCardModule, MatIconModule],
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),

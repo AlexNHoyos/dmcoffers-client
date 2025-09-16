@@ -9,10 +9,10 @@ import { EncryptionService } from 'src/app/services/auth/encryption.service';
 import { ProximamenteService } from 'src/app/services/proximamente.service';
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss'],
-    standalone: false
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
+  standalone: false
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
     private dialog: MatDialog,
     private loginService: LoginService,
     private proximamenteService: ProximamenteService,
+    private encryptionService: EncryptionService,
   ) {
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required]], //Validadores requeridos
@@ -31,22 +32,30 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   get username() {
-    return this.loginForm.controls['username'];
+    return this.loginForm.get('username');
   }
 
-  get password() {
-    return this.loginForm.controls['password'];
+  get passwordControl() {
+    return this.loginForm.get('password');
+  }
+
+  get encryptedPassword() {
+    return this.encryptionService.encrypt(this.passwordControl?.value || '');
   }
 
   login() {
     if (this.loginForm.valid) {
-      this.loginService.login(this.loginForm.value as LoginRequest).subscribe({
-        next: (userData) => {},
+      const loginRequest: LoginRequest = {
+        username: this.username?.value,
+        password: this.encryptedPassword
+      };
+
+      this.loginService.login(loginRequest).subscribe({
+        next: (userData) => { },
         error: (errorData) => {
-          console.log(errorData);
           this.showErrorDialog(errorData);
           this.loginError = errorData;
         },

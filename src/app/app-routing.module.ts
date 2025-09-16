@@ -30,6 +30,7 @@ import { ForgotPassComponent } from './auth/forgotPass/forgotPass.component';
 import { ResetPassComponent } from './auth/resetPass/resetPass.component';
 import { UsuariosComponent } from './aplicacion/usuarios/usuarios.component';
 import { HostingComponent } from './aplicacion/hosting/hosting.component';
+import { JuegosPorCategoriaComponent } from './aplicacion/juegos/juegos-por-categoria/juegos-por-categoria.component.js';
 
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -41,7 +42,7 @@ const routes: Routes = [
     canActivate: [adminGuard],
   },
   { path: 'not-authorized', component: NotAuthorizedComponent },
-  { path: 'usuarios', component: UsuariosComponent,canActivate: [adminGuard]},
+  { path: 'usuarios', component: UsuariosComponent, canActivate: [adminGuard] },
   { path: 'soporte', component: SoporteComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -50,13 +51,14 @@ const routes: Routes = [
   { path: 'info', component: PersonalDetailsComponent },
   { path: 'juego/:id', component: JuegoDetailComponent },
   { path: 'wishlist', component: WishlistComponent, canActivate: [authGuard], },
-  { path: 'biblioteca', component: LibraryComponent , canActivate: [authGuard],},
-  { path: 'cart', component: CartComponent},
+  { path: 'biblioteca', component: LibraryComponent, canActivate: [authGuard], },
+  { path: 'cart', component: CartComponent },
   { path: 'hostings', component: HostingComponent, canActivate: [adminGuard], },
   { path: 'categorias', component: CategoriasComponent, canActivate: [adminGuard], },
   { path: 'publicadores', component: PublisherComponent, canActivate: [adminGuard], },
   { path: 'juegos', component: JuegosCrudComponent, canActivate: [adminGuard], },
   { path: 'desarrolladores', component: DesarrolladoresComponent, canActivate: [adminGuard], },
+  { path: 'listado-juegos', component: JuegosPorCategoriaComponent },
   { path: 'support-ticket', component: SupportTicketComponent },
   { path: '**', redirectTo: '/inicio', pathMatch: 'full' }, //redireccionar a inicio si no hay match
 ];

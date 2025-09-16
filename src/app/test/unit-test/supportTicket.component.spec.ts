@@ -57,7 +57,7 @@ describe("SupportTicketComponent", () => {
         description: ""
       }
     ];
-    component.showTable = true;
+
 
     fixture.detectChanges();
   }));

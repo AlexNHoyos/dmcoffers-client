@@ -9,10 +9,10 @@ import { ErrorDialogComponent } from '../../../components/error-dialog/error-dia
 import { SupportTicketService } from '../support-ticket.service';
 
 @Component({
-    selector: 'app-support-ticket-delete',
-    templateUrl: './support-ticket-delete.component.html',
-    styleUrls: ['./support-ticket-delete.component.scss'],
-    standalone: false
+  selector: 'app-support-ticket-delete',
+  templateUrl: './support-ticket-delete.component.html',
+  styleUrls: ['./support-ticket-delete.component.scss'],
+  standalone: false
 })
 export class SupportTicketDeleteComponent implements OnInit {
   supportTicketName: number = 0;
@@ -23,7 +23,7 @@ export class SupportTicketDeleteComponent implements OnInit {
     private dialog: MatDialog,
     private dialogRef: MatDialogRef<SupportTicketDeleteComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { id: number }
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.supportTicketService.getSupportTicket(this.data.id).subscribe({
@@ -31,7 +31,6 @@ export class SupportTicketDeleteComponent implements OnInit {
         this.supportTicketName = supportTicket.id;
       },
       error: () => {
-        console.log('Error');
       },
     });
   }

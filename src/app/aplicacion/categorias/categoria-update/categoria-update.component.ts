@@ -11,10 +11,10 @@ import { UserUtilsService } from 'src/app/services/user/user-util-service.servic
 import { CategoriaService } from '../categoria.service';
 
 @Component({
-    selector: 'app-categoria-update',
-    templateUrl: './categoria-update.component.html',
-    styleUrls: ['./categoria-update.component.scss'],
-    standalone: false
+  selector: 'app-categoria-update',
+  templateUrl: './categoria-update.component.html',
+  styleUrls: ['./categoria-update.component.scss'],
+  standalone: false
 })
 export class CategoriaUpdateComponent {
   categoria: Categoria;
@@ -35,8 +35,6 @@ export class CategoriaUpdateComponent {
       if (username) {
         this.categoria.modificationuser = username;
         this.categoria.modificationtimestamp = new Date().toISOString();
-      } else {
-        console.log('No userId found');
       }
     });
   }
@@ -59,7 +57,6 @@ export class CategoriaUpdateComponent {
           this.dialogRef.close(true);
         },
         error: (error) => {
-          console.log('Error:', error.error.errors);
           const errorMessage = error?.error?.msg || 'Ocurrió un error';
           this.showErrorDialog(errorMessage);
         },
