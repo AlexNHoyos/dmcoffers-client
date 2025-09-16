@@ -37,8 +37,8 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group(
       {
         username: ['', [Validators.required]],
-        realname: ['',],
-        surname: ['',],
+        realname: [''],
+        surname: [''],
         email: ['', [Validators.required, Validators.email]],
         password: [
           '',
@@ -49,11 +49,11 @@ export class RegisterComponent implements OnInit {
             this.passwordHasNumber()
           ],
         ],
-        password2: ['', [Validators.required, Validators.minLength(8)]],
+        password2: ['', [Validators.required, this.passwordMatchValidator()]],
         birth_date: ['', [Validators.required]],
-      },
-      { validators: this.passwordMatchValidator(), }
+      }
     );
+
     this.user = new User();
   }
 
@@ -103,16 +103,37 @@ export class RegisterComponent implements OnInit {
 
   passwordMatchValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
-      const formGroup = control as FormGroup;
-      const password = formGroup.controls['password']?.value;
-      const confirmPassword = formGroup.controls['password2']?.value;
+      if (!(control instanceof FormGroup)) return null;
 
-      if (password && confirmPassword && password !== confirmPassword) {
-        return { passwordsMismatch: true };
+      const passwordControl = control.get('password');
+      const confirmPasswordControl = control.get('password2');
+
+      if (!passwordControl || !confirmPasswordControl) return null;
+
+      const password = passwordControl.value;
+      const confirm = confirmPasswordControl.value;
+
+      const currentErrors = confirmPasswordControl.errors ? { ...confirmPasswordControl.errors } : {};
+
+      if (password && confirm && password !== confirm) {
+        currentErrors['passwordsMismatch'] = true;
+        confirmPasswordControl.setErrors(currentErrors);
+      } else {
+        if (currentErrors['passwordsMismatch']) {
+          delete currentErrors['passwordsMismatch'];
+          confirmPasswordControl.setErrors(Object.keys(currentErrors).length ? currentErrors : null);
+        }
       }
 
       return null;
     };
+  }
+
+  get password2() {
+    return this.registerForm.get('password2');
+  }
+  get password() {
+    return this.registerForm.get('password');
   }
 
   onConfirmBlur() {
@@ -151,13 +172,6 @@ export class RegisterComponent implements OnInit {
 
       return null;
     };
-  }
-
-  get password2() {
-    return this.registerForm.get('password2');
-  }
-  get password() {
-    return this.registerForm.get('password');
   }
 
   emailValidator(): ValidatorFn {
